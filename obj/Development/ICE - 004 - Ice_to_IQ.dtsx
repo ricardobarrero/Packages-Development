@@ -1,0 +1,1650 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/10/2019 12:55:44 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S9SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{0DE372A2-5F0A-418D-B05F-E036D4929676}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ICE - 004 - Ice_to_IQ"
+  DTS:PackageType="5"
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{FC8FA8C1-133C-4B84-B8D5-76438BA924A7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser16]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{C8A1E48C-73A9-4F62-AD40-60F36BC6544D}"
+      DTS:ObjectName="INTCOMEX_DWH.dwhuser16">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Etluser;Dsn=IQ16;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABDQsfAAKvHRnRhi5ZWSYyEAAAAAASAAACgAAAAEAAAAJVr9c2PQKIjHu9t/dd/33QYAAAAhOF/RHe4EpOiZlrUWmtpqnjgOdrdOJJBFAAAAKhpYm/4qDv2U/EW1NJfhbJ2KP44</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B019916C-E75F-4671-A90F-E31D65A65FEC}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{DF72354C-95AD-491B-A8A3-FE235F23B2C2}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=ClientArrayus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;INTCOMEX_DWH.dwhuser16&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{2B186597-035B-4CD0-9D66-FBB596E9A9BD}"
+      DTS:ObjectName="INTCOMEX_DWH dwhuser16" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C62E918A-651F-4B7B-AAA1-2DDB9934FFFC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VInt_Ejecucion">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{12896D62-5843-49C6-B6F5-11BC81D2D7F5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_CompaniID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4028EB55-0FA9-4F5C-9CFE-FEF9D5E947E1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B364BBAD-34A2-4E5F-A99C-10DFA460DD68}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_LinkedServer">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1AD2EBF7-3706-4968-B05D-2A97C5124FEF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{05E5873A-0098-4377-A81E-01019D282928}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_objetolista">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EAE97599-A26B-4CD7-9145-FDCEC1B49456}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1E1A04AA-06FA-4DE4-BFC6-9AC920A9C6D1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\A - Execution Control"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{AA2252F5-8642-4AA9-9130-2E9F3EBC81FA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="A - Execution Control"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"A - Execution Control"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">" Declare @Ejecucion int  IF (Select Ejecucion From ETL.Log_Ejecucion where Paquete = '"+@[System::PackageName]+"')= 0 Set @Ejecucion=1 Else  Set @Ejecucion=0 select @ejecucion"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B019916C-E75F-4671-A90F-E31D65A65FEC}"
+          SQLTask:SqlStatementSource=" Declare @Ejecucion int  IF (Select Ejecucion From ETL.Log_Ejecucion where Paquete = 'ICE - 004 - Ice_to_IQ')= 0 Set @Ejecucion=1 Else  Set @Ejecucion=0 select @ejecucion"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::VInt_Ejecucion" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\B - Task Home ICE - 004 - Ice_to_IQ"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B1B14B9A-E4B0-4930-9A37-C92E8FD98887}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="B - Task Home ICE - 004 - Ice_to_IQ"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"B - Task Home "+ @[System::PackageName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 1, Fecha_inicio = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B019916C-E75F-4671-A90F-E31D65A65FEC}"
+          SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 1, Fecha_inicio = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ice to IQ"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{6735316E-6910-480D-AAF8-18B501F44CD6}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ice to IQ">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Ice to IQ\Foreach Loop Container"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{A7FCCF0F-80D9-49B3-9871-220DEFEC8072}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Foreach Loop Container">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.ForEachADOEnumerator"
+            DTS:DTSID="{6821A65E-46E3-4E27-A82E-A61C80A717F6}"
+            DTS:ObjectName="{6821A65E-46E3-4E27-A82E-A61C80A717F6}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::VStr_objetolista" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Ice to IQ\Foreach Loop Container\dm_trns_ICE_Agent"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:Disabled="True"
+              DTS:DTSID="{C31C94C1-7A38-477D-B8CA-D6DB4C1CDD9B}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="dm_trns_ICE_Agent"
+              DTS:ThreadHint="3">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{C8A1E48C-73A9-4F62-AD40-60F36BC6544D}"
+                  SQLTask:SqlStatementSource="exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Agent&quot;  ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::VStr_CompaniID"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="16"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::VStr_LinkedServer"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="16"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Ice to IQ\Foreach Loop Container\dm_trns_ICE_Switch"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{BDAC8905-D73F-46A8-9644-D753EA39E870}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="dm_trns_ICE_Switch"
+              DTS:ThreadHint="3">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{C8A1E48C-73A9-4F62-AD40-60F36BC6544D}"
+                  SQLTask:SqlStatementSource="exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Switch&quot; ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::VStr_CompaniID"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="16"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::VStr_LinkedServer"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="16"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Ice to IQ\Foreach Loop Container\dm_trns_Stat_CDR_Summary_v2"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:Disabled="True"
+              DTS:DTSID="{7C3706D8-296E-4FAD-BCAB-5E9CF54FB85E}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="dm_trns_Stat_CDR_Summary_v2"
+              DTS:ThreadHint="3">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{C8A1E48C-73A9-4F62-AD40-60F36BC6544D}"
+                  SQLTask:SqlStatementSource="EXEC &quot;dwhuser&quot;.&quot;dm_trns_Stat_CDR_Summary_v2&quot; ?, ?&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::VStr_CompaniID"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="16"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::VStr_LinkedServer"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="16"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Ice to IQ\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{5368B6F8-017E-4EA6-AED3-CC6D9EAAD087}"
+              DTS:From="Package\Ice to IQ\Foreach Loop Container\dm_trns_Stat_CDR_Summary_v2"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Ice to IQ\Foreach Loop Container\dm_trns_ICE_Agent" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Ice to IQ\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{22C98D74-A877-40C9-BA31-61ADE9723AF6}"
+              DTS:From="Package\Ice to IQ\Foreach Loop Container\dm_trns_ICE_Agent"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\Ice to IQ\Foreach Loop Container\dm_trns_ICE_Switch" />
+          </DTS:PrecedenceConstraints>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{06BA1BCA-FB15-494C-BE1A-AC0DA39C10A5}"
+              DTS:ObjectName="{06BA1BCA-FB15-494C-BE1A-AC0DA39C10A5}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::VStr_CompaniID" />
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{3CFFAA5B-7788-4E78-BC03-1172F193E89F}"
+              DTS:ObjectName="{3CFFAA5B-7788-4E78-BC03-1172F193E89F}"
+              DTS:ValueIndex="1"
+              DTS:VariableName="User::VStr_LinkedServer" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Ice to IQ\Update VStr_ObjetoLista"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{960F8132-8FB1-4807-873B-DE6767075F27}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update VStr_ObjetoLista"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select 'XCB' as companyid, 'IceCO' as linkedserver
+union
+select 'XCL', 'IceCL'
+union
+select 'XCR', 'IceCR'
+union
+select 'XEC', 'IceEC'
+union
+select 'XGT', 'IceGT'
+union
+select 'XJM', 'IceJM'
+union 
+select 'XMX', 'IceMX'
+union
+select 'XPA', 'IcePA'
+union
+select 'XPE', 'IcePE'
+union
+select 'XSV', 'IceSV'
+union 
+select 'XUS', 'IceUS'
+union
+select 'XUY', 'IceUY'</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Output].Columns[companyid]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[companyid]"
+                          length="3"
+                          lineageId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Output].Columns[companyid]"
+                          name="companyid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Output].Columns[linkedserver]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[linkedserver]"
+                          length="5"
+                          lineageId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Output].Columns[linkedserver]"
+                          name="linkedserver"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[companyid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="companyid" />
+                        <externalMetadataColumn
+                          refId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[linkedserver]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="linkedserver" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[companyid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          lineageId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[companyid]"
+                          name="companyid" />
+                        <outputColumn
+                          refId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[linkedserver]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          lineageId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[linkedserver]"
+                          name="linkedserver" />
+                        <outputColumn
+                          refId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Ice to IQ\Update VStr_ObjetoLista\Recordset Destination"
+                  componentClassID="Microsoft.RecordsetDestination"
+                  contactInfo="Recordset Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates and populates an in-memory ADO recordset that is available outside of the data flow. Scripts and other package elements can use the recordset. For example, use a recordset to store the names of files that will be loaded into the data warehouse."
+                  name="Recordset Destination">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the recordset."
+                      name="VariableName">User::VStr_objetolista</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Ice to IQ\Update VStr_ObjetoLista\Recordset Destination.Inputs[Recordset Destination Input]"
+                      hasSideEffects="true"
+                      name="Recordset Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Ice to IQ\Update VStr_ObjetoLista\Recordset Destination.Inputs[Recordset Destination Input].Columns[VStr_CompanyID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="3"
+                          cachedName="companyid"
+                          lineageId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Output].Columns[companyid]"
+                          name="VStr_CompanyID" />
+                        <inputColumn
+                          refId="Package\Ice to IQ\Update VStr_ObjetoLista\Recordset Destination.Inputs[Recordset Destination Input].Columns[VStr_LinkedServer]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="5"
+                          cachedName="linkedserver"
+                          lineageId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Output].Columns[linkedserver]"
+                          name="VStr_LinkedServer" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Ice to IQ\Update VStr_ObjetoLista.Paths[OLE DB Source Output]"
+                  endId="Package\Ice to IQ\Update VStr_ObjetoLista\Recordset Destination.Inputs[Recordset Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Ice to IQ.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{C6CFA5C9-9D5F-47CF-82B6-12FEBB59D28C}"
+          DTS:From="Package\Ice to IQ\Update VStr_ObjetoLista"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Ice to IQ\Foreach Loop Container" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transfer data Ice to IQ"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{CEB73BCC-EB82-4B33-8971-6B4938E0B82A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transfer data Ice to IQ">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Transfer data Ice to IQ\dm_trns_ICE_Agent"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D5E45E51-C9B1-4294-9E06-2B177EB540DC}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="dm_trns_ICE_Agent"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C8A1E48C-73A9-4F62-AD40-60F36BC6544D}"
+              SQLTask:SqlStatementSource="exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Agent&quot;  'XCB', 'IceCO';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Agent&quot;  'XCL', 'IceCL';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Agent&quot;  'XCR', 'IceCR';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Agent&quot;  'XEC', 'IceEC';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Agent&quot;  'XGT', 'IceGT';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Agent&quot;  'XJM', 'IceJM';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Agent&quot;  'XMX', 'IceMX';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Agent&quot;  'XPA', 'IcePA';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Agent&quot;  'XPE', 'IcePE';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Agent&quot;  'XSV', 'IceSV';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Agent&quot;  'XUS', 'IceUS';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Agent&quot;  'XUY', 'IceUY'&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Transfer data Ice to IQ\dm_trns_ICE_Switch"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{63F46EA0-2FA2-4FBD-A390-E7EF4B6AC728}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="dm_trns_ICE_Switch"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C8A1E48C-73A9-4F62-AD40-60F36BC6544D}"
+              SQLTask:SqlStatementSource="exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Switch&quot; 'XCB', 'IceCO';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Switch&quot; 'XCL', 'IceCL';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Switch&quot; 'XCR', 'IceCR';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Switch&quot; 'XEC', 'IceEC';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Switch&quot; 'XGT', 'IceGT';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Switch&quot; 'XJM', 'IceJM';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Switch&quot; 'XMX', 'IceMX';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Switch&quot; 'XPA', 'IcePA';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Switch&quot; 'XPE', 'IcePE';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Switch&quot; 'XSV', 'IceSV';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Switch&quot; 'XUS', 'IceUS';&#xA;exec &quot;dwhuser&quot;.&quot;dm_trns_ICE_Switch&quot; 'XUY', 'IceUY'&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Transfer data Ice to IQ\dm_trns_Stat_CDR_Summary_v2"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EAE80A56-AEA8-4C7C-8066-462D59AE65A2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="dm_trns_Stat_CDR_Summary_v2"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C8A1E48C-73A9-4F62-AD40-60F36BC6544D}"
+              SQLTask:SqlStatementSource="EXEC &quot;dwhuser&quot;.&quot;dm_trns_Stat_CDR_Summary_v2&quot; 'XCB', 'IceCO';&#xA;EXEC &quot;dwhuser&quot;.&quot;dm_trns_Stat_CDR_Summary_v2&quot; 'XCL', 'IceCL';&#xA;EXEC &quot;dwhuser&quot;.&quot;dm_trns_Stat_CDR_Summary_v2&quot; 'XCR', 'IceCR';&#xA;EXEC &quot;dwhuser&quot;.&quot;dm_trns_Stat_CDR_Summary_v2&quot; 'XEC', 'IceEC';&#xA;EXEC &quot;dwhuser&quot;.&quot;dm_trns_Stat_CDR_Summary_v2&quot; 'XGT', 'IceGT';&#xA;EXEC &quot;dwhuser&quot;.&quot;dm_trns_Stat_CDR_Summary_v2&quot; 'XJM', 'IceJM';&#xA;EXEC &quot;dwhuser&quot;.&quot;dm_trns_Stat_CDR_Summary_v2&quot; 'XMX', 'IceMX';&#xA;EXEC &quot;dwhuser&quot;.&quot;dm_trns_Stat_CDR_Summary_v2&quot; 'XPA', 'IcePA';&#xA;EXEC &quot;dwhuser&quot;.&quot;dm_trns_Stat_CDR_Summary_v2&quot; 'XPE', 'IcePE';&#xA;EXEC &quot;dwhuser&quot;.&quot;dm_trns_Stat_CDR_Summary_v2&quot; 'XSV', 'IceSV';&#xA;EXEC &quot;dwhuser&quot;.&quot;dm_trns_Stat_CDR_Summary_v2&quot; 'XUS', 'IceUS';&#xA;EXEC &quot;dwhuser&quot;.&quot;dm_trns_Stat_CDR_Summary_v2&quot; 'XUY', 'IceUY'&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\X - Reset Process Variables"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Reset Process Variables"
+      DTS:DTSID="{C950FCC2-8760-4953-8481-EE41FF4B7664}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="X - Reset Process Variables">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"X - Reset Process Variables"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\X - Reset Process Variables\Tarea Reset Ejecucion ICE - 004 - Ice_to_IQ"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{CFFCC122-E677-4105-B925-8AAAC333461B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Reset Ejecucion ICE - 004 - Ice_to_IQ"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Tarea Reset Ejecucion "+ @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B019916C-E75F-4671-A90F-E31D65A65FEC}"
+              SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Y - Correct Event Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Correct Event Task"
+      DTS:DTSID="{B9B946E9-FDC4-4F15-9959-70FC687F857D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Y - Correct Event Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Y - Correct Event Task"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Correcto','Ejecucion Correcta')"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B019916C-E75F-4671-A90F-E31D65A65FEC}"
+          SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;&#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Correcto','Ejecucion Correcta')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Z - Correct Event"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Send Mail  Correct Event"
+      DTS:DTSID="{4C7E0499-6A03-4910-8903-2D47DADC1CE5}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Z - Correct Event">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Z - Correct Event"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{AE9EAC2E-EA8E-46CC-A4C3-BCC09A595747}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se a ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B019916C-E75F-4671-A90F-E31D65A65FEC}"
+              SQLTask:SqlStatementSource="Select  'Se a ejecutado  el Paquete ICE - 004 - Ice_to_IQ  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{1BD6BCA1-E3DD-4E32-A130-46DC25B9758D}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{DF72354C-95AD-491B-A8A3-FE235F23B2C2}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :ICE - 004 - Ice_to_IQ" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{77ED8E15-F6BA-453B-AD18-F32156AA288B}"
+          DTS:From="Package\Z - Correct Event\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Z - Correct Event\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{33888913-DF73-4034-9B35-81D415496BEA}"
+      DTS:From="Package\Transfer data Ice to IQ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\X - Reset Process Variables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{BE27C39D-EADA-41A6-AB98-464342A8EF57}"
+      DTS:From="Package\B - Task Home ICE - 004 - Ice_to_IQ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Transfer data Ice to IQ" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{807D7DBB-09A3-40AF-84A1-CD04F0041CB7}"
+      DTS:From="Package\Y - Correct Event Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Z - Correct Event" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{4E878CEC-2CFE-4393-8122-5F5A4E253485}"
+      DTS:From="Package\X - Reset Process Variables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Y - Correct Event Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{A9A03473-7CF2-4361-8469-09A899544BE7}"
+      DTS:From="Package\B - Task Home ICE - 004 - Ice_to_IQ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Ice to IQ" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{E3D7F299-5BA3-4D57-907F-8271FD12C4A9}"
+      DTS:From="Package\Ice to IQ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\X - Reset Process Variables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{2BB8A0C1-09FE-4503-8E6D-7A43F6F00705}"
+      DTS:EvalOp="3"
+      DTS:Expression="@VInt_Ejecucion==1"
+      DTS:From="Package\A - Execution Control"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\B - Task Home ICE - 004 - Ice_to_IQ" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{9B6DE9D5-B722-434E-B4F5-4F1106F7B029}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{5F49C3F1-15B4-4DE0-898F-1DDE38414CC3}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Event Error"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Send Mail  Error Event"
+          DTS:DTSID="{62AAD5E1-5F13-45D2-B338-2E023888546E}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Event Error">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Event Error"</DTS:PropertyExpression>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Event Error\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{0D041344-77AD-4E10-8D96-1D8BBF24B9DD}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{B019916C-E75F-4671-A90F-E31D65A65FEC}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Event Error\Send Mail Task"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{99827058-57C2-482B-A18A-A90341BE71CA}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send Mail Task"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError] + @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{DF72354C-95AD-491B-A8A3-FE235F23B2C2}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :ICE - 004 - Ice_to_IQ" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Event Error.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{F290EEA9-E6E2-4E40-9E91-1D150781D0C9}"
+              DTS:From="Package.EventHandlers[OnError]\Event Error\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Event Error\Send Mail Task" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Process Control Errors"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Task Error Event"
+          DTS:DTSID="{38BFE4B4-FD67-44E6-880A-E225B1B924A8}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Process Control Errors">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Process Control Errors"</DTS:PropertyExpression>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors\Tarea Evento Fallo"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{E1B2B479-6818-47DC-AF58-815882C03385}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tarea Evento Fallo"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Tarea Evento Fallo"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{B019916C-E75F-4671-A90F-E31D65A65FEC}"
+                  SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors\Tarea Reset Ejecucion ICE - 004 - Ice_to_IQ"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{DEADF986-BF15-43A2-9312-DA36C5BA4709}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tarea Reset Ejecucion ICE - 004 - Ice_to_IQ"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Tarea Reset Ejecucion "+ @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{B019916C-E75F-4671-A90F-E31D65A65FEC}"
+                  SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors.PrecedenceConstraints[Restricción]"
+              DTS:CreationName=""
+              DTS:DTSID="{67741D6A-B55F-43C6-9B7B-925F31B1FCB4}"
+              DTS:From="Package.EventHandlers[OnError]\Process Control Errors\Tarea Reset Ejecucion ICE - 004 - Ice_to_IQ"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Restricción"
+              DTS:To="Package.EventHandlers[OnError]\Process Control Errors\Tarea Evento Fallo" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{6AF6F868-2FDB-4114-A941-4146BCB50917}"
+          DTS:From="Package.EventHandlers[OnError]\Process Control Errors"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Event Error" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="179,42"
+          Id="Package\A - Execution Control"
+          TopLeft="73.528301886792,0.0566037735800364" />
+        <NodeLayout
+          Size="254,42"
+          Id="Package\B - Task Home ICE - 004 - Ice_to_IQ"
+          TopLeft="32,86.7169811320707" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Ice to IQ\Foreach Loop Container\dm_trns_ICE_Agent"
+          TopLeft="27.5,98" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Ice to IQ\Foreach Loop Container\dm_trns_ICE_Switch"
+          TopLeft="25,199" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Ice to IQ\Foreach Loop Container\dm_trns_Stat_CDR_Summary_v2"
+          TopLeft="21,7" />
+        <EdgeLayout
+          Id="Package\Ice to IQ\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="108,49">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Ice to IQ\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="110,140">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="206,303"
+          Size="206,346"
+          Id="Package\Ice to IQ\Foreach Loop Container"
+          TopLeft="48,114" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Ice to IQ\Update VStr_ObjetoLista"
+          TopLeft="56,14" />
+        <EdgeLayout
+          Id="Package\Ice to IQ.PrecedenceConstraints[Constraint 4]"
+          TopLeft="152.25,56">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="280,515"
+          Size="280,558"
+          Id="Package\Ice to IQ"
+          TopLeft="386,149" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Transfer data Ice to IQ\dm_trns_ICE_Agent"
+          TopLeft="10,107.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Transfer data Ice to IQ\dm_trns_ICE_Switch"
+          TopLeft="5.50000000000003,209.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Transfer data Ice to IQ\dm_trns_Stat_CDR_Summary_v2"
+          TopLeft="5.50000000000001,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="183,307"
+          Size="183,350"
+          Id="Package\Transfer data Ice to IQ"
+          TopLeft="64,191" />
+        <NodeLayout
+          Size="183,44"
+          Id="Package\X - Reset Process Variables\Tarea Reset Ejecucion ICE - 004 - Ice_to_IQ"
+          TopLeft="7.54716981132083,8.47169811320759" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="230,59"
+          Size="230,103"
+          Id="Package\X - Reset Process Variables"
+          TopLeft="45,857" />
+        <NodeLayout
+          Size="228,44"
+          Id="Package\Y - Correct Event Task"
+          TopLeft="52.132075471698,1008.56603773585" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\Mensaje"
+          TopLeft="7.54716981132083,8.47169811320759" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\Send Mail Task"
+          TopLeft="7.54716981132083,90.1320754716983" />
+        <EdgeLayout
+          Id="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          TopLeft="75.433962264151,52.3962264150944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7358490566039"
+              Start="0,0"
+              End="0,30.2358490566039">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566039" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="151,141"
+          Size="151,185"
+          Id="Package\Z - Correct Event"
+          TopLeft="87.4339622641512,1114.05660377358" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="155.5,541">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-32.5,316"
+              Start="0,0"
+              End="-32.5,308.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,184.290155440415" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,184.290155440415"
+                    Point2="0,188.290155440415"
+                    Point3="-4,188.290155440415" />
+                  <mssgle:LineSegment
+                    End="-28.5,188.290155440415" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-28.5,188.290155440415"
+                    Point2="-32.5,188.290155440415"
+                    Point3="-32.5,192.290155440415" />
+                  <mssgle:LineSegment
+                    End="-32.5,308.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="157.25,128.716981132071">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.2830188679293"
+              Start="0,0"
+              End="0,54.7830188679293">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.7830188679293" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="164.533018867924,1052.56603773585">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.4905660377299"
+              Start="0,0"
+              End="0,53.9905660377299">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.9905660377299" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="163.066037735849,960">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.5660377358499"
+              Start="0,0"
+              End="0,41.0660377358499">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.0660377358499" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="286,107.716981132071">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="100,320.283018867929"
+              Start="0,0"
+              End="92.5,320.283018867929">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="46,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46,0"
+                    Point2="50,0"
+                    Point3="50,4" />
+                  <mssgle:LineSegment
+                    End="50,316.283018867929" />
+                  <mssgle:CubicBezierSegment
+                    Point1="50,316.283018867929"
+                    Point2="50,320.283018867929"
+                    Point3="54,320.283018867929" />
+                  <mssgle:LineSegment
+                    End="92.5,320.283018867929" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="526,707">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-329,150"
+              Start="0,0"
+              End="-329,142.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,85.3782383419689" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,85.3782383419689"
+                    Point2="0,89.3782383419689"
+                    Point3="-4,89.3782383419689" />
+                  <mssgle:LineSegment
+                    End="-325,89.3782383419689" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-325,89.3782383419689"
+                    Point2="-329,89.3782383419689"
+                    Point3="-329,93.3782383419689" />
+                  <mssgle:LineSegment
+                    End="-329,142.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="161.014150943396,42.05660377358">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.6603773584907"
+              Start="0,0"
+              End="0,37.1603773584907">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.1603773584907" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,10.5801886792453,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Event Error\Mensaje"
+          TopLeft="41.5471698113207,19.5660377358491" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Event Error\Send Mail Task"
+          TopLeft="41.9622641509434,105.566037735849" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Event Error.PrecedenceConstraints[Constraint]"
+          TopLeft="109.433962264151,63.4905660377358">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.415094339622641,42.0754716981132"
+              Start="0,0"
+              End="0.415094339622641,34.5754716981132">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0188679245283" />
+                  <mssgle:LineSegment
+                    End="0.415094339622641,21.0188679245283" />
+                  <mssgle:LineSegment
+                    End="0.415094339622641,34.5754716981132" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="292,189.075471698114"
+          Size="292,233"
+          Id="Package.EventHandlers[OnError]\Event Error"
+          TopLeft="64,377" />
+        <NodeLayout
+          Size="230,44"
+          Id="Package.EventHandlers[OnError]\Process Control Errors\Tarea Evento Fallo"
+          TopLeft="30.0377358490566,88.2452830188679" />
+        <NodeLayout
+          Size="225,44"
+          Id="Package.EventHandlers[OnError]\Process Control Errors\Tarea Reset Ejecucion ICE - 004 - Ice_to_IQ"
+          TopLeft="33.5283018867925,10.8867924528302" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Process Control Errors.PrecedenceConstraints[Restricción]"
+          TopLeft="145.533018867925,54.8867924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.3584905660377"
+              Start="0,0"
+              End="0,25.8584905660377">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.8584905660377" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="44"
+          IsExpanded="True"
+          PanelSize="296,187"
+          Size="296,231"
+          Id="Package.EventHandlers[OnError]\Process Control Errors"
+          TopLeft="58.9999999999999,62" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="208.5,293">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,84"
+              Start="0,0"
+              End="0,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Ice to IQ\Update VStr_ObjetoLista">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Ice to IQ\Update VStr_ObjetoLista\Recordset Destination"
+          TopLeft="73,174" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source"
+          TopLeft="91,35" />
+        <EdgeLayout
+          Id="Package\Ice to IQ\Update VStr_ObjetoLista.Paths[OLE DB Source Output]"
+          TopLeft="165,77">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,97"
+              Start="0,0"
+              End="0,89.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,89.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,36.75,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Ice to IQ\Update VStr_ObjetoLista\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/30/2020 4:27:15 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S9SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{36869559-1F63-460D-8E15-E454AC249312}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DASH - USER - PROXITABLES"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{EECF5520-87F6-41F4-927C-60BF10B377E9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[IQ16_Dash_User.dash_user]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{2E2BBD18-BC1F-4716-B2DC-7C825B75D298}"
+      DTS:ObjectName="IQ16_Dash_User.dash_user">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=dash_user;Dsn=IQ16_Dash_User;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADQ3LCSednmu3DBIPk1t5B+AAAAAASAAACgAAAAEAAAAAkLTy93bKLQ/iMACS8FXl0IAAAAFsFSZlQ80WMUAAAANOIChU/EcdnAzTX19JHD1hMAP7k</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{EBB9697D-54F6-496C-99AF-D8BD566DFD68}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;IQ16_Dash_User.dash_user&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{E1D3FC76-BA07-4E0F-92A8-A60390B32709}"
+      DTS:ObjectName="IQ16_Dash_User" />
+  </DTS:Configurations>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\activar proxitables del user Dash_User"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{D3E61F58-3DF9-45D5-B716-9401B1DCA982}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="activar proxitables del user Dash_User">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\activar proxitables del user Dash_User\load_fact_sales_forecast_to_order"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C13E460E-0889-4C5A-AC93-B549E7A5AAA2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_fact_sales_forecast_to_order"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{2E2BBD18-BC1F-4716-B2DC-7C825B75D298}"
+              SQLTask:SqlStatementSource="exec dash_user.load_fact_sales_forecast_to_order " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="240,42"
+          Id="Package\activar proxitables del user Dash_User\load_fact_sales_forecast_to_order"
+          TopLeft="11.5,15" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="264,112"
+          Size="264,155"
+          Id="Package\activar proxitables del user Dash_User"
+          TopLeft="141,121" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

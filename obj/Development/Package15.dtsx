@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/23/2021 4:57:20 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S80SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{7123D180-8870-4404-B9D8-FCDFD02FA766}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package15"
+  DTS:PackageType="5"
+  DTS:VersionBuild="48"
+  DTS:VersionGUID="{98063E46-5AAD-4E75-90F2-C8B47B3CF31A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s80sqlus]"
+      DTS:CreationName="SMOServer"
+      DTS:DTSID="{BA07AAC0-627D-4DB4-BC70-3DFA5D211E34}"
+      DTS:ObjectName="s80sqlus">
+      <DTS:ObjectData>
+        <SMOServerConnectionManager
+          ConnectionString="SqlServerName=s80sqlus;UseWindowsAuthentication=True;UserName=;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S80SQLUS]"
+      DTS:CreationName="ADO.NET:SQL"
+      DTS:DTSID="{7888CE31-CD0B-4A9F-912A-A8A1BB9DE974}"
+      DTS:ObjectName="S80SQLUS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S80SQLUS;Integrated Security=SSPI;Connect Timeout=30;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s91sqlus]"
+      DTS:CreationName="SMOServer"
+      DTS:DTSID="{53AA8C99-1297-4D79-A72D-1B614BE37654}"
+      DTS:ObjectName="s91sqlus">
+      <DTS:ObjectData>
+        <SMOServerConnectionManager
+          ConnectionString="SqlServerName=s91sqlus;UseWindowsAuthentication=True;UserName=;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLAPP2LIST]"
+      DTS:CreationName="ADO.NET:SQL"
+      DTS:DTSID="{E4B0A0A9-DAC9-467B-BFC6-DE10B5CD5DDB}"
+      DTS:ObjectName="SQLAPP2LIST">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S10SQLUS;Integrated Security=SSPI;Connect Timeout=30;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[{E1A89690-BE7E-4F48-B9A1-C3C062ACA534\}]"
+      DTS:CreationName="ADO.NET:SQL"
+      DTS:DTSID="{E1A89690-BE7E-4F48-B9A1-C3C062ACA534}"
+      DTS:ObjectName="{E1A89690-BE7E-4F48-B9A1-C3C062ACA534}">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Migracion SQLAPPList"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{DEF9B030-375B-4F44-8B64-DF1507BC9AEE}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Migracion SQLAPPList">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Migracion SQLAPPList\Back Up Database DWH"
+          DTS:CreationName="Microsoft.DbMaintenanceBackupTask"
+          DTS:Description="Back Up Database Task"
+          DTS:DTSID="{325B2215-339F-46F7-A5A5-E12C6BABC120}"
+          DTS:ExecutableType="Microsoft.DbMaintenanceBackupTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Back Up Database DWH"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7888CE31-CD0B-4A9F-912A-A8A1BB9DE974}"
+              SQLTask:DatabaseSelectionType="4"
+              SQLTask:ServerVersion="13"
+              SQLTask:ExtendedLogging="True"
+              SQLTask:LocalConnectionForLogging=""
+              SQLTask:TaskName=""
+              SQLTask:IgnoreDatabasesInNotOnlineState="True"
+              SQLTask:BackupAction="0"
+              SQLTask:BackupIsIncremental="False"
+              SQLTask:BackupFileGroupsFiles=""
+              SQLTask:BackupDeviceType="2"
+              SQLTask:BackupPhysicalDestinationType="2"
+              SQLTask:BackupDestinationType="0"
+              SQLTask:BackupDestinationAutoFolderPath="\\s91sqlus\BackupDWH"
+              SQLTask:BackupActionForExistingBackups="0"
+              SQLTask:BackupCreateSubFolder="False"
+              SQLTask:BackupFileExtension="bak"
+              SQLTask:BackupVerifyIntegrity="False"
+              SQLTask:ExpireDate="2021-03-27T00:00:00"
+              SQLTask:RetainDays="14"
+              SQLTask:InDays="True"
+              SQLTask:UseExpiration="False"
+              SQLTask:BackupCompressionAction="1"
+              SQLTask:CopyOnlyBackup="False"
+              SQLTask:IgnoreReplicaType="False"
+              SQLTask:CredentialName=""
+              SQLTask:ContainerName=""
+              SQLTask:UrlPrefix=""
+              SQLTask:IsBackupEncrypted="False"
+              SQLTask:BackupEncryptionAlgorithm="0"
+              SQLTask:BackupEncryptorType="0"
+              SQLTask:BackupEncryptorName=""
+              SQLTask:Checksum="False"
+              SQLTask:ContinueOnError="False"
+              SQLTask:IsBlockSizeUsed="False"
+              SQLTask:IsMaxTransferSizeUsed="False" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="APPDASHBYR" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="BO_System" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="BOAudit" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="BORepository" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="DWConfiguration" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="DWDiagnostics" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="DWQueue" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="DWSchedule" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="DWStaging" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="DWStagingVTR" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="INTCOBUILDER" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="INTXDW" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="master" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="model" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="msdb" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="NOMINA_XCB" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="NotifyDB" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="RedGate" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="ReportServer" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="ReportServerTempDB" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="RRHH" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="RRHH_WEB" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="SAPBI_AUDIT" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="SAPBI_CMS" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="SAPBI_DATASERVICES" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="SQLSpreads" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="TraxTest" />
+              <SQLTask:SelectedDatabases
+                SQLTask:DatabaseName="WorkArea" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Migracion SQLAPPList\Restore DB"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{4152A857-10D6-43A0-87D1-1E177B2E764E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Restore DB"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Migracion SQLAPPList\Transfer Jobs Task"
+          DTS:CreationName="Microsoft.TransferJobsTask"
+          DTS:Description="Transfer Jobs Task"
+          DTS:DTSID="{50B286CD-8D40-47EF-83F5-72CA90B6E45F}"
+          DTS:ExecutableType="Microsoft.TransferJobsTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Transfer Jobs Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <TransferJobsTaskData
+              TransferAllJobs="True"
+              JobsList="151,35,ADM - 002 - BACKUP_FULL_TO_S3BAKNAP,37,ADM - 003 - BACKUP_S2IQUS_TO_S3BAKNAP,37,ADM - 004 - Shrink DWStaging - INTXDW,25,ADM - Backup_Packages_ETL,37,ADM - Maintenance snapshots Inventory,45,ADM - Maintenance stg_log_updates_salesorders,21,ADM - Shrink Logs APP,21,ADM - Shrink Logs DWH,27,AXS - 001 - RESULT_ANALISYS,10,Backup Log,32,BOE - 100 - Delete Audit History,27,BOE - 101 - Move Audit Data,52,DASH - 001 - Load_Fact_Sales_Forecast_to_Order_Daily,30,DASH - 002 - Load_FixSetupSkus,36,DASH - 003 - Change_StatusReq_FCList,31,DASH - 005 - USER - PROXITABLES,45,DASH - 006 - SP_LOAD_UPDATE_UNITPRICESUS_CALC,32,DWA - 001 - CustomerSupplierInfo,27,DWA - 002 - Load_Tables_SGM,21,DWH - 1000 - IM_TRANS,24,DWH - 1000_1 - WT_Serial,26,DWH - 1002 - VOUT_IM_TRANS,28,DWH - 1003 - VOUT_SCANSOURCE,26,DWH - 401 - OpenSalesOrder,29,DWH - 402 - SalesOrder - Full,36,DWH - 402 - SalesOrder - Incremental,29,DWH - 403 - OpenPurchaseOrder,31,DWH – 404 – GetARTransFullyPaid,27,DWH - 405 - SO_SpecialOrder,25,DWH - 406 - TransferOrder,25,DWH - 407 - OpenLoanOrder,37,DWH - 408 - DIM_RPT_CUSTOMER_SUPPLIER,33,DWH - 409 - DIM_RPT_AGING_SUMMARY,28,DWH - 500 - SerialNumbersXUS,23,DWH - 600 - Dim_Product,35,DWH - 600 - DIM_PRODUCT_NEW_PRO2SQL,30,DWH - 601 - Product_Attributes,37,DWH - 601 - Trax_Customer_Incremental,26,DWH - 603 - Product_Groups,22,DWH - 805 - BOM - Full,29,DWH - 805 - BOM - Incremental,25,DWH - 900 -  PostFechados,24,DWH - 901 - AR Factoring,24,DWH - 902 - AP Factoring,20,DWH - 903 - IR_Trans,19,DWH - 905 - AP_Bema,30,DWH - 906 - Inventory_CP_audit,20,DWH - 907 - SR_Trans,20,DWH - 910 - QR_Links,41,DWH - 911 - SKUC_ProductActivationRequest,23,DWH - 912 - AR_Cobranza,14,DWH - AP_Trans,14,DWH - AR_Trans,22,DWH - ETL_Manufacturer,27,DWH - FactExchangeRate_Load,19,DWH - OrderAccuracy,33,DWH - ProductLogistics_SkuCentral,13,DWH - So_Pick,29,DWH - Update_BusinessDivision,20,DWH - WorkSheet_Full,27,DWH - WorkSheet_Incremental,31,DWH_ProductPromotion_SkuCentral,29,Dynamics CRM - Store_ to_ CRM,24,DynamicsCRM - DWH_to_CRM,26,DynamicsCRM - ETL_Web_User,32,ETL_Addback_inter Matriz x marca,17,ETL_CUBISCAN_FILE,18,ETL_DWH_V2_IS_FULL,25,ETL_DWH_V2_IS_INCREMENTAL,14,ETL_FILE_CLOUD,32,ETL_KILL_SESSIONS_SYBASE_CENTRAL,17,ETL_MAIL_CUSTOMER,17,ETL_PRODUCT_CLOUD,9,ETL_SP_QA,9,ETL_SPIFF,15,ETL_TBL_VOUT_HP,23,ETL_TRAX_EXTRACTION_XTE,27,ETL_WAREHOUSE_DATA_ANALYSIS,22,HRIS - 002  - Employee,30,HRIS - 003 - Employee_Training,31,HRIS - 005  - Employee_All_File,26,HRIS USER WITHOUT BIRTHDAY,22,ICE - 001 - LoadTables,21,ICE - 004 - Ice_to_IQ,28,ICE - 005 - Load_Ice_Monitor,6,ID_CRM,24,IQUOTE - 100 - LoadFiles,31,IQUOTE - 200 - ExportFileToTrax,27,IWS - 004 - ApiLogBISummary,22,IWS - 005 - RESET_APIs,24,MDR - 001 - NEW_PRODUCTS,29,MDR - 002 - PRODUCTDIMENSIONS,38,MON - Evaluate Connection to Sybase IQ,35,MON - Evaluate Job Connection to IQ,28,MON - Evaluate JOB Factoting,36,MON - Evaluate JOB OpenPurchaseOrder,28,MON - Evaluate LOG_EJECUCION,22,MON - Failover Cluster,25,MS - 001 - DailyInventory,20,Queue_Task_Scheduler,26,RRHH - 100 - Syncronize_BO,27,SCL - 001 - WVISION_SLOTING,31,SKUC – 001 – UpdateMOQLogistics,37,SKUC - 003 - DWH_ProductStatusSkuC_VW,25,SKUC - 005 - SP Populates,25,SKUC - 006 - BK _LOG_SKUC,36,SKUC - 007 - SHRINK _LOG_SQLAPP2LIST,28,SKUCentral - ProdExpWeb_Trax,20,Slim - 001 - SLIM_SO,25,Slim - 002 - Delete_Files,26,Slim - 003 - Snapshot_Slim,31,SPRD - 001 - SQLSPREAD_DATALOAD,30,SQL Backup full S80SQLUS_Daily,23,syspolicy_purge_history,19,Test_SSIS_ExcelLoad,19,TRAX_ACCOUNTING_ALL,31,TRAX_ACCOUNTING_INCREMENTAL_ALL,20,TRAX_EXTRACTION_FULL,27,TRAXEXTRACTION_CONTINGENCIA,25,TraxTest - 001 - Customer,24,TraxTest - 002 - Product,26,TRX - 001 - MercurioToTrax,25,Update Active DIM_COMPANY,38,Update Description Product Sku Central,13,User AlwaysOn,29,VTR - 010 - VTR_Sentai - Full,30,VTR - 106 - Disponibilidad_FTP,38,WFG – 001 - XAM_MKTG_SOLICITUD_CREDITO,33,WFG - 002 - sgm_catalogo_bd_brand,27,WFG - 003 - BusinesDivision,32,WMS - 001 - Cubiscan_mesurements,30,WST - 001 - ProductActivations,32,WST - 002 - Products Data Update,24,WST - 004 - CrossSelling,24,WST - 005 - GetTablesDWH,24,WST - 006 - Web_User_Log,33,WST - 007 - Transfer_to_Archiving,26,WST - 008 - CompassSession,28,WST - 009 - PASS_CHANGE_DATE,54,WST - 100 - TransferProductsExpectedDateAndDescription,22,WST - 101 - MSF_PRICES,34,WT - 006 - Audit_wt_products_Chile,27,WT - 007 - WM_PRODUCT_STOCK,25,WT - 008 - TimeAnalisysP2,28,WT - 009 - WHProductLocation,18,WT - 011 - WVISION,31,WT - 012 - DELETE_FILES_WVISION,26,WT - 1000 - ExtractAllData,16,WT_AUDIT_PRODUCT,10,WT_METRICS,22,WT_METRICS_XCL (Query),"
+              IfObjectExists="Overwrite"
+              EnableJobsAtDestination="True"
+              SourceConnection="{BA07AAC0-627D-4DB4-BC70-3DFA5D211E34}"
+              DestinationConnection="{53AA8C99-1297-4D79-A72D-1B614BE37654}" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Migracion SQLAPPList\Transfer Logins Task"
+          DTS:CreationName="Microsoft.TransferLoginsTask"
+          DTS:Description="Transfer Logins Task"
+          DTS:DTSID="{B212091C-2E53-4350-844D-E66D4628EFE9}"
+          DTS:ExecutableType="Microsoft.TransferLoginsTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Transfer Logins Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <TransferLoginsTaskData
+              CopySids="True"
+              LoginList="118,33,##MS_PolicyEventProcessingLogin##,31,##MS_PolicyTsqlExecutionLogin##,11,AdminNomina,16,AppMonitorReader,7,boadmin,8,BOReader,7,crmuser,9,dash_user,9,DBAReader,7,dwhdvlp,9,dwhreader,7,dwhuser,7,ETLUser,8,int_user,22,INTCOMEX\Administrator,15,INTCOMEX\cruzal,17,INTCOMEX\dbaadmin,18,INTCOMEX\dbaadmin2,19,INTCOMEX\JBOUHADANA,19,INTCOMEX\mkrigsfeld,16,INTCOMEX\MSHALOM,23,INTCOMEX\MuleSoftDBUser,16,INTCOMEX\RVARGAS,20,INTCOMEX\sqlservice3,28,INTCOMEX\svr_D365Integration,17,INTCOMEX\xcbaroja,17,intcomex\xcbccorr,17,INTCOMEX\xcbggome,17,intcomex\xcbmcamp,17,intcomex\xcbmrive,17,INTCOMEX\xcbnomin,17,intcomex\xclabrod,17,intcomex\xclcnora,17,intcomex\xclhcris,17,intcomex\xclmcerd,17,intcomex\xclpacam,17,intcomex\xclpcamp,17,intcomex\xclpjune,17,intcomex\xclrvall,17,intcomex\xcoabuit,17,INTCOMEX\xcomclar,17,intcomex\xcomnava,17,INTCOMEX\xcrdscha,17,INTCOMEX\xcrjfrod,17,intcomex\xcrlherr,17,intcomex\xecncaic,17,intcomex\xecpberg,17,intcomex\xecpcamp,17,intcomex\xgtavizq,17,intcomex\xgthjuar,17,INTCOMEX\xgtjreye,17,INTCOMEX\xgtmvela,17,INTCOMEX\xgtyesta,16,intcomex\xgtypaz,17,INTCOMEX\xhnaalva,17,intcomex\xiqcobai,17,intcomex\xjmmdele,17,intcomex\xjmssimp,17,INTCOMEX\xmxadela,17,INTCOMEX\xmxmcast,17,intcomex\xmxnpime,17,intcomex\xmxsroit,17,INTCOMEX\xnibrodr,17,intcomex\xpaamira,17,intcomex\xpaasanc,17,intcomex\xpacgadp,17,intcomex\xpacquir,17,INTCOMEX\xpahugar,17,INTCOMEX\xpajferr,17,intcomex\xparlore,17,INTCOMEX\XPARVALD,17,INTCOMEX\XPATALVA,17,intcomex\xpeachav,17,intcomex\xpecviac,17,intcomex\xpeehach,17,intcomex\xpegmart,17,intcomex\xpercamp,17,INTCOMEX\xsvaesco,17,intcomex\xsvcmene,17,INTCOMEX\xsvlcast,17,intcomex\xusanava,17,intcomex\xusbgarc,17,intcomex\xuscnisp,17,INTCOMEX\XUSDANNY,17,intcomex\xusfmoro,17,intcomex\xusgdani,17,INTCOMEX\xushfrei,17,intcomex\xusjpelo,17,intcomex\xusjporr,17,INTCOMEX\xuslcabr,17,intcomex\xusmbena,17,intcomex\xusmfisc,17,intcomex\xusnboff,17,INTCOMEX\xusnmizr,17,intcomex\xusvagui,17,INTCOMEX\xusvponc,17,intcomex\xusyluna,17,INTCOMEX\xuydbeni,17,intcomex\xuysmart,17,intcomex\xuyxalva,6,iquser,17,MuleSoftCRMDBUser,14,MuleSoftDBUser,10,nomxcbuser,19,NT AUTHORITY\SYSTEM,22,NT SERVICE\MSSQLSERVER,25,NT SERVICE\SQLSERVERAGENT,23,NT SERVICE\SQLTELEMETRY,20,NT SERVICE\SQLWriter,18,NT SERVICE\Winmgmt,7,rh_user,11,SAPBI_Admin,8,sgm_user,9,sqlbackup,13,SQLBackupUser,3,vtr,10,VTR_Reader,7,webuser,"
+              IfObjectExists="Skip"
+              SourceConnection="{BA07AAC0-627D-4DB4-BC70-3DFA5D211E34}"
+              DestinationConnection="{53AA8C99-1297-4D79-A72D-1B614BE37654}"
+              DatabasesList="41,10,APPDASHBYR,15,BO_AUDIT42_TEST,8,BO_CMS42,9,BO_System,7,BOAudit,12,BORepository,15,DWConfiguration,13,DWDiagnostics,7,DWQueue,10,DWSchedule,9,DWStaging,17,DWStaging_Restore,12,DWStagingVTR,3,ESD,12,INTCOBUILDER,23,IntcomexStore_Archiving,6,INTXDW,6,master,14,Master_s9sqlus,8,MDS_Test,5,model,4,msdb,10,NOMINA_XCB,8,NotifyDB,10,ODSStaging,7,RedGate,12,ReportServer,18,ReportServerTempDB,4,RRHH,8,RRHH_WEB,11,SAPBI_AUDIT,9,SAPBI_CMS,13,SAPBI_CMS_OLD,14,SAPBI_CMS_TEST,18,SAPBI_DATASERVICES,16,SAPBI_Monitoring,10,SQLSpreads,6,tempdb,8,TraxTest,7,TraxWeb,8,WorkArea," />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Migracion SQLAPPList.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{BE9A0A24-8DA9-48E8-96DC-F9EFF174A343}"
+          DTS:From="Package\Migracion SQLAPPList\Back Up Database DWH"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Migracion SQLAPPList\Restore DB" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Migracion SQLAPPList.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{F0687CDF-D6D9-450B-971E-CBB852A598EE}"
+          DTS:From="Package\Migracion SQLAPPList\Restore DB"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Migracion SQLAPPList\Transfer Logins Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Migracion SQLAPPList.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{E2497028-4A25-42C0-8881-E16026635446}"
+          DTS:From="Package\Migracion SQLAPPList\Transfer Logins Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Migracion SQLAPPList\Transfer Jobs Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Migracion SQLAPPList\Back Up Database DWH"
+          TopLeft="31,9.5" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Migracion SQLAPPList\Restore DB"
+          TopLeft="58,83" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Migracion SQLAPPList\Transfer Jobs Task"
+          TopLeft="44,280" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Migracion SQLAPPList\Transfer Logins Task"
+          TopLeft="43,181" />
+        <EdgeLayout
+          Id="Package\Migracion SQLAPPList.PrecedenceConstraints[Constraint]"
+          TopLeft="125.5,51.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,31.5"
+              Start="0,0"
+              End="0,24">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Migracion SQLAPPList.PrecedenceConstraints[Constraint 1]"
+          TopLeft="127.75,125">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Migracion SQLAPPList.PrecedenceConstraints[Constraint 2]"
+          TopLeft="129.75,223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="264,377"
+          Size="264,420"
+          Id="Package\Migracion SQLAPPList"
+          TopLeft="241,28" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

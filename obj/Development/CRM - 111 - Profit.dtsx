@@ -1,0 +1,3309 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/8/2013 5:09:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{271C2601-E6E8-42C6-9FF1-4CEE5EFC1A3B}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CRM - 104 - Territory"
+  DTS:PackageType="5"
+  DTS:VersionBuild="147"
+  DTS:VersionGUID="{163010BC-D561-4613-8064-833E8157B596}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{291F98F3-1933-462B-B968-9DE289B3C07A}"
+      DTS:ObjectName="s2crmdb.CRMStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdb;Initial Catalog=CRMStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-CRM - 104 - Territory-{291F98F3-1933-462B-B968-9DE289B3C07A}s2crmdb.CRMStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D7150F8C-5945-4ACF-9E60-5833AFB671B7}"
+      DTS:ObjectName="s2crmdvlp.CRMStaging.ETLUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdvlp;Initial Catalog=CRMStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D2FAE81D-7750-4AA1-9382-E0588140150B}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{D2FAE81D-7750-4AA1-9382-E0588140150B}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{CC0707CA-8F92-47B9-8665-6BA91112CED2}"
+      DTS:ObjectName="Sentai_Replica.bodts">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=bodts;Dsn=Sentai_Replica;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAA7+PPH1Si3cqPVV36yiXIvAAAAAASAAACgAAAAEAAAAALVR9PPgAYUZfwrKeQv/PQYAAAAIxiRU6YuI2QQ8s5oyubradCQkXLyJv7yFAAAAElQ/BNIfLaq5L4ROMxiEnR5vJGt</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{B5EFA748-AD0E-47C6-8D11-AA409C3931D1}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;S2CRMDB.ETLUser&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{154F6271-8822-464C-BE81-B517447494F1}"
+      DTS:ObjectName="S2CRMDB ETLUser" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;Sentai_Replica.bodts&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{BE11531A-0637-4808-B40A-CC4362D0CA03}"
+      DTS:ObjectName="Sentai_Replica bodts" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CEAFCA7A-C21F-47D3-962C-7C18473366E4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{02AA644B-8EA0-45D6-86F6-69691BF30BC7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{75A932F5-FB9E-4F8C-8FE4-0F64954C4FBB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A0EFD59F-1973-4AF4-974E-9CC8E9C8AC2C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{239F88C1-FB06-41EE-A162-9C48A2BA7F92}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">12,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnExecStatusChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnInformation"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnProgress"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnQueryCancel"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnTaskFailed"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnVariableValueChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnWarning"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{FBE89205-4B56-4BFD-8C6A-F89D1896DE8F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="1">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">13,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,24,ExecuteSQLExecutingQuery</DTS:Property>
+            <DTS:Property
+              DTS:EventName="ExecuteSQLExecutingQuery"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnExecStatusChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnInformation"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnProgress"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnQueryCancel"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnTaskFailed"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnVariableValueChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnWarning"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D2FAE81D-7750-4AA1-9382-E0588140150B}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete CRM - 104 - Territory  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{751D70CC-DFC2-4C47-AAFC-CDA7E5712CA1}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="1">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">15,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,17,SendMailTaskBegin,15,SendMailTaskEnd,16,SendMailTaskInfo</DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnExecStatusChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnInformation"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnProgress"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnQueryCancel"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnTaskFailed"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnVariableValueChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnWarning"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskBegin"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskEnd"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskInfo"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{B5EFA748-AD0E-47C6-8D11-AA409C3931D1}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :CRM - 104 - Territory" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{D8F8495C-1708-4469-853C-269CF0FDBA9B}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load_Profit_from_Trax PRO"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{F62EB9E2-8FAF-4191-94E9-4A6F86EFB228}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load_Profit_from_Trax PRO">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load_Profit_from_Trax PRO\Failed Profit ControlTable"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Update Customer ControlTable"
+          DTS:DTSID="{691878D6-8C13-423E-A19D-2163B8EDAA8B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Failed Profit ControlTable"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{291F98F3-1933-462B-B968-9DE289B3C07A}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 0,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Profit'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{E5E3D6CE-3DEF-40A3-AE63-EDC7A868F3F4}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Profit Trax"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="CRMStaging Territory"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Profit]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[Description]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[EIS-Desc]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="EIS-Desc"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[EIS_Desc]"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[EIS-Desc]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[Prof-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Prof-ID"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[Prof_ID]"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Prof-ID]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[Entity-piece]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Entity-piece"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[Entity_piece]"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Entity-piece]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[Report-piece]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Report-piece"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[Report_piece]"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Report-piece]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[UDF-1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="UDF-1"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[UDF_1]"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-1]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[UDF-2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="UDF-2"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[UDF_2]"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-2]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[UDF-3]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="UDF-3"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[UDF_3]"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-3]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[UDF-4]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="UDF-4"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[UDF_4]"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-4]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[UDF-5]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="UDF-5"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[UDF_5]"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-5]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="80"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="EIS_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[Prof_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Prof_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[Entity_piece]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="Entity_piece" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[Report_piece]"
+                          codePage="1252"
+                          dataType="str"
+                          length="64"
+                          name="Report_piece" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[UDF_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_1" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[UDF_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_2" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[UDF_3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_3" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[UDF_4]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_4" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[UDF_5]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_5" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input].Columns[Prof-ID]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="Prof-ID"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Prof-ID]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input].Columns[Description]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="Description"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input].Columns[Entity-piece]"
+                          cachedDataType="wstr"
+                          cachedLength="24"
+                          cachedName="Entity-piece"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Entity-piece]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input].Columns[Report-piece]"
+                          cachedDataType="wstr"
+                          cachedLength="64"
+                          cachedName="Report-piece"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Report-piece]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input].Columns[EIS-Desc]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="EIS-Desc"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[EIS-Desc]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input].Columns[UDF-1]"
+                          cachedDataType="wstr"
+                          cachedLength="120"
+                          cachedName="UDF-1"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-1]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input].Columns[UDF-2]"
+                          cachedDataType="wstr"
+                          cachedLength="120"
+                          cachedName="UDF-2"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-2]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input].Columns[UDF-3]"
+                          cachedDataType="wstr"
+                          cachedLength="120"
+                          cachedName="UDF-3"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-3]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input].Columns[UDF-4]"
+                          cachedDataType="wstr"
+                          cachedLength="120"
+                          cachedName="UDF-4"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-4]" />
+                        <inputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input].Columns[UDF-5]"
+                          cachedDataType="wstr"
+                          cachedLength="120"
+                          cachedName="UDF-5"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-5]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Prof-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Prof-ID]"
+                          name="Prof-ID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Prof-ID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Description]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Entity-piece]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Entity-piece]"
+                          name="Entity-piece"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Entity-piece]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Report-piece]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Report-piece]"
+                          name="Report-piece"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Report-piece]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[EIS-Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[EIS-Desc]"
+                          name="EIS-Desc"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[EIS-Desc]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-1]"
+                          name="UDF-1"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-1]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-2]"
+                          name="UDF-2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-2]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-3]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-3]"
+                          name="UDF-3"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-3]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-4]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-4]"
+                          name="UDF-4"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-4]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-5]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output].Columns[UDF-5]"
+                          name="UDF-5"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-5]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Extracts data from a relational database by using a .NET provider."
+                  name="prof-centre TRAX"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select
+"Machine-ID",
+UPPER("Cust-ID") as "CustID",
+"Name",
+"Legal-name",
+"Search-name",
+address[1] + ' ' + address[2]  + ' ' + address[3]  + ' ' + address[4]  + ' ' + address[5]  as "Address",
+PRO_ELEMENT("Address",1,1) as Address1,
+PRO_ELEMENT("Address",2,2) as Address2 ,
+PRO_ELEMENT("Address",3,3)  as Address3,
+PRO_ELEMENT("Address",4,4) as Address4,
+PRO_ELEMENT("Address",5,5)  as Address5,
+"City", 
+"Prov-ID" ,
+"Postal-code",
+"Country-ID", 
+"Telephone", 
+"FAX", 
+"Report-code",
+"Status-code", 
+"Term-ID", 
+"Tax-group-ID",
+"Carrier-ID", 
+"Terr-ID", 
+"Stmt-freq", 
+"Credit-limit",
+"Min-charge",
+"Grace-days" ,
+"Cred-rating", 
+"Interest-ID", 
+"Stmt-type", 
+"Ship-charge", 
+"Charge-cust", 
+"Mail-cust", 
+"Entity-list", 
+"Priority",
+"Comm-ID", 
+"Create-date",
+"Currency-ID",
+"Currency-vals" ,
+"AR-gl",
+"Tax-reg-no", 
+"Non-maintained",
+substring("SIC-code",1,16) as "SIC-Code", 
+"Level-ID", 
+"Phrase-ID", 
+"Cash",
+"On-hold",
+"Oper-ID", 
+"Review-code", 
+upper("Sales-vals") as "Sales-vals", 
+"Lang-ID", 
+"Perform-code", 
+"TZ-ID", 
+"UDF-1", 
+"UDF-2", 
+"EIS-Desc",
+"Ins-comp-name", 
+"Policy-no", 
+"Expiry-date",
+"SSC-UDF-1", 
+"SSC-UDF-2", 
+"E-mail", 
+"FOB-ID", 
+"Phone-2", 
+"Cellular", 
+"Pager", 
+"Web-site",
+"Ch-comm-reg-no", 
+"Ch-comm-city", 
+"Prof-ID", 
+"Require-PO",
+"Accept-BO",
+"In-forecast" ,
+"DUNS_number" ,
+"Warehouse-pick",
+"Auto-fax" ,
+"Loc-ID", 
+"Wave-ID", 
+"SDQ-ship", 
+"SDQ-invoice", 
+"WMS-print",
+"Contact-Name",
+"Contact-Title",
+"Updated-On",
+"Carrier-List",
+"cr-status-id",
+"credit-hold",
+"submit-stmt",
+"crm-entity-ID",
+"crm-group-ID",
+"submit-doc",
+"CRM-reference"
+FROM "PUB"."customer"
+WHERE "Cust-ID" not like 'XAR%'
+and "Cust-ID" not like 'XGB%'
+and "Cust-ID" not like 'XCB%'
+and "Cust-ID" not like 'A%'
+and "Cust-ID" not like 'XHS%'
+and "Cust-ID" not like 'XCT%'</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"PUB"."prof-centre"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      connectionManagerRefId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Prof-ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[Prof-ID]"
+                          length="8"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Prof-ID]"
+                          name="Prof-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Description]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          length="80"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Entity-piece]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[Entity-piece]"
+                          length="24"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Entity-piece]"
+                          name="Entity-piece"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Report-piece]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[Report-piece]"
+                          length="64"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[Report-piece]"
+                          name="Report-piece"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[EIS-Desc]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[EIS-Desc]"
+                          length="40"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[EIS-Desc]"
+                          name="EIS-Desc"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-1]"
+                          length="120"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-1]"
+                          name="UDF-1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-2]"
+                          length="120"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-2]"
+                          name="UDF-2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-3]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-3]"
+                          length="120"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-3]"
+                          name="UDF-3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-4]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-4]"
+                          length="120"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-4]"
+                          name="UDF-4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-5]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-5]"
+                          length="120"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].Columns[UDF-5]"
+                          name="UDF-5"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[Prof-ID]"
+                          dataType="wstr"
+                          length="8"
+                          name="Prof-ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="80"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[Entity-piece]"
+                          dataType="wstr"
+                          length="24"
+                          name="Entity-piece" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[Report-piece]"
+                          dataType="wstr"
+                          length="64"
+                          name="Report-piece" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[EIS-Desc]"
+                          dataType="wstr"
+                          length="40"
+                          name="EIS-Desc" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-1]"
+                          dataType="wstr"
+                          length="120"
+                          name="UDF-1" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-2]"
+                          dataType="wstr"
+                          length="120"
+                          name="UDF-2" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-3]"
+                          dataType="wstr"
+                          length="120"
+                          name="UDF-3" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-4]"
+                          dataType="wstr"
+                          length="120"
+                          name="UDF-4" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-5]"
+                          dataType="wstr"
+                          length="120"
+                          name="UDF-5" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[Prof-ID]"
+                          dataType="wstr"
+                          length="8"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[Prof-ID]"
+                          name="Prof-ID" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          dataType="wstr"
+                          length="80"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[Entity-piece]"
+                          dataType="wstr"
+                          length="24"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[Entity-piece]"
+                          name="Entity-piece" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[Report-piece]"
+                          dataType="wstr"
+                          length="64"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[Report-piece]"
+                          name="Report-piece" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[EIS-Desc]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[EIS-Desc]"
+                          name="EIS-Desc" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-1]"
+                          dataType="wstr"
+                          length="120"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-1]"
+                          name="UDF-1" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-2]"
+                          dataType="wstr"
+                          length="120"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-2]"
+                          name="UDF-2" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-3]"
+                          dataType="wstr"
+                          length="120"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-3]"
+                          name="UDF-3" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-4]"
+                          dataType="wstr"
+                          length="120"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-4]"
+                          name="UDF-4" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-5]"
+                          dataType="wstr"
+                          length="120"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-5]"
+                          name="UDF-5" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax.Paths[ADO NET Source Output]"
+                  endId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Inputs[Data Conversion Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX.Outputs[ADO NET Source Output]" />
+                <path
+                  refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax.Paths[Data Conversion Output]"
+                  endId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Inputs[Derived Column Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Load_Profit_from_Trax PRO\Load Profit Trax.Paths[Derived Column Output]"
+                  endId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column.Outputs[Derived Column Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Profit_from_Trax PRO\Truncate Table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{427542E5-0D61-469B-987A-A0817372BAD4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{291F98F3-1933-462B-B968-9DE289B3C07A}"
+              SQLTask:SqlStatementSource="use CRMStaging&#xA;go&#xA;&#xA;Truncate Table dbo.Profit;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Profit_from_Trax PRO\Update Profit ControlTable"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Update Customer ControlTable"
+          DTS:DTSID="{89F4BBD2-7F7E-443E-AFA7-C10AF9899103}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Profit ControlTable"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{291F98F3-1933-462B-B968-9DE289B3C07A}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 1,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Profit'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Profit_from_Trax PRO.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{FC35033A-8284-4945-8245-01DC573334AA}"
+          DTS:From="Package\Load_Profit_from_Trax PRO\Truncate Table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load_Profit_from_Trax PRO\Load Profit Trax" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Profit_from_Trax PRO.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{899F94A6-DE4D-4554-BCE3-1629879A5FB3}"
+          DTS:From="Package\Load_Profit_from_Trax PRO\Load Profit Trax"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load_Profit_from_Trax PRO\Update Profit ControlTable" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Profit_from_Trax PRO.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{A0233DFF-95D5-4F0A-9E55-308E60C4B47D}"
+          DTS:From="Package\Load_Profit_from_Trax PRO\Load Profit Trax"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Load_Profit_from_Trax PRO\Failed Profit ControlTable"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Profit DEV"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{AC27FBF2-0F42-4EA2-A94B-913915D1412D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Profit DEV">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Profit DEV\Load Table Profit DEV"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{154A9F67-94C6-4050-819A-608FBE0B8418}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Table Profit DEV"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Profit CRMStaging DEV"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Profit]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[Description]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[EIS_Desc]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="EIS_Desc"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[EIS_Desc]"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[EIS_Desc]" />
+                        <inputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[Prof_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Prof_ID"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Prof_ID]"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Prof_ID]" />
+                        <inputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[Entity_piece]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="24"
+                          cachedName="Entity_piece"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Entity_piece]"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Entity_piece]" />
+                        <inputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[Report_piece]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="64"
+                          cachedName="Report_piece"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Report_piece]"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Report_piece]" />
+                        <inputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[UDF_1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="120"
+                          cachedName="UDF_1"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[UDF_1]"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_1]" />
+                        <inputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[UDF_2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="120"
+                          cachedName="UDF_2"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[UDF_2]"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_2]" />
+                        <inputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[UDF_3]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="120"
+                          cachedName="UDF_3"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[UDF_3]"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_3]" />
+                        <inputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[UDF_4]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="120"
+                          cachedName="UDF_4"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[UDF_4]"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_4]" />
+                        <inputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[UDF_5]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="120"
+                          cachedName="UDF_5"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[UDF_5]"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_5]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="EIS_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Prof_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Prof_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Entity_piece]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="Entity_piece" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Report_piece]"
+                          codePage="1252"
+                          dataType="str"
+                          length="64"
+                          name="Report_piece" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[UDF_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_1" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[UDF_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_2" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[UDF_3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_3" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[UDF_4]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_4" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[UDF_5]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_5" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Profit CRMStaging PRO"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Profit]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          length="50"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[EIS_Desc]"
+                          length="50"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[EIS_Desc]"
+                          name="EIS_Desc"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Prof_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Prof_ID]"
+                          length="8"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Prof_ID]"
+                          name="Prof_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Entity_piece]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Entity_piece]"
+                          length="24"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Entity_piece]"
+                          name="Entity_piece"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Report_piece]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Report_piece]"
+                          length="64"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Report_piece]"
+                          name="Report_piece"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[UDF_1]"
+                          length="120"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_1]"
+                          name="UDF_1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[UDF_2]"
+                          length="120"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_2]"
+                          name="UDF_2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_3]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[UDF_3]"
+                          length="120"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_3]"
+                          name="UDF_3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_4]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[UDF_4]"
+                          length="120"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_4]"
+                          name="UDF_4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_5]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[UDF_5]"
+                          length="120"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].Columns[UDF_5]"
+                          name="UDF_5"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="80"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="EIS_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Prof_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Prof_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Entity_piece]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="Entity_piece" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Report_piece]"
+                          codePage="1252"
+                          dataType="str"
+                          length="64"
+                          name="Report_piece" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[UDF_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_1" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[UDF_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_2" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[UDF_3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_3" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[UDF_4]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_4" />
+                        <externalMetadataColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[UDF_5]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="UDF_5" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Prof_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Prof_ID]"
+                          name="Prof_ID" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="80"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Entity_piece]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Entity_piece]"
+                          name="Entity_piece" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Report_piece]"
+                          codePage="1252"
+                          dataType="str"
+                          length="64"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Report_piece]"
+                          name="Report_piece" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[EIS_Desc]"
+                          name="EIS_Desc" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[UDF_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[UDF_1]"
+                          name="UDF_1" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[UDF_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[UDF_2]"
+                          name="UDF_2" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[UDF_3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[UDF_3]"
+                          name="UDF_3" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[UDF_4]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[UDF_4]"
+                          name="UDF_4" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[UDF_5]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[UDF_5]"
+                          name="UDF_5" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          name="LastExtraction" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Profit DEV\Load Table Profit DEV.Paths[OLE DB Source Output]"
+                  endId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Profit DEV\Truncate Table Profit"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{68EC6DF5-1660-4F5E-8D47-700A1319EA8E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Table Profit"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D7150F8C-5945-4ACF-9E60-5833AFB671B7}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE DBO.Profit;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Profit DEV.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{1C0A0A45-E677-44B3-A0EE-CFEE9D3447FA}"
+          DTS:From="Package\Profit DEV\Truncate Table Profit"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Profit DEV\Load Table Profit DEV" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{97083E7B-9BD4-43D7-ACD4-1016FC03FCE9}"
+      DTS:From="Package\Load_Profit_from_Trax PRO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C599CA9A-410C-46B6-8484-A59629507B3E}"
+      DTS:From="Package\Profit DEV"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{5AE1BCC6-93A1-4F7C-B18D-48183D87F6B8}"
+      DTS:From="Package\Load_Profit_from_Trax PRO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Profit DEV" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="27.3584905660377,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="27.3584905660377,121.792452830189" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="95.2452830188679,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,69.3962264150944"
+              Start="0,0"
+              End="0,61.8962264150944">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.8962264150944" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="204,180"
+          Size="204,224"
+          Id="Package\Evento Correcto"
+          TopLeft="199.405660377359,456.669811320755" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Load_Profit_from_Trax PRO\Failed Profit ControlTable"
+          TopLeft="201.754716981132,110.716981132075" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Load_Profit_from_Trax PRO\Load Profit Trax"
+          TopLeft="30.2264150943397,107.471698113208" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Profit_from_Trax PRO\Truncate Table"
+          TopLeft="30.2264150943397,26.811320754717" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Load_Profit_from_Trax PRO\Update Profit ControlTable"
+          TopLeft="37.962264150943,179.358490566038" />
+        <EdgeLayout
+          Id="Package\Load_Profit_from_Trax PRO.PrecedenceConstraints[Constraint]"
+          TopLeft="98.2264150943397,70.811320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-15.3333333333333,36.660377358491"
+              Start="0,0"
+              End="-15.3333333333333,29.160377358491">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.7700441383327" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.7700441383327"
+                    Point2="0,21.7700441383327"
+                    Point3="-4,21.7700441383327" />
+                  <mssgle:LineSegment
+                    End="-11.3333333333333,21.7700441383327" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-11.3333333333333,21.7700441383327"
+                    Point2="-15.3333333333333,21.7700441383327"
+                    Point3="-15.3333333333333,25.7700441383327" />
+                  <mssgle:LineSegment
+                    End="-15.3333333333333,29.160377358491" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Profit_from_Trax PRO.PrecedenceConstraints[Constraint 1]"
+          TopLeft="107.22641509434,149.471698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="32.7358490566033,29.88679245283"
+              Start="0,0"
+              End="32.7358490566033,22.38679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.943396226415" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.943396226415"
+                    Point2="0,14.943396226415"
+                    Point3="4,14.943396226415" />
+                  <mssgle:LineSegment
+                    End="28.7358490566033,14.943396226415" />
+                  <mssgle:CubicBezierSegment
+                    Point1="28.7358490566033,14.943396226415"
+                    Point2="32.7358490566033,14.943396226415"
+                    Point3="32.7358490566033,18.943396226415" />
+                  <mssgle:LineSegment
+                    End="32.7358490566033,22.38679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Profit_from_Trax PRO.PrecedenceConstraints[Constraint 2]"
+          TopLeft="131.559748427673,107.471698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="169.194968553459,3.24528301886701"
+              Start="0,0"
+              End="169.194968553459,-4.25471698113299">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-18.5"
+                    Point2="0,-22.5"
+                    Point3="4,-22.5" />
+                  <mssgle:LineSegment
+                    End="165.194968553459,-22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="165.194968553459,-22.5"
+                    Point2="169.194968553459,-22.5"
+                    Point3="169.194968553459,-18.5" />
+                  <mssgle:LineSegment
+                    End="169.194968553459,-4.25471698113299" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="69.3561366204795,-17.5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="420,301"
+          Size="420,345"
+          Id="Package\Load_Profit_from_Trax PRO"
+          TopLeft="44.5,5.5" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Profit DEV\Load Table Profit DEV"
+          TopLeft="39.5094339622642,91.2264150943396" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Profit DEV\Truncate Table Profit"
+          TopLeft="64.9811320754717,9.56603773584908" />
+        <EdgeLayout
+          Id="Package\Profit DEV.PrecedenceConstraints[Constraint]"
+          TopLeft="131.745283018868,53.5660377358491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,37.6603773584905"
+              Start="0,0"
+              End="0,30.1603773584905">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.1603773584905" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="266,231"
+          Size="266,275"
+          Id="Package\Profit DEV"
+          TopLeft="493.216981132075,9.27358490566036" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="254.5,350.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="14.2389937106923,106.169811320755"
+              Start="0,0"
+              End="14.2389937106923,98.669811320755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.2061522648853" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,59.2061522648853"
+                    Point2="0,63.2061522648853"
+                    Point3="4,63.2061522648853" />
+                  <mssgle:LineSegment
+                    End="10.2389937106923,63.2061522648853" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.2389937106923,63.2061522648853"
+                    Point2="14.2389937106923,63.2061522648853"
+                    Point3="14.2389937106923,67.2061522648853" />
+                  <mssgle:LineSegment
+                    End="14.2389937106923,98.669811320755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="626.216981132075,284.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-292.144654088049,172.396226415095"
+              Start="0,0"
+              End="-292.144654088049,164.896226415095">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,98.6327729241614" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,98.6327729241614"
+                    Point2="0,102.632772924161"
+                    Point3="-4,102.632772924161" />
+                  <mssgle:LineSegment
+                    End="-288.144654088049,102.632772924161" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-288.144654088049,102.632772924161"
+                    Point2="-292.144654088049,102.632772924161"
+                    Point3="-292.144654088049,106.632772924161" />
+                  <mssgle:LineSegment
+                    End="-292.144654088049,164.896226415095" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="464.5,178">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="28.716981132075,-31.2264150943396"
+              Start="0,0"
+              End="21.216981132075,-31.2264150943396">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="10.3584905660375,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.3584905660375,0"
+                    Point2="14.3584905660375,0"
+                    Point3="14.3584905660375,-4" />
+                  <mssgle:LineSegment
+                    End="14.3584905660375,-27.2264150943396" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.3584905660375,-27.2264150943396"
+                    Point2="14.3584905660375,-31.2264150943396"
+                    Point3="18.3584905660375,-31.2264150943396" />
+                  <mssgle:LineSegment
+                    End="21.216981132075,-31.2264150943396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load_Profit_from_Trax PRO\Load Profit Trax">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Data Conversion"
+          TopLeft="13.292452830189,95.3490566037736" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX"
+          TopLeft="5.5,4.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Profit_from_Trax PRO\Load Profit Trax\Derived Column"
+          TopLeft="17.028301886792,201.141509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory"
+          TopLeft="21.4622641509434,330.764150943396" />
+        <EdgeLayout
+          Id="Package\Load_Profit_from_Trax PRO\Load Profit Trax.Paths[Data Conversion Output]"
+          TopLeft="83.1603773584905,139.349056603774">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.7924528301884"
+              Start="0,0"
+              End="0,54.2924528301884">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.2924528301884" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Profit_from_Trax PRO\Load Profit Trax.Paths[ADO NET Source Output]"
+          TopLeft="83.3962264150945,46.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.8490566037736"
+              Start="0,0"
+              End="0,41.3490566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.3490566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Profit_from_Trax PRO\Load Profit Trax.Paths[Derived Column Output]"
+          TopLeft="87.2452830188677,245.141509433962">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,85.622641509434"
+              Start="0,0"
+              End="0,78.122641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.122641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_Profit_from_Trax PRO\Load Profit Trax\prof-centre TRAX">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_Profit_from_Trax PRO\Load Profit Trax\CRMStaging Territory">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Profit DEV\Load Table Profit DEV">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV"
+          TopLeft="5.5,87.1603773584906" />
+        <EdgeLayout
+          Id="Package\Profit DEV\Load Table Profit DEV.Paths[OLE DB Source Output]"
+          TopLeft="99,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.6603773584906"
+              Start="0,0"
+              End="0,32.1603773584906">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.1603773584906" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging DEV">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Profit DEV\Load Table Profit DEV\Profit CRMStaging PRO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

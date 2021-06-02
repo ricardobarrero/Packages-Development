@@ -1,0 +1,1463 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/23/2020 11:21:02 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S80SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{84A80379-75C2-40F0-8182-0F6851E8A2FB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="IWS - 005 - RESET_APIs"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{D7E934B8-F14F-4840-BA44-CDC14B76A723}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4703CED3-4D0E-464A-AC6C-F1E702ADA7D6}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{0FC8111E-B274-4021-AC93-C69128FE6496}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=ClientArrayus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLWSTList.IWS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{128069A2-58E3-4DAA-B2C0-17D8BF6D10D6}"
+      DTS:ObjectName="SQLWSTList.IWS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLWSTList;Initial Catalog=IWS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{687EFBC6-C5FE-4A73-8696-D01F3A0B28D4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VintCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1763F76C-E8B6-4BF5-BEAA-C2A8F8C52223}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4236BF6E-BDDA-4797-B1DC-06AC17F7E1EE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BCE4FF68-C5CA-4754-8E98-A9580A84BF88}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{3B2868DB-9348-41C2-A89F-99F3CF5DA30D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{70CD59D9-BA38-4AB5-A843-293284A39853}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOAD STG_IWS_REST_APIs"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Data Conversion.Inputs[Data Conversion Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[STG_IWS_REST_APIs]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StatusCode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="StatusCode"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StatusCode]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[StatusCode]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[API_Calls_Count]"
+                          cachedDataType="i4"
+                          cachedName="API_Calls_Count"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[API_Calls_Count]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[API_Calls_Count]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PercentageOfTotal]"
+                          cachedDataType="numeric"
+                          cachedName="PercentageOfTotal"
+                          cachedPrecision="5"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PercentageOfTotal]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[PercentageOfTotal]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FromTimeStamp]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="FromTimeStamp"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FromTimeStamp]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[FromTimeStamp]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ToTimeStamp]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="ToTimeStamp"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ToTimeStamp]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ToTimeStamp]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FromLocalTimeStamp]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="FromLocalTimeStamp"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FromLocalTimeStamp]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[FromLocalTimeStamp]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ToLocalTimeStamp]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="ToLocalTimeStamp"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ToLocalTimeStamp]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ToLocalTimeStamp]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LocalTimeStamp]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LocalTimeStamp"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocalTimeStamp]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocalTimeStamp]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MinutesSinceLastCall]"
+                          cachedDataType="i4"
+                          cachedName="MinutesSinceLastCall"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MinutesSinceLastCall]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[MinutesSinceLastCall]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StatusCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="StatusCode" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[API_Calls_Count]"
+                          dataType="i4"
+                          name="API_Calls_Count" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PercentageOfTotal]"
+                          dataType="numeric"
+                          name="PercentageOfTotal"
+                          precision="5"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FromTimeStamp]"
+                          dataType="dbTimeStamp"
+                          name="FromTimeStamp" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ToTimeStamp]"
+                          dataType="dbTimeStamp"
+                          name="ToTimeStamp" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FromLocalTimeStamp]"
+                          dataType="dbTimeStamp"
+                          name="FromLocalTimeStamp" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ToLocalTimeStamp]"
+                          dataType="dbTimeStamp"
+                          name="ToLocalTimeStamp" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocalTimeStamp]"
+                          dataType="dbTimeStamp"
+                          name="LocalTimeStamp" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MinutesSinceLastCall]"
+                          dataType="i4"
+                          name="MinutesSinceLastCall" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT StatusCode
+        , COUNT(1) AS API_Calls_Count
+       , CAST(COUNT(1) * 100.0/ SUM(COUNT(1)) OVER () AS NUMERIC(5,2)) AS PercentageOfTotal
+       , MIN(StartTimeStamp) AS FromTimeStamp
+       , MAX(StartTimeStamp) AS ToTimeStamp
+       , MIN(Local_StartTimeStamp) AS FromLocalTimeStamp
+       , MAX(Local_StartTimeStamp) AS ToLocalTimeStamp
+       , GETDATE() AS LocalTimeStamp
+       , MIN(DATEDIFF(mi, Local_StartTimeStamp, GETDATE())) AS MinutesSinceLastCall  
+    FROM (
+                 SELECT CallId
+                     , RequestOperation
+                     , Success
+                     , StatusCode
+                     , CustomerId
+                     , StartTimeStamp
+                     , DATEADD(mi, DATEDIFF(mi, GETUTCDATE(), GETDATE()), StartTimeStamp) AS Local_StartTimeStamp
+                  FROM ApiLog (nolock)
+                 WHERE StatusCode IN ('OK', 'InternalServerError', 'Unauthorized')
+                   -- Transformar timestamp de UTC a Local Time
+                   AND DATEADD(mi, DATEDIFF(mi, GETUTCDATE(), GETDATE()), StartTimeStamp) &gt;= DATEADD(minute, -10, GETDATE())
+        ) AS A
+ GROUP BY StatusCode
+ ORDER BY 3 DESC
+;</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SQLWSTList.IWS]"
+                      connectionManagerRefId="Package.ConnectionManagers[SQLWSTList.IWS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[StatusCode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StatusCode]"
+                          length="50"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[StatusCode]"
+                          name="StatusCode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[API_Calls_Count]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[API_Calls_Count]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[API_Calls_Count]"
+                          name="API_Calls_Count"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[PercentageOfTotal]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PercentageOfTotal]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[PercentageOfTotal]"
+                          name="PercentageOfTotal"
+                          precision="5"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[FromTimeStamp]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FromTimeStamp]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[FromTimeStamp]"
+                          name="FromTimeStamp"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ToTimeStamp]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ToTimeStamp]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ToTimeStamp]"
+                          name="ToTimeStamp"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[FromLocalTimeStamp]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FromLocalTimeStamp]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[FromLocalTimeStamp]"
+                          name="FromLocalTimeStamp"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ToLocalTimeStamp]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ToLocalTimeStamp]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ToLocalTimeStamp]"
+                          name="ToLocalTimeStamp"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocalTimeStamp]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LocalTimeStamp]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocalTimeStamp]"
+                          name="LocalTimeStamp"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[MinutesSinceLastCall]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MinutesSinceLastCall]"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].Columns[MinutesSinceLastCall]"
+                          name="MinutesSinceLastCall"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StatusCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="StatusCode" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[API_Calls_Count]"
+                          dataType="i4"
+                          name="API_Calls_Count" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PercentageOfTotal]"
+                          dataType="numeric"
+                          name="PercentageOfTotal"
+                          precision="5"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FromTimeStamp]"
+                          dataType="dbTimeStamp"
+                          name="FromTimeStamp" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ToTimeStamp]"
+                          dataType="dbTimeStamp"
+                          name="ToTimeStamp" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FromLocalTimeStamp]"
+                          dataType="dbTimeStamp"
+                          name="FromLocalTimeStamp" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ToLocalTimeStamp]"
+                          dataType="dbTimeStamp"
+                          name="ToLocalTimeStamp" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LocalTimeStamp]"
+                          dataType="dbTimeStamp"
+                          name="LocalTimeStamp" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MinutesSinceLastCall]"
+                          dataType="i4"
+                          name="MinutesSinceLastCall" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StatusCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StatusCode]"
+                          name="StatusCode" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[API_Calls_Count]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[API_Calls_Count]"
+                          name="API_Calls_Count" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PercentageOfTotal]"
+                          dataType="numeric"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PercentageOfTotal]"
+                          name="PercentageOfTotal"
+                          precision="5"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FromTimeStamp]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FromTimeStamp]"
+                          name="FromTimeStamp" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ToTimeStamp]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ToTimeStamp]"
+                          name="ToTimeStamp" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FromLocalTimeStamp]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FromLocalTimeStamp]"
+                          name="FromLocalTimeStamp" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ToLocalTimeStamp]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ToLocalTimeStamp]"
+                          name="ToLocalTimeStamp" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LocalTimeStamp]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LocalTimeStamp]"
+                          name="LocalTimeStamp" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MinutesSinceLastCall]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MinutesSinceLastCall]"
+                          name="MinutesSinceLastCall" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs.Paths[Data Conversion Output]"
+                  endId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs.Paths[Derived Column Output]"
+                  endId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Sequence Container\LOAD STG_IWS_REST_APIs.Paths[OLE DB Source Output]"
+                  endId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\TRUNCATE STG_IWS_REST_APIs"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1B1C749C-924E-41C0-A592-A6CA71441C2F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE STG_IWS_REST_APIs"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4703CED3-4D0E-464A-AC6C-F1E702ADA7D6}"
+              SQLTask:SqlStatementSource="truncate table STG_IWS_REST_APIs" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{6B1EE03B-A193-4DA9-8B21-537BF7C866FB}"
+          DTS:From="Package\Sequence Container\TRUNCATE STG_IWS_REST_APIs"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\LOAD STG_IWS_REST_APIs" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container 1"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{71A331DA-C0CF-43C2-B1D9-A56AFD18F1BD}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container 1">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 1\SNAPSHOT"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F1C04F95-92C7-4C25-B243-673036C13D6C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SNAPSHOT"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4703CED3-4D0E-464A-AC6C-F1E702ADA7D6}"
+              SQLTask:SqlStatementSource="USE [DWStaging]&#xA;GO&#xA;&#xA;INSERT INTO [dbo].[STG_SNAPSHOT_IWS_REST_APIs]&#xA;           ([StatusCode]&#xA;           ,[API_Calls_Count]&#xA;           ,[PercentageOfTotal]&#xA;           ,[FromTimeStamp]&#xA;           ,[ToTimeStamp]&#xA;           ,[FromLocalTimeStamp]&#xA;           ,[ToLocalTimeStamp]&#xA;           ,[LocalTimeStamp]&#xA;           ,[MinutesSinceLastCall]&#xA;           ,[TimeStamp]&#xA;            )&#xA;&#xA;SELECT      [StatusCode]&#xA;           ,[API_Calls_Count]&#xA;           ,[PercentageOfTotal]&#xA;           ,[FromTimeStamp]&#xA;           ,[ToTimeStamp]&#xA;           ,[FromLocalTimeStamp]&#xA;           ,[ToLocalTimeStamp]&#xA;           ,[LocalTimeStamp]&#xA;           ,[MinutesSinceLastCall]&#xA;           ,[LastExtraction]&#xA;           &#xA;FROM [dbo].[STG_IWS_REST_APIs]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 1\SP IWS Alert"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{C202F6D5-9098-4E2A-B6E9-159A756C7A41}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SP IWS Alert"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4703CED3-4D0E-464A-AC6C-F1E702ADA7D6}"
+              SQLTask:SqlStatementSource="exec [dbo].[MON_IWS_REST_APIs]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container 1.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{58D23925-ED6A-4E4F-A8E8-E5CBC28F36E6}"
+          DTS:From="Package\Sequence Container 1\SP IWS Alert"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container 1\SNAPSHOT" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\UPDATE VARIABLE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{DDBD03C4-04E9-4DE5-805C-3DC2A4B69FA1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="UPDATE VARIABLE"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4703CED3-4D0E-464A-AC6C-F1E702ADA7D6}"
+          SQLTask:SqlStatementSource="select count(*) from STG_IWS_REST_APIs&#xA;where (StatusCode = 'OK'  and PercentageOfTotal &lt; 90)"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::VintCount" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{701D09E8-9476-47BA-8420-FC12F299F85D}"
+      DTS:From="Package\Sequence Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\UPDATE VARIABLE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C3634199-5D18-4B99-9407-39C9D26BFFCB}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::VintCount]&gt;0"
+      DTS:From="Package\UPDATE VARIABLE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Sequence Container 1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{7C7BB894-550A-46CD-A76E-B247F93B03D3}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{14D0865D-B8DE-4BEF-A81A-4369F29B3AD9}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Evento Error"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{C918A044-4800-45A4-8CB0-9AEBEE7777B4}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Evento Error">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{9FFB25A6-DE3B-478A-BD4B-274F3DD52443}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{4703CED3-4D0E-464A-AC6C-F1E702ADA7D6}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error\Send error email"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{8C4E42B5-EE6E-484F-9E8F-32EF9F3378B0}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send error email"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError]+ @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{0FC8111E-B274-4021-AC93-C69128FE6496}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :IWS - 005 - RESET_APIs" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{B54D1CB3-51AD-426E-9BA4-5B395B1EEBAD}"
+              DTS:From="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Evento Error\Send error email" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Sequence Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{970F1359-FD56-4CEB-AFB6-CC5CB8DCC2EB}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sequence Container">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{73BA90D2-9CF6-4849-B32A-92830D9005AD}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tare Evento Fallo"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Tare Evento Fallo"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{4703CED3-4D0E-464A-AC6C-F1E702ADA7D6}"
+                  SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{BFE65D3F-86E0-48B4-B315-7E0363C0D53F}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tarea de ejecucion"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{4703CED3-4D0E-464A-AC6C-F1E702ADA7D6}"
+                  SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{C2BE72FE-05F6-4E66-8815-44DE67EF1A00}"
+              DTS:From="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{6EB22C6F-211C-4637-A8CE-C5B79831B83F}"
+          DTS:From="Package.EventHandlers[OnError]\Sequence Container"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Evento Error" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="211,42"
+          Id="Package\Sequence Container\LOAD STG_IWS_REST_APIs"
+          TopLeft="5.5,103.5" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Sequence Container\TRUNCATE STG_IWS_REST_APIs"
+          TopLeft="27.5,5.5" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="110,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="222,201"
+          Size="222,244"
+          Id="Package\Sequence Container"
+          TopLeft="184,40" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Sequence Container 1\SNAPSHOT"
+          TopLeft="28,113" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Sequence Container 1\SP IWS Alert"
+          TopLeft="31,12" />
+        <EdgeLayout
+          Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint]"
+          TopLeft="97,54">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,210"
+          Size="205,253"
+          Id="Package\Sequence Container 1"
+          TopLeft="49,460" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\UPDATE VARIABLE"
+          TopLeft="209,343" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="294,284">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="293,385">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-141.5,75"
+              Start="0,0"
+              End="-141.5,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.5"
+                    Point2="0,37.5"
+                    Point3="-4,37.5" />
+                  <mssgle:LineSegment
+                    End="-137.5,37.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-137.5,37.5"
+                    Point2="-141.5,37.5"
+                    Point3="-141.5,41.5" />
+                  <mssgle:LineSegment
+                    End="-141.5,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-78.75,42.5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+          TopLeft="14.3018867924528,18.811320754717" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Evento Error\Send error email"
+          TopLeft="14.8301886792453,91.6792452830189" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+          TopLeft="82.188679245283,62.7358490566038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.528301886792434,28.9433962264151"
+              Start="0,0"
+              End="0.528301886792434,21.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.4528301886792" />
+                  <mssgle:LineSegment
+                    End="0.528301886792434,14.4528301886792" />
+                  <mssgle:LineSegment
+                    End="0.528301886792434,21.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="158,155.075471698114"
+          Size="158,199"
+          Id="Package.EventHandlers[OnError]\Evento Error"
+          TopLeft="61.9622641509434,321.622641509434" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo"
+          TopLeft="13.8867924528302,84.2075471698113" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion"
+          TopLeft="14.377358490566,13.8301886792453" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="82.2641509433962,57.7547169811321">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.490566037735846,26.4528301886792"
+              Start="0,0"
+              End="-0.490566037735846,18.9528301886792">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.2075471698113" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,13.2075471698113" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,18.9528301886792" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="161,138.075471698114"
+          Size="161,182"
+          Id="Package.EventHandlers[OnError]\Sequence Container"
+          TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="140.603773584906,242.22641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.188679245283026,79.3962264150943"
+              Start="0,0"
+              End="0.188679245283026,71.8962264150943">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.6981132075472" />
+                  <mssgle:LineSegment
+                    End="0.188679245283026,39.6981132075472" />
+                  <mssgle:LineSegment
+                    End="0.188679245283026,71.8962264150943" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Sequence Container\LOAD STG_IWS_REST_APIs">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source"
+          TopLeft="44,39" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination"
+          TopLeft="28,323" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Data Conversion"
+          TopLeft="36,220" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Sequence Container\LOAD STG_IWS_REST_APIs\Derived Column"
+          TopLeft="42,131" />
+        <EdgeLayout
+          Id="Package\Sequence Container\LOAD STG_IWS_REST_APIs.Paths[Derived Column Output]"
+          TopLeft="116.5,173">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\LOAD STG_IWS_REST_APIs.Paths[Data Conversion Output]"
+          TopLeft="113.75,262">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\LOAD STG_IWS_REST_APIs.Paths[OLE DB Source Output]"
+          TopLeft="119,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\LOAD STG_IWS_REST_APIs\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

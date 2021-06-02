@@ -1,0 +1,2129 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/23/2017 5:34:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{2F7DE5E5-D85F-40C6-AB1B-710B8D14D046}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ETL_TBL_VOUT_HP"
+  DTS:PackageType="5"
+  DTS:VersionBuild="41"
+  DTS:VersionGUID="{DBAE0236-C4B0-4361-978A-44F69E314F89}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser16]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{E97E5679-414D-4E6C-A030-B8B784C1B679}"
+      DTS:ObjectName="INTCOMEX_DWH.dwhuser16">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Etluser;Dsn=IQ16;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABDUjgkyNKOmRx2fqGQ2sk5AAAAAASAAACgAAAAEAAAALoexIoQbNtT64tC0q1XJk4YAAAA22nTpxdlpAh3NhfyZ1IGzF9+O5gIZJhJFAAAACYI+SwD+baI7unscG+7/k4TckXb</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FCAA149E-4AD2-4F79-A17D-5957D64C821F}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package2-{FCAA149E-4AD2-4F79-A17D-5957D64C821F}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{0705A871-1F13-48BA-A629-10931CC691C1}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=clientarrayus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;INTCOMEX_DWH.dwhuser16&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{E6FE67FF-EFAB-4135-A555-92CC235454C9}"
+      DTS:ObjectName="INTCOMEX_DWH dwhuser16" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6E20AECB-F20C-45C4-A501-DFA436A9E4BC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VInt_Ejecution">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{455567A0-BFF8-4D1C-8119-2227992A43F7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{59E6155D-009F-4D00-AACE-75E0E1D5D7CC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{45F79C68-4F56-4ED5-A9CE-C1B9B99A1FF4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{446EE045-283E-44F7-B405-51BBA3F27306}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\A - Execution Control"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execution Control"
+      DTS:DTSID="{DF371403-7522-4A08-8EAC-3A8F710A4348}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="A - Execution Control"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="2" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"A - Execution Control"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">" Declare @Ejecucion int  IF (Select Ejecucion From ETL.Log_Ejecucion where Paquete = '"+@[System::PackageName]+"')= 0 Set @Ejecucion=1 Else  Set @Ejecucion=0 select @ejecucion"</DTS:PropertyExpression>
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\A - Execution Control.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{C7C99DFF-7714-45F5-9467-1374F817A98B}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{1A8F8C08-7F14-4634-9FD5-01AAFE509981}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\A - Execution Control.EventHandlers[OnPostExecute]"
+          DTS:CreationName="OnPostExecute"
+          DTS:DTSID="{624A0EFC-AF3B-4FFD-B67D-081257E45D0D}"
+          DTS:EventID="2097267"
+          DTS:EventName="OnPostExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{B68AF190-3A38-4AE4-8E3D-1C22E7B7183B}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\A - Execution Control.EventHandlers[OnPreExecute]"
+          DTS:CreationName="OnPreExecute"
+          DTS:DTSID="{3533D390-A723-4A56-BE69-5F9FE1DE4398}"
+          DTS:EventID="0"
+          DTS:EventName="OnPreExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{DEA97EBF-3926-4E67-995E-BB9117C548DD}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FCAA149E-4AD2-4F79-A17D-5957D64C821F}"
+          SQLTask:SqlStatementSource=" Declare @Ejecucion int  IF (Select Ejecucion From ETL.Log_Ejecucion where Paquete = 'ETL_TBL_VOUT_HP')= 0 Set @Ejecucion=1 Else  Set @Ejecucion=0 select @ejecucion"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::VInt_Ejecution" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\B - Task Home ETL_TBL_VOUT_HP"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task Home "
+      DTS:DTSID="{EE1CFA16-52C4-4DAC-B455-F692833309B2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="B - Task Home ETL_TBL_VOUT_HP"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="2" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"B - Task Home "+ @[System::PackageName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 1, Fecha_inicio = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\B - Task Home ETL_TBL_VOUT_HP.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{EDAFB3A6-C9B5-4175-8C69-A2539ED3F380}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{FA8371FB-0540-4B6D-ADD4-98A7DABE0B08}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\B - Task Home ETL_TBL_VOUT_HP.EventHandlers[OnPostExecute]"
+          DTS:CreationName="OnPostExecute"
+          DTS:DTSID="{63AB4BB9-48B6-4324-8560-5165E15F6382}"
+          DTS:EventID="0"
+          DTS:EventName="OnPostExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{08632134-7EA1-44B5-A8B3-84F010080A2B}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\B - Task Home ETL_TBL_VOUT_HP.EventHandlers[OnPreExecute]"
+          DTS:CreationName="OnPreExecute"
+          DTS:DTSID="{819936ED-74AC-46A9-867F-EA017EFB75B3}"
+          DTS:EventID="0"
+          DTS:EventName="OnPreExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{19F64B71-41DA-4F1C-B58B-08BF37418F1A}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FCAA149E-4AD2-4F79-A17D-5957D64C821F}"
+          SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 1, Fecha_inicio = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOAD"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{352FD5F0-A9BA-4146-BC9E-01DF46D84DDA}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOAD\LOAD TBL_VOUT_HP"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{4E7DB298-6B31-45D4-AEC4-6068BF6C0678}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOAD TBL_VOUT_HP"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Extracts data from a relational database by using a .NET provider."
+                  name="ADO NET Source"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+ convert (int,convert(varchar(11),getdate(),112)) as DIM_PK_TIME,
+  dbo.DIM_COMPANY.companyid,
+  dbo.FACT_SERIAL_SALE.Serial_No,
+  dbo.DIM_PRODUCT.localSKU,
+  dbo.DIM_PRODUCT.manufSKU,
+  vout.FACT_IM_SALES.AR_TransDate,
+  vout.FACT_IM_SALES.AR_TransNo,
+  sum(vout.FACT_IM_SALES.EA_ShipQty),
+  dbo.FACT_SERIAL_SALE.Quantity,
+  vout.fact_im_sales.LineNumber,
+  getdate () as LastExtraction
+FROM
+  vout.FACT_IM_SALES,
+  dbo.DIM_PRODUCT,
+  dbo.DIM_CUSTOMER,
+  dbo.DIM_TIME,
+  dbo.DIM_LOCATION,
+  dbo.DIM_COMPANY,
+  dbo.FACT_SERIAL_SALE
+WHERE
+  ( dbo.DIM_COMPANY.DIM_PK_COMPANY=vout.FACT_IM_SALES.DIM_PK_COMPANY  )
+  AND  ( dbo.DIM_LOCATION.DIM_PK_LOCATION=vout.FACT_IM_SALES.DIM_PK_LOCATION and dbo.DIM_LOCATION.DIM_PK_COMPANY=vout.FACT_IM_SALES.DIM_PK_COMPANY  )
+  AND  ( dbo.DIM_PRODUCT.DIM_PK_PRODUCT=vout.FACT_IM_SALES.DIM_PK_PRODUCT and dbo.DIM_PRODUCT.DIM_PK_COMPANY=vout.FACT_IM_SALES.DIM_PK_COMPANY  )
+  AND  ( vout.FACT_IM_SALES.DIM_PK_TIME=dbo.DIM_TIME.DIM_PK_TIME  )
+  AND  ( vout.FACT_IM_SALES.DIM_PK_CUSTOMER=dbo.DIM_CUSTOMER.DIM_PK_CUSTOMER  )
+  AND  ( (dbo.DIM_PRODUCT.locallineID in ('HAWC','HAWL','HAWX','HEAX','HELX','HENX','HEPX','HERX','HEWC','HEWL','HEWX','HNCL','HPAC','HPAL','HPBC','HPCC','HPCL','HPCX','HPFL','HPKC','HPKL','HPLC','HPML','HPNC','HPNL','HPOX','HPPX','HPQC','HPQL','HPQX','HPRC','HPRL','HPRX','HPSC','HPSL','HPSX','HPTC','HPTL','HPVL','HPWC')) and dbo.DIM_PRODUCT.locallineID not IN  ('cnec', 'seax', 'wdcx', 'hitx', 'seal','secx','saox')  )
+  AND  ( dbo.DIM_COMPANY.companyID in ('XAM','XAR','XCL','XCO','XCR','XEC','XGT','XIA','XIQ','XJM','XPA','XPE','XPX','XSV','XUS','XUY','XMX','XHS','XCT','XCB','XGB','XHN','XPT','XCE','XNI','XRB')  )
+  AND  ( dbo.DIM_PRODUCT.companyID in ('XAM','XAR','XCL','XCO','XCR','XEC','XGT','XIA','XIQ','XJM','XPA','XPE','XPX','XSV','XUS','XUY','XMX','XHS','XCT','XCB','XGB','XHN','XPT','XCE','XNI','XRB')  )
+  AND  ( vout.FACT_IM_SALES.companyID in ('XAM','XAR','XCL','XCO','XCR','XEC','XGT','XIA','XIQ','XJM','XPA','XPE','XPX','XSV','XUS','XUY','XMX','XHS','XCT','XCB','XGB','XHN','XPT','XCE','XNI','XRB')  )
+  AND  ( dbo.DIM_CUSTOMER.companyID in ('XAM','XAR','XCL','XCO','XCR','XEC','XGT','XIA','XIQ','XJM','XPA','XPE','XPX','XSV','XUS','XUY','XMX','XHS','XCT','XCB','XGB','XHN','XPT','XCE','XNI','XRB')  )
+  AND  ( dbo.DIM_PRODUCT.centralSKU&lt;&gt;'ERROR' and dbo.DIM_PRODUCT.dw_status&lt;&gt;'d'  )
+  AND  ( vout.FACT_IM_SALES.DIM_PK_COMPANY*=dbo.FACT_SERIAL_SALE.DIM_PK_COMPANY and vout.FACT_IM_SALES.PA_TransNo*=dbo.FACT_SERIAL_SALE.Pack_No and vout.FACT_IM_SALES.lineNumber*=dbo.FACT_SERIAL_SALE.Pack_line  )
+  AND  ( case 
+         when dbo.DIM_CUSTOMER.businessUnitID = 'A' then 'A'
+         when dbo.DIM_CUSTOMER.businessUnitID = 'M' then 'M'
+         Else 'C' end in ('A','M','C')  )
+  AND  ( dbo.DIM_TIME.DIM_PK_TIME between convert(int, convert(varchar (11),getdate()-7,112)) and convert(int, convert(varchar (11),getdate()-1,112)) 
+  AND  dbo.DIM_PRODUCT.localSKU  NOT IN  ('mt001hpx10', 'AO036HEX57', 'MT001HPX10', 'BT100HPX04', 'PC001HPX02', 'MT002HPX01', 'PC003XSV17', 'PC406HPQ04', ' PC327HPX48', 'NT804HPX60', 'NT804HPX15', 'NT500HPX02', 'PC327HPX48', 'NT804HPX61', 'NT804HPX19', 'NT500HPX02', 'PC327HPX48', 'MT001HPX10', 'MT001HPX20', 'MT001HPX35', 'NT804HPX13', 'NT100HPX01', 'PC327HPX48', 'PC327HPX46', 'PC327HPX51')
+  )
+
+GROUP BY
+  dbo.DIM_COMPANY.companyid, 
+  dbo.FACT_SERIAL_SALE.Serial_No, 
+  dbo.DIM_PRODUCT.localSKU, 
+  dbo.DIM_PRODUCT.manufSKU, 
+  vout.FACT_IM_SALES.AR_TransDate, 
+  vout.FACT_IM_SALES.AR_TransNo, 
+  dbo.FACT_SERIAL_SALE.Quantity,
+  vout.fact_im_sales.LineNumber</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser16]"
+                      connectionManagerRefId="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser16]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[DIM_PK_TIME]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DIM_PK_TIME]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[DIM_PK_TIME]"
+                          name="DIM_PK_TIME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[companyid]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[companyid]"
+                          length="4"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[companyid]"
+                          name="companyid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[Serial_No]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Serial_No]"
+                          length="40"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[Serial_No]"
+                          name="Serial_No"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[localSKU]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[localSKU]"
+                          length="20"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[localSKU]"
+                          name="localSKU"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[manufSKU]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[manufSKU]"
+                          length="50"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[manufSKU]"
+                          name="manufSKU"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[AR_TransDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[AR_TransDate]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[AR_TransDate]"
+                          name="AR_TransDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[AR_TransNo]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[AR_TransNo]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[AR_TransNo]"
+                          name="AR_TransNo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[sum(vout.FACT_IM_SALES.EA_ShipQty)]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[sum(vout.FACT_IM_SALES.EA_ShipQty)]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[sum(vout.FACT_IM_SALES.EA_ShipQty)]"
+                          name="sum(vout.FACT_IM_SALES.EA_ShipQty)"
+                          precision="20"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[Quantity]"
+                          dataType="i2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Quantity]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[Quantity]"
+                          name="Quantity"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[LineNumber]"
+                          dataType="i2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LineNumber]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[LineNumber]"
+                          name="LineNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LastExtraction]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DIM_PK_TIME]"
+                          dataType="i4"
+                          name="DIM_PK_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[companyid]"
+                          dataType="wstr"
+                          length="4"
+                          name="companyid" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Serial_No]"
+                          dataType="wstr"
+                          length="40"
+                          name="Serial_No" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[localSKU]"
+                          dataType="wstr"
+                          length="20"
+                          name="localSKU" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[manufSKU]"
+                          dataType="wstr"
+                          length="50"
+                          name="manufSKU" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[AR_TransDate]"
+                          dataType="dbTimeStamp"
+                          name="AR_TransDate" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[AR_TransNo]"
+                          dataType="i4"
+                          name="AR_TransNo" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[sum(vout.FACT_IM_SALES.EA_ShipQty)]"
+                          dataType="numeric"
+                          name="sum(vout.FACT_IM_SALES.EA_ShipQty)"
+                          precision="20" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Quantity]"
+                          dataType="i2"
+                          name="Quantity" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LineNumber]"
+                          dataType="i2"
+                          name="LineNumber" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DIM_PK_TIME]"
+                          dataType="i4"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DIM_PK_TIME]"
+                          name="DIM_PK_TIME" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[companyid]"
+                          dataType="wstr"
+                          length="4"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[companyid]"
+                          name="companyid" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Serial_No]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Serial_No]"
+                          name="Serial_No" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[localSKU]"
+                          dataType="wstr"
+                          length="20"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[localSKU]"
+                          name="localSKU" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[manufSKU]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[manufSKU]"
+                          name="manufSKU" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[AR_TransDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[AR_TransDate]"
+                          name="AR_TransDate" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[AR_TransNo]"
+                          dataType="i4"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[AR_TransNo]"
+                          name="AR_TransNo" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[sum(vout.FACT_IM_SALES.EA_ShipQty)]"
+                          dataType="numeric"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[sum(vout.FACT_IM_SALES.EA_ShipQty)]"
+                          name="sum(vout.FACT_IM_SALES.EA_ShipQty)"
+                          precision="20" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Quantity]"
+                          dataType="i2"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Quantity]"
+                          name="Quantity" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LineNumber]"
+                          dataType="i2"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LineNumber]"
+                          name="LineNumber" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LastExtraction]"
+                          name="LastExtraction" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Inputs[Data Conversion Input].Columns[companyid]"
+                          cachedDataType="wstr"
+                          cachedLength="4"
+                          cachedName="companyid"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[companyid]" />
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Inputs[Data Conversion Input].Columns[Serial_No]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="Serial_No"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[Serial_No]" />
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Inputs[Data Conversion Input].Columns[localSKU]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="localSKU"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[localSKU]" />
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Inputs[Data Conversion Input].Columns[manufSKU]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="manufSKU"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[manufSKU]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output].Columns[companyid]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output].Columns[companyid]"
+                          name="companyid"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[companyid]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output].Columns[Serial_No]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output].Columns[Serial_No]"
+                          name="Serial_No"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[Serial_No]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output].Columns[localSKU]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="20"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output].Columns[localSKU]"
+                          name="localSKU"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[localSKU]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output].Columns[manufSKU]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output].Columns[manufSKU]"
+                          name="manufSKU"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[manufSKU]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD\LOAD TBL_VOUT_HP\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD\LOAD TBL_VOUT_HP\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD\LOAD TBL_VOUT_HP\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\LOAD\LOAD TBL_VOUT_HP\Derived Column.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD\LOAD TBL_VOUT_HP\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\LOAD\LOAD TBL_VOUT_HP\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[TBL_VOUT_HP]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AR_TransDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="AR_TransDate"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AR_TransDate]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[AR_TransDate]" />
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AR_TransNo]"
+                          cachedDataType="i4"
+                          cachedName="AR_TransNo"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AR_TransNo]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[AR_TransNo]" />
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Quantity]"
+                          cachedDataType="i2"
+                          cachedName="Quantity"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[Quantity]" />
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sum(vout.FACT_IM_SALES.EA_ShipQty)]"
+                          cachedDataType="numeric"
+                          cachedName="sum(vout.FACT_IM_SALES.EA_ShipQty)"
+                          cachedPrecision="20"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SUM_EA_ShipQty]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[sum(vout.FACT_IM_SALES.EA_ShipQty)]" />
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[companyid]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="companyid"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[companyid]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output].Columns[companyid]" />
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Serial_No]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Serial_No"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Serial_No]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output].Columns[Serial_No]" />
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[manufSKU]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="manufSKU"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[manufSKU]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output].Columns[manufSKU]" />
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[localSKU]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="localSKU"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[localSKU]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output].Columns[localSKU]" />
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DIM_PK_TIME]"
+                          cachedDataType="i4"
+                          cachedName="DIM_PK_TIME"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_TIME]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[DIM_PK_TIME]" />
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LineNumber]"
+                          cachedDataType="i2"
+                          cachedName="LineNumber"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LineNumber]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[LineNumber]" />
+                        <inputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastExtraction]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[companyid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="companyid" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Serial_No]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Serial_No" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[localSKU]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="localSKU" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[manufSKU]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="manufSKU" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AR_TransDate]"
+                          dataType="dbTimeStamp"
+                          name="AR_TransDate" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AR_TransNo]"
+                          dataType="i4"
+                          name="AR_TransNo" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                          dataType="i2"
+                          name="Quantity" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SUM_EA_ShipQty]"
+                          dataType="numeric"
+                          name="SUM_EA_ShipQty"
+                          precision="20" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_TIME]"
+                          dataType="i4"
+                          name="DIM_PK_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LineNumber]"
+                          dataType="i4"
+                          name="LineNumber" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\LOAD\LOAD TBL_VOUT_HP.Paths[ADO NET Source Output]"
+                  endId="Package\LOAD\LOAD TBL_VOUT_HP\Derived Column.Inputs[Derived Column Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source.Outputs[ADO NET Source Output]" />
+                <path
+                  refId="Package\LOAD\LOAD TBL_VOUT_HP.Paths[Data Conversion Output]"
+                  endId="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\LOAD\LOAD TBL_VOUT_HP.Paths[Derived Column Output]"
+                  endId="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\LOAD\LOAD TBL_VOUT_HP\Derived Column.Outputs[Derived Column Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\X - Reset Process Variables"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Reset Process Variables"
+      DTS:DTSID="{6ABE546D-9810-4A8D-9A84-48698EF13D5F}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="X - Reset Process Variables">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"X - Reset Process Variables"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\X - Reset Process Variables\Tarea Reset Ejecucion ETL_TBL_VOUT_HP"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ACA336BA-F899-448F-82B8-0C8C601685D6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Reset Ejecucion ETL_TBL_VOUT_HP"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Tarea Reset Ejecucion "+ @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\X - Reset Process Variables\Tarea Reset Ejecucion ETL_TBL_VOUT_HP.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{42AE20B3-006D-4322-BB66-94955EC6C5D5}"
+              DTS:EventID="0"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{266C8E74-D044-4A7D-923F-0CB9F9EFD3B3}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\X - Reset Process Variables\Tarea Reset Ejecucion ETL_TBL_VOUT_HP.EventHandlers[OnPostExecute]"
+              DTS:CreationName="OnPostExecute"
+              DTS:DTSID="{D9F8ED69-6739-4682-BBCB-9D506292AD8F}"
+              DTS:EventID="0"
+              DTS:EventName="OnPostExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{E066C798-AD66-4921-9C71-6B8E9BD596CA}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\X - Reset Process Variables\Tarea Reset Ejecucion ETL_TBL_VOUT_HP.EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{696ECCA2-D73D-47ED-8934-BBF3AE367A5A}"
+              DTS:EventID="0"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{CB06B337-7FF5-4864-B780-18239099AB83}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FCAA149E-4AD2-4F79-A17D-5957D64C821F}"
+              SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Z - Correct Event"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Send Mail  Correct Event"
+      DTS:DTSID="{C2BA2BF7-2F03-473A-9D0F-292C5AAC187D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Z - Correct Event">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Z - Correct Event"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2D53EE9C-587F-4AD2-93D0-5F56EBAF7FDB}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se a ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FCAA149E-4AD2-4F79-A17D-5957D64C821F}"
+              SQLTask:SqlStatementSource="Select  'Se a ejecutado  el Paquete ETL_TBL_VOUT_HP  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{10A97F76-8C2E-49E5-A1D3-0E83F32B42C6}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEND_MAIL_TASK"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{2035CED6-0A8B-410F-B169-1904EFFBE866}"
+              DTS:EventID="0"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{F15D5196-656E-443A-B2DE-5D83AD5BA2A4}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPostExecute]"
+              DTS:CreationName="OnPostExecute"
+              DTS:DTSID="{8241B208-D16E-4146-9F81-01A5903D0F31}"
+              DTS:EventID="0"
+              DTS:EventName="OnPostExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{335033EA-71D4-4C27-BD55-C41C6A287A96}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{C7018ACE-3F89-4AA9-AF0E-C2C6DF307978}"
+              DTS:EventID="0"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{01C80B4B-31D7-44B0-B27E-EA7AEC548C9D}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{0705A871-1F13-48BA-A629-10931CC691C1}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :ETL_TBL_VOUT_HP" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{2B3262A1-5CCD-44CD-97B1-93C4700FD51D}"
+          DTS:From="Package\Z - Correct Event\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Z - Correct Event\SEND_MAIL_TASK" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{421B1ACA-F5D9-45D6-912A-9E7CAA30E69B}"
+      DTS:From="Package\B - Task Home ETL_TBL_VOUT_HP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\LOAD" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{A985A16D-6322-4C21-9AB6-0341A5C08291}"
+      DTS:From="Package\LOAD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\X - Reset Process Variables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{E104059A-D410-447F-82E5-602744E28338}"
+      DTS:From="Package\X - Reset Process Variables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Z - Correct Event" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{3FDCD292-13CD-4A8A-9509-309CEAAF47CA}"
+      DTS:EvalOp="3"
+      DTS:Expression="@VInt_Ejecution==1"
+      DTS:From="Package\A - Execution Control"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\B - Task Home ETL_TBL_VOUT_HP" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{69EDCED8-BE29-459E-8EBF-3E4EFAC599A1}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{28179124-CB31-4158-8BD7-353879B1831A}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Evento Error"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{4E9C610C-EE56-43CB-A721-DF75E28FBF1C}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Evento Error">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{712B2CDD-C549-4F89-A6A9-DE36C3ECF90F}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{FCAA149E-4AD2-4F79-A17D-5957D64C821F}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error\Send error email"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{8336B79A-B4F7-4C30-BFCE-81114FA53C9C}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send error email"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError]+ @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{0705A871-1F13-48BA-A629-10931CC691C1}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :ETL_TBL_VOUT_HP" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{047D2A08-3C45-47E5-977B-011530189B5A}"
+              DTS:From="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Evento Error\Send error email" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\NOTIFICACTION LOAD FAILED"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{FDF61BF6-FFCF-4B1B-B9C2-38DB03609783}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="NOTIFICACTION LOAD FAILED"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{0705A871-1F13-48BA-A629-10931CC691C1}"
+              SendMailTask:From="SQLadmin@intcomex.com"
+              SendMailTask:To="smonroy@intcomex.com;Marlon.Claro@intcomex.com"
+              SendMailTask:Subject="ETL ETL_TBL_VOUT_HP load finished failed !!!!!!" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Sequence Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{A8DFCF83-22E4-44E2-9E22-BB68153B2BEF}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sequence Container">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{486E8C33-1E47-4B5A-86C1-A01D77E6F68C}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tare Evento Fallo"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Tare Evento Fallo"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{FCAA149E-4AD2-4F79-A17D-5957D64C821F}"
+                  SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion ETL_BOM"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{AF73FC69-29FB-45C5-B022-AF8905539A60}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tarea de ejecucion ETL_BOM"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{FCAA149E-4AD2-4F79-A17D-5957D64C821F}"
+                  SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{C2E56544-1E15-4F9C-BA73-50F7EF89DA52}"
+              DTS:From="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion ETL_BOM"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{74F3F6D3-0C10-4AE1-9B98-C203325D21FC}"
+          DTS:From="Package.EventHandlers[OnError]\Sequence Container"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Evento Error" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{779B52A1-0B3F-402E-B84D-771E4D58D4A4}"
+          DTS:From="Package.EventHandlers[OnError]\Evento Error"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnError]\NOTIFICACTION LOAD FAILED" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\A - Execution Control"
+          TopLeft="18.7830188679245,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\B - Task Home ETL_TBL_VOUT_HP"
+          TopLeft="19.3113207547169,89.0471698113207" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD\LOAD TBL_VOUT_HP"
+          TopLeft="7.54716981132083,8.47169811320754" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="151,59"
+          Size="151,103"
+          Id="Package\LOAD"
+          TopLeft="11.2735849056603,183.801886792453" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\X - Reset Process Variables\Tarea Reset Ejecucion ETL_TBL_VOUT_HP"
+          TopLeft="7.54716981132083,8.47169811320754" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="159,67"
+          Size="159,111"
+          Id="Package\X - Reset Process Variables"
+          TopLeft="7.23584905660368,320.330188679245" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\Mensaje"
+          TopLeft="8.11320754716985,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\SEND_MAIL_TASK"
+          TopLeft="7.5471698113206,80.5471698113207" />
+        <EdgeLayout
+          Id="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          TopLeft="76,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.566037735849022,28.1509433962264"
+              Start="0,0"
+              End="-0.566037735849022,20.6509433962264">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.0754716981132" />
+                  <mssgle:LineSegment
+                    End="-0.566037735849022,14.0754716981132" />
+                  <mssgle:LineSegment
+                    End="-0.566037735849022,20.6509433962264" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="163,131"
+          Size="163,175"
+          Id="Package\Z - Correct Event"
+          TopLeft="5.5,479.047169811321" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="66.443396226415,132.971698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="20.2641509433963,50.8301886792453"
+              Start="0,0"
+              End="20.2641509433963,43.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.1509433962264" />
+                  <mssgle:LineSegment
+                    End="20.2641509433963,38.1509433962264" />
+                  <mssgle:LineSegment
+                    End="20.2641509433963,43.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="65.9528301886792,286.745283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="20.6415094339623,33.5849056603774"
+              Start="0,0"
+              End="20.6415094339623,26.0849056603774">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.2075471698113" />
+                  <mssgle:LineSegment
+                    End="20.6415094339623,25.2075471698113" />
+                  <mssgle:LineSegment
+                    End="20.6415094339623,26.0849056603774" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="65.8396226415093,431.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="21.0188679245284,47.7735849056604"
+              Start="0,0"
+              End="21.0188679245284,40.2735849056604">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.811320754717" />
+                  <mssgle:LineSegment
+                    End="21.0188679245284,35.811320754717" />
+                  <mssgle:LineSegment
+                    End="21.0188679245284,40.2735849056604" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="86.6698113207547,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.528301886792406,39.6226415094339"
+              Start="0,0"
+              End="0.528301886792406,32.1226415094339">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.811320754717" />
+                  <mssgle:LineSegment
+                    End="0.528301886792406,19.811320754717" />
+                  <mssgle:LineSegment
+                    End="0.528301886792406,32.1226415094339" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-7.7358490566038,24.811320754717,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+          TopLeft="13.0188679245283,8.47169811320754" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Evento Error\Send error email"
+          TopLeft="7.54716981132075,88.8490566037736" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+          TopLeft="80.9056603773585,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-5.47169811320754,36.4528301886793"
+              Start="0,0"
+              End="-5.47169811320754,28.9528301886793">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.2264150943396" />
+                  <mssgle:LineSegment
+                    End="-5.47169811320754,18.2264150943396" />
+                  <mssgle:LineSegment
+                    End="-5.47169811320754,28.9528301886793" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="156.33962264151,139.396226415096"
+          Size="156.33962264151,183.320754716982"
+          Id="Package.EventHandlers[OnError]\Evento Error"
+          TopLeft="15.9905660377358,262.141509433962" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\NOTIFICACTION LOAD FAILED"
+          TopLeft="16.0283018867925,497.61320754717" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo"
+          TopLeft="7.54716981132075,92.3207547169811" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion ETL_BOM"
+          TopLeft="8.0377358490566,8.47169811320755" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="75.9245283018868,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.490566037735846,39.9245283018868"
+              Start="0,0"
+              End="-0.490566037735846,32.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,19.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,32.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="176.716981132076,142.867924528303"
+          Size="176.716981132076,186.792452830189"
+          Id="Package.EventHandlers[OnError]\Sequence Container"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="93.8396226415094,192.292452830189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.301886792452834,69.8490566037736"
+              Start="0,0"
+              End="0.301886792452834,62.3490566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9056603773585" />
+                  <mssgle:LineSegment
+                    End="0.301886792452834,34.9056603773585" />
+                  <mssgle:LineSegment
+                    End="0.301886792452834,62.3490566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          TopLeft="94.1415094339623,445.462264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-10.2264150943396,52.1509433962264"
+              Start="0,0"
+              End="-10.2264150943396,44.6509433962264">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.0754716981132" />
+                  <mssgle:LineSegment
+                    End="-10.2264150943396,26.0754716981132" />
+                  <mssgle:LineSegment
+                    End="-10.2264150943396,44.6509433962264" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\LOAD\LOAD TBL_VOUT_HP">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD\LOAD TBL_VOUT_HP\Derived Column"
+          TopLeft="13.5,75.3867924528302" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD\LOAD TBL_VOUT_HP\Data Conversion"
+          TopLeft="12.4622641509434,157.27358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination"
+          TopLeft="9.5,233.122641509434" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source"
+          TopLeft="12.4433962264151,3.5" />
+        <EdgeLayout
+          Id="Package\LOAD\LOAD TBL_VOUT_HP.Paths[Derived Column Output]"
+          TopLeft="80.9811320754717,119.38679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,37.8867924528298"
+              Start="0,0"
+              End="0,30.3867924528298">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.3867924528298" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD\LOAD TBL_VOUT_HP.Paths[Data Conversion Output]"
+          TopLeft="78.9811320754717,201.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,31.849056603774"
+              Start="0,0"
+              End="0,24.349056603774">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.349056603774" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD\LOAD TBL_VOUT_HP.Paths[ADO NET Source Output]"
+          TopLeft="80.9716981132076,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,27.8867924528302"
+              Start="0,0"
+              End="0,20.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD\LOAD TBL_VOUT_HP\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD\LOAD TBL_VOUT_HP\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

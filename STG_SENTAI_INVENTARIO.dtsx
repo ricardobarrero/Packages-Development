@@ -1,0 +1,3445 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/27/2015 10:48:36 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{D1F88A7B-CB54-4A1B-B82C-7172B693827C}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0600.250"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="STG_SENTAI_INVENTARIO"
+  DTS:PackageType="5"
+  DTS:VersionBuild="65"
+  DTS:VersionGUID="{ADE08695-51BE-4F8B-90DF-DED58C9315E5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser16]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{93F5C941-27BE-42C1-AEC8-71D51C8C87F5}"
+      DTS:ObjectName="INTCOMEX_DWH.dwhuser16">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Etluser;Dsn=IQ16;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA9J/1HVHfxEOg29Jlz3dHrwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAF2T9HpWaAGaniAqqjFJL+AAAAAASAAACgAAAAEAAAAMrHZVP+sJua8IWA/HdFNVcYAAAAP4Z2YlA0uSYFbq4eyrNU0CmA1dGUlCFdFAAAADrlXSLxLtv60yGnB1FzJvUSoTWT</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLAPPList.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+      DTS:ObjectName="SQLAPPList.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLAPPList;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-STG_SENTAI_FILE_MULTIPLE_INVENTARIO-{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;SQLAPPList.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;INTCOMEX_DWH.dwhuser16&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{DE1A29FE-BFA1-4438-AF2D-1364E9384FAF}"
+      DTS:ObjectName="INTCOMEX_DWH_dwhuser16" />
+  </DTS:Configurations>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\6- Ejecutar QA"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C8F7069A-107C-4267-92CA-83A9DD926B13}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="6- Ejecutar QA">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\6- Ejecutar QA\QA"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DC22DFFE-AC4E-4587-9574-21EA0D2288A1}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="QA"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\6- Ejecutar QA\QA.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{8341C15D-DF70-4FB0-897A-D9B736A098D9}"
+              DTS:EventID="0"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{B8E183DA-DE7E-4B92-A9CD-97C991C88254}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\6- Ejecutar QA\QA.EventHandlers[OnError]\QA"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{75983CAF-8A33-4418-B14E-20BF6035D735}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="QA"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+
+
+ERROR_DESCRIPTION=?,
+
+
+END_EXECUTION=GETDATE()
+
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                      SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA;&#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;&#xA;&#xA;AND NAME_TASK ='QA'&#xA;&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="System::ErrorDescription"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\6- Ejecutar QA\QA.EventHandlers[OnPostExecute]"
+              DTS:CreationName="OnPostExecute"
+              DTS:DTSID="{5C002DCE-8784-465F-B89E-4C6F5B39528C}"
+              DTS:EventID="-1073741823"
+              DTS:EventName="OnPostExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{012B01DC-4222-4495-BE73-0F350AA91CCD}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\6- Ejecutar QA\QA.EventHandlers[OnPostExecute]\QA"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{2E3D6BDE-D7CB-4A2B-B206-F8266C500EAF}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="QA"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                      SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;AND NAME_TASK ='QA'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\6- Ejecutar QA\QA.EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{409E5BE4-2605-475A-AE00-A6E1B77719FC}"
+              DTS:EventID="0"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{6D806D3F-AFF0-44B0-8740-9FFF54F48947}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\6- Ejecutar QA\QA.EventHandlers[OnPreExecute]\QA"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{6B7D0A26-9781-42C6-A93E-8784D4E890D6}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="QA"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"','F',
+1,
+GETDATE()"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                      SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'STG_SENTAI_INVENTARIO',&#xA;'QA','F',&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{93F5C941-27BE-42C1-AEC8-71D51C8C87F5}"
+              SQLTask:SqlStatementSource="exec dwhuser.mon_qa_load_dwh" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EDCEEDAD-9180-423D-AF38-29C2F00739CE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{93F5C941-27BE-42C1-AEC8-71D51C8C87F5}"
+          SQLTask:SqlStatementSource="print '*********** Paso 61: act_abc_product_buyer_metrics_new_alg**********'       &#xA;exec &quot;dwhuser&quot;.&quot;dw_dataload_fact_abc_product_buyer_metrics_new_alg&quot; @companyid ='ALL', @end_date=getdate()-1, @load_type ='F'   " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Reload Inventory"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{A15E8D97-ABEB-4F8A-BAFB-57DDBA76576E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reload Inventory">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{62C41F68-176D-409B-A68C-D8811BB417BE}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="1- ACTUALIZA FACT_INVENTORY EN SQL SERVER">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{302DCAE1-BED4-417B-AFA5-EA69CA5757D7}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{D25E4C05-7D6B-46A0-ADAC-673367E42ABC}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{17DA2116-FA2D-4522-B6DF-2D6ADD570FF3}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy.EventHandlers[OnError]\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{75E66A96-3321-4DE5-8036-CE0C582FA882}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+
+
+ERROR_DESCRIPTION=?,
+
+
+END_EXECUTION=GETDATE()
+
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA;&#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;&#xA;&#xA;AND NAME_TASK ='exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy'&#xA;&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="0"
+                            SQLTask:DtsVariableName="System::ErrorDescription"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                        </SQLTask:SqlTaskData>
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy.EventHandlers[OnPostExecute]"
+                  DTS:CreationName="OnPostExecute"
+                  DTS:DTSID="{0B1E8094-A930-4AA9-84C2-76B4A3A41865}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPostExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{6EF6595D-3A53-456E-9EDA-4D0313A7D3F2}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy.EventHandlers[OnPostExecute]\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{035F8A58-30CE-4093-B24D-9C8A5CBA3D16}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;AND NAME_TASK ='exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy.EventHandlers[OnPreExecute]"
+                  DTS:CreationName="OnPreExecute"
+                  DTS:DTSID="{DC242EFE-23D7-4828-A3E9-BA8A51832726}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPreExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{0F907AF9-3A0A-4852-8398-CC95D37ED1FA}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy.EventHandlers[OnPreExecute]\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{61EE513B-2DD6-472D-B4D1-1179561103F8}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"','F',
+1,
+GETDATE()"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'STG_SENTAI_INVENTARIO',&#xA;'exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy','F',&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                  SQLTask:SqlStatementSource="exec dbo.dm_trns_fact_ds_inventory  ---- Primer  snapshot de hoy." xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{DC5805C2-B324-4A26-A15A-A381EEB2F5D5}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{1977E6BE-2A3E-4B37-8C79-B05EEC259837}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{72DE14D3-4083-47E6-AB54-5645F2F9BDC3}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer.EventHandlers[OnError]\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{67737842-587A-407C-8591-A9A91C5C5135}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+
+
+ERROR_DESCRIPTION=?,
+
+
+END_EXECUTION=GETDATE()
+
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA;&#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;&#xA;&#xA;AND NAME_TASK ='exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer'&#xA;&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="0"
+                            SQLTask:DtsVariableName="System::ErrorDescription"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                        </SQLTask:SqlTaskData>
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer.EventHandlers[OnPostExecute]"
+                  DTS:CreationName="OnPostExecute"
+                  DTS:DTSID="{F13870ED-B043-4BFB-9578-E994F90D6DE6}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPostExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{F3B03668-85FF-4EFB-BB03-57851EC23533}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer.EventHandlers[OnPostExecute]\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{46EE7E65-E7B5-449B-8CE6-D2F2904640CB}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"
+
+
+
+</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;AND NAME_TASK ='exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer.EventHandlers[OnPreExecute]"
+                  DTS:CreationName="OnPreExecute"
+                  DTS:DTSID="{2154C6B0-D310-44B3-A02A-D8C5F6E8704F}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPreExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{E2E808EC-5D9F-44E4-A65D-076F51266285}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer.EventHandlers[OnPreExecute]\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{BF115C28-F01E-4BB7-8B1A-1E734B450824}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"','F',
+1,
+GETDATE()"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'STG_SENTAI_INVENTARIO',&#xA;'exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer','F',&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                  SQLTask:SqlStatementSource="exec dbo.dm_trns_fact_ds_inventory  'Y' ; --Reactualiza el dia de ayer" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{6A59023A-77BE-471B-8F3C-EE7EEE14B3BC}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="exec dbo dm_trns_fact_inventory  Y Full"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{4C665DA8-B424-46D8-A389-BCAC19A777AA}"
+                  DTS:EventID="2097267"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{58CC3CF1-A8E0-4EC1-A790-5B1D26671B68}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full.EventHandlers[OnError]\exec dbo dm_trns_fact_inventory  Y Full"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{1F532B2C-436A-4649-925F-F59C36B69177}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="exec dbo dm_trns_fact_inventory  Y Full"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+
+
+ERROR_DESCRIPTION=?,
+
+
+END_EXECUTION=GETDATE()
+
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA;&#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;&#xA;&#xA;AND NAME_TASK ='exec dbo dm_trns_fact_inventory  Y Full'&#xA;&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="0"
+                            SQLTask:DtsVariableName="System::ErrorDescription"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                        </SQLTask:SqlTaskData>
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full.EventHandlers[OnPostExecute]"
+                  DTS:CreationName="OnPostExecute"
+                  DTS:DTSID="{8A658D7F-BE2A-4481-A534-13083CAAE7EA}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPostExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{62F304FB-F9A6-4072-837D-44414CFA339B}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full.EventHandlers[OnPostExecute]\exec dbo dm_trns_fact_inventory  Y Full"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{62B269FC-A776-4D92-B3E5-B267B177A923}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="exec dbo dm_trns_fact_inventory  Y Full"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;AND NAME_TASK ='exec dbo dm_trns_fact_inventory  Y Full'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full.EventHandlers[OnPreExecute]"
+                  DTS:CreationName="OnPreExecute"
+                  DTS:DTSID="{E3D93E9A-D74A-43A6-AA41-CDE25ADAE3D5}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPreExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{3CDDF211-14EE-499A-90DE-8A317C27A0B2}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full.EventHandlers[OnPreExecute]\exec dbo dm_trns_fact_inventory  Y Full"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{BD065DFF-D8B7-4A5F-A843-4555BC37D22B}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="exec dbo dm_trns_fact_inventory  Y Full"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"','F',
+1,
+GETDATE()"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'STG_SENTAI_INVENTARIO',&#xA;'exec dbo dm_trns_fact_inventory  Y Full','F',&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                  SQLTask:SqlStatementSource="exec dbo.dm_trns_fact_inventory  'Y' --Full" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{F6AF5C7A-12D9-42AD-8177-A320B69FF891}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{CB88F2FC-88FD-43CE-9E3F-36C720F005B3}"
+                  DTS:EventID="-1073741823"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{2670A015-7DBD-4620-886C-8E75CA442B3F}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo.EventHandlers[OnError]\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{32E76A28-096A-4C47-8F5B-5B3A4AD1CF21}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+
+
+ERROR_DESCRIPTION=?,
+
+
+END_EXECUTION=GETDATE()
+
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA;&#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;&#xA;&#xA;AND NAME_TASK ='exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo'&#xA;&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="0"
+                            SQLTask:DtsVariableName="System::ErrorDescription"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                        </SQLTask:SqlTaskData>
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo.EventHandlers[OnPostExecute]"
+                  DTS:CreationName="OnPostExecute"
+                  DTS:DTSID="{276F633A-38D0-4F8A-B16D-7AC64426D05F}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPostExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{59C252E3-A83D-482C-9A6F-D2EEF7484A25}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo.EventHandlers[OnPostExecute]\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{C244EF51-5FB3-4087-913E-F05230A60CC3}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;AND NAME_TASK ='exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo.EventHandlers[OnPreExecute]"
+                  DTS:CreationName="OnPreExecute"
+                  DTS:DTSID="{6F75EF69-D9C2-4B9B-94FF-C4E28B598BBD}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPreExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{1F72A14F-E3FE-4A9E-9EBC-CB2ADFECB0A2}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo.EventHandlers[OnPreExecute]\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{3A407520-E0E8-47C3-A9A1-825CE54EFC67}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"','F',
+1,
+GETDATE()"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'STG_SENTAI_INVENTARIO',&#xA;'exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo','F',&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                  SQLTask:SqlStatementSource="exec dbo.dm_trns_fact_ws_inventory 'Y'  -- Esto se ejecuta si es domingo" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{ACAD1561-3ED8-4F98-8E6F-AA47B5D5FF12}"
+              DTS:From="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER.PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{4F6E52FB-A98C-4B21-B694-582603D9B031}"
+              DTS:From="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER.PrecedenceConstraints[Constraint 2]"
+              DTS:CreationName=""
+              DTS:DTSID="{EC25AA47-4551-4885-8620-BA7F9347E1D6}"
+              DTS:From="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 2"
+              DTS:To="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{E95379D4-DEA2-45FB-B23A-7C05C2D59B90}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="2- Actualizar Fact_Inventory en Sybase IQ15">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{B60F8A20-D12F-4419-9A40-8EB0903D9C47}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Paso 40  FACT_INVENTORY IQ154"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{9A79FDDF-FF39-423D-AB42-10DD18CB679D}"
+                  DTS:EventID="320383648"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{BD015EC8-0AEB-43C9-A002-C818F48BCC0C}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154.EventHandlers[OnError]\Paso 40  FACT_INVENTORY IQ154"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{1549650D-E2C8-45E9-AA4B-EFAFC1B23960}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Paso 40  FACT_INVENTORY IQ154"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+
+
+ERROR_DESCRIPTION=?,
+
+
+END_EXECUTION=GETDATE()
+
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA;&#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;&#xA;&#xA;AND NAME_TASK ='Paso 40  FACT_INVENTORY IQ154'&#xA;&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="0"
+                            SQLTask:DtsVariableName="System::ErrorDescription"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                        </SQLTask:SqlTaskData>
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154.EventHandlers[OnPostExecute]"
+                  DTS:CreationName="OnPostExecute"
+                  DTS:DTSID="{C7112DB3-2BD0-406E-88AA-41A4B2B50639}"
+                  DTS:EventID="1852124164"
+                  DTS:EventName="OnPostExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{6170AAA0-2119-4BBC-A764-FC75FB0B6BEC}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154.EventHandlers[OnPostExecute]\Paso 40  FACT_INVENTORY IQ154"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{33153323-C393-48E1-9719-D451C967B156}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Paso 40  FACT_INVENTORY IQ154"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;AND NAME_TASK ='Paso 40  FACT_INVENTORY IQ154'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154.EventHandlers[OnPreExecute]"
+                  DTS:CreationName="OnPreExecute"
+                  DTS:DTSID="{7FFBC8EB-61B0-4B4C-8ED2-31703EAADD59}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPreExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{5FBD92EA-353C-43C3-90EF-11ED1D618E29}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154.EventHandlers[OnPreExecute]\Paso 40  FACT_INVENTORY IQ154"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{F571B75B-4688-4DCE-8F90-4CD634787DBA}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Paso 40  FACT_INVENTORY IQ154"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"','F',
+1,
+GETDATE()"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'STG_SENTAI_INVENTARIO',&#xA;'Paso 40  FACT_INVENTORY IQ154','F',&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{93F5C941-27BE-42C1-AEC8-71D51C8C87F5}"
+                  SQLTask:SqlStatementSource="--print '*********** Paso 40: FACT_INVENTORY ***********'&#xA;                exec dwhuser.dw_dataload_fact_inventory 'F'&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{CFB98531-8A45-49E7-93A0-BA6A40F7B5C7}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Paso 40  Update Qty of Fact_Inventory IQ154"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{02C8711B-63CC-4220-95EC-789457F12476}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{90B9476D-F3F4-49EA-AEFB-54F9466B4634}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154.EventHandlers[OnError]\Paso 40  Update Qty of Fact_Inventory IQ154"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{35625845-11EB-4C7C-9390-0F74ABD380B9}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Paso 40  Update Qty of Fact_Inventory IQ154"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+
+
+ERROR_DESCRIPTION=?,
+
+
+END_EXECUTION=GETDATE()
+
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA;&#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;&#xA;&#xA;AND NAME_TASK ='Paso 40  Update Qty of Fact_Inventory IQ154'&#xA;&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="0"
+                            SQLTask:DtsVariableName="System::ErrorDescription"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                        </SQLTask:SqlTaskData>
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154.EventHandlers[OnPostExecute]"
+                  DTS:CreationName="OnPostExecute"
+                  DTS:DTSID="{8A8D1174-D49E-4E71-A0CE-19E08E54E0A3}"
+                  DTS:EventID="1852124156"
+                  DTS:EventName="OnPostExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{0F57B657-210D-4DF7-90EC-A37322943CAF}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154.EventHandlers[OnPostExecute]\Paso 40  Update Qty of Fact_Inventory IQ154"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{415BF96F-E14A-4197-AB32-106BE6E9CEC3}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Paso 40  Update Qty of Fact_Inventory IQ154"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;AND NAME_TASK ='Paso 40  Update Qty of Fact_Inventory IQ154'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154.EventHandlers[OnPreExecute]"
+                  DTS:CreationName="OnPreExecute"
+                  DTS:DTSID="{DF05830E-E9B1-4098-AE83-8704517D93E4}"
+                  DTS:EventID="1852124148"
+                  DTS:EventName="OnPreExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{B6D99A98-8CDD-4B1A-8EB8-C236E1BE784C}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154.EventHandlers[OnPreExecute]\Paso 40  Update Qty of Fact_Inventory IQ154"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{CCD4AA43-DE8F-49EF-96D2-EB2ACC3E11DD}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Paso 40  Update Qty of Fact_Inventory IQ154"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"','F',
+1,
+GETDATE()"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'STG_SENTAI_INVENTARIO',&#xA;'Paso 40  Update Qty of Fact_Inventory IQ154','F',&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{93F5C941-27BE-42C1-AEC8-71D51C8C87F5}"
+                  SQLTask:SqlStatementSource="---Print '*********** Paso 40: Update Qty of Fact_Inventory ***********'&#xA;                exec dwhuser.dm_trns_qty_fact_Inventory&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{8F52725F-EA78-4684-B115-25CBC6DC1AAF}"
+              DTS:From="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{9683B9A5-13B7-403A-B790-1E6715C8932F}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="4- Procedimieto en Iq para recargar snapshots">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{20619F61-EAD0-47E8-BB50-5E3D7DCE2401}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SP en Iq para recargar snapshots"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{20E7D67F-0023-4903-AC12-F7F053AA5A5E}"
+                  DTS:EventID="1852123996"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{952EA0F2-1F68-46AD-A0EA-28AEA2CC51A8}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots.EventHandlers[OnError]\SP en Iq para recargar snapshots"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{CE330778-7015-4A7E-9BDF-F51862C69A59}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="SP en Iq para recargar snapshots"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+
+
+ERROR_DESCRIPTION=?,
+
+
+END_EXECUTION=GETDATE()
+
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA;&#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;&#xA;&#xA;AND NAME_TASK ='SP en Iq para recargar snapshots'&#xA;&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="0"
+                            SQLTask:DtsVariableName="System::ErrorDescription"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                        </SQLTask:SqlTaskData>
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots.EventHandlers[OnPostExecute]"
+                  DTS:CreationName="OnPostExecute"
+                  DTS:DTSID="{A413EC73-919E-4B52-9F79-03BEC53D829F}"
+                  DTS:EventID="1852113028"
+                  DTS:EventName="OnPostExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{60C5C629-647C-4A15-AC04-85114A803A70}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots.EventHandlers[OnPostExecute]\SP en Iq para recargar snapshots"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{051C2230-62F4-46A9-B8E6-81193E8BF373}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="SP en Iq para recargar snapshots"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;AND NAME_TASK ='SP en Iq para recargar snapshots'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots.EventHandlers[OnPreExecute]"
+                  DTS:CreationName="OnPreExecute"
+                  DTS:DTSID="{E3E950A3-466F-4BCA-ABFF-2C551B853E6B}"
+                  DTS:EventID="314536305"
+                  DTS:EventName="OnPreExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{C107115C-2357-4046-BF59-B321D6CC919C}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots.EventHandlers[OnPreExecute]\SP en Iq para recargar snapshots"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{F8AC3F46-0F09-43DB-BC4F-3625B3DCE632}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="SP en Iq para recargar snapshots"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"','F',
+1,
+GETDATE()"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'STG_SENTAI_INVENTARIO',&#xA;'SP en Iq para recargar snapshots','F',&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{93F5C941-27BE-42C1-AEC8-71D51C8C87F5}"
+                  SQLTask:SqlStatementSource="&#xA;exec dwhuser.dm_trns_reaload_inventory_snapshot 'D'&#xA;&#xA;&#xA;IF &#xA;(select DATEPART (DW,GETDATE()))= 1 exec dwhuser.dm_trns_reaload_inventory_snapshot 'W'&#xA;&#xA;if &#xA;(select DATEPART (dd,GETDATE()))= 1 exec dwhuser.dm_trns_reaload_inventory_snapshot 'M'&#xA;&#xA;IF&#xA;&#xA;(select DATEPART (MONTH,GETDATE())) IN (1,4,7,10) AND (SELECT DATEPART (DD,GETDATE()))= 1 exec dwhuser.dm_trns_reaload_inventory_snapshot 'Q' &#xA;&#xA;IF&#xA;&#xA;(SELECT DATEPART (MONTH,GETDATE())) = 1 AND (SELECT DATEPART (DD,GETDATE()))= 1 exec dwhuser.dm_trns_reaload_inventory_snapshot 'Y' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{7EEAFDF4-B358-46AF-8028-A5CF9086A674}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="5- Ejecutar los sp que dependen del inventario">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{BB24341C-227D-41B5-8054-76F028D2AF14}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="ABC"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{EA758F05-1FA8-4342-9316-861487BF9067}"
+                  DTS:EventID="503215260"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{926928CF-F844-4AFB-80A0-0120C9A70872}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC.EventHandlers[OnError]\ABC"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{8F5908A8-1D1E-4B4D-A53D-52B88DDB9C4E}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="ABC"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+
+
+ERROR_DESCRIPTION=?,
+
+
+END_EXECUTION=GETDATE()
+
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA;&#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;&#xA;&#xA;AND NAME_TASK ='ABC'&#xA;&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="0"
+                            SQLTask:DtsVariableName="System::ErrorDescription"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                        </SQLTask:SqlTaskData>
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC.EventHandlers[OnPostExecute]"
+                  DTS:CreationName="OnPostExecute"
+                  DTS:DTSID="{56545F45-2544-4012-A46E-C0DBB99E6831}"
+                  DTS:EventID="595805348"
+                  DTS:EventName="OnPostExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{17418323-0FF8-4B8B-B73E-CE4B9ACE6141}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC.EventHandlers[OnPostExecute]\ABC"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{70E4A6C8-62F0-4C99-9DAF-A91D0751FC6F}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="ABC"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;AND NAME_TASK ='ABC'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC.EventHandlers[OnPreExecute]"
+                  DTS:CreationName="OnPreExecute"
+                  DTS:DTSID="{574969CF-F934-4EF7-996C-055AF55061BF}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPreExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{6C1D8410-EE1F-4381-B666-A578E3553456}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC.EventHandlers[OnPreExecute]\ABC"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{97098870-FE7F-4FD4-874E-83B1781560E4}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="ABC"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"','F',
+1,
+GETDATE()"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'STG_SENTAI_INVENTARIO',&#xA;'ABC','F',&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{93F5C941-27BE-42C1-AEC8-71D51C8C87F5}"
+                  SQLTask:SqlStatementSource="--ABC&#xA;               -- print '*********** Paso 54: FACT_ABC_PRODUCT ***********'&#xA;                exec dw_dataload_FACT_ABC_PRODUCT @end_date=getdate()-1 , @load_type ='F' &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{5F377550-BD44-44BF-9256-DEB982D00B4F}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Aging"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{4A4BDEFD-6166-4F45-9C83-B313F0C9856F}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{782A48C1-1ECB-4927-BBA5-E9A95C89EC1E}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging.EventHandlers[OnError]\Aging"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{B925EFCE-2908-4945-9059-2DD90FF1383F}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Aging"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+
+
+ERROR_DESCRIPTION=?,
+
+
+END_EXECUTION=GETDATE()
+
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA;&#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;&#xA;&#xA;AND NAME_TASK ='Aging'&#xA;&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="0"
+                            SQLTask:DtsVariableName="System::ErrorDescription"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                        </SQLTask:SqlTaskData>
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging.EventHandlers[OnPostExecute]"
+                  DTS:CreationName="OnPostExecute"
+                  DTS:DTSID="{3AA60C44-701C-4F41-ABAC-285EFDF6F48F}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPostExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{5EEB5DF9-4A28-4264-B24B-B2A7AADB135F}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging.EventHandlers[OnPostExecute]\Aging"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{37727825-CC63-4822-81D6-C6F9539C6216}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Aging"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;AND NAME_TASK ='Aging'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging.EventHandlers[OnPreExecute]"
+                  DTS:CreationName="OnPreExecute"
+                  DTS:DTSID="{FA5DEFF9-19E9-448D-8941-1CF7662A7B34}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPreExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{9A4BCD7C-7248-4641-8C5C-A7B16A8DF0B9}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging.EventHandlers[OnPreExecute]\Aging"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{A95D81AE-367C-4BD1-B356-4B1BF26895A3}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Aging"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"','F',
+1,
+GETDATE()"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'STG_SENTAI_INVENTARIO',&#xA;'Aging','F',&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{93F5C941-27BE-42C1-AEC8-71D51C8C87F5}"
+                  SQLTask:SqlStatementSource="&#xA;--print '*********** Paso 54: FACT_DP_INVENTORY_AGING_CPY_PROD ***********'&#xA;exec dwhuser.dw_dataload_fact_dp_inventory_aging_cpy_prod getdate()-1&#xA;print '*********** Paso 55: Fact_dp_inventory_aging_cpy_loc_prod ***********'&#xA;exec dwhuser.dw_dataload_fact_dp_inventory_aging_cpy_loc_prod getdate()-1&#xA;&#xA;--print '*********** Paso 56: Fact_dp_inventory_aging_cpy_prod_potransid ***********'&#xA;exec dwhuser.dw_dataload_fact_dp_inventory_aging_cpy_prod_potransid&#xA;&#xA;--print '*********** Paso 57: FACT_MS_TOP_INV_AGING_CID  ***********'&#xA;exec dwhuser.dw_dataload_fact_ms_top_inv_aging_cid " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{A016362E-5A07-4913-8D51-CD883789E70E}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Explorer"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{64DF1A8C-8011-43E4-B9C3-FCF79D7237BA}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{735E1EDF-3931-417B-8458-5324A435726A}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer.EventHandlers[OnError]\Explorer"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{C8DC12F6-338A-4AB7-8949-D90D265A2928}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Explorer"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+
+
+ERROR_DESCRIPTION=?,
+
+
+END_EXECUTION=GETDATE()
+
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA;&#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;&#xA;&#xA;AND NAME_TASK ='Explorer'&#xA;&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="0"
+                            SQLTask:DtsVariableName="System::ErrorDescription"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                        </SQLTask:SqlTaskData>
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer.EventHandlers[OnPostExecute]"
+                  DTS:CreationName="OnPostExecute"
+                  DTS:DTSID="{569D331A-E635-436D-BB02-634622B838E0}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPostExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{C235C9DC-E2F3-4264-94C6-5A236FFF6EB6}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer.EventHandlers[OnPostExecute]\Explorer"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{B1FBC82C-D49E-4688-BE23-A3520F029D85}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Explorer"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='STG_SENTAI_INVENTARIO'&#xA;AND NAME_TASK ='Explorer'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer.EventHandlers[OnPreExecute]"
+                  DTS:CreationName="OnPreExecute"
+                  DTS:DTSID="{2FBD100B-8003-450E-8618-149E5945D7E9}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPreExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{CBED4BF9-86EF-4477-B29F-8D3BF58BA486}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer.EventHandlers[OnPreExecute]\Explorer"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{87369F68-F135-4D9E-ABB9-869740AB21B8}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Explorer"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"','F',
+1,
+GETDATE()"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                          SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'STG_SENTAI_INVENTARIO',&#xA;'Explorer','F',&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{93F5C941-27BE-42C1-AEC8-71D51C8C87F5}"
+                  SQLTask:SqlStatementSource="--print '*********** Paso 59: FACT_DP_INVENTORY_AGING_CPY_PROD UPDATE ***********'&#xA;exec dwhuser.dw_dataload_fact_dp_inventory_aging_cpy_prod_update @dim_date=getdate()-1  &#xA;                              &#xA;--print '*********** Paso 60: FACT_EXPLORER_INVENTORY ***********'&#xA;exec dwhuser.dw_dataload_fact_explorer_inventory &#xA;&#xA;--print '*********** Paso 60.1 FACT_EXPLORER_INVENTORY_LOCATION. ***********'&#xA;exec &quot;dwhuser&quot;.&quot;dw_dataload_fact_explorer_inventory_location&quot; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{13F3851F-1C7D-45ED-A511-64CDAF78BAC5}"
+              DTS:From="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario.PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{25A65782-F4D1-4260-BC00-A5CD539CF010}"
+              DTS:From="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Reload Inventory.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{A228F1AA-64E9-4185-94FE-D5422ECB07F8}"
+          DTS:From="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Reload Inventory.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{094861E7-68D0-4591-83B9-56B16A5EBE3D}"
+          DTS:From="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Reload Inventory.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{DA5F4236-16B4-4499-BC1C-BD835F80B2D2}"
+          DTS:From="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Reload Sales"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{F997693D-CE0F-4E8C-A73C-37A4F3126F05}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reload Sales">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Reload Sales\Actualiza FPS en SQL"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{B0242162-D694-4B77-960B-C144CFB95B89}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Actualiza FPS en SQL">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Reload Sales\Actualiza FPS en SQL\EXECUTE FACT_PRODUCT_SALES_V2"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="EXECUTE FACT_PRODUCT_SALES_V2"
+              DTS:DTSID="{770F5716-2118-4225-9BBB-22D773FB4A58}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EXECUTE FACT_PRODUCT_SALES_V2"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Sales\Actualiza FPS en SQL\EXECUTE FACT_PRODUCT_SALES_V2.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{FDCA67E9-6EC9-4A35-B830-8BAF48CE8FA1}"
+                  DTS:EventID="2097267"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{5B3FBD36-05B0-4671-9DFA-0D9C1AEB7CAE}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables />
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Sales\Actualiza FPS en SQL\EXECUTE FACT_PRODUCT_SALES_V2.EventHandlers[OnPostExecute]"
+                  DTS:CreationName="OnPostExecute"
+                  DTS:DTSID="{965B3A79-0448-4E46-8590-FFE50691B177}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPostExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{21219165-FF42-4433-90ED-80C89F2342A0}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables />
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Sales\Actualiza FPS en SQL\EXECUTE FACT_PRODUCT_SALES_V2.EventHandlers[OnPreExecute]"
+                  DTS:CreationName="OnPreExecute"
+                  DTS:DTSID="{7B2FE549-A74B-490A-B2AC-5031B7CDBEE1}"
+                  DTS:EventID="198749164"
+                  DTS:EventName="OnPreExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{27DC912A-1239-4092-BB49-F33D75FCC3C8}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables />
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                  SQLTask:SqlStatementSource="------------------------------------------------------------------------------------------&#xA;-- Procedimiento que carga en la tabla fact_product_sales&#xA;-------------------------------------------------------------------------------------------&#xA;&#xA;exec DWStaging.dbo.dm_trns_fact_product_sales_v2" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Reload Sales\Actualiza FPS en SQL\J -QUARTERLY_REBATES_PROCESS"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="EXECUTE QUARTERLY_REBATES_PROCESS"
+              DTS:DTSID="{7D93C696-4FED-483D-998B-184FA2218E48}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="J -QUARTERLY_REBATES_PROCESS"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Sales\Actualiza FPS en SQL\J -QUARTERLY_REBATES_PROCESS.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{50A9E978-E68D-4AE9-A201-5962527DE2A5}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{68B3D9B2-5F23-438A-82DF-3A05F674D12F}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables />
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Sales\Actualiza FPS en SQL\J -QUARTERLY_REBATES_PROCESS.EventHandlers[OnPostExecute]"
+                  DTS:CreationName="OnPostExecute"
+                  DTS:DTSID="{F86CCE55-FD60-44B1-8EBD-7D6B1628169F}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPostExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{55F1C9B9-2FD0-4BEF-AA98-EB8FD86C7121}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables />
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Sales\Actualiza FPS en SQL\J -QUARTERLY_REBATES_PROCESS.EventHandlers[OnPreExecute]"
+                  DTS:CreationName="OnPreExecute"
+                  DTS:DTSID="{3D2CA3C9-B511-4729-A9DF-6D34B123C64A}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnPreExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{4EA4558D-6B0F-4657-AF75-7EE1C5B19891}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables />
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                  SQLTask:SqlStatementSource="exec Dwstaging.dbo.dm_trns_fact_QR_sales" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Reload Sales\Actualiza FPS en SQL\PROCESS_FACT_KIT_SALES_V2"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{F9054B1C-DA63-4A5C-8979-A5C6EE2580B2}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="PROCESS_FACT_KIT_SALES_V2"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Sales\Actualiza FPS en SQL\PROCESS_FACT_KIT_SALES_V2.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{723B0C09-2334-4FB5-9AEB-7E48251D7184}"
+                  DTS:EventID="2097267"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{3EFFF88D-442F-4C29-8670-B22F8EF7B17F}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables />
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Sales\Actualiza FPS en SQL\PROCESS_FACT_KIT_SALES_V2.EventHandlers[OnPostExecute]"
+                  DTS:CreationName="OnPostExecute"
+                  DTS:DTSID="{B634AE06-82CE-4A75-8FA0-7FBF07FEF58A}"
+                  DTS:EventID="2097267"
+                  DTS:EventName="OnPostExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{9D176356-D9C3-4AA0-B14F-1CB952179280}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables />
+                </DTS:EventHandler>
+                <DTS:EventHandler
+                  DTS:refId="Package\Reload Sales\Actualiza FPS en SQL\PROCESS_FACT_KIT_SALES_V2.EventHandlers[OnPreExecute]"
+                  DTS:CreationName="OnPreExecute"
+                  DTS:DTSID="{27A18988-E2D9-4C1A-844B-CDFE17D58B2B}"
+                  DTS:EventID="2097267"
+                  DTS:EventName="OnPreExecute"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{77F3C142-7D4C-45EC-A764-93A65095F489}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables />
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{DE37CEC0-267D-4C1C-9A6D-978228FFB70D}"
+                  SQLTask:SqlStatementSource="-------------------------------------------------------------------------------------------&#xA;-- Procedimiento que carga en la tabla fact_kit_inventory&#xA;-------------------------------------------------------------------------------------------&#xA;--Puesto en producción Oct 3 de 2006&#xA;exec DWStaging.dbo.dm_trns_fact_kit_inventory ;&#xA;exec dbo.dm_trns_fact_kit_sale_v2 ;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Reload Sales\Actualiza FPS en SQL.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{EBA5F8D8-68EA-4B64-B120-E82B64E09533}"
+              DTS:From="Package\Reload Sales\Actualiza FPS en SQL\EXECUTE FACT_PRODUCT_SALES_V2"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Reload Sales\Actualiza FPS en SQL\J -QUARTERLY_REBATES_PROCESS" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Reload Sales\Actualiza FPS en SQL.PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{D5CA87B7-1DB2-4A4C-BDD5-54DA50B2BD83}"
+              DTS:From="Package\Reload Sales\Actualiza FPS en SQL\J -QUARTERLY_REBATES_PROCESS"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\Reload Sales\Actualiza FPS en SQL\PROCESS_FACT_KIT_SALES_V2" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Reload Sales\FPS Sybase IQ"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{817C9988-BFE9-46CB-B197-D4FC536270C4}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="FPS Sybase IQ">
+          <DTS:Variables />
+          <DTS:Executables />
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Reload Sales.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{7785884A-45BF-4B97-907F-74F76F600A80}"
+          DTS:From="Package\Reload Sales\Actualiza FPS en SQL"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Reload Sales\FPS Sybase IQ" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\6- Ejecutar QA\QA"
+          TopLeft="7.54716981132076,8.47169811320737" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="157,59"
+          Size="157,103"
+          Id="Package\6- Ejecutar QA"
+          TopLeft="424.839622641509,1352.3679245283" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy"
+          TopLeft="100.641509433962,158.245283018868" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer"
+          TopLeft="100.603773584906,80.3584905660377" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full"
+          TopLeft="100.528301886793,6.47169811320755" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo"
+          TopLeft="100.679245283019,231.11320754717" />
+        <EdgeLayout
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER.PrecedenceConstraints[Constraint]"
+          TopLeft="168.452830188679,50.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.9622641509434"
+              Start="0,0"
+              End="0,22.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER.PrecedenceConstraints[Constraint 1]"
+          TopLeft="168.509433962264,124.283018867925">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.9622641509434"
+              Start="0,0"
+              End="0,26.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER.PrecedenceConstraints[Constraint 2]"
+          TopLeft="168.547169811321,202.169811320755">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.9433962264151"
+              Start="0,0"
+              End="0,21.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="339,330"
+          Size="339,374"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154"
+          TopLeft="13.9622641509434,10.6981132075472" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154"
+          TopLeft="13.9622641509434,93.5283018867925" />
+        <EdgeLayout
+          Id="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15.PrecedenceConstraints[Constraint]"
+          TopLeft="81.8490566037736,54.6226415094339">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.9056603773586"
+              Start="0,0"
+              End="0,31.4056603773586">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.4056603773586" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="210,143"
+          Size="210,187"
+          Id="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15"
+          TopLeft="62.8018867924529,423.377358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots"
+          TopLeft="13.7735849056604,8.47169811320748" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="238,64"
+          Size="238,108"
+          Id="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots"
+          TopLeft="54.8396226415099,663.952830188679" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC"
+          TopLeft="17.0566037735849,88.5471698113207" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging"
+          TopLeft="16.9433962264151,10.6603773584906" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer"
+          TopLeft="17.0943396226415,168.169811320755" />
+        <EdgeLayout
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario.PrecedenceConstraints[Constraint]"
+          TopLeft="84.8301886792453,54.5849056603773">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.113207547169822,33.9622641509434"
+              Start="0,0"
+              End="0.113207547169822,26.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.9811320754716" />
+                  <mssgle:LineSegment
+                    End="0.113207547169822,16.9811320754716" />
+                  <mssgle:LineSegment
+                    End="0.113207547169822,26.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario.PrecedenceConstraints[Constraint 1]"
+          TopLeft="84.9433962264151,132.471698113207">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.0377358490565882,35.6981132075473"
+              Start="0,0"
+              End="0.0377358490565882,28.1981132075473">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.8490566037735" />
+                  <mssgle:LineSegment
+                    End="0.0377358490565882,17.8490566037735" />
+                  <mssgle:LineSegment
+                    End="0.0377358490565882,28.1981132075473" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="164,225"
+          Size="164,269"
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario"
+          TopLeft="84.4811320754719,838.594339622642" />
+        <EdgeLayout
+          Id="Package\Reload Inventory.PrecedenceConstraints[Constraint]"
+          TopLeft="171.400943396226,379.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.8773584905659"
+              Start="0,0"
+              End="0,36.3773584905659">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.3773584905659" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reload Inventory.PrecedenceConstraints[Constraint 2]"
+          TopLeft="170.820754716981,610.377358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.575471698113"
+              Start="0,0"
+              End="0,46.075471698113">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.075471698113" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reload Inventory.PrecedenceConstraints[Constraint 4]"
+          TopLeft="170.160377358491,771.952830188679">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66.6415094339632"
+              Start="0,0"
+              End="0,59.1415094339632">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.1415094339632" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="350,1163"
+          Size="350,1206"
+          Id="Package\Reload Inventory"
+          TopLeft="78,36" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Reload Sales\Actualiza FPS en SQL\EXECUTE FACT_PRODUCT_SALES_V2"
+          TopLeft="38,10" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Reload Sales\Actualiza FPS en SQL\J -QUARTERLY_REBATES_PROCESS"
+          TopLeft="43,88.3679245282999" />
+        <NodeLayout
+          Size="159,63"
+          Id="Package\Reload Sales\Actualiza FPS en SQL\PROCESS_FACT_KIT_SALES_V2"
+          TopLeft="34,163.3679245283" />
+        <EdgeLayout
+          Id="Package\Reload Sales\Actualiza FPS en SQL.PrecedenceConstraints[Constraint]"
+          TopLeft="108.5,54">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.3679245282999"
+              Start="0,0"
+              End="0,26.8679245282999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.8679245282999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reload Sales\Actualiza FPS en SQL.PrecedenceConstraints[Constraint 1]"
+          TopLeft="112.25,132.3679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="267,342"
+          Size="267,385"
+          Id="Package\Reload Sales\Actualiza FPS en SQL"
+          TopLeft="18,13.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,55"
+          Size="205,98"
+          Id="Package\Reload Sales\FPS Sybase IQ"
+          TopLeft="47,448" />
+        <EdgeLayout
+          Id="Package\Reload Sales.PrecedenceConstraints[Constraint]"
+          TopLeft="150.5,398.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.5"
+              Start="0,0"
+              End="0,42">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="299,639"
+          Size="299,682"
+          Id="Package\Reload Sales"
+          TopLeft="525,41" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="486,1101" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package\6- Ejecutar QA\QA.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\6- Ejecutar QA\QA.EventHandlers[OnPreExecute]\QA"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\6- Ejecutar QA\QA.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\6- Ejecutar QA\QA.EventHandlers[OnPostExecute]\QA"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\6- Ejecutar QA\QA.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\6- Ejecutar QA\QA.EventHandlers[OnError]\QA"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy.EventHandlers[OnPreExecute]\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy.EventHandlers[OnPostExecute]\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy.EventHandlers[OnError]\exec dbo dm_trns_fact_ds_inventory    Primer  snapshot de hoy"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer.EventHandlers[OnPreExecute]\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer.EventHandlers[OnPostExecute]\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer.EventHandlers[OnError]\exec dbo dm_trns_fact_ds_inventory  Y   Reactualiza el dia de ayer"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full.EventHandlers[OnPreExecute]\exec dbo dm_trns_fact_inventory  Y Full"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full.EventHandlers[OnPostExecute]\exec dbo dm_trns_fact_inventory  Y Full"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_inventory  Y Full.EventHandlers[OnError]\exec dbo dm_trns_fact_inventory  Y Full"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo.EventHandlers[OnPreExecute]\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo.EventHandlers[OnPostExecute]\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\1- ACTUALIZA FACT_INVENTORY EN SQL SERVER\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo.EventHandlers[OnError]\exec dbo dm_trns_fact_ws_inventory  Y  Esto se ejecuta si es domingo"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154.EventHandlers[OnPreExecute]\Paso 40  FACT_INVENTORY IQ154"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154.EventHandlers[OnPostExecute]\Paso 40  FACT_INVENTORY IQ154"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  FACT_INVENTORY IQ154.EventHandlers[OnError]\Paso 40  FACT_INVENTORY IQ154"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154.EventHandlers[OnPreExecute]\Paso 40  Update Qty of Fact_Inventory IQ154"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154.EventHandlers[OnPostExecute]\Paso 40  Update Qty of Fact_Inventory IQ154"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\2- Actualizar Fact_Inventory en Sybase IQ15\Paso 40  Update Qty of Fact_Inventory IQ154.EventHandlers[OnError]\Paso 40  Update Qty of Fact_Inventory IQ154"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots.EventHandlers[OnPreExecute]\SP en Iq para recargar snapshots"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots.EventHandlers[OnPostExecute]\SP en Iq para recargar snapshots"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\4- Procedimieto en Iq para recargar snapshots\SP en Iq para recargar snapshots.EventHandlers[OnError]\SP en Iq para recargar snapshots"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC.EventHandlers[OnPreExecute]\ABC"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC.EventHandlers[OnPostExecute]\ABC"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\ABC.EventHandlers[OnError]\ABC"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging.EventHandlers[OnPreExecute]\Aging"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging.EventHandlers[OnPostExecute]\Aging"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Aging.EventHandlers[OnError]\Aging"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer.EventHandlers[OnPreExecute]\Explorer"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer.EventHandlers[OnPostExecute]\Explorer"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Reload Inventory\5- Ejecutar los sp que dependen del inventario\Explorer.EventHandlers[OnError]\Explorer"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Sales\Actualiza FPS en SQL\EXECUTE FACT_PRODUCT_SALES_V2.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{74ad56af-eaed-4e81-844c-2b266fe5edae}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Sales\Actualiza FPS en SQL\EXECUTE FACT_PRODUCT_SALES_V2.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{6e0aa5f5-5b64-4236-9401-de4b3e974fbf}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Sales\Actualiza FPS en SQL\EXECUTE FACT_PRODUCT_SALES_V2.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{a5d8b21d-e032-4cf5-8a8c-bf9af029c730}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Sales\Actualiza FPS en SQL\J -QUARTERLY_REBATES_PROCESS.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{b4040718-b039-4f44-8474-fde61fa13a6a}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Sales\Actualiza FPS en SQL\J -QUARTERLY_REBATES_PROCESS.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{3a6e0382-51fa-4bcc-afd9-d4fa5eb66672}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Sales\Actualiza FPS en SQL\J -QUARTERLY_REBATES_PROCESS.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{4ccf61b3-10a3-4a3c-8726-4f303959cd4e}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Sales\Actualiza FPS en SQL\PROCESS_FACT_KIT_SALES_V2.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{6fc978bf-cba4-483a-af95-b7999091dc3b}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Sales\Actualiza FPS en SQL\PROCESS_FACT_KIT_SALES_V2.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{b9ea7bcd-f6d6-4dbd-9c81-a0e52859a342}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Reload Sales\Actualiza FPS en SQL\PROCESS_FACT_KIT_SALES_V2.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{f2297a48-1571-4801-a76f-b208dbaae27d}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

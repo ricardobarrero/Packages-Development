@@ -1,0 +1,2484 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/18/2021 4:25:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S90SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{CA61CE70-30DC-4D82-8DD1-C914D3305A7C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package13"
+  DTS:PackageType="5"
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{FB9F0442-B0A3-49B2-8FFD-A790588C52D5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LeadTimesAllLocation]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{5051A587-AE8B-4DA6-A04A-75F6EEC1A2A9}"
+      DTS:ObjectName="LeadTimesAllLocation">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=\\Intcomex\Shares\SQLPack\Files_Extraction\Slim_SO\Archivos\LeadTimesAllLocations.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LeadTimesAsiatoB1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{215E005B-283F-4A38-AD70-12DB772A8DB7}"
+      DTS:ObjectName="LeadTimesAsiatoB1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\Intcomex\Shares\SQLPack\Files_Extraction\Slim_SO\Archivos\LeadTimesAsiatoB1.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S80SQLUS]"
+      DTS:CreationName="SMOServer"
+      DTS:DTSID="{E183DD61-B58A-4683-AA6C-26A3FC31DC4C}"
+      DTS:ObjectName="S80SQLUS">
+      <DTS:ObjectData>
+        <SMOServerConnectionManager
+          ConnectionString="SqlServerName=S80SQLUS;UseWindowsAuthentication=True;UserName=;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS]"
+      DTS:CreationName="SMOServer"
+      DTS:DTSID="{0F88559E-209A-42BD-8803-6549306FE52E}"
+      DTS:ObjectName="S91SQLUS">
+      <DTS:ObjectData>
+        <SMOServerConnectionManager
+          ConnectionString="SqlServerName=S91SQLUS;UseWindowsAuthentication=True;UserName=;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceChange]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{54966486-6A3A-4C39-BBF4-B929BE88CAD4}"
+      DTS:ObjectName="SourceChange">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=\\Intcomex\Shares\SQLPack\Files_Extraction\Slim_SO\Archivos\SourceChanges.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLAPPList.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{06ACFB44-B1DF-4E5C-868F-5AF41305F884}"
+      DTS:ObjectName="SQLAPPList.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLAPPList;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package8-{06ACFB44-B1DF-4E5C-868F-5AF41305F884}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\files_source_leadtime"
+      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:Description="Execute Process Task"
+      DTS:DTSID="{AB4D3E1E-1166-470C-BFB4-20F9168BCE29}"
+      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="files_source_leadtime"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2017 CTP2.1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="\\Intcomex\Shares\SQLPack\Files_Extraction\Slim_SO\copy_Files_Source.cmd" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C3F68795-4F38-4977-BB11-71F4FCD48834}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{FD523038-8301-45B8-B89A-E4729D2FF81D}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load STG_LeadTimesAsiatoB1"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Inputs[Data Conversion Input].Columns[LocationID]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="LocationID"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].Columns[LocationID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Inputs[Data Conversion Input].Columns[ProductID]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="ProductID"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].Columns[ProductID]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Outputs[Data Conversion Output].Columns[LocationID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Outputs[Data Conversion Output].Columns[LocationID]"
+                          name="LocationID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].Columns[LocationID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Outputs[Data Conversion Output].Columns[ProductID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Outputs[Data Conversion Output].Columns[ProductID]"
+                          name="ProductID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].Columns[ProductID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="file LeadTimesAsiatoB1"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Sheet2$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LeadTimesAsiatoB1]"
+                      connectionManagerRefId="Package.ConnectionManagers[LeadTimesAsiatoB1]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].Columns[LocationID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].ExternalColumns[LocationID]"
+                          length="255"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].Columns[LocationID]"
+                          name="LocationID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].Columns[ProductID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].ExternalColumns[ProductID]"
+                          length="255"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].Columns[ProductID]"
+                          name="ProductID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].Columns[Lead Time]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].ExternalColumns[Lead Time]"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].Columns[Lead Time]"
+                          name="Lead Time"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].ExternalColumns[LocationID]"
+                          dataType="wstr"
+                          length="255"
+                          name="LocationID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].ExternalColumns[ProductID]"
+                          dataType="wstr"
+                          length="255"
+                          name="ProductID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].ExternalColumns[Lead Time]"
+                          dataType="r8"
+                          name="Lead Time" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Error Output].Columns[LocationID]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Error Output].Columns[LocationID]"
+                          name="LocationID" />
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Error Output].Columns[ProductID]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Error Output].Columns[ProductID]"
+                          name="ProductID" />
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Error Output].Columns[Lead Time]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Error Output].Columns[Lead Time]"
+                          name="Lead Time" />
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="STG_LeadTimesAsiatoB1"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[STG_LeadTimesAsiatoB1]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SQLAPPList.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[SQLAPPList.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input].Columns[Lead Time]"
+                          cachedDataType="r8"
+                          cachedName="Lead Time"
+                          externalMetadataColumnId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input].ExternalColumns[Lead time]"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output].Columns[Lead Time]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input].Columns[LocationID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="LocationID"
+                          externalMetadataColumnId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input].ExternalColumns[LocationID]"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Outputs[Data Conversion Output].Columns[LocationID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ProductID"
+                          externalMetadataColumnId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Outputs[Data Conversion Output].Columns[ProductID]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input].ExternalColumns[LocationID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="LocationID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ProductID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input].ExternalColumns[Lead time]"
+                          dataType="r8"
+                          name="Lead time" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1.Paths[Data Conversion Output]"
+                  endId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1.Paths[Derived Column Output]"
+                  endId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Sequence Container\load STG_LeadTimesAsiatoB1.Paths[Excel Source Output]"
+                  endId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column.Inputs[Derived Column Input]"
+                  name="Excel Source Output"
+                  startId="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\truncate STG_LeadTimesAsiatoB1"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E2D2178E-47C7-46C6-80AA-54B564C08693}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="truncate STG_LeadTimesAsiatoB1"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 CTP2.1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{06ACFB44-B1DF-4E5C-868F-5AF41305F884}"
+              SQLTask:SqlStatementSource="truncate table STG_LeadTimesAsiatoB1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{587B9ADF-8A4B-4BA4-A862-2E817127420A}"
+          DTS:From="Package\Sequence Container\truncate STG_LeadTimesAsiatoB1"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Sequence Container\load STG_LeadTimesAsiatoB1" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container 1"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{542EF1FB-89AF-4625-B864-CC1E59046941}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container 1">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{C541BCB2-6BC3-41A3-821A-1E7C23A32D95}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load STG_Slim_LeadTimeCompanies"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Inputs[Data Conversion Input].Columns[LocationID]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="LocationID"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Output].Columns[LocationID]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Outputs[Data Conversion Output].Columns[LocationID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Outputs[Data Conversion Output].Columns[LocationID]"
+                          name="LocationID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Output].Columns[LocationID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Sheet1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LeadTimesAllLocation]"
+                      connectionManagerRefId="Package.ConnectionManagers[LeadTimesAllLocation]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Output].Columns[LocationID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Output].ExternalColumns[LocationID]"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Output].Columns[LocationID]"
+                          name="LocationID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Output].Columns[Lead Time]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Output].ExternalColumns[Lead Time]"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Output].Columns[Lead Time]"
+                          name="Lead Time"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Output].ExternalColumns[LocationID]"
+                          dataType="wstr"
+                          length="255"
+                          name="LocationID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Output].ExternalColumns[Lead Time]"
+                          dataType="r8"
+                          name="Lead Time" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Error Output].Columns[LocationID]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Error Output].Columns[LocationID]"
+                          name="LocationID" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Error Output].Columns[Lead Time]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Error Output].Columns[Lead Time]"
+                          name="Lead Time" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[STG_Slim_LeadTimeCompanies]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SQLAPPList.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[SQLAPPList.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Lead Time]"
+                          cachedDataType="r8"
+                          cachedName="Lead Time"
+                          externalMetadataColumnId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LeadTime]"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Output].Columns[Lead Time]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LocationID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="LocationID"
+                          externalMetadataColumnId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocationID]"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Outputs[Data Conversion Output].Columns[LocationID]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocationID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="LocationID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="CompanyID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LeadTime]"
+                          dataType="i4"
+                          name="LeadTime" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies.Paths[Data Conversion Output]"
+                  endId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies.Paths[Derived Column Output]"
+                  endId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies.Paths[Excel Source Output]"
+                  endId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column.Inputs[Derived Column Input]"
+                  name="Excel Source Output"
+                  startId="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 1\truncate STG_Slim_LeadTimeCompanies"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{758D8EEF-6CE9-4B5A-9D1E-DADB55F08C60}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="truncate STG_Slim_LeadTimeCompanies"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 CTP2.1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{06ACFB44-B1DF-4E5C-868F-5AF41305F884}"
+              SQLTask:SqlStatementSource="truncate table Dwstaging.dbo.STG_Slim_LeadTimeCompanies" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container 1.PrecedenceConstraints[Constraint 3 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{684B6CD5-E61B-45C2-A97A-AF86A213C909}"
+          DTS:From="Package\Sequence Container 1\truncate STG_Slim_LeadTimeCompanies"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3 1"
+          DTS:To="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SourceChanges"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{DF13389E-EAD9-401F-B4CD-FA965B48AD9F}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SourceChanges">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SourceChanges\Load stg_slim_products_update"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{2F8FC1EA-D710-4405-9BE6-EB1637E59D7B}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load stg_slim_products_update"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Inputs[Data Conversion Input].Columns[Warehouse_Code]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Warehouse_Code"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Warehouse_Code]" />
+                        <inputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Inputs[Data Conversion Input].Columns[Product Id]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Product Id"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Product Id]" />
+                        <inputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Inputs[Data Conversion Input].Columns[Supplier_Decimal]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Supplier_Decimal"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Supplier_Decimal]" />
+                        <inputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Inputs[Data Conversion Input].Columns[Supplier_Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Supplier_Name"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Supplier_Name]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output].Columns[Warehouse_Code]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output].Columns[Warehouse_Code]"
+                          name="Warehouse_Code"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Warehouse_Code]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output].Columns[Product Id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output].Columns[Product Id]"
+                          name="Product Id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Product Id]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output].Columns[Supplier_Decimal]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output].Columns[Supplier_Decimal]"
+                          name="Supplier_Decimal"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Supplier_Decimal]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output].Columns[Supplier_Name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output].Columns[Supplier_Name]"
+                          name="Supplier_Name"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Supplier_Name]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SourceChanges\Load stg_slim_products_update\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Sheet1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SourceChange]"
+                      connectionManagerRefId="Package.ConnectionManagers[SourceChange]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Warehouse_Code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[Warehouse_Code]"
+                          length="255"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Warehouse_Code]"
+                          name="Warehouse_Code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Product Id]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[Product Id]"
+                          length="255"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Product Id]"
+                          name="Product Id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Supplier_Decimal]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[Supplier_Decimal]"
+                          length="255"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Supplier_Decimal]"
+                          name="Supplier_Decimal"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Supplier_Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[Supplier_Name]"
+                          length="255"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Supplier_Name]"
+                          name="Supplier_Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[MOQ]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[MOQ]"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[MOQ]"
+                          name="MOQ"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[IOQ]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[IOQ]"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[IOQ]"
+                          name="IOQ"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Leadtime]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[Leadtime]"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Leadtime]"
+                          name="Leadtime"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[Warehouse_Code]"
+                          dataType="wstr"
+                          length="255"
+                          name="Warehouse_Code" />
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[Product Id]"
+                          dataType="wstr"
+                          length="255"
+                          name="Product Id" />
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[Supplier_Decimal]"
+                          dataType="wstr"
+                          length="255"
+                          name="Supplier_Decimal" />
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[Supplier_Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Supplier_Name" />
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[MOQ]"
+                          dataType="r8"
+                          name="MOQ" />
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[IOQ]"
+                          dataType="r8"
+                          name="IOQ" />
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].ExternalColumns[Leadtime]"
+                          dataType="r8"
+                          name="Leadtime" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[Warehouse_Code]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[Warehouse_Code]"
+                          name="Warehouse_Code" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[Product Id]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[Product Id]"
+                          name="Product Id" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[Supplier_Decimal]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[Supplier_Decimal]"
+                          name="Supplier_Decimal" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[Supplier_Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[Supplier_Name]"
+                          name="Supplier_Name" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[MOQ]"
+                          dataType="r8"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[MOQ]"
+                          name="MOQ" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[IOQ]"
+                          dataType="r8"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[IOQ]"
+                          name="IOQ" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[Leadtime]"
+                          dataType="r8"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[Leadtime]"
+                          name="Leadtime" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[STG_Slim_Products_Update]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SQLAPPList.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[SQLAPPList.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MOQ]"
+                          cachedDataType="r8"
+                          cachedName="MOQ"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MOQ]"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[MOQ]" />
+                        <inputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IOQ]"
+                          cachedDataType="r8"
+                          cachedName="IOQ"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IOQ]"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[IOQ]" />
+                        <inputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Leadtime]"
+                          cachedDataType="r8"
+                          cachedName="Leadtime"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Leadtime]"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output].Columns[Leadtime]" />
+                        <inputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Product Id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Product Id"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocalSKU]"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output].Columns[Product Id]" />
+                        <inputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Supplier_Decimal]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Supplier_Decimal"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Supplier_Decimal]"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output].Columns[Supplier_Decimal]" />
+                        <inputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Supplier_Name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Supplier_Name"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Supplier_Name]"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output].Columns[Supplier_Name]" />
+                        <inputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Warehouse_Code]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Warehouse_Code"
+                          externalMetadataColumnId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Warehouse_Code]"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output].Columns[Warehouse_Code]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Warehouse_Code]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          name="Warehouse_Code" />
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocalSKU]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="LocalSKU" />
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Supplier_Decimal]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Supplier_Decimal" />
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Supplier_Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Supplier_Name" />
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MOQ]"
+                          dataType="i4"
+                          name="MOQ" />
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IOQ]"
+                          dataType="i4"
+                          name="IOQ" />
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Leadtime]"
+                          dataType="i4"
+                          name="Leadtime" />
+                        <externalMetadataColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\SourceChanges\Load stg_slim_products_update.Paths[Data Conversion Output]"
+                  endId="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\SourceChanges\Load stg_slim_products_update.Paths[Derived Column Output]"
+                  endId="Package\SourceChanges\Load stg_slim_products_update\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\SourceChanges\Load stg_slim_products_update.Paths[Excel Source Output]"
+                  endId="Package\SourceChanges\Load stg_slim_products_update\Derived Column.Inputs[Derived Column Input]"
+                  name="Excel Source Output"
+                  startId="Package\SourceChanges\Load stg_slim_products_update\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SourceChanges\truncate stg_slim_products_update"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C88D3FEB-94AA-4376-BB0F-3253D9B09583}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="truncate stg_slim_products_update"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{06ACFB44-B1DF-4E5C-868F-5AF41305F884}"
+              SQLTask:SqlStatementSource="truncate table stg_slim_products_update " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SourceChanges.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{55687022-15A5-4E0A-8279-F57D39DBC492}"
+          DTS:From="Package\SourceChanges\truncate stg_slim_products_update"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\SourceChanges\Load stg_slim_products_update" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transfer Database Task"
+      DTS:CreationName="Microsoft.TransferDatabaseTask"
+      DTS:Description="Transfer Database Task"
+      DTS:DTSID="{729DB701-1F75-441D-BFDC-C39B8D54298B}"
+      DTS:ExecutableType="Microsoft.TransferDatabaseTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transfer Database Task"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <TransferDatabasesTaskData
+          SrcConn="{E183DD61-B58A-4683-AA6C-26A3FC31DC4C}"
+          DestConn="{0F88559E-209A-42BD-8803-6549306FE52E}"
+          Method="1"
+          SrcDBName="TraxWeb"
+          ReattachSrcDB="True"
+          SrcDBFiles="&quot;TraxWeb.mdf&quot;,&quot;P:\Data&quot;,&quot;&quot;;&quot;TraxWeb_log.ldf&quot;,&quot;L:\Log&quot;,&quot;&quot;"
+          DestDBName="TraxWeb"
+          DestDBFiles="&quot;TraxWeb.mdf&quot;,&quot;P:\\Data&quot;,&quot;&quot;;&quot;TraxWeb_log.ldf&quot;,&quot;L:\\Log&quot;,&quot;&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{AEC1368F-45E7-455F-9B8A-E371A3CD97D0}"
+      DTS:From="Package\files_source_leadtime"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SourceChanges" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{9D1290E7-A192-416B-9C63-A0EC91F70D10}"
+      DTS:From="Package\files_source_leadtime"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Sequence Container 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{0A7712C7-3472-4751-BB98-AD4D75BC4C5D}"
+      DTS:From="Package\files_source_leadtime"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Sequence Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{18D64941-8323-484F-8E48-C440ECC1AD5E}"
+      DTS:From="Package\SourceChanges"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Sequence Container"
+      DTS:Value="2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{D9150BC8-FF4C-43C7-BFD7-7B7DA4A96D7F}"
+      DTS:From="Package\Sequence Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Sequence Container 1"
+      DTS:Value="2" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\files_source_leadtime"
+          TopLeft="911,29" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\Sequence Container\load STG_LeadTimesAsiatoB1"
+          TopLeft="22.5,83.5" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Sequence Container\truncate STG_LeadTimesAsiatoB1"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 6]"
+          TopLeft="128,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="248,181"
+          Size="248,224"
+          Id="Package\Sequence Container"
+          TopLeft="877,213" />
+        <NodeLayout
+          Size="253,42"
+          Id="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies"
+          TopLeft="5.5,82.5" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Sequence Container 1\truncate STG_Slim_LeadTimeCompanies"
+          TopLeft="53.5,5.5" />
+        <EdgeLayout
+          Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint 3 1]"
+          TopLeft="133.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="264,179"
+          Size="264,222"
+          Id="Package\Sequence Container 1"
+          TopLeft="1200,219" />
+        <NodeLayout
+          Size="228,42"
+          Id="Package\SourceChanges\Load stg_slim_products_update"
+          TopLeft="5.50000000000001,107.5" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\SourceChanges\truncate stg_slim_products_update"
+          TopLeft="39.5,5.5" />
+        <EdgeLayout
+          Id="Package\SourceChanges.PrecedenceConstraints[Constraint 4]"
+          TopLeft="119.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="239,205"
+          Size="239,248"
+          Id="Package\SourceChanges"
+          TopLeft="572,202" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="958,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-266.5,131"
+              Start="0,0"
+              End="-266.5,123.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.941605839416" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.941605839416"
+                    Point2="0,44.941605839416"
+                    Point3="-4,44.941605839416" />
+                  <mssgle:LineSegment
+                    End="-262.5,44.941605839416" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-262.5,44.941605839416"
+                    Point2="-266.5,44.941605839416"
+                    Point3="-266.5,48.941605839416" />
+                  <mssgle:LineSegment
+                    End="-266.5,123.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="1044,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="288,148"
+              Start="0,0"
+              End="288,140.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.7737226277372" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,46.7737226277372"
+                    Point2="0,50.7737226277372"
+                    Point3="4,50.7737226277372" />
+                  <mssgle:LineSegment
+                    End="284,50.7737226277372" />
+                  <mssgle:CubicBezierSegment
+                    Point1="284,50.7737226277372"
+                    Point2="288,50.7737226277372"
+                    Point3="288,54.7737226277372" />
+                  <mssgle:LineSegment
+                    End="288,140.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="1001,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,142"
+              Start="0,0"
+              End="0,134.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,134.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="811,325.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="66,0"
+              Start="0,0"
+              End="58.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="58.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="3.945546875,5,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="1125,327.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="75,0"
+              Start="0,0"
+              End="67.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="67.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="8.445546875,5,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Transfer Database Task"
+          TopLeft="1667,213" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Sequence Container\load STG_LeadTimesAsiatoB1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Sequence Container\load STG_LeadTimesAsiatoB1\STG_LeadTimesAsiatoB1"
+          TopLeft="42,258" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Sequence Container\load STG_LeadTimesAsiatoB1\file LeadTimesAsiatoB1"
+          TopLeft="61,28" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Derived Column"
+          TopLeft="72,106" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Sequence Container\load STG_LeadTimesAsiatoB1\Data Conversion"
+          TopLeft="64,183" />
+        <EdgeLayout
+          Id="Package\Sequence Container\load STG_LeadTimesAsiatoB1.Paths[Excel Source Output]"
+          TopLeft="151.75,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\load STG_LeadTimesAsiatoB1.Paths[Derived Column Output]"
+          TopLeft="145.5,148">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\load STG_LeadTimesAsiatoB1.Paths[Data Conversion Output]"
+          TopLeft="140.75,225">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Derived Column"
+          TopLeft="19,88" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Data Conversion"
+          TopLeft="15,162" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\OLE DB Destination"
+          TopLeft="13,233" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies\Excel Source"
+          TopLeft="22,19" />
+        <EdgeLayout
+          Id="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies.Paths[Excel Source Output]"
+          TopLeft="93.75,61">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies.Paths[Derived Column Output]"
+          TopLeft="94.5,130">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32"
+              Start="0,0"
+              End="0,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container 1\Load STG_Slim_LeadTimeCompanies.Paths[Data Conversion Output]"
+          TopLeft="95.75,204">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\SourceChanges\Load stg_slim_products_update">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="139,42"
+          Id="Package\SourceChanges\Load stg_slim_products_update\Excel Source"
+          TopLeft="108,29" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\SourceChanges\Load stg_slim_products_update\OLE DB Destination"
+          TopLeft="79,305" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\SourceChanges\Load stg_slim_products_update\Derived Column"
+          TopLeft="97,133" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\SourceChanges\Load stg_slim_products_update\Data Conversion"
+          TopLeft="92,209" />
+        <EdgeLayout
+          Id="Package\SourceChanges\Load stg_slim_products_update.Paths[Excel Source Output]"
+          TopLeft="175.75,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SourceChanges\Load stg_slim_products_update.Paths[Derived Column Output]"
+          TopLeft="172,175">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SourceChanges\Load stg_slim_products_update.Paths[Data Conversion Output]"
+          TopLeft="167.25,251">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

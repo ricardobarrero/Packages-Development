@@ -1,0 +1,1593 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/26/2015 2:07:51 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{C80384CB-43D6-46D5-B1B9-51ACCD604EDE}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="WFG - 002 - sgm_catalogo_bd_brand"
+  DTS:PackageType="5"
+  DTS:VersionBuild="87"
+  DTS:VersionGUID="{5B91454A-F42F-4398-9F76-E7013A91A595}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5C62AC2C-22D5-481F-AA39-3A6AF3B64BFE}"
+      DTS:ObjectName="s2crmdb.CRMStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdb;Initial Catalog=CRMStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-CRM - 110 - Tax_Group-{5C62AC2C-22D5-481F-AA39-3A6AF3B64BFE}s2crmdb.CRMStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E8D2793B-9F04-499F-8BBB-D29516FA9C8A}"
+      DTS:ObjectName="s2crmdvlp.CRMStaging.ETLUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdvlp;Initial Catalog=CRMStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4FA21891-3664-4F91-9D0A-6B69D2461E28}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{DB526858-66BB-4735-B04A-E9BBE337204C}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.RRHH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1F82400E-F226-49C8-B0A0-AB67F16324B9}"
+      DTS:ObjectName="S91SQLUS.RRHH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=RRHH;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{DEA3456A-848C-49F9-B6CC-8F0A6D50889C}"
+      DTS:ObjectName="Sentai_Replica.bodts">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=bodts;Dsn=Sentai_Replica;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAn8Rrjp3Fq1MNGnPGJ/Oy2AAAAAASAAACgAAAAEAAAAKmNPwALkTQWmUO05Hsjd44YAAAApp2w/bAwoJNoUZYD64uHUhd8TXtWfqsrFAAAAFeCZVq5Hv5+aeG+3L6/0IGRlueh</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{E18D86B3-895A-471B-BB8A-ABC988AD45DE}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLAPP2List.WFGEN]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{506EF3EC-A847-41FE-9F0C-F3EC5C3B1BA8}"
+      DTS:ObjectName="SQLAPP2List.WFGEN">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLAPP2List;Initial Catalog=WFGEN;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[VMPRESTOREDB.WFGEN_OLD]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{23720371-7211-49A3-9FE0-536B7DA17B96}"
+      DTS:ObjectName="VMPRESTOREDB.WFGEN_OLD">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=VMPRESTOREDB;Initial Catalog=WFGEN_OLD;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;Sentai_Replica.bodts&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{56AA46F9-7DC9-4A87-AE80-1A5560BD88B0}"
+      DTS:ObjectName="Sentai_Replica bodts" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;S2CRMDB.ETLUser&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{C575334D-85A4-4114-8658-3F4F4F0C9C56}"
+      DTS:ObjectName="S2CRMDB ETLUser" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3BFC325D-5D78-43F2-8148-CF5F0A1846C3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4CFD975C-5896-4288-BD68-C51D8FA09F0E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F03AD1CE-67E0-4853-9AD1-D7E1695748FF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5A3FD46F-6C66-4880-879F-346604FBF565}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C2BC4227-CAEA-4155-BAD7-5C589BCE75C6}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{79829313-70F6-4B02-9011-9A1A8A60F8E3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4FA21891-3664-4F91-9D0A-6B69D2461E28}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete WFG - 002 - sgm_catalogo_bd_brand  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{32D4AF89-990C-4534-8898-55C8E8F34A4F}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject]+ @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{E18D86B3-895A-471B-BB8A-ABC988AD45DE}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :WFG - 002 - sgm_catalogo_bd_brand" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{0DBD0C1C-E304-4F8D-A941-D242A3DBDDF9}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOAD sgm_catalogo_bd_brand"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{D837BBC9-1D03-4B1A-B567-47B5626426B1}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD sgm_catalogo_bd_brand">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{DB58110D-0236-4E32-811E-0CDA2D4B2A76}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load sgm_catalogo_bd_brand"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Data Conversion.Inputs[Data Conversion Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="RRHH sgm_catalogo_bd_brand"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[SGM_CATALOGO_BD_BRAND]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select CustomerId,  WebUser       ,CompanyId,   max([Ultimo Acceso] )as LastAccess
+from 
+(
+select CustomerId,  WebUser       ,CompanyId,   MAX(AccessDateTime) as "Ultimo Acceso"
+from AccessLog  al with (nolock)
+where
+accessDateTime &gt; '2017-01-01' and AccessGranted=1
+group by  CustomerId,      WebUser       ,CompanyId
+union
+select CustomerId,  WebUser       ,CompanyId,   MAX(AccessDateTime) as "Ultimo Acceso"
+from 
+IntcomexStore_Archiving.dbo.AccessLog al with (nolock)
+where
+accessDateTime &gt; '2017-01-01' and AccessGranted=1
+group by  CustomerId,      WebUser       ,CompanyId
+) as tabla
+group by  CustomerId,      WebUser       ,CompanyId
+;</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.RRHH]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.RRHH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[businessdivision_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[businessdivision_id]"
+                          length="50"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[businessdivision_id]"
+                          name="businessdivision_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[SGM_ManufBrandGroup_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[SGM_ManufBrandGroup_ID]"
+                          length="25"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[SGM_ManufBrandGroup_ID]"
+                          name="SGM_ManufBrandGroup_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[SGM_ManufBrandGroup_Name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[SGM_ManufBrandGroup_Name]"
+                          length="70"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[SGM_ManufBrandGroup_Name]"
+                          name="SGM_ManufBrandGroup_Name"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[businessdivision_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="businessdivision_id" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[SGM_ManufBrandGroup_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="SGM_ManufBrandGroup_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[SGM_ManufBrandGroup_Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="70"
+                          name="SGM_ManufBrandGroup_Name" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[businessdivision_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[businessdivision_id]"
+                          name="businessdivision_id" />
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[SGM_ManufBrandGroup_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[SGM_ManufBrandGroup_ID]"
+                          name="SGM_ManufBrandGroup_ID" />
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[SGM_ManufBrandGroup_Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="70"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[SGM_ManufBrandGroup_Name]"
+                          name="SGM_ManufBrandGroup_Name" />
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="WFG sgm_catalogo_bd_brand"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[sgm_catalogo_bd_brand]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SQLAPP2List.WFGEN]"
+                      connectionManagerRefId="Package.ConnectionManagers[SQLAPP2List.WFGEN]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].Columns[businessdivision_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="businessdivision_id"
+                          externalMetadataColumnId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[Businessdivision_ID]"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[businessdivision_id]" />
+                        <inputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].Columns[SGM_ManufBrandGroup_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="25"
+                          cachedName="SGM_ManufBrandGroup_ID"
+                          externalMetadataColumnId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[SGM_ManufBrandGroup_ID]"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[SGM_ManufBrandGroup_ID]" />
+                        <inputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].Columns[SGM_ManufBrandGroup_Name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="70"
+                          cachedName="SGM_ManufBrandGroup_Name"
+                          externalMetadataColumnId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[SGM_ManufBrandGroup_Name]"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[SGM_ManufBrandGroup_Name]" />
+                        <inputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[Businessdivision_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Businessdivision_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[SGM_ManufBrandGroup_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="SGM_ManufBrandGroup_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[SGM_ManufBrandGroup_Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="70"
+                          name="SGM_ManufBrandGroup_Name" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand.Paths[Data Conversion Output]"
+                  endId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand.Paths[Derived Column Output]"
+                  endId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand.Paths[OLE DB Source Output]"
+                  endId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD sgm_catalogo_bd_brand\truncate sgm_catalogo_bd_brand"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0C51C045-30DE-4F25-ADF6-52898FD6B1CA}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="truncate sgm_catalogo_bd_brand"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{506EF3EC-A847-41FE-9F0C-F3EC5C3B1BA8}"
+              SQLTask:SqlStatementSource="truncate table sgm_catalogo_bd_brand" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD sgm_catalogo_bd_brand.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{ACD0BE17-7589-450A-ADC7-5941FCD6A54F}"
+          DTS:From="Package\LOAD sgm_catalogo_bd_brand\truncate sgm_catalogo_bd_brand"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load WorkFlow DVLP"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{9C24D699-203B-4196-A126-79025A7AA259}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load WorkFlow DVLP">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{F1CE39E6-BB35-43E7-90DA-AAD36E6C3FA9}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load sgm_catalogo_bd_brand"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DVLP sgm_catalogo_bd_brand"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[sgm_catalogo_bd_brand]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[VMPRESTOREDB.WFGEN_OLD]"
+                      connectionManagerRefId="Package.ConnectionManagers[VMPRESTOREDB.WFGEN_OLD]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].Columns[Businessdivision_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Businessdivision_ID"
+                          externalMetadataColumnId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[Businessdivision_ID]"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[Businessdivision_ID]" />
+                        <inputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].Columns[SGM_ManufBrandGroup_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="25"
+                          cachedName="SGM_ManufBrandGroup_ID"
+                          externalMetadataColumnId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[SGM_ManufBrandGroup_ID]"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[SGM_ManufBrandGroup_ID]" />
+                        <inputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].Columns[SGM_ManufBrandGroup_Name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="70"
+                          cachedName="SGM_ManufBrandGroup_Name"
+                          externalMetadataColumnId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[SGM_ManufBrandGroup_Name]"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[SGM_ManufBrandGroup_Name]" />
+                        <inputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[LastExtraction]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[Businessdivision_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Businessdivision_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[SGM_ManufBrandGroup_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="SGM_ManufBrandGroup_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[SGM_ManufBrandGroup_Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="70"
+                          name="SGM_ManufBrandGroup_Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="sgm_catalogo_bd_brand"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[sgm_catalogo_bd_brand]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SQLAPP2List.WFGEN]"
+                      connectionManagerRefId="Package.ConnectionManagers[SQLAPP2List.WFGEN]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[Businessdivision_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[Businessdivision_ID]"
+                          length="50"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[Businessdivision_ID]"
+                          name="Businessdivision_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[SGM_ManufBrandGroup_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[SGM_ManufBrandGroup_ID]"
+                          length="25"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[SGM_ManufBrandGroup_ID]"
+                          name="SGM_ManufBrandGroup_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[SGM_ManufBrandGroup_Name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[SGM_ManufBrandGroup_Name]"
+                          length="70"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[SGM_ManufBrandGroup_Name]"
+                          name="SGM_ManufBrandGroup_Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[Businessdivision_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Businessdivision_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[SGM_ManufBrandGroup_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="SGM_ManufBrandGroup_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[SGM_ManufBrandGroup_Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="70"
+                          name="SGM_ManufBrandGroup_Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[Businessdivision_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[Businessdivision_ID]"
+                          name="Businessdivision_ID" />
+                        <outputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[SGM_ManufBrandGroup_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[SGM_ManufBrandGroup_ID]"
+                          name="SGM_ManufBrandGroup_ID" />
+                        <outputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[SGM_ManufBrandGroup_Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="70"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[SGM_ManufBrandGroup_Name]"
+                          name="SGM_ManufBrandGroup_Name" />
+                        <outputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          name="LastExtraction" />
+                        <outputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand.Paths[OLE DB Source Output]"
+                  endId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load WorkFlow DVLP\Truncate sgm_catalogo_bd_brand"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B2861EAD-863D-4B77-8A20-92810BA08891}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate sgm_catalogo_bd_brand"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{23720371-7211-49A3-9FE0-536B7DA17B96}"
+              SQLTask:SqlStatementSource="truncate table sgm_catalogo_bd_brand" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load WorkFlow DVLP.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{F411913E-A637-4E35-B687-DB0F9B96E93D}"
+          DTS:From="Package\Load WorkFlow DVLP\Truncate sgm_catalogo_bd_brand"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1A6111DE-0FDA-43AB-800F-470B7D320C76}"
+      DTS:From="Package\LOAD sgm_catalogo_bd_brand"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load WorkFlow DVLP" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{BF4A1DEE-A260-4984-9FA0-9C14D75041BF}"
+      DTS:From="Package\Load WorkFlow DVLP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{585E2714-E25C-48F5-9075-78AC624CC558}"
+      DTS:From="Package\LOAD sgm_catalogo_bd_brand"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Evento Correcto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="11.4716981132075,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="10.5283018867925,100.207547169811" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="79.3584905660377,52.3962264150944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.943396226415103,47.811320754717"
+              Start="0,0"
+              End="-0.943396226415103,40.311320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-0.943396226415103,23.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-0.943396226415103,40.311320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="159,157"
+          Size="159,201"
+          Id="Package\Evento Correcto"
+          TopLeft="159.443396226415,402.707547169811" />
+        <NodeLayout
+          Size="221,42"
+          Id="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand"
+          TopLeft="5.50000000000001,109.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD sgm_catalogo_bd_brand\truncate sgm_catalogo_bd_brand"
+          TopLeft="48,5.5" />
+        <EdgeLayout
+          Id="Package\LOAD sgm_catalogo_bd_brand.PrecedenceConstraints[Constraint]"
+          TopLeft="116,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="232,206"
+          Size="232,250"
+          Id="Package\LOAD sgm_catalogo_bd_brand"
+          TopLeft="11.5,35.3867924528302" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand"
+          TopLeft="49.5,97.5" />
+        <NodeLayout
+          Size="240,42"
+          Id="Package\Load WorkFlow DVLP\Truncate sgm_catalogo_bd_brand"
+          TopLeft="36.5,6.5" />
+        <EdgeLayout
+          Id="Package\Load WorkFlow DVLP.PrecedenceConstraints[Constraint]"
+          TopLeft="157.5,48.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="310,192"
+          Size="310,235"
+          Id="Package\Load WorkFlow DVLP"
+          TopLeft="331,38" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="243.5,157.943396226415">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87.5,0"
+              Start="0,0"
+              End="80,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="80,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="486,273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-221.889937106918,129.707547169811"
+              Start="0,0"
+              End="-221.889937106918,122.207547169811">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.0491905354917" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,73.0491905354917"
+                    Point2="0,77.0491905354917"
+                    Point3="-4,77.0491905354917" />
+                  <mssgle:LineSegment
+                    End="-217.889937106918,77.0491905354917" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-217.889937106918,77.0491905354917"
+                    Point2="-221.889937106918,77.0491905354917"
+                    Point3="-221.889937106918,81.0491905354917" />
+                  <mssgle:LineSegment
+                    End="-221.889937106918,122.207547169811" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="127.5,285.38679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="111.443396226415,117.320754716981"
+              Start="0,0"
+              End="111.443396226415,109.820754716981">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.6603773584904" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,54.6603773584904"
+                    Point2="0,58.6603773584904"
+                    Point3="4,58.6603773584904" />
+                  <mssgle:LineSegment
+                    End="107.443396226415,58.6603773584904" />
+                  <mssgle:CubicBezierSegment
+                    Point1="107.443396226415,58.6603773584904"
+                    Point2="111.443396226415,58.6603773584904"
+                    Point3="111.443396226415,62.6603773584904" />
+                  <mssgle:LineSegment
+                    End="111.443396226415,109.820754716981" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Data Conversion"
+          TopLeft="75.5188679245283,172.367924528302" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\Derived Column"
+          TopLeft="63,86" />
+        <NodeLayout
+          Size="220,42"
+          Id="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand"
+          TopLeft="34.5,271.216981132075" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand"
+          TopLeft="23,4" />
+        <EdgeLayout
+          Id="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand.Paths[OLE DB Source Output]"
+          TopLeft="138,46">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand.Paths[Derived Column Output]"
+          TopLeft="141.759433962264,128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.367924528302"
+              Start="0,0"
+              End="0,36.867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand.Paths[Data Conversion Output]"
+          TopLeft="144.009433962264,216.367924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.849056603773"
+              Start="0,0"
+              End="0,47.349056603773">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.349056603773" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\WFG sgm_catalogo_bd_brand">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD sgm_catalogo_bd_brand\Load sgm_catalogo_bd_brand\RRHH sgm_catalogo_bd_brand">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand"
+          TopLeft="45,15" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand"
+          TopLeft="29,134" />
+        <EdgeLayout
+          Id="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand.Paths[OLE DB Source Output]"
+          TopLeft="141.5,57">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,77"
+              Start="0,0"
+              End="0,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\DVLP sgm_catalogo_bd_brand">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load WorkFlow DVLP\load sgm_catalogo_bd_brand\sgm_catalogo_bd_brand">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

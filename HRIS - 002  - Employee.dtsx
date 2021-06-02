@@ -1,0 +1,1384 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/28/2017 1:02:56 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{E4CEA22D-1FDA-4511-B3AC-C8655DD7379D}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="HRIS - 002  - Employee"
+  DTS:PackageType="5"
+  DTS:VersionBuild="113"
+  DTS:VersionGUID="{A1E260F4-7B3D-44CF-9527-440D6C6B1A4E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Orange HRIS]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{D2E29EDB-51A0-4D47-AC11-940059B72DF3}"
+      DTS:ObjectName="Orange HRIS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=workflow;Dsn=Orange HRIS;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAByQKRHJ4uJRZEp8bmFxMQTAAAAAASAAACgAAAAEAAAAD7t99+fQNNEMh4dUSXelPwoAAAAqx9F1Hnm3ydA+qT7WQsHHNKU+Rd9fMIBIL2Vo30jhDp4ZDIKXKP3MxQAAAD/tnVqv53A6/0DIxSbqGC8oJIojw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{ED48E5BA-D1EB-48C1-9A9B-E8882DC67087}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-HRIS-{ED48E5BA-D1EB-48C1-9A9B-E8882DC67087}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{80013A37-3171-4612-A69E-7B1A2DAD82F4}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;Orange HRIS&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{89BECF68-0343-41B7-AE73-E3A29B694E2D}"
+      DTS:ObjectName="HRIS" />
+  </DTS:Configurations>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CARGA TABLAS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0AC2FE79-D50C-48BC-B53D-59C73EEF4398}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CARGA TABLAS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\CARGA TABLAS\ADO NET Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Extracts data from a relational database by using a .NET provider."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT       e.employee_id,e.emp_firstname,e.emp_middle_name,e.emp_lastname,e.emp_work_email ,e.emp_status,st.name,j.id,j.job_title, e.coun_code,
+             joined_date, cc.unit_id, e.work_station AS SubdivisionId, cc.name as SubdivisionName
+       FROM hs_hr_employee e
+             LEFT JOIN ohrm_job_title j ON e.job_title_code = j.id
+             LEFT JOIN ohrm_employment_status  st  ON st.id = e.emp_status
+             LEFT JOIN ohrm_subunit cc ON cc.id = e.work_station
+       WHERE st.name NOT LIKE 'Terminated%'
+       ORDER BY e.employee_id 
+
+
+
+
+/*
+SELECT
+e.employee_id,e.emp_firstname,e.emp_middle_name,e.emp_lastname,e.emp_work_email ,e.emp_status,st.name,j.id,j.job_title, e.coun_code,
+ joined_date, cc.unit_id
+FROM hs_hr_employee e
+LEFT JOIN ohrm_job_title j ON e.job_title_code = j.id
+LEFT JOIN ohrm_employment_status  st  ON st.id = e.emp_status
+LEFT JOIN ohrm_subunit cc ON cc.id = e.eeo_cat_code
+WHERE st.name NOT LIKE 'Terminated%'
+ORDER BY j.job_title
+*/
+
+/*
+SELECT
+e.employee_id,e.emp_firstname,e.emp_middle_name,e.emp_lastname,e.emp_work_email ,e.emp_status,st.name,j.id,j.job_title, e.coun_code,
+joined_date
+FROM hs_hr_employee e
+LEFT JOIN ohrm_job_title j ON e.job_title_code = j.id
+LEFT JOIN ohrm_employment_status  st  ON st.id = e.emp_status
+WHERE st.name NOT LIKE 'Terminated%'
+ORDER BY j.job_title
+*/</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA TABLAS\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Orange HRIS]"
+                  connectionManagerRefId="Package.ConnectionManagers[Orange HRIS]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[employee_id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[employee_id]"
+                      length="75"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[employee_id]"
+                      name="employee_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_firstname]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[emp_firstname]"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_firstname]"
+                      name="emp_firstname"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_middle_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[emp_middle_name]"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_middle_name]"
+                      name="emp_middle_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_lastname]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[emp_lastname]"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_lastname]"
+                      name="emp_lastname"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_work_email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[emp_work_email]"
+                      length="75"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_work_email]"
+                      name="emp_work_email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_status]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[emp_status]"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_status]"
+                      name="emp_status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[name]"
+                      length="90"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[id]"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[job_title]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[job_title]"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[job_title]"
+                      name="job_title"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[coun_code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[coun_code]"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[coun_code]"
+                      name="coun_code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[joined_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[joined_date]"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[joined_date]"
+                      name="joined_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[unit_id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[unit_id]"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[unit_id]"
+                      name="unit_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[SubdivisionId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SubdivisionId]"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[SubdivisionId]"
+                      name="SubdivisionId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[SubdivisionName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SubdivisionName]"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[SubdivisionName]"
+                      name="SubdivisionName"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[employee_id]"
+                      dataType="wstr"
+                      length="75"
+                      name="employee_id" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[emp_firstname]"
+                      dataType="wstr"
+                      length="150"
+                      name="emp_firstname" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[emp_middle_name]"
+                      dataType="wstr"
+                      length="150"
+                      name="emp_middle_name" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[emp_lastname]"
+                      dataType="wstr"
+                      length="150"
+                      name="emp_lastname" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[emp_work_email]"
+                      dataType="wstr"
+                      length="75"
+                      name="emp_work_email" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[emp_status]"
+                      dataType="i4"
+                      name="emp_status" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="90"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[job_title]"
+                      dataType="wstr"
+                      length="150"
+                      name="job_title" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[coun_code]"
+                      dataType="wstr"
+                      length="150"
+                      name="coun_code" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[joined_date]"
+                      dataType="dbTimeStamp"
+                      name="joined_date" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[unit_id]"
+                      dataType="wstr"
+                      length="150"
+                      name="unit_id" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SubdivisionId]"
+                      dataType="i4"
+                      name="SubdivisionId" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SubdivisionName]"
+                      dataType="wstr"
+                      length="150"
+                      name="SubdivisionName" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[employee_id]"
+                      dataType="wstr"
+                      length="75"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[employee_id]"
+                      name="employee_id" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[emp_firstname]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[emp_firstname]"
+                      name="emp_firstname" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[emp_middle_name]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[emp_middle_name]"
+                      name="emp_middle_name" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[emp_lastname]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[emp_lastname]"
+                      name="emp_lastname" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[emp_work_email]"
+                      dataType="wstr"
+                      length="75"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[emp_work_email]"
+                      name="emp_work_email" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[emp_status]"
+                      dataType="i4"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[emp_status]"
+                      name="emp_status" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[name]"
+                      dataType="wstr"
+                      length="90"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[id]"
+                      dataType="i4"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[job_title]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[job_title]"
+                      name="job_title" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[coun_code]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[coun_code]"
+                      name="coun_code" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[joined_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[joined_date]"
+                      name="joined_date" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[unit_id]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[unit_id]"
+                      name="unit_id" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SubdivisionId]"
+                      dataType="i4"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SubdivisionId]"
+                      name="SubdivisionId" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SubdivisionName]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SubdivisionName]"
+                      name="SubdivisionName" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA TABLAS\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input].Columns[employee_id]"
+                      cachedDataType="wstr"
+                      cachedLength="75"
+                      cachedName="employee_id"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[employee_id]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input].Columns[emp_firstname]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="emp_firstname"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_firstname]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input].Columns[emp_middle_name]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="emp_middle_name"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_middle_name]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input].Columns[emp_lastname]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="emp_lastname"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_lastname]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input].Columns[emp_work_email]"
+                      cachedDataType="wstr"
+                      cachedLength="75"
+                      cachedName="emp_work_email"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_work_email]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="90"
+                      cachedName="name"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[name]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input].Columns[job_title]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="job_title"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[job_title]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input].Columns[coun_code]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="coun_code"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[coun_code]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input].Columns[unit_id]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="unit_id"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[unit_id]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input].Columns[SubdivisionName]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="SubdivisionName"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[SubdivisionName]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[employee_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[employee_id]"
+                      name="employee_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[employee_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[emp_firstname]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[emp_firstname]"
+                      name="emp_firstname"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_firstname]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[emp_middle_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[emp_middle_name]"
+                      name="emp_middle_name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_middle_name]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[emp_lastname]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[emp_lastname]"
+                      name="emp_lastname"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_lastname]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[emp_work_email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[emp_work_email]"
+                      name="emp_work_email"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_work_email]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[name]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[job_title]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[job_title]"
+                      name="job_title"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[job_title]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[coun_code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[coun_code]"
+                      name="coun_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[coun_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[unit_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[unit_id]"
+                      name="unit_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[unit_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[SubdivisionName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[SubdivisionName]"
+                      name="SubdivisionName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[SubdivisionName]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA TABLAS\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\CARGA TABLAS\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA TABLAS\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\CARGA TABLAS\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\CARGA TABLAS\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                      name="LastExtraction"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CARGA TABLAS\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\CARGA TABLAS\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA TABLAS\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA TABLAS\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA TABLAS\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[HRIS_Employee]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA TABLAS\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[emp_status]"
+                      cachedDataType="i4"
+                      cachedName="emp_status"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[emp_status]"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[emp_status]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id]"
+                      cachedDataType="i4"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[id]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[employee_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="employee_id"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[employee_id]"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[employee_id]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[emp_firstname]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="emp_firstname"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[emp_firstname]"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[emp_firstname]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[emp_middle_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="emp_middle_name"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[emp_middle_name]"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[emp_middle_name]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[emp_lastname]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="emp_lastname"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[emp_lastname]"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[emp_lastname]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[emp_work_email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="emp_work_email"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[emp_work_email]"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[emp_work_email]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[name]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[job_title]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="job_title"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[job_title]"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[job_title]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[coun_code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="coun_code"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[coun_code]"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[coun_code]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LastExtraction"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                      lineageId="Package\CARGA TABLAS\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[joined_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="joined_date"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[joined_date]"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[joined_date]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[unit_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="unit_id"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CostCenter]"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[unit_id]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SubdivisionId]"
+                      cachedDataType="i4"
+                      cachedName="SubdivisionId"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubdivisionId]"
+                      lineageId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output].Columns[SubdivisionId]" />
+                    <inputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SubdivisionName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SubdivisionName"
+                      externalMetadataColumnId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubdivisionName]"
+                      lineageId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output].Columns[SubdivisionName]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[employee_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="75"
+                      name="employee_id" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[emp_firstname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="emp_firstname" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[emp_middle_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="emp_middle_name" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[emp_lastname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="emp_lastname" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[emp_work_email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="75"
+                      name="emp_work_email" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[emp_status]"
+                      dataType="i4"
+                      name="emp_status" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="90"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[job_title]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="job_title" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[coun_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="coun_code" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                      dataType="dbTimeStamp"
+                      name="LastExtraction" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[joined_date]"
+                      dataType="dbTimeStamp"
+                      name="joined_date" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CostCenter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="CostCenter" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubdivisionId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="SubdivisionId" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubdivisionName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SubdivisionName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA TABLAS\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA TABLAS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA TABLAS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA TABLAS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\CARGA TABLAS.Paths[ADO NET Source Output]"
+              endId="Package\CARGA TABLAS\Derived Column.Inputs[Derived Column Input]"
+              name="ADO NET Source Output"
+              startId="Package\CARGA TABLAS\ADO NET Source.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\CARGA TABLAS.Paths[Data Conversion Output]"
+              endId="Package\CARGA TABLAS\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\CARGA TABLAS\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\CARGA TABLAS.Paths[Derived Column Output]"
+              endId="Package\CARGA TABLAS\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\CARGA TABLAS\Derived Column.Outputs[Derived Column Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE TABLE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E19688BA-172E-4158-9BAC-BF87FE4684F0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE TABLE"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{ED48E5BA-D1EB-48C1-9A9B-E8882DC67087}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE HRIS_Employee&#xA; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{9B77A68F-A579-4FF3-BDAC-0A237E1963C0}"
+      DTS:From="Package\TRUNCATE TABLE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\CARGA TABLAS" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\CARGA TABLAS"
+          TopLeft="5.53773584905662,107.349056603774" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\TRUNCATE TABLE"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.0377358490566166,57.9245283018868"
+              Start="0,0"
+              End="0.0377358490566166,50.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.9811320754717" />
+                  <mssgle:LineSegment
+                    End="0.0377358490566166,28.9811320754717" />
+                  <mssgle:LineSegment
+                    End="0.0377358490566166,50.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CARGA TABLAS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\CARGA TABLAS\OLE DB Destination"
+          TopLeft="5.5,256.103773584906" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\CARGA TABLAS\Derived Column"
+          TopLeft="15.4622641509434,96.3679245283019" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\CARGA TABLAS\ADO NET Source"
+          TopLeft="14.4811320754717,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\CARGA TABLAS\Data Conversion"
+          TopLeft="11.5,185.198113207547" />
+        <EdgeLayout
+          Id="Package\CARGA TABLAS.Paths[Derived Column Output]"
+          TopLeft="81.4811320754717,140.367924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,44.8301886792451"
+              Start="0,0"
+              End="0,37.3301886792451">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.3301886792451" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA TABLAS.Paths[Data Conversion Output]"
+          TopLeft="76.5,229.198113207547">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,26.905660377359"
+              Start="0,0"
+              End="0,19.405660377359">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.405660377359" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA TABLAS.Paths[ADO NET Source Output]"
+          TopLeft="82.9716981132075,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,46.8679245283019"
+              Start="0,0"
+              End="0,39.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA TABLAS\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA TABLAS\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

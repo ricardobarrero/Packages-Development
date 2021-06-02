@@ -1,0 +1,1763 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/6/2017 2:51:42 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S8SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{61D3B53D-56A3-4D3B-9EDE-389AFC75FE57}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="SKUCentral_ProdExpWeb_trax"
+  DTS:PackageType="5"
+  DTS:VersionBuild="69"
+  DTS:VersionGUID="{ECEEFC11-84DB-4D22-AECE-C56011C940D8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{2F699B8F-9592-4928-9903-9E7AEE8C8848}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\Intcomex\Shares\SQLPack\Files_Extraction\ProdExpWeb\ProdExpWeb.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="prod_recno"
+              DTS:DTSID="{7EB56699-CD23-4755-9014-0D09F18365F3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="disp_web"
+              DTS:DTSID="{751E226E-4320-465B-BFF7-968B24F58497}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ProductDivision"
+              DTS:DTSID="{09598DB2-7765-442E-8FCA-A21548353408}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Brand_id"
+              DTS:DTSID="{DA1D91EF-95E7-4173-8399-DAD740C00EB1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BrandDescription"
+              DTS:DTSID="{E8B91C9F-71BF-4173-94F2-5129E168167F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Cat_id"
+              DTS:DTSID="{8AC3B052-BE30-40BA-98BF-F51ADE6F85A3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CategoryEn_Desc"
+              DTS:DTSID="{01AE3B21-5ABA-4A5A-8523-993906F8B196}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="sub_cat_id "
+              DTS:DTSID="{74C5C978-AAA5-49A4-8D2E-21B6276C75E3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SubcategoryEn_Desc"
+              DTS:DTSID="{291DAA92-C190-4F2E-9DC7-B2050AECF4D4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SubcategoryEn_Desc2"
+              DTS:DTSID="{2F3D05CB-710B-4C8D-9186-93E30618EF82}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ManufacturerId"
+              DTS:DTSID="{238A8F4F-7463-4D62-94FB-E345519A3278}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ManufacturerDescription"
+              DTS:DTSID="{9FA6E1DA-8E87-4AEA-A708-7B6197A7A35C}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{494A1E1F-73CD-4DE4-91FF-24D674705BB2}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{B0F15DEA-26DF-428F-B155-AA0A93076346}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=clientarrayus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLAPP2List.SKUCentral]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6C7DCAFC-5B84-42D3-9292-F0A9C1C2EE9B}"
+      DTS:ObjectName="SQLAPP2List.SKUCentral">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLAPP2List;Initial Catalog=SKUCentral;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-ETL_PRODUCT-{2076C53C-CBDE-40E9-8C8B-D68A13CA6E53}SQLAPP2List.SkuCentral.etluser;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A01D8EEE-2C51-4A31-B1C8-F4241A8C68AE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{50CF108C-7FB2-485D-B31C-3B2271C7FCA5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1CC7AB90-5EE4-47AD-A61E-E4A63E8325C3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F843A32A-516B-4410-AD62-706035C87A79}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{15FA41E7-A991-40CB-B2EB-1CE1394C576C}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7599877E-E57D-49A5-BB17-60D889FEE897}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{494A1E1F-73CD-4DE4-91FF-24D674705BB2}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete SKUCentral_ProdExpWeb_trax  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{E03DDDB5-738C-48FA-8281-933C05417B67}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{B0F15DEA-26DF-428F-B155-AA0A93076346}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :SKUCentral_ProdExpWeb_trax" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{D561D8B1-0546-4FD2-A421-299610E4A08C}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Generate DWH_ProdExpWeb Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Table in SKU Central"
+      DTS:DTSID="{05AF20A1-A9A0-4EC8-A520-0F68A93C8970}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Generate DWH_ProdExpWeb Table"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6C7DCAFC-5B84-42D3-9292-F0A9C1C2EE9B}"
+          SQLTask:SqlStatementSource="truncate table skucentral.dbo.DWH_ProdExpWeb;&#xA;&#xA;insert into skucentral.dbo.DWH_ProdExpWeb&#xA;&#xA;select distinct 'm1' as control_ent, &#xA;s.localrecno as prod_recno, &#xA;'   ' as display_web, &#xA;s.BusinessDivisionID as Business_division,&#xA;s.BrandID as Brand_id, &#xA;s.BrandDescription as Brand_name,&#xA;s.ParentCategoryID as Cat_id,&#xA;CategoryEn as category_name, &#xA;substring(categoryid, charindex('.',categoryid)+1, len(categoryid)) as subcategory_id,&#xA;SubCategoryEn as subcategory_name, &#xA;SubCategoryEn as subcategory_name2, &#xA;s.ManufacturerID as Manuf_id, &#xA;s.ManufacturerDescription as Manuf_name,&#xA;getdate()&#xA;from StaticProducts s &#xA;where ( (localrecno in (select distinct &quot;prod-recno&quot; from S91SQLUS.dwstaging.dbo.sentai_product_exp) and CreationDate &gt;= getdate()-10)&#xA;or localrecno in (select distinct localrecno from S91SQLUS.Intxdw.dbo.fact_inventory where opo &gt; 0 or oh&gt;0) )&#xA;and s.BusinessDivisionID is not null&#xA;and s.ParentCategoryID is not null&#xA;order by 2;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;/*&#xA;select distinct 'm1' as control_ent, &#xA;s.localrecno as prod_recno, &#xA;'   ' as display_web, &#xA;s.BusinessDivisionID as Business_division,&#xA;s.BrandID as Brand_id, &#xA;s.BrandDescription as Brand_name,&#xA;s.ParentCategoryID as Cat_id,&#xA;CategoryEn as category_name, &#xA;substring(categoryid, charindex('.',categoryid)+1, len(categoryid)) as subcategory_id,&#xA;SubCategoryEn as subcategory_name, &#xA;SubCategoryEn as subcategory_name2, &#xA;s.ManufacturerID as Manuf_id, &#xA;s.ManufacturerDescription as Manuf_name,&#xA;getdate()&#xA;from StaticProducts s &#xA;where ( (localrecno in (select distinct &quot;prod-recno&quot; from SQLAPPList.dwstaging.dbo.sentai_product_exp) and CreationDate &gt;= getdate()-60)&#xA;or localsku in ('AT216HEW69-B1','CS500GNC05','DH186HPS27','AB002LEN19',&#xA;'AB100HPS91',&#xA;'AT216HEW69-B1',&#xA;'NW232HPS30',&#xA;'NW232HPS65',&#xA;'NW232HPS66',&#xA;'AT216HEW69-B1',&#xA;'DH000HUA41',&#xA;'EN214CIS97',&#xA;'MM104NXT35',&#xA;'MM104NXT36',&#xA;'NT805HPX63'))&#xA;and s.BusinessDivisionID is not null&#xA;and s.ParentCategoryID is not null&#xA;order by 2;&#xA;*/&#xA;&#xA;&#xA;/*&#xA;truncate table DWH_ProdExpWeb;&#xA;&#xA;insert into DWH_ProdExpWeb&#xA;select distinct 'm1' as control_ent, &#xA;s.localrecno as prod_recno, &#xA;'   ' as display_web, &#xA;s.BusinessDivisionID as Business_division,&#xA;s.BrandID as Brand_id, &#xA;s.BrandDescription as Brand_name,&#xA;s.ParentCategoryID as Cat_id,&#xA;CategoryEn as category_name, &#xA;substring(categoryid, charindex('.',categoryid)+1, len(categoryid)) as subcategory_id,&#xA;SubCategoryEn as subcategory_name, &#xA;SubCategoryEn as subcategory_name2, &#xA;s.ManufacturerID as Manuf_id, &#xA;s.ManufacturerDescription as Manuf_name,&#xA;getdate()&#xA;from StaticProducts s &#xA;where localrecno in (select distinct &quot;prod-recno&quot; from SQLAPPList.dwstaging.dbo.sentai_product_exp)&#xA;and CreationDate &gt;= getdate()-60&#xA;and s.BusinessDivisionID is not null&#xA;and s.ParentCategoryID is not null&#xA;order by 2; &#xA;*/&#xA;&#xA;update t&#xA;set display_web = case when l.DisplayOnWeb = 1 then 'yes' else 'no' end&#xA;from DWH_ProdExpWeb t, ProductLocalSettings l&#xA;where t.prod_recno = l.localrecno&#xA;and companyid = 'XUS'&#xA;&#xA;update DWH_ProdExpWeb&#xA;set display_web = 'no' where display_web = ''&#xA;&#xA;-- ==========================================================================================================&#xA;&#xA;update t&#xA;set display_web = case when l.DisplayOnWeb = 1 then 'yes' else 'no' end&#xA;from DWH_ProdExpWeb t, ProductLocalSettings l&#xA;where t.prod_recno = l.localrecno&#xA;and companyid = 'XUS'&#xA;&#xA;update DWH_ProdExpWeb&#xA;set display_web = 'no' where display_web = ''&#xA;&#xA;-- ==========================================================================================================&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SKUCentral_ProdExpWeb_trax"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C6C2CA5B-3DB9-4093-96E9-246405B98EAC}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SKUCentral_ProdExpWeb_trax">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{6CA02A24-CB57-4E93-81E9-F87918E23C60}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Generate File CSV"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Data Conversion.Inputs[Data Conversion Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Derived Column.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="Flat File Destination">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                    <property
+                      dataType="System.Boolean"
+                      description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                      name="EscapeQualifier">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].Columns[prod_recno]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="25"
+                          cachedName="prod_recno"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[prod_recno]"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[prod_recno]" />
+                        <inputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].Columns[Brand_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="25"
+                          cachedName="Brand_id"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Brand_id]"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Brand_id]" />
+                        <inputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].Columns[Cat_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="25"
+                          cachedName="Cat_id"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Cat_id]"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cat_id]" />
+                        <inputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].Columns[Business_division]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="25"
+                          cachedName="Business_division"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ProductDivision]"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Business_division]" />
+                        <inputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].Columns[Brand_name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Brand_name"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BrandDescription]"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Brand_name]" />
+                        <inputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].Columns[Manuf_name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Manuf_name"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ManufacturerDescription]"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Manuf_name]" />
+                        <inputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].Columns[display_web]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="3"
+                          cachedName="display_web"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[disp_web]"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[display_web]" />
+                        <inputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].Columns[category_name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="category_name"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CategoryEn_Desc]"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[category_name]" />
+                        <inputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].Columns[subcategory_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="25"
+                          cachedName="subcategory_id"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[sub_cat_id ]"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[subcategory_id]" />
+                        <inputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].Columns[subcategory_name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="subcategory_name"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[SubcategoryEn_Desc]"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[subcategory_name]" />
+                        <inputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].Columns[subcategory_name2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="subcategory_name2"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[SubcategoryEn_Desc2]"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[subcategory_name2]" />
+                        <inputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].Columns[Manuf_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="25"
+                          cachedName="Manuf_id"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ManufacturerId]"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Manuf_id]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[prod_recno]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="prod_recno" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Brand_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Brand_id" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Cat_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Cat_id" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ProductDivision]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ProductDivision" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BrandDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="BrandDescription" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ManufacturerDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ManufacturerDescription" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[disp_web]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="disp_web" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CategoryEn_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CategoryEn_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[sub_cat_id ]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="sub_cat_id " />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[SubcategoryEn_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SubcategoryEn_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[SubcategoryEn_Desc2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SubcategoryEn_Desc2" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ManufacturerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ManufacturerId" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select prod_recno, 
+display_web, 
+Business_division,
+Brand_id, 
+Brand_name,
+Cat_id,
+category_name, 
+subcategory_id,
+subcategory_name, 
+subcategory_name2, 
+Manuf_id, 
+Manuf_name
+from SKUCentral.dbo.DWH_ProdExpWeb 
+order by 2;
+
+
+
+/*
+select l.companyid as control_ent, 
+s.localrecno as prod_recno, 
+case when l.DisplayOnWeb = 1 then 'yes' else 'no' end as display_web, 
+s.BusinessDivisionID as Business_division,
+s.BrandID as Brand_id, 
+s.BrandDescription as Brand_name,
+s.ParentCategoryID as Cat_id,
+case when l.companyid = 'XMX' then CategoryEs else CategoryEn end as category_name, 
+substring(categoryid, charindex('.',categoryid)+1, len(categoryid)) as subcategory_id,
+case when l.companyid = 'XMX' then SubCategoryEs else SubCategoryEn end as subcategory_name, 
+case when l.companyid = 'XMX' then SubCategoryEs else SubCategoryEn end as subcategory_name2, 
+s.ManufacturerID as Manuf_id, 
+s.ManufacturerDescription as Manuf_name
+from StaticProducts s inner join ProductLocalSettings l
+on (l.localrecno = s.localrecno)
+order by cast(s.localrecno as numeric) asc,2
+*/</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SQLAPP2List.SKUCentral]"
+                      connectionManagerRefId="Package.ConnectionManagers[SQLAPP2List.SKUCentral]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[prod_recno]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[prod_recno]"
+                          length="25"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[prod_recno]"
+                          name="prod_recno"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[display_web]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[display_web]"
+                          length="3"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[display_web]"
+                          name="display_web"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Business_division]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Business_division]"
+                          length="25"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Business_division]"
+                          name="Business_division"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Brand_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Brand_id]"
+                          length="25"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Brand_id]"
+                          name="Brand_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Brand_name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Brand_name]"
+                          length="50"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Brand_name]"
+                          name="Brand_name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cat_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cat_id]"
+                          length="25"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cat_id]"
+                          name="Cat_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[category_name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[category_name]"
+                          length="50"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[category_name]"
+                          name="category_name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[subcategory_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[subcategory_id]"
+                          length="25"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[subcategory_id]"
+                          name="subcategory_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[subcategory_name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[subcategory_name]"
+                          length="50"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[subcategory_name]"
+                          name="subcategory_name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[subcategory_name2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[subcategory_name2]"
+                          length="50"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[subcategory_name2]"
+                          name="subcategory_name2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Manuf_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Manuf_id]"
+                          length="25"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Manuf_id]"
+                          name="Manuf_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Manuf_name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Manuf_name]"
+                          length="50"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].Columns[Manuf_name]"
+                          name="Manuf_name"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[prod_recno]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="prod_recno" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[display_web]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="display_web" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Business_division]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="Business_division" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Brand_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="Brand_id" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Brand_name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Brand_name" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cat_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="Cat_id" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[category_name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="category_name" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[subcategory_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="subcategory_id" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[subcategory_name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="subcategory_name" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[subcategory_name2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="subcategory_name2" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Manuf_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="Manuf_id" />
+                        <externalMetadataColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Manuf_name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Manuf_name" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[prod_recno]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[prod_recno]"
+                          name="prod_recno" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[display_web]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[display_web]"
+                          name="display_web" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Business_division]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Business_division]"
+                          name="Business_division" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Brand_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Brand_id]"
+                          name="Brand_id" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Brand_name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Brand_name]"
+                          name="Brand_name" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Cat_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Cat_id]"
+                          name="Cat_id" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[category_name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[category_name]"
+                          name="category_name" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[subcategory_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[subcategory_id]"
+                          name="subcategory_id" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[subcategory_name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[subcategory_name]"
+                          name="subcategory_name" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[subcategory_name2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[subcategory_name2]"
+                          name="subcategory_name2" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Manuf_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Manuf_id]"
+                          name="Manuf_id" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Manuf_name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Manuf_name]"
+                          name="Manuf_name" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV.Paths[Data Conversion Output]"
+                  endId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination.Inputs[Flat File Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV.Paths[Derived Column Output]"
+                  endId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV.Paths[OLE DB Source Output]"
+                  endId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Derived Column.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SKUCentral_ProdExpWeb_trax\TRansfer File to Trax"
+          DTS:CreationName="Microsoft.ExecuteProcess"
+          DTS:Description="Execute Process Task"
+          DTS:DTSID="{802371C2-FCBF-46BD-A139-31A64D3BEB16}"
+          DTS:ExecutableType="Microsoft.ExecuteProcess"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRansfer File to Trax"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="\\Intcomex\Shares\SQLPack\Files_Extraction\ProdExpWeb\Trax_ProdExpWeb_Put.cmd" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SKUCentral_ProdExpWeb_trax.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{25BC21B4-6931-42D3-B7F2-ED4D07663BC6}"
+          DTS:From="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SKUCentral_ProdExpWeb_trax\TRansfer File to Trax" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Evento Correcto"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CBD46FB9-BC6F-411D-AD4D-116A0EDCF2A5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Evento Correcto"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Tarea Evento Correcto"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Correcto','Ejecucion Correcta')"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{494A1E1F-73CD-4DE4-91FF-24D674705BB2}"
+          SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;&#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Correcto','Ejecucion Correcta')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6D9ACC65-2956-4A5E-884F-DB037383BB6D}"
+      DTS:From="Package\Tarea Evento Correcto"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{2EA60ADE-49C7-4ED4-8AB2-BAB54C075CCF}"
+      DTS:From="Package\SKUCentral_ProdExpWeb_trax"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Tarea Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{D988A3CB-E493-4BFD-B375-FA029E1FB09B}"
+      DTS:From="Package\Generate DWH_ProdExpWeb Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SKUCentral_ProdExpWeb_trax" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{66071849-B3ED-42BB-9520-B440F80B960F}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{30C67AD9-FEA8-457C-884B-1D7380A3C87F}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Event Error"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Send Mail  Error Event"
+          DTS:DTSID="{3B7DD0E5-CE1D-4764-9845-D7D9BC5868B8}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Event Error">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Event Error"</DTS:PropertyExpression>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Event Error\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{1D8A7E35-BA57-4273-B070-612C63575F7B}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{494A1E1F-73CD-4DE4-91FF-24D674705BB2}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Event Error\Send Mail Task"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{7CA35E35-5D41-4074-905A-D5B0E7EDADA5}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send Mail Task"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError] + @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{B0F15DEA-26DF-428F-B155-AA0A93076346}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :SKUCentral_ProdExpWeb_trax" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Event Error.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{5175B79B-605B-40A8-BF66-57A4FF23AA46}"
+              DTS:From="Package.EventHandlers[OnError]\Event Error\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Event Error\Send Mail Task" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Process Control Errors"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Task Error Event"
+          DTS:DTSID="{72B3C7A1-70CC-4D8F-B9C5-D94E4ABD6125}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Process Control Errors">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Process Control Errors"</DTS:PropertyExpression>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors\Task Event Error"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{62F03C76-8EF6-4C46-B51B-2CAFA1F4947C}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Task Event Error"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Task Event Error"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{494A1E1F-73CD-4DE4-91FF-24D674705BB2}"
+                  SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors\Task Reset Execution SKUCentral_ProdExpWeb_trax"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:Disabled="True"
+              DTS:DTSID="{0A72F575-DE49-460F-9695-7F85DDA328F1}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Task Reset Execution SKUCentral_ProdExpWeb_trax"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Task Reset Execution "+ @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{1E4CB9B6-8B16-417F-B4F8-872D34FB4916}"
+                  SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors.PrecedenceConstraints[Restricción]"
+              DTS:CreationName=""
+              DTS:DTSID="{95FDE218-CC57-4CB8-AB56-02BD1B941864}"
+              DTS:From="Package.EventHandlers[OnError]\Process Control Errors\Task Reset Execution SKUCentral_ProdExpWeb_trax"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Restricción"
+              DTS:To="Package.EventHandlers[OnError]\Process Control Errors\Task Event Error" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{C9518E1D-6AB7-4799-AF27-61DA998B1D23}"
+          DTS:From="Package.EventHandlers[OnError]\Process Control Errors"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Event Error" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="48.3018867924528,16.1698113207547" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="51.3018867924528,96.2264150943396" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="117.801886792453,60.1698113207547">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.0566037735849"
+              Start="0,0"
+              End="0,28.5566037735849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5566037735849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="220,195"
+          Size="220,239"
+          Id="Package\Evento Correcto"
+          TopLeft="93.5,506" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\Generate DWH_ProdExpWeb Table"
+          TopLeft="82,7" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV"
+          TopLeft="16,11" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\SKUCentral_ProdExpWeb_trax\TRansfer File to Trax"
+          TopLeft="14,98" />
+        <EdgeLayout
+          Id="Package\SKUCentral_ProdExpWeb_trax.PrecedenceConstraints[Constraint]"
+          TopLeft="100,53">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="250,199"
+          Size="250,242"
+          Id="Package\SKUCentral_ProdExpWeb_trax"
+          TopLeft="81,109" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Tarea Evento Correcto"
+          TopLeft="108,409" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="202,451">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="203.25,351">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="205,49">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Event Error\Mensaje"
+          TopLeft="52.6415094339623,21.4528301886793" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Event Error\Send Mail Task"
+          TopLeft="52.6415094339623,111.339622641509" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Event Error.PrecedenceConstraints[Constraint]"
+          TopLeft="120.528301886792,65.377358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.9622641509434"
+              Start="0,0"
+              End="0,38.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="249,189.075471698114"
+          Size="249,233"
+          Id="Package.EventHandlers[OnError]\Event Error"
+          TopLeft="67,294" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Process Control Errors\Task Event Error"
+          TopLeft="50.8301886792453,117.641509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Process Control Errors\Task Reset Execution SKUCentral_ProdExpWeb_trax"
+          TopLeft="50.8301886792453,17.3018867924528" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Process Control Errors.PrecedenceConstraints[Restricción]"
+          TopLeft="118.716981132075,61.2264150943396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56.4150943396226"
+              Start="0,0"
+              End="0,48.9150943396226">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.9150943396226" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="249,189.075471698114"
+          Size="249,233"
+          Id="Package.EventHandlers[OnError]\Process Control Errors"
+          TopLeft="77,12" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="201.5,245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10,49"
+              Start="0,0"
+              End="-10,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="-4,24.5" />
+                  <mssgle:LineSegment
+                    End="-6,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6,24.5"
+                    Point2="-10,24.5"
+                    Point3="-10,28.5" />
+                  <mssgle:LineSegment
+                    End="-10,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source"
+          TopLeft="84,22" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Data Conversion"
+          TopLeft="77,174" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Derived Column"
+          TopLeft="79,107" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\Flat File Destination"
+          TopLeft="69,259" />
+        <EdgeLayout
+          Id="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV.Paths[OLE DB Source Output]"
+          TopLeft="157.5,64">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV.Paths[Derived Column Output]"
+          TopLeft="155.5,149">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25"
+              Start="0,0"
+              End="0,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV.Paths[Data Conversion Output]"
+          TopLeft="155,216">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SKUCentral_ProdExpWeb_trax\Generate File CSV\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

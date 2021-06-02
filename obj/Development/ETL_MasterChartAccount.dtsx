@@ -1,0 +1,1895 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/11/2019 12:51:19 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S9SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{B9E991D5-9E1B-4F9F-A35A-CAC163584C63}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ETL_MasterChartAccount"
+  DTS:PackageType="5"
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{22C9D703-6EC8-4D86-AEA7-399A3FD3F273}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser16]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{6C5D27D3-BF79-42EB-BA7B-4592A5769BE4}"
+      DTS:ObjectName="INTCOMEX_DWH.dwhuser16">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Etluser;Dsn=IQ16;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAC3ZpxgsrbbtRzOY+0A0Ii0AAAAAASAAACgAAAAEAAAAAcKYiYC127lCq/76x/DPfIYAAAAaKGpiUjzLtsoM6puoApUXVIwC4hkXovnFAAAAIbyNIR1oVIb/KxSDC9XQDkVSsBr</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S6SAP.Intcomex]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E785F1D2-3CF2-4BBE-BFC3-401557E10633}"
+      DTS:ObjectName="S6SAP.Intcomex">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S6SAP;Initial Catalog=Intcomex;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{01051EB4-CC09-4771-A532-B7173954F85F}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{64F16AB8-3095-4905-B8D9-9D51DE67EFF5}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=clientarrayus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;INTCOMEX_DWH.dwhuser16&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{61A4921C-87D9-4382-AA99-6A3995F7F3AB}"
+      DTS:ObjectName="INTCOMEX_DWH dwhuser16" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D2464F8D-AB20-42F3-91AC-190393B9EC9F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{00099D0D-7A6F-4D02-B9B4-8491E38CAC1C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailToBO">
+      <DTS:VariableValue
+        DTS:DataType="8">rvargas@intcomex.com;talvarado@intcomex.com;joelserrano@intcomex.com;Indira.Turner@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F1830418-5184-4A87-B454-A189C276881B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{581FDE3C-AE1B-4623-9D1C-6973D6436DF0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D791B144-B233-4AF1-9976-16502827A0FA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{03F7C270-AAEE-455F-9954-58CC2C364736}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{258AFD36-8627-48DE-9E4F-4F949993D12C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{01051EB4-CC09-4771-A532-B7173954F85F}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete ETL_MasterChartAccount  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{EA2A83CA-2C06-4AC6-AEF6-59FACE217D53}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="CCLine">@[User::VStr_EmailToBO]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject]+ @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{64F16AB8-3095-4905-B8D9-9D51DE67EFF5}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:CC="rvargas@intcomex.com;talvarado@intcomex.com;joelserrano@intcomex.com;Indira.Turner@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :ETL_MasterChartAccount" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{F0AFA47C-44D7-40FB-8A40-AD81DA64F7C0}"
+          DTS:From="Package\Sequence Container\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{90F1BBE8-514B-432B-9500-5473BAD2B468}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{8769398C-1760-4D5B-AD8D-E29D6FE37657}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load gl_bosrc_mcoa_catalog_bpc"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Inputs[Data Conversion Input].Columns[ID]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="ID"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[ID]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Inputs[Data Conversion Input].Columns[EVDESCRIPTION]"
+                          cachedDataType="wstr"
+                          cachedLength="75"
+                          cachedName="EVDESCRIPTION"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[EVDESCRIPTION]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Inputs[Data Conversion Input].Columns[BSIS]"
+                          cachedDataType="wstr"
+                          cachedLength="6"
+                          cachedName="BSIS"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[BSIS]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Inputs[Data Conversion Input].Columns[Type]"
+                          cachedDataType="wstr"
+                          cachedLength="3"
+                          cachedName="Type"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[Type]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Inputs[Data Conversion Input].Columns[ER_Type]"
+                          cachedDataType="wstr"
+                          cachedLength="12"
+                          cachedName="ER_Type"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[ER_Type]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Inputs[Data Conversion Input].Columns[OLD_MAR09]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="OLD_MAR09"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[OLD_MAR09]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Inputs[Data Conversion Input].Columns[Report2]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="Report2"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[Report2]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Inputs[Data Conversion Input].Columns[RATETYPE]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="RATETYPE"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[RATETYPE]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[ID]"
+                          name="ID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[ID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[EVDESCRIPTION]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="150"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[EVDESCRIPTION]"
+                          name="EVDESCRIPTION"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[EVDESCRIPTION]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[BSIS]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[BSIS]"
+                          name="BSIS"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[BSIS]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[Type]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[Type]"
+                          name="Type"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[Type]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[ER_Type]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[ER_Type]"
+                          name="ER_Type"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[ER_Type]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[OLD_MAR09]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[OLD_MAR09]"
+                          name="OLD_MAR09"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[OLD_MAR09]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[Report2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[Report2]"
+                          name="Report2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[Report2]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[RATETYPE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[RATETYPE]"
+                          name="RATETYPE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[RATETYPE]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="gl_bosrc_mcoa_catalog_bpc"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[gl_bosrc_mcoa_catalog_bpc]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].Columns[ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ID"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Consol_Acct]"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[ID]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].Columns[EVDESCRIPTION]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="EVDESCRIPTION"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Consol_Description]"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[EVDESCRIPTION]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].Columns[BSIS]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="BSIS"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[BSIS]"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[BSIS]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].Columns[Type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Type"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[Type]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].Columns[ER_Type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ER_Type"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[ER_Type]"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[ER_Type]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].Columns[OLD_MAR09]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="OLD_MAR09"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[ER_Grouping]"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[OLD_MAR09]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].Columns[Report2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Report2"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Report2]"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[Report2]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].Columns[RATETYPE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="RATETYPE"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Rate_ID]"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output].Columns[RATETYPE]" />
+                        <inputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Consol_Acct]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="Consol_Acct" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Consol_Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="Consol_Description" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[BSIS]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          name="BSIS" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="Type" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Credit]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Credit" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[ER_Type]"
+                          dataType="numeric"
+                          name="ER_Type"
+                          precision="5"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[ER_Grouping]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="ER_Grouping" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Report1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Report1" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Report1_desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="Report1_desc" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Header_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Header_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Report2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Report2" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Report2_desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="Report2_desc" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Cash_Flow]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          name="Cash_Flow" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[REPORT3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          name="REPORT3" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[AP_recon]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="AP_recon" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[ELIM_recon]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          name="ELIM_recon" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Monetary]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="Monetary" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Header]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          name="Header" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Sub_Tot]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          name="Sub_Tot" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Sub_Tot_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Sub_Tot_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[AuditRpt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          name="AuditRpt" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Oth_Inc_Exp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="Oth_Inc_Exp" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Rate_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="Rate_ID" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[Rate_Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Rate_Description" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="S6SAP MBRACCOUNT"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select distinct a.ID, a.EVDESCRIPTION, FINSTMT as BSIS, ACCTYPE as Type, 
+case when OLD_ER_TYPE like 'Rate%'then substring(OLD_ER_TYPE,5,10)  when OLD_ER_TYPE='' then null else OLD_ER_TYPE end as ER_Type, 
+OLD_MAR09, parenth1 as Report2, RATETYPE
+from mbrAccount a</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S6SAP.Intcomex]"
+                      connectionManagerRefId="Package.ConnectionManagers[S6SAP.Intcomex]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                          length="20"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[ID]"
+                          name="ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[EVDESCRIPTION]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[EVDESCRIPTION]"
+                          length="75"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[EVDESCRIPTION]"
+                          name="EVDESCRIPTION"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[BSIS]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[BSIS]"
+                          length="6"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[BSIS]"
+                          name="BSIS"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[Type]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                          length="3"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[Type]"
+                          name="Type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[ER_Type]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[ER_Type]"
+                          length="12"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[ER_Type]"
+                          name="ER_Type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[OLD_MAR09]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[OLD_MAR09]"
+                          length="20"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[OLD_MAR09]"
+                          name="OLD_MAR09"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[Report2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[Report2]"
+                          length="20"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[Report2]"
+                          name="Report2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[RATETYPE]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[RATETYPE]"
+                          length="20"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].Columns[RATETYPE]"
+                          name="RATETYPE"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                          dataType="wstr"
+                          length="20"
+                          name="ID" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[EVDESCRIPTION]"
+                          dataType="wstr"
+                          length="75"
+                          name="EVDESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[BSIS]"
+                          dataType="wstr"
+                          length="6"
+                          name="BSIS" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                          dataType="wstr"
+                          length="3"
+                          name="Type" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[ER_Type]"
+                          dataType="wstr"
+                          length="12"
+                          name="ER_Type" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[OLD_MAR09]"
+                          dataType="wstr"
+                          length="20"
+                          name="OLD_MAR09" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[Report2]"
+                          dataType="wstr"
+                          length="20"
+                          name="Report2" />
+                        <externalMetadataColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output].ExternalColumns[RATETYPE]"
+                          dataType="wstr"
+                          length="20"
+                          name="RATETYPE" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[ID]"
+                          dataType="wstr"
+                          length="20"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[ID]"
+                          name="ID" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[EVDESCRIPTION]"
+                          dataType="wstr"
+                          length="75"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[EVDESCRIPTION]"
+                          name="EVDESCRIPTION" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[BSIS]"
+                          dataType="wstr"
+                          length="6"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[BSIS]"
+                          name="BSIS" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[Type]"
+                          dataType="wstr"
+                          length="3"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[Type]"
+                          name="Type" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[ER_Type]"
+                          dataType="wstr"
+                          length="12"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[ER_Type]"
+                          name="ER_Type" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[OLD_MAR09]"
+                          dataType="wstr"
+                          length="20"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[OLD_MAR09]"
+                          name="OLD_MAR09" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[Report2]"
+                          dataType="wstr"
+                          length="20"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[Report2]"
+                          name="Report2" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[RATETYPE]"
+                          dataType="wstr"
+                          length="20"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[RATETYPE]"
+                          name="RATETYPE" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc.Paths[Data Conversion Output]"
+                  endId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc.Paths[Derived Column Output]"
+                  endId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc.Paths[OLE DB Source Output]"
+                  endId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Truncate Table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{3D12ADEB-D199-410B-ACD6-DE20A96137E3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Table"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{01051EB4-CC09-4771-A532-B7173954F85F}"
+              SQLTask:SqlStatementSource="truncate table  gl_bosrc_mcoa_catalog_bpc" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount).PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{05560379-D0B8-436C-8658-19B1C48D26EA}"
+          DTS:From="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Truncate Table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Step 2  Updates"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A255613C-2973-4806-A0ED-E10553AE8623}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Step 2  Updates"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{01051EB4-CC09-4771-A532-B7173954F85F}"
+          SQLTask:SqlStatementSource="-- ========================================================================================================&#xA;-- PASO 2: Actualiza Report2 Description&#xA;-- ========================================================================================================&#xA;update gl set Report2_desc = t.Consol_Description&#xA;from gl_bosrc_mcoa_catalog_bpc gl, (select consol_acct, Consol_Description from gl_bosrc_mcoa_catalog_bpc) t&#xA;where gl.Report2 = t.Consol_Acct&#xA;&#xA;-- ========================================================================================================&#xA;-- PASO 3: Actualiza Report1&#xA;-- ========================================================================================================&#xA;update bpc1 set Report1 = bpc2.Report2&#xA;from gl_bosrc_mcoa_catalog_bpc bpc1, gl_bosrc_mcoa_catalog_bpc bpc2&#xA;where bpc1.Report2 = bpc2.Consol_Acct&#xA;&#xA;-- ========================================================================================================&#xA;-- PASO 4: Actualiza Report1 Description &#xA;-- ========================================================================================================&#xA;update gl set Report1_desc = t.Consol_Description&#xA;from gl_bosrc_mcoa_catalog_bpc gl, (select consol_acct, Consol_Description from gl_bosrc_mcoa_catalog_bpc) t&#xA;where gl.Report1 = t.Consol_Acct&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Step 3  IQ16"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{D92C88C7-4C5D-48D4-856F-904223C7A017}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Step 3  IQ16">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Step 3  IQ16\gl_bosrc_mcoa_catalog_sapbpc"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7D9E862D-4F60-494A-A113-5E77CF6AFDE9}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="gl_bosrc_mcoa_catalog_sapbpc"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{6C5D27D3-BF79-42EB-BA7B-4592A5769BE4}"
+              SQLTask:SqlStatementSource="exec dwhuser.gl_bosrc_mcoa_catalog_sapbpc" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Step 3  IQ16\Step 3_1 Delete-Insert"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EB8CE3E8-C019-4DCD-B1E2-969FF3679B78}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Step 3_1 Delete-Insert"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{6C5D27D3-BF79-42EB-BA7B-4592A5769BE4}"
+              SQLTask:SqlStatementSource="&#xA;-- ========================================================================================================&#xA;-- Copia la tabla dbo.gl_account_BOSRC de producción a la de pruebas&#xA;-- ========================================================================================================&#xA;PRINT '*******DELETE gl_account_BOSRC_bpc************'&#xA;delete from dbo.gl_account_BOSRC_bpc&#xA;commit;&#xA;&#xA;PRINT '*******INSERT gl_account_BOSRC_bpc************'&#xA;&#xA;insert into dbo.gl_account_BOSRC_bpc select * from dbo.gl_account_BOSRC&#xA;commit;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Step 3  IQ16\Step 3_2 Update"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{045A4ACD-3B23-452D-9B87-86C36CBC53B3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Step 3_2 Update"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{6C5D27D3-BF79-42EB-BA7B-4592A5769BE4}"
+              SQLTask:SqlStatementSource="-- ========================================================================================================&#xA;-- Actualiza la tabla dbo.gl_account_BOSRC con la información del nuevo maestro de cuentas&#xA;-- ========================================================================================================&#xA;&#xA;PRINT '**********************UPDATE  Actualiza la tabla dbo.gl_account_BOSRC con la información del nuevo maestro de cuentas********************'&#xA;update dbo.gl_account_BOSRC_bpc&#xA;set&#xA;Consol_Description  =      m.Consol_Description,&#xA;BSIS         =      m.BSIS,&#xA;Type         =      m.Type,&#xA;Credit       =      m.Credit,&#xA;ER_Type             =      m.ER_Type,&#xA;ER_Grouping  =      m.ER_Grouping,&#xA;Report1             =      m.Report1,&#xA;Report1_desc= m.Report1_desc,&#xA;Header_Desc  =      m.Header_Desc,&#xA;Report2             =      m.Report2,&#xA;Report2_desc= m.Report2_desc,&#xA;Cash_Flow    =      m.Cash_Flow,&#xA;REPORT3          =  m.REPORT3,&#xA;AP_recon     =      m.AP_recon,&#xA;ELIM_recon   =      m.ELIM_recon,&#xA;Monetary     =      m.Monetary,&#xA;Header       =      m.Header,&#xA;Sub_Tot             =      m.Sub_Tot,&#xA;Sub_Tot_Desc= m.Sub_Tot_Desc,&#xA;AuditRpt     =      m.AuditRpt,&#xA;Oth_Inc_Exp  =      m.Oth_Inc_Exp&#xA;from dbo.gl_account_BOSRC_bpc b, dbo.gl_bosrc_mcoa_catalog_bpc m&#xA;where b.Consol_Acct =   m.consol_acct&#xA;commit&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Step 3  IQ16.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{CFF1348A-0AB2-4D5F-B397-F0281E22B4D1}"
+          DTS:From="Package\Step 3  IQ16\Step 3_1 Delete-Insert"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Step 3  IQ16\Step 3_2 Update" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Step 3  IQ16.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{8B04EB95-59D0-4C69-A3FC-D1581FAD4742}"
+          DTS:From="Package\Step 3  IQ16\gl_bosrc_mcoa_catalog_sapbpc"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Step 3  IQ16\Step 3_1 Delete-Insert" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A226C273-7D28-47D8-8426-128D906B01F2}"
+      DTS:From="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Step 2  Updates" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{464D9395-5941-49B2-ADD1-2B2013E867BC}"
+      DTS:From="Package\Step 2  Updates"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Step 3  IQ16" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{7AC1E3B1-6D29-477B-9133-53457D7B5A0E}"
+      DTS:From="Package\Step 3  IQ16"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Sequence Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{3069CF59-FC12-49DA-A0D4-DF8054711973}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{E8DC762C-7E69-4E18-8874-B52F084E42F3}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Sequence Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{03D5FBAC-5C3A-4B95-928B-828C9C81A4DC}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sequence Container">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{056A8444-C7FB-4CBE-BAB9-44D743139979}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{01051EB4-CC09-4771-A532-B7173954F85F}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Send Mail Task"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{2E013666-8B4A-4C63-9089-36EDB15BEAE4}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send Mail Task">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="CCLine">@[User::VStr_EmailToBO]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError] + @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{64F16AB8-3095-4905-B8D9-9D51DE67EFF5}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:CC="rvargas@intcomex.com;talvarado@intcomex.com;joelserrano@intcomex.com;Indira.Turner@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :ETL_MasterChartAccount" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{DF1A84F0-256D-4C0D-A2E4-8756D2057B07}"
+              DTS:From="Package.EventHandlers[OnError]\Sequence Container\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Sequence Container\Send Mail Task" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Tarea Evento Fallo"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0F23838D-67E4-4FFE-A3F7-CB22FFF48371}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Evento Fallo">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Tarea Evento Fallo"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{01051EB4-CC09-4771-A532-B7173954F85F}"
+              SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{5E45BB51-9F6B-4528-A066-2CFF047B43D5}"
+          DTS:From="Package.EventHandlers[OnError]\Tarea Evento Fallo"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Sequence Container" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="118,42"
+          Id="Package\Sequence Container\Mensaje"
+          TopLeft="33,6" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Sequence Container\Send Mail Task"
+          TopLeft="14,105" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="90.5,48">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,189"
+          Size="205,232"
+          Id="Package\Sequence Container"
+          TopLeft="126,831" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc"
+          TopLeft="5.50000000000001,107.5" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Truncate Table"
+          TopLeft="49.5,5.5" />
+        <EdgeLayout
+          Id="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount).PrecedenceConstraints[Constraint]"
+          TopLeft="124.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="249,205"
+          Size="249,248"
+          Id="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)"
+          TopLeft="106,17" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Step 2  Updates"
+          TopLeft="150,311" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Step 3  IQ16\gl_bosrc_mcoa_catalog_sapbpc"
+          TopLeft="4.5,28" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Step 3  IQ16\Step 3_1 Delete-Insert"
+          TopLeft="14,135" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Step 3  IQ16\Step 3_2 Update"
+          TopLeft="25.5,215.5" />
+        <EdgeLayout
+          Id="Package\Step 3  IQ16.PrecedenceConstraints[Constraint]"
+          TopLeft="105.75,177">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,38.5"
+              Start="0,0"
+              End="0,31">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Step 3  IQ16.PrecedenceConstraints[Constraint 1]"
+          TopLeft="108.75,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,65"
+              Start="0,0"
+              End="0,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="249,313"
+          Size="249,356"
+          Id="Package\Step 3  IQ16"
+          TopLeft="108,406" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="228.75,265">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="229.75,353">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="230.5,762">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,69"
+              Start="0,0"
+              End="0,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="la carga a IQ se hace en el paso TraxAccounting_TO_IQ&#xA;"
+          ParentId="Package"
+          FontInfo="{x:Null}"
+          Size="317,56"
+          Id="6db4cb2f-92a2-4ab7-b486-781895ca97f8"
+          TopLeft="357,416" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="118,42"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Mensaje"
+          TopLeft="33,6" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Send Mail Task"
+          TopLeft="14,105" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="90.5,48">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,247"
+          Size="205,290"
+          Id="Package.EventHandlers[OnError]\Sequence Container"
+          TopLeft="60,175" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package.EventHandlers[OnError]\Tarea Evento Fallo"
+          TopLeft="75,60" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="159.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="154,42"
+          Id="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Derived Column"
+          TopLeft="44,86" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\Data Conversion"
+          TopLeft="37,159" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT"
+          TopLeft="33,7" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc"
+          TopLeft="11,255" />
+        <EdgeLayout
+          Id="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc.Paths[Data Conversion Output]"
+          TopLeft="116,201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc.Paths[OLE DB Source Output]"
+          TopLeft="122.25,49">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc.Paths[Derived Column Output]"
+          TopLeft="118,128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\S6SAP MBRACCOUNT">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\setp 1 Actualiza la tabla gl_bosrc_mcoa_catalog_bpc del Mastr Chart Of Account de SAP BPC (mbrAccount)\Load gl_bosrc_mcoa_catalog_bpc\gl_bosrc_mcoa_catalog_bpc">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

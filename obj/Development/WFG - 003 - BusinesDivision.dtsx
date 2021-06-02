@@ -1,0 +1,1472 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/26/2015 2:07:51 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{9BEFBC30-4ED9-4690-8AE9-D4B0DEC3BB48}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="WFG - 003 - BusinesDivision"
+  DTS:PackageType="5"
+  DTS:VersionBuild="91"
+  DTS:VersionGUID="{D5BC61F4-8D50-4950-8516-92A071E66984}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PRESTOREDBDVLP.WFGEN_OLD]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8840F36E-4FE2-4FDA-9654-E7E33ED135D6}"
+      DTS:ObjectName="PRESTOREDBDVLP.WFGEN_OLD">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=PRESTOREDBDVLP;Initial Catalog=WFGEN_OLD;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9231A45B-ED8C-48AB-ABCE-4F34136D8C2C}"
+      DTS:ObjectName="s2crmdb.CRMStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdb;Initial Catalog=CRMStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-CRM - 110 - Tax_Group-{9231A45B-ED8C-48AB-ABCE-4F34136D8C2C}s2crmdb.CRMStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3B6C8010-A0AF-43E4-A646-FA49E8BD67FC}"
+      DTS:ObjectName="s2crmdvlp.CRMStaging.ETLUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdvlp;Initial Catalog=CRMStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9E9EC877-4ECC-4001-8F05-D348B57FBF37}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{DB526858-66BB-4735-B04A-E9BBE337204C}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DAF2CB29-5FB2-43E4-A0D5-E99A962911B5}"
+      DTS:ObjectName="S91SQLUS.INTXDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=INTXDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{D075F5C2-A519-4944-89E4-F000D1988C23}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLAPP2List.WFGEN]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{836AB13A-6AA3-4C98-BD3B-BA19210C577B}"
+      DTS:ObjectName="SQLAPP2List.WFGEN">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLAPP2List;Initial Catalog=WFGEN;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C03AFAD7-71B6-49A3-97D3-6338871B1FB7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{41EF4C95-5A3C-43EB-92A8-52EF1E3B23CB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EF5A947B-B6BA-4A6A-9ED2-A9BF58E40C8F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9C9B5A8F-A27F-4AC5-9B47-5F6CAA2F590D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{2CE7B8A8-A9CF-4CC6-8EE3-3C2BE9B85D77}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{FE770B60-F22E-470A-9D5C-30FA9FC014ED}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9E9EC877-4ECC-4001-8F05-D348B57FBF37}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete WFG - 003 - BusinesDivision  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{5FB2E98D-34A2-4C4A-AF8C-499BBFC365F5}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject]+ @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{D075F5C2-A519-4944-89E4-F000D1988C23}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :WFG - 003 - BusinesDivision" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{D7F12E22-71A3-4E95-944D-8F32D0CE46C1}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DVLP"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{8CBC9696-8606-4BBB-B7BA-051F67C01E2D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DVLP">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load DVLP\load DWH_BusinessDivision"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{58C99CC3-641A-410A-8E03-0A484CFDDD39}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load DWH_BusinessDivision"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DVLP sgm_catalogo_bd_brand"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[DWH_BusinessDivision]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[PRESTOREDBDVLP.WFGEN_OLD]"
+                      connectionManagerRefId="Package.ConnectionManagers[PRESTOREDBDVLP.WFGEN_OLD]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].Columns[BusinessDivision_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="BusinessDivision_ID"
+                          externalMetadataColumnId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[BusinessDivision_ID]"
+                          lineageId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].Columns[BusinessDivision_ID]" />
+                        <inputColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].Columns[BusinessDivisionName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="BusinessDivisionName"
+                          externalMetadataColumnId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[BusinessDivisionName]"
+                          lineageId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].Columns[BusinessDivisionName]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[BusinessDivision_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="BusinessDivision_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input].ExternalColumns[BusinessDivisionName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="BusinessDivisionName" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="DWH_BusinessDivision"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[DWH_BusinessDivision]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SQLAPP2List.WFGEN]"
+                      connectionManagerRefId="Package.ConnectionManagers[SQLAPP2List.WFGEN]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].Columns[BusinessDivision_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].ExternalColumns[BusinessDivision_ID]"
+                          length="15"
+                          lineageId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].Columns[BusinessDivision_ID]"
+                          name="BusinessDivision_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].Columns[BusinessDivisionName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].ExternalColumns[BusinessDivisionName]"
+                          length="50"
+                          lineageId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].Columns[BusinessDivisionName]"
+                          name="BusinessDivisionName"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].ExternalColumns[BusinessDivision_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="BusinessDivision_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output].ExternalColumns[BusinessDivisionName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="BusinessDivisionName" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Error Output].Columns[BusinessDivision_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          lineageId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Error Output].Columns[BusinessDivision_ID]"
+                          name="BusinessDivision_ID" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Error Output].Columns[BusinessDivisionName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Error Output].Columns[BusinessDivisionName]"
+                          name="BusinessDivisionName" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          name="LastExtraction" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load DVLP\load DWH_BusinessDivision.Paths[OLE DB Source Output]"
+                  endId="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load DVLP\Truncate DWH_BusinessDivision"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B4284064-CB9B-4E2A-A16F-DC1B307ABB6A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate DWH_BusinessDivision"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8840F36E-4FE2-4FDA-9654-E7E33ED135D6}"
+              SQLTask:SqlStatementSource="truncate table DWH_BusinessDivision" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load DVLP.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{795C085B-2894-4480-95B3-3B496FD44E33}"
+          DTS:From="Package\Load DVLP\Truncate DWH_BusinessDivision"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load DVLP\load DWH_BusinessDivision" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOAD DWH_BusinessDivision"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C229DE97-FCE0-44A9-ADAC-45117B9C990E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD DWH_BusinessDivision">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{5579F4F8-FB9E-4230-B128-8A4812CBADEF}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load DWH_BusinessDivision"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Data Conversion.Inputs[Data Conversion Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="INTXDW BusinessDivision_ID"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[SGM_CATALOGO_BD_BRAND]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select BusinessDivision_ID, BusinessDivisionName FROM 
+INTXDW.dbo.DIM_BUSINESS_DIVISION WHERE DW_STATUS &lt;&gt;'d' and BusinessDivision_id&lt;&gt;'?'</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Output].Columns[BusinessDivision_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Output].ExternalColumns[BusinessDivision_ID]"
+                          length="15"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Output].Columns[BusinessDivision_ID]"
+                          name="BusinessDivision_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Output].Columns[BusinessDivisionName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Output].ExternalColumns[BusinessDivisionName]"
+                          length="50"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Output].Columns[BusinessDivisionName]"
+                          name="BusinessDivisionName"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Output].ExternalColumns[BusinessDivision_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="BusinessDivision_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Output].ExternalColumns[BusinessDivisionName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="BusinessDivisionName" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Error Output].Columns[BusinessDivision_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Error Output].Columns[BusinessDivision_ID]"
+                          name="BusinessDivision_ID" />
+                        <outputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Error Output].Columns[BusinessDivisionName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Error Output].Columns[BusinessDivisionName]"
+                          name="BusinessDivisionName" />
+                        <outputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="WFG BusinessDivision"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[DWH_BusinessDivision]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SQLAPP2List.WFGEN]"
+                      connectionManagerRefId="Package.ConnectionManagers[SQLAPP2List.WFGEN]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Inputs[OLE DB Destination Input].Columns[BusinessDivision_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="BusinessDivision_ID"
+                          externalMetadataColumnId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Inputs[OLE DB Destination Input].ExternalColumns[BusinessDivision_ID]"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Output].Columns[BusinessDivision_ID]" />
+                        <inputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Inputs[OLE DB Destination Input].Columns[BusinessDivisionName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="BusinessDivisionName"
+                          externalMetadataColumnId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Inputs[OLE DB Destination Input].ExternalColumns[BusinessDivisionName]"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Output].Columns[BusinessDivisionName]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Inputs[OLE DB Destination Input].ExternalColumns[BusinessDivision_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="BusinessDivision_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Inputs[OLE DB Destination Input].ExternalColumns[BusinessDivisionName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="BusinessDivisionName" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision.Paths[Data Conversion Output]"
+                  endId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision.Paths[Derived Column Output]"
+                  endId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision.Paths[OLE DB Source Output]"
+                  endId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD DWH_BusinessDivision\truncate DWH_BusinessDivision"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EB94D78B-FE65-4926-BA76-ADF0CE7E3638}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="truncate DWH_BusinessDivision"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{836AB13A-6AA3-4C98-BD3B-BA19210C577B}"
+              SQLTask:SqlStatementSource="truncate table DWH_BusinessDivision" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD DWH_BusinessDivision.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{88328C48-5D58-4FC6-9872-AC1A58328871}"
+          DTS:From="Package\LOAD DWH_BusinessDivision\truncate DWH_BusinessDivision"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{AF288C0E-9824-452C-A2EF-8C02C0382AB6}"
+      DTS:From="Package\LOAD DWH_BusinessDivision"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load DVLP" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{96CA92BE-4A5C-4202-96F2-B5D7CF2BEECF}"
+      DTS:From="Package\Load DVLP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{2BC1CC35-3173-43AF-A9A8-BD7B8F824233}"
+      DTS:From="Package\LOAD DWH_BusinessDivision"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Evento Correcto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="11.4716981132075,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="10.5283018867925,100.207547169811" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="79.3584905660377,52.3962264150944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.943396226415103,47.811320754717"
+              Start="0,0"
+              End="-0.943396226415103,40.311320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-0.943396226415103,23.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-0.943396226415103,40.311320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="159,157"
+          Size="159,201"
+          Id="Package\Evento Correcto"
+          TopLeft="305.443396226415,367.707547169811" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Load DVLP\load DWH_BusinessDivision"
+          TopLeft="49.5,97.5" />
+        <NodeLayout
+          Size="240,42"
+          Id="Package\Load DVLP\Truncate DWH_BusinessDivision"
+          TopLeft="36.5,6.5" />
+        <EdgeLayout
+          Id="Package\Load DVLP.PrecedenceConstraints[Constraint]"
+          TopLeft="155.25,48.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="310,192"
+          Size="310,235"
+          Id="Package\Load DVLP"
+          TopLeft="425,46" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision"
+          TopLeft="5.50000000000001,109.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD DWH_BusinessDivision\truncate DWH_BusinessDivision"
+          TopLeft="43.5,5.5" />
+        <EdgeLayout
+          Id="Package\LOAD DWH_BusinessDivision.PrecedenceConstraints[Constraint]"
+          TopLeft="111.5,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="223,206"
+          Size="223,250"
+          Id="Package\LOAD DWH_BusinessDivision"
+          TopLeft="126.5,45.3867924528302" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="349.5,166.943396226415">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="75.5,0"
+              Start="0,0"
+              End="68,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="68,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="580,281">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-169.889937106918,86.707547169811"
+              Start="0,0"
+              End="-169.889937106918,79.207547169811">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5062266500621" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,47.5062266500621"
+                    Point2="0,51.5062266500621"
+                    Point3="-4,51.5062266500621" />
+                  <mssgle:LineSegment
+                    End="-165.889937106918,51.5062266500621" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-165.889937106918,51.5062266500621"
+                    Point2="-169.889937106918,51.5062266500621"
+                    Point3="-169.889937106918,55.5062266500621" />
+                  <mssgle:LineSegment
+                    End="-169.889937106918,79.207547169811" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="238,295.38679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="121.776729559748,72.3207547169808"
+              Start="0,0"
+              End="121.776729559748,64.8207547169808">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.9601494396013" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.9601494396013"
+                    Point2="0,42.9601494396013"
+                    Point3="4,42.9601494396013" />
+                  <mssgle:LineSegment
+                    End="117.776729559748,42.9601494396013" />
+                  <mssgle:CubicBezierSegment
+                    Point1="117.776729559748,42.9601494396013"
+                    Point2="121.776729559748,42.9601494396013"
+                    Point3="121.776729559748,46.9601494396013" />
+                  <mssgle:LineSegment
+                    End="121.776729559748,64.8207547169808" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load DVLP\load DWH_BusinessDivision">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision"
+          TopLeft="45,15" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand"
+          TopLeft="29,134" />
+        <EdgeLayout
+          Id="Package\Load DVLP\load DWH_BusinessDivision.Paths[OLE DB Source Output]"
+          TopLeft="139.25,57">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,77"
+              Start="0,0"
+              End="0,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load DVLP\load DWH_BusinessDivision\DVLP sgm_catalogo_bd_brand">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load DVLP\load DWH_BusinessDivision\DWH_BusinessDivision">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="217,42"
+          Id="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID"
+          TopLeft="36,7" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Data Conversion"
+          TopLeft="75.5188679245283,172.367924528302" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\Derived Column"
+          TopLeft="63,86" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision"
+          TopLeft="47.5,277.216981132075" />
+        <EdgeLayout
+          Id="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision.Paths[Derived Column Output]"
+          TopLeft="141.759433962264,128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.367924528302"
+              Start="0,0"
+              End="0,36.867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision.Paths[Data Conversion Output]"
+          TopLeft="141.009433962264,216.367924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.849056603773"
+              Start="0,0"
+              End="0,53.349056603773">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.349056603773" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision.Paths[OLE DB Source Output]"
+          TopLeft="142.25,49">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\WFG BusinessDivision">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD DWH_BusinessDivision\Load DWH_BusinessDivision\INTXDW BusinessDivision_ID">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

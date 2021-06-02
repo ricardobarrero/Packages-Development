@@ -1,0 +1,2957 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/29/2010 3:27:02 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S0SQL2K8"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:Description="Sent Information to Trax database in Chile"
+  DTS:DTSID="{822C1CDA-0B40-41ED-AAC7-5D876AAA3A76}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="TRAX_TO_CHILE_AR"
+  DTS:VersionBuild="143"
+  DTS:VersionGUID="{B1909998-2D1E-4F3A-A337-AC5BEB8D7158}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F1016CE9-13F0-4BF4-A960-FEB263555B02}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-TRAX_TO_CHILE_AR-{F1016CE9-13F0-4BF4-A960-FEB263555B02}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5BB49B04-294D-463E-8D4B-7FBFC5E5FAEA}"
+      DTS:ObjectName="S91SQLUS.INTXDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=INTXDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-SENTAI_AP_TRANS_IN-{968487B2-E36A-46DC-8B01-7E8225FFABB4}S5SQLUS.INTXDW;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS_2.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B2DA1F70-2BAB-4BB7-8EDF-E6D2807D16A8}"
+      DTS:ObjectName="S91SQLUS_2.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SERVER.Chile]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{71238F12-E6B7-45AE-BAB4-23A521F0399F}"
+      DTS:ObjectName="SERVER.Chile">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=192.168.206.42;User ID=sa;Initial Catalog=XTE_Trax;Provider=SQLOLEDB.1;Auto Translate=False;Application Name=SSIS-ETL_TRAX_EXTRACTION_CHILE-{11588F77-8CB4-4341-BB95-CC9D0BCC8DC1}SERVER.Chile;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAvd78i7Q7tIxiZvil6PtHpAAAAAASAAACgAAAAEAAAAJwtQHMf9k99sK6QjyPzSgQgAAAApLDm5ghfuFV/iKx6hWeN5yAA9NYhdVqB37syhaWywcMUAAAA0DMx66g1ShCyCBzsDP/5DYLAfuU</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{12783BD3-5711-40B1-A9CF-7BB159C19448}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;SERVER.Chile&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{F7CF11FC-65F1-47C5-BB81-1027CE0AF99E}"
+      DTS:ObjectName="SERVER Chile" />
+  </DTS:Configurations>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="S91SQLUS.DWStaging"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{B5DE8492-C300-4049-A92B-C97ACC797438}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7A823A54-DDE2-48A2-99F3-2811CA402C33}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VInt_Ejecucion">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EFC3C220-B643-4345-A6EC-0361E151607F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VInt_TipoEjecucion">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4FF1FBBE-0895-412F-AD1D-7D2AEBED6A75}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8B3FF94F-2207-45F9-973F-B0305B1E3AF2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B815F26D-6010-4D52-B68E-0E6E3B1CDC79}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{48630B25-C8B6-4F40-8CF8-B4FC9A4D7EB5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">18,7,OnError,19,OnExecStatusChanged,13,OnInformation,25,OnPipelinePostEndOfRowset,25,OnPipelinePostPrimeOutput,24,OnPipelinePreEndOfRowset,24,OnPipelinePrePrimeOutput,18,OnPipelineRowsSent,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{B5DE8492-C300-4049-A92B-C97ACC797438}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CARGA AR TABLES"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DelayValidation="True"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{4AB3E63C-BF13-4C93-94C4-9232AB679CC3}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CARGA AR TABLES">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:DelayValidation="True"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{3D22424C-6E01-443E-BA12-5702787B711D}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="CARGA TRNS_SENTAI_QA_AR_TRAN">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:DTSID="{9528DC59-BD5D-45E4-9FD7-1488E358F37B}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="User"
+              DTS:ObjectName="VInt_RegistrosCargados">
+              <DTS:VariableValue
+                DTS:DataType="3">0</DTS:VariableValue>
+            </DTS:Variable>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:DTSID="{EA6F5E15-D842-4AD5-886C-3A9E02DD6DE4}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="User"
+              DTS:ObjectName="VInt_RegistrosLeidos">
+              <DTS:VariableValue
+                DTS:DataType="3">0</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:Description="trns_customer"
+              DTS:DTSID="{B6E7F886-2088-4953-A664-372493479814}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="CARGA SENTAI_QA_AR_TRAN"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:ObjectData>
+                <pipeline
+                  BLOBTempStoragePath=""
+                  bufferTempStoragePath=""
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion"
+                      componentClassID="Microsoft.DataConvert"
+                      contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                      description="Data Conversion"
+                      localeId="1033"
+                      name="Data Conversion"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Inputs[Data Conversion Input]"
+                          name="Data Conversion Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Inputs[Data Conversion Input].Columns[CompanyID]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="4"
+                              cachedName="CompanyID"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[CompanyID]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Inputs[Data Conversion Input].Columns[CurrencyID]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="3"
+                              cachedName="CurrencyID"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[CurrencyID]" />
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Outputs[Data Conversion Output]"
+                          exclusionGroup="1"
+                          name="Data Conversion Output"
+                          synchronousInputId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Inputs[Data Conversion Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Outputs[Data Conversion Output].Columns[CompanyID]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              length="4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Outputs[Data Conversion Output].Columns[CompanyID]"
+                              name="CompanyID"
+                              truncationRowDisposition="IgnoreFailure">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the input column used as the source of data for the conversion."
+                                  name="SourceInputColumnLineageID">#{Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[CompanyID]}</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Outputs[Data Conversion Output].Columns[CurrencyID]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              length="3"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Outputs[Data Conversion Output].Columns[CurrencyID]"
+                              name="CurrencyID"
+                              truncationRowDisposition="IgnoreFailure">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the input column used as the source of data for the conversion."
+                                  name="SourceInputColumnLineageID">#{Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[CurrencyID]}</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Outputs[Data Conversion Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Data Conversion Error Output"
+                          synchronousInputId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Inputs[Data Conversion Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Derived Column"
+                      componentClassID="Microsoft.DerivedColumn"
+                      contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                      description="Updates column values using expressions"
+                      localeId="1033"
+                      name="Derived Column"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Derived Column.Inputs[Derived Column Input]"
+                          description="Input to the Derived Column Transformation"
+                          name="Derived Column Input">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Derived Column.Outputs[Derived Column Output]"
+                          description="Default Output of the Derived Column Transformation"
+                          exclusionGroup="1"
+                          name="Derived Column Output"
+                          synchronousInputId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Derived Column.Inputs[Derived Column Input]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Derived Column.Outputs[Derived Column Error Output]"
+                          description="Error Output of the Derived Column Transformation"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Derived Column Error Output"
+                          synchronousInputId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Derived Column.Inputs[Derived Column Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS"
+                      componentClassID="Microsoft.OLEDBDestination"
+                      contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                      description="OLE DB Destination"
+                      name="DESTINO ARTRANS"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset">[dbo].[ARTrans]</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">3</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                          name="FastLoadOptions">CHECK_CONSTRAINTS,ROWS_PER_BATCH = 1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                          name="FastLoadMaxInsertCommitSize">0</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[SERVER.Chile]"
+                          connectionManagerRefId="Package.ConnectionManagers[SERVER.Chile]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input]"
+                          errorOrTruncationOperation="Insert"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="OLE DB Destination Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[ExchangeRate]"
+                              cachedDataType="numeric"
+                              cachedName="ExchangeRate"
+                              cachedPrecision="18"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[ExchangeRate]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[ExchangeRate]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[DIM_PK_COMPANY]"
+                              cachedDataType="ui1"
+                              cachedName="DIM_PK_COMPANY"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_COMPANY]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DIM_PK_COMPANY]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[DIM_PK_TIME]"
+                              cachedDataType="i4"
+                              cachedName="DIM_PK_TIME"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_TIME]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DIM_PK_TIME]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[DIM_PK_CUSTOMER]"
+                              cachedDataType="i4"
+                              cachedName="DIM_PK_CUSTOMER"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_CUSTOMER]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DIM_PK_CUSTOMER]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[DIM_PK_SALESPERSON]"
+                              cachedDataType="i4"
+                              cachedName="DIM_PK_SALESPERSON"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_SALESPERSON]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DIM_PK_SALESPERSON]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[TransCode]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="10"
+                              cachedName="TransCode"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[TransCode]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransCode]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[TransId]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="10"
+                              cachedName="TransId"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[TransId]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransId]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[TransNo]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="20"
+                              cachedName="TransNo"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[TransNo]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransNo]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[Transdate]"
+                              cachedDataType="dbTimeStamp"
+                              cachedName="Transdate"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[Transdate]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[Transdate]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[DueDate]"
+                              cachedDataType="dbTimeStamp"
+                              cachedName="DueDate"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[DueDate]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DueDate]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[CustomerID]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="CustomerID"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[CustomerID]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[SalesID]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="20"
+                              cachedName="SalesID"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[SalesID]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[SalesID]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[Balance]"
+                              cachedDataType="cy"
+                              cachedName="Balance"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[Balance]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[Balance]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[BalanceHomeAmount]"
+                              cachedDataType="cy"
+                              cachedName="BalanceHomeAmount"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[BalanceHomeAmount]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[BalanceHomeAmount]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[BalanceUS]"
+                              cachedDataType="cy"
+                              cachedName="BalanceUS"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[BalanceUS]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[BalanceUS]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[lastextraction]"
+                              cachedDataType="dbTimeStamp"
+                              cachedName="lastextraction"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[lastextraction]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[lastextraction]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[profitID]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="2"
+                              cachedName="profitID"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[profitID]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[profitID]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[CompanyID]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="4"
+                              cachedName="CompanyID"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Outputs[Data Conversion Output].Columns[CompanyID]" />
+                            <inputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].Columns[CurrencyID]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="3"
+                              cachedName="CurrencyID"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyID]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Outputs[Data Conversion Output].Columns[CurrencyID]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="4"
+                              name="CompanyID" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[ExchangeRate]"
+                              dataType="numeric"
+                              name="ExchangeRate"
+                              precision="18" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="3"
+                              name="CurrencyID" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_COMPANY]"
+                              dataType="ui1"
+                              name="DIM_PK_COMPANY" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_TIME]"
+                              dataType="i4"
+                              name="DIM_PK_TIME" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_CUSTOMER]"
+                              dataType="i4"
+                              name="DIM_PK_CUSTOMER" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_SALESPERSON]"
+                              dataType="i4"
+                              name="DIM_PK_SALESPERSON" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[TransCode]"
+                              codePage="1252"
+                              dataType="str"
+                              length="10"
+                              name="TransCode" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[TransId]"
+                              codePage="1252"
+                              dataType="str"
+                              length="10"
+                              name="TransId" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[TransNo]"
+                              codePage="1252"
+                              dataType="str"
+                              length="20"
+                              name="TransNo" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[Transdate]"
+                              dataType="dbTimeStamp"
+                              name="Transdate" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[DueDate]"
+                              dataType="dbTimeStamp"
+                              name="DueDate" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="CustomerID" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[SalesID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="20"
+                              name="SalesID" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[Balance]"
+                              dataType="cy"
+                              name="Balance" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[BalanceHomeAmount]"
+                              dataType="cy"
+                              name="BalanceHomeAmount" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[BalanceUS]"
+                              dataType="cy"
+                              name="BalanceUS" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[lastextraction]"
+                              dataType="dbTimeStamp"
+                              name="lastextraction" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input].ExternalColumns[profitID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="2"
+                              name="profitID" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Outputs[OLE DB Destination Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="OLE DB Destination Error Output"
+                          synchronousInputId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Cargados"
+                      componentClassID="Microsoft.RowCount"
+                      contactInfo="Row Count;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                      description="Counts the rows in a dataset."
+                      localeId="9226"
+                      name="Registros Cargados">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable to hold the row count."
+                          name="VariableName">User::VInt_RegistrosCargados</property>
+                      </properties>
+                      <inputs>
+                        <input
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Cargados.Inputs[Row Count Input 1]"
+                          hasSideEffects="true"
+                          name="Row Count Input 1">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Cargados.Outputs[Row Count Output 1]"
+                          name="Row Count Output 1"
+                          synchronousInputId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Cargados.Inputs[Row Count Input 1]">
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Leidos"
+                      componentClassID="Microsoft.RowCount"
+                      contactInfo="Row Count;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                      description="Counts the rows in a dataset."
+                      localeId="1033"
+                      name="Registros Leidos">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable to hold the row count."
+                          name="VariableName">User::VInt_RegistrosLeidos</property>
+                      </properties>
+                      <inputs>
+                        <input
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Leidos.Inputs[Row Count Input 1]"
+                          hasSideEffects="true"
+                          name="Row Count Input 1">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Leidos.Outputs[Row Count Output 1]"
+                          name="Row Count Output 1"
+                          synchronousInputId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Leidos.Inputs[Row Count Input 1]">
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS"
+                      componentClassID="Microsoft.OLEDBSource"
+                      contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                      description="OLE DB Source"
+                      name="SENTAI_QA_AR_TRANS"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset">[dbo].[SENTAI_PRODUCT]</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT *
+FROM [DWStaging].[dbo].[SENTAI_QA_AR_TRANS]
+WHERE companyid='XCL'</property>
+                        <property
+                          dataType="System.String"
+                          description="The variable that contains the SQL command to be executed."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">2</property>
+                        <property
+                          dataType="System.String"
+                          description="The mappings between the parameters in the SQL command and variables."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[S91SQLUS_2.DWStaging]"
+                          connectionManagerRefId="Package.ConnectionManagers[S91SQLUS_2.DWStaging]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output]"
+                          name="OLE DB Source Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[CompanyID]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[CompanyID]"
+                              length="4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[CompanyID]"
+                              name="CompanyID"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[ExchangeRate]"
+                              dataType="numeric"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[ExchangeRate]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[ExchangeRate]"
+                              name="ExchangeRate"
+                              precision="18"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[CurrencyID]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[CurrencyID]"
+                              length="3"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[CurrencyID]"
+                              name="CurrencyID"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DIM_PK_COMPANY]"
+                              dataType="ui1"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[DIM_PK_COMPANY]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DIM_PK_COMPANY]"
+                              name="DIM_PK_COMPANY"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DIM_PK_TIME]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[DIM_PK_TIME]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DIM_PK_TIME]"
+                              name="DIM_PK_TIME"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DIM_PK_CUSTOMER]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[DIM_PK_CUSTOMER]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DIM_PK_CUSTOMER]"
+                              name="DIM_PK_CUSTOMER"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DIM_PK_SALESPERSON]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[DIM_PK_SALESPERSON]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DIM_PK_SALESPERSON]"
+                              name="DIM_PK_SALESPERSON"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransCode]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransCode]"
+                              length="10"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransCode]"
+                              name="TransCode"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransId]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransId]"
+                              length="10"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransId]"
+                              name="TransId"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransNo]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransNo]"
+                              length="20"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransNo]"
+                              name="TransNo"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[Transdate]"
+                              dataType="dbTimeStamp"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[Transdate]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[Transdate]"
+                              name="Transdate"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DueDate]"
+                              dataType="dbTimeStamp"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[DueDate]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[DueDate]"
+                              name="DueDate"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                              length="50"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                              name="CustomerID"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[SalesID]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[SalesID]"
+                              length="20"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[SalesID]"
+                              name="SalesID"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[Balance]"
+                              dataType="cy"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[Balance]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[Balance]"
+                              name="Balance"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[BalanceHomeAmount]"
+                              dataType="cy"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[BalanceHomeAmount]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[BalanceHomeAmount]"
+                              name="BalanceHomeAmount"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[BalanceUS]"
+                              dataType="cy"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[BalanceUS]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[BalanceUS]"
+                              name="BalanceUS"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[lastextraction]"
+                              dataType="dbTimeStamp"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[lastextraction]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[lastextraction]"
+                              name="lastextraction"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[profitID]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[profitID]"
+                              length="2"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[profitID]"
+                              name="profitID"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[PrNo]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[PrNo]"
+                              length="20"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[PrNo]"
+                              name="PrNo"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[Prefix]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[Prefix]"
+                              length="10"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[Prefix]"
+                              name="Prefix"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[BalanceUSActual]"
+                              dataType="cy"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[BalanceUSActual]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[BalanceUSActual]"
+                              name="BalanceUSActual"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[Pseudo]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[Pseudo]"
+                              length="3"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[Pseudo]"
+                              name="Pseudo"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[Factored]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[Factored]"
+                              length="1"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[Factored]"
+                              name="Factored"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[FactorNo]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[FactorNo]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[FactorNo]"
+                              name="FactorNo"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[FactorDate]"
+                              dataType="dbDate"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[FactorDate]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[FactorDate]"
+                              name="FactorDate"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[BatchNo]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[BatchNo]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[BatchNo]"
+                              name="BatchNo"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransAmount]"
+                              dataType="cy"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransAmount]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransAmount]"
+                              name="TransAmount"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransHomeAmount]"
+                              dataType="cy"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransHomeAmount]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransHomeAmount]"
+                              name="TransHomeAmount"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransUSAmount]"
+                              dataType="cy"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransUSAmount]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransUSAmount]"
+                              name="TransUSAmount"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransExchangeRate]"
+                              dataType="cy"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransExchangeRate]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[TransExchangeRate]"
+                              name="TransExchangeRate"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[CurrentExchangeRate]"
+                              dataType="cy"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[CurrentExchangeRate]"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].Columns[CurrentExchangeRate]"
+                              name="CurrentExchangeRate"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[CompanyID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="4"
+                              name="CompanyID" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[ExchangeRate]"
+                              dataType="numeric"
+                              name="ExchangeRate"
+                              precision="18" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[CurrencyID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="3"
+                              name="CurrencyID" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[DIM_PK_COMPANY]"
+                              dataType="ui1"
+                              name="DIM_PK_COMPANY" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[DIM_PK_TIME]"
+                              dataType="i4"
+                              name="DIM_PK_TIME" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[DIM_PK_CUSTOMER]"
+                              dataType="i4"
+                              name="DIM_PK_CUSTOMER" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[DIM_PK_SALESPERSON]"
+                              dataType="i4"
+                              name="DIM_PK_SALESPERSON" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransCode]"
+                              codePage="1252"
+                              dataType="str"
+                              length="10"
+                              name="TransCode" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransId]"
+                              codePage="1252"
+                              dataType="str"
+                              length="10"
+                              name="TransId" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransNo]"
+                              codePage="1252"
+                              dataType="str"
+                              length="20"
+                              name="TransNo" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[Transdate]"
+                              dataType="dbTimeStamp"
+                              name="Transdate" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[DueDate]"
+                              dataType="dbTimeStamp"
+                              name="DueDate" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="CustomerID" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[SalesID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="20"
+                              name="SalesID" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[Balance]"
+                              dataType="cy"
+                              name="Balance" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[BalanceHomeAmount]"
+                              dataType="cy"
+                              name="BalanceHomeAmount" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[BalanceUS]"
+                              dataType="cy"
+                              name="BalanceUS" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[lastextraction]"
+                              dataType="dbTimeStamp"
+                              name="lastextraction" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[profitID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="2"
+                              name="profitID" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[PrNo]"
+                              codePage="1252"
+                              dataType="str"
+                              length="20"
+                              name="PrNo" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[Prefix]"
+                              codePage="1252"
+                              dataType="str"
+                              length="10"
+                              name="Prefix" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[BalanceUSActual]"
+                              dataType="cy"
+                              name="BalanceUSActual" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[Pseudo]"
+                              codePage="1252"
+                              dataType="str"
+                              length="3"
+                              name="Pseudo" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[Factored]"
+                              codePage="1252"
+                              dataType="str"
+                              length="1"
+                              name="Factored" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[FactorNo]"
+                              dataType="i4"
+                              name="FactorNo" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[FactorDate]"
+                              dataType="dbDate"
+                              name="FactorDate" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[BatchNo]"
+                              dataType="i4"
+                              name="BatchNo" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransAmount]"
+                              dataType="cy"
+                              name="TransAmount" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransHomeAmount]"
+                              dataType="cy"
+                              name="TransHomeAmount" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransUSAmount]"
+                              dataType="cy"
+                              name="TransUSAmount" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[TransExchangeRate]"
+                              dataType="cy"
+                              name="TransExchangeRate" />
+                            <externalMetadataColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output].ExternalColumns[CurrentExchangeRate]"
+                              dataType="cy"
+                              name="CurrentExchangeRate" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output]"
+                          isErrorOut="true"
+                          name="OLE DB Source Error Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[DIM_PK_COMPANY]"
+                              dataType="ui1"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[DIM_PK_COMPANY]"
+                              name="DIM_PK_COMPANY" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[DIM_PK_TIME]"
+                              dataType="i4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[DIM_PK_TIME]"
+                              name="DIM_PK_TIME" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[DIM_PK_CUSTOMER]"
+                              dataType="i4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[DIM_PK_CUSTOMER]"
+                              name="DIM_PK_CUSTOMER" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[DIM_PK_SALESPERSON]"
+                              dataType="i4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[DIM_PK_SALESPERSON]"
+                              name="DIM_PK_SALESPERSON" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[CompanyID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[CompanyID]"
+                              name="CompanyID" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransCode]"
+                              codePage="1252"
+                              dataType="str"
+                              length="10"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransCode]"
+                              name="TransCode" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransId]"
+                              codePage="1252"
+                              dataType="str"
+                              length="10"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransId]"
+                              name="TransId" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransNo]"
+                              codePage="1252"
+                              dataType="str"
+                              length="20"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransNo]"
+                              name="TransNo" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[Transdate]"
+                              dataType="dbTimeStamp"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[Transdate]"
+                              name="Transdate" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[DueDate]"
+                              dataType="dbTimeStamp"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[DueDate]"
+                              name="DueDate" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                              name="CustomerID" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[SalesID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="20"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[SalesID]"
+                              name="SalesID" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[Balance]"
+                              dataType="cy"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[Balance]"
+                              name="Balance" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[BalanceHomeAmount]"
+                              dataType="cy"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[BalanceHomeAmount]"
+                              name="BalanceHomeAmount" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[BalanceUS]"
+                              dataType="cy"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[BalanceUS]"
+                              name="BalanceUS" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[ExchangeRate]"
+                              dataType="numeric"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[ExchangeRate]"
+                              name="ExchangeRate"
+                              precision="18" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[CurrencyID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="3"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[CurrencyID]"
+                              name="CurrencyID" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[lastextraction]"
+                              dataType="dbTimeStamp"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[lastextraction]"
+                              name="lastextraction" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[profitID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="2"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[profitID]"
+                              name="profitID" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[PrNo]"
+                              codePage="1252"
+                              dataType="str"
+                              length="20"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[PrNo]"
+                              name="PrNo" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[Prefix]"
+                              codePage="1252"
+                              dataType="str"
+                              length="10"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[Prefix]"
+                              name="Prefix" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[BalanceUSActual]"
+                              dataType="cy"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[BalanceUSActual]"
+                              name="BalanceUSActual" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[Pseudo]"
+                              codePage="1252"
+                              dataType="str"
+                              length="3"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[Pseudo]"
+                              name="Pseudo" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[Factored]"
+                              codePage="1252"
+                              dataType="str"
+                              length="1"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[Factored]"
+                              name="Factored" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[FactorNo]"
+                              dataType="i4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[FactorNo]"
+                              name="FactorNo" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[FactorDate]"
+                              dataType="dbDate"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[FactorDate]"
+                              name="FactorDate" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[BatchNo]"
+                              dataType="i4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[BatchNo]"
+                              name="BatchNo" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransAmount]"
+                              dataType="cy"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransAmount]"
+                              name="TransAmount" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransHomeAmount]"
+                              dataType="cy"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransHomeAmount]"
+                              name="TransHomeAmount" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransUSAmount]"
+                              dataType="cy"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransUSAmount]"
+                              name="TransUSAmount" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransExchangeRate]"
+                              dataType="cy"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[TransExchangeRate]"
+                              name="TransExchangeRate" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[CurrentExchangeRate]"
+                              dataType="cy"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[CurrentExchangeRate]"
+                              name="CurrentExchangeRate" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN.Paths[Data Conversion Output]"
+                      endId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Cargados.Inputs[Row Count Input 1]"
+                      name="Data Conversion Output"
+                      startId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Outputs[Data Conversion Output]" />
+                    <path
+                      refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN.Paths[Derived Column Output]"
+                      endId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Derived Column Output"
+                      startId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Derived Column.Outputs[Derived Column Output]" />
+                    <path
+                      refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN.Paths[OLE DB Source Output]"
+                      endId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Leidos.Inputs[Row Count Input 1]"
+                      name="OLE DB Source Output"
+                      startId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS.Outputs[OLE DB Source Output]" />
+                    <path
+                      refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN.Paths[Row Count Output 1]"
+                      endId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Derived Column.Inputs[Derived Column Input]"
+                      name="Row Count Output 1"
+                      startId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Leidos.Outputs[Row Count Output 1]" />
+                    <path
+                      refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN.Paths[Row Count Output 11]"
+                      endId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS.Inputs[OLE DB Destination Input]"
+                      name="Row Count Output 1"
+                      startId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Cargados.Outputs[Row Count Output 1]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\Tarea Registros"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{74804FD3-BBD3-41F8-8A15-17D42C5FFFFC}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tarea Registros"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Tarea Registros"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Insert Into ETL.Control_Registros 
+Values ('"+@[System::PackageName]+"','CHILE ARTRANS', 'Sentai_Qa_Ar_Tran',?,?,GETDATE())"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{B2DA1F70-2BAB-4BB7-8EDF-E6D2807D16A8}"
+                  SQLTask:SqlStatementSource="Insert Into ETL.Control_Registros &#xA;Values ('TRAX_TO_CHILE_AR','CHILE ARTRANS', 'Sentai_Qa_Ar_Tran',?,?,GETDATE())" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::VInt_RegistrosLeidos"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::VInt_RegistrosCargados"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{0957DD18-6E9D-4C7C-8EC8-798CC4AF7510}"
+              DTS:From="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\Tarea Registros" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\CARGA AR TABLES\TRUNCA TABLES TANSACTION"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Delete Tables III"
+          DTS:DTSID="{EEF474A3-9513-4769-9EE6-6F0F48C4BF02}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCA TABLES TANSACTION"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{71238F12-E6B7-45AE-BAB4-23A521F0399F}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE ARTRANS&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\CARGA AR TABLES.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{F3345D05-50DC-4735-8A7F-B5C53640C63E}"
+          DTS:From="Package\CARGA AR TABLES\TRUNCA TABLES TANSACTION"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Control Ejecucion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{E855B920-240E-4B79-AA92-6BE999F70C91}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Control Ejecucion"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Control Ejecucion"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">" Declare @Ejecucion int  IF (Select Ejecucion From ETL.Log_Ejecucion where Paquete = '"+@[System::PackageName]+"')= 0 Set @Ejecucion=1 Else  Set @Ejecucion=0 select @ejecucion"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B2DA1F70-2BAB-4BB7-8EDF-E6D2807D16A8}"
+          SQLTask:SqlStatementSource=" Declare @Ejecucion int  IF (Select Ejecucion From ETL.Log_Ejecucion where Paquete = 'TRAX_TO_CHILE_AR')= 0 Set @Ejecucion=1 Else  Set @Ejecucion=0 select @ejecucion"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::VInt_Ejecucion" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{5906A075-D3CE-4D66-9DE6-C5F866D1ED18}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5ADD7954-430D-43E3-8E67-EB4A16EC45EB}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B2DA1F70-2BAB-4BB7-8EDF-E6D2807D16A8}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete TRAX_TO_CHILE_AR  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{04593AF8-684F-448A-956D-096CEE621FA1}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject]  + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{12783BD3-5711-40B1-A9CF-7BB159C19448}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :TRAX_TO_CHILE_AR" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{1C405FA3-518A-4629-8502-0B5B2539A851}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Resetear Variables Proceso"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{6C188E7A-7B86-47A7-B6CE-FE2582EC58FD}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Resetear Variables Proceso">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Resetear Variables Proceso"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Resetear Variables Proceso\Tarea Reset Ejecucion TRAX_TO_CHILE_AR"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5C347C8A-E975-480A-8D73-2B5900008432}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Reset Ejecucion TRAX_TO_CHILE_AR"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Tarea Reset Ejecucion "+ @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B2DA1F70-2BAB-4BB7-8EDF-E6D2807D16A8}"
+              SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Evento Correcto"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{70ACF47F-D9EF-475A-8680-16DFE9630125}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Evento Correcto"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Tarea Evento Correcto"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Correcto','Ejecucion Correcta')"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B2DA1F70-2BAB-4BB7-8EDF-E6D2807D16A8}"
+          SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;&#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Correcto','Ejecucion Correcta')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Inicio TRAX_TO_CHILE_AR"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{E2298C8A-55AE-496C-A1A6-949A526C6ACF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Inicio TRAX_TO_CHILE_AR"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Tarea Inicio "+ @[System::PackageName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 1, Fecha_inicio = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B2DA1F70-2BAB-4BB7-8EDF-E6D2807D16A8}"
+          SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 1, Fecha_inicio = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{432CB875-4468-4E9B-B76D-7DA4B6D81F72}"
+      DTS:From="Package\Control Ejecucion"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Tarea Inicio TRAX_TO_CHILE_AR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{316AF93E-3B74-4913-B394-63E626C57D22}"
+      DTS:From="Package\CARGA AR TABLES"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Resetear Variables Proceso" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{93BCD2CE-7634-4AC2-90F7-1CEF87449425}"
+      DTS:From="Package\Tarea Evento Correcto"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2 1"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6D02F53A-C2F9-4771-82B1-7860EBF21497}"
+      DTS:From="Package\Resetear Variables Proceso"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3 1"
+      DTS:To="Package\Tarea Evento Correcto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{04DF1247-A607-4AEF-9325-B0AF312E896A}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{37B737AE-BBD7-4EA2-B5B1-6D88B3410D1A}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Evento Error"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{AA6494B3-39E7-4A59-A2E2-E94FD5CF7F0C}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Evento Error">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Evento Error"</DTS:PropertyExpression>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{6584C0A2-263E-4C4E-A401-AB120309AC52}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{B2DA1F70-2BAB-4BB7-8EDF-E6D2807D16A8}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error\Send Mail Task"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{45C05673-5EB3-43CE-9B09-39DD5D6AAC06}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send Mail Task"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError] + @[System::PackageName] </DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{12783BD3-5711-40B1-A9CF-7BB159C19448}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :TRAX_TO_CHILE_AR" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{D6B99154-2E9E-4839-B29E-E9AE771CFB9F}"
+              DTS:From="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Evento Error\Send Mail Task" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Proceso Control Errores"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{8701080E-6AF1-477C-BA27-A3D1627F2122}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Proceso Control Errores">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Proceso Control Errores"</DTS:PropertyExpression>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Proceso Control Errores\Tarea Evento Fallo"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{17735195-038F-43A7-9461-00025CA7DA97}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tarea Evento Fallo"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Tarea Evento Fallo"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{B2DA1F70-2BAB-4BB7-8EDF-E6D2807D16A8}"
+                  SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Proceso Control Errores\Tarea Reset Ejecucion TRAX_TO_CHILE_AR"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{451112B2-8E5D-41D3-84F3-78EEAA7FB84A}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tarea Reset Ejecucion TRAX_TO_CHILE_AR"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Tarea Reset Ejecucion "+ @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{B2DA1F70-2BAB-4BB7-8EDF-E6D2807D16A8}"
+                  SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Proceso Control Errores.PrecedenceConstraints[Restricción]"
+              DTS:CreationName=""
+              DTS:DTSID="{BCCD7936-3841-42D4-B2A2-A7440F1E28D8}"
+              DTS:From="Package.EventHandlers[OnError]\Proceso Control Errores\Tarea Reset Ejecucion TRAX_TO_CHILE_AR"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Restricción"
+              DTS:To="Package.EventHandlers[OnError]\Proceso Control Errores\Tarea Evento Fallo" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{A65A4ABE-A0C9-4A8F-A484-AE2391A4EBD4}"
+          DTS:From="Package.EventHandlers[OnError]\Proceso Control Errores"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Evento Error" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="166,44"
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN"
+          TopLeft="5.50000000000001,5.5" />
+        <NodeLayout
+          Size="159,44"
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\Tarea Registros"
+          TopLeft="9.00000000000001,109.5" />
+        <EdgeLayout
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN.PrecedenceConstraints[Constraint]"
+          TopLeft="88.5,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="44"
+          IsExpanded="True"
+          PanelSize="177,208"
+          Size="177,252"
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN"
+          TopLeft="27,109.5" />
+        <NodeLayout
+          Size="220,44"
+          Id="Package\CARGA AR TABLES\TRUNCA TABLES TANSACTION"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\CARGA AR TABLES.PrecedenceConstraints[Constraint]"
+          TopLeft="115.5,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="44"
+          IsExpanded="False"
+          PanelSize="231,416"
+          Size="191,44"
+          Id="Package\CARGA AR TABLES"
+          TopLeft="36.5,23.5" />
+        <NodeLayout
+          Size="199,44"
+          Id="Package\Control Ejecucion"
+          TopLeft="616,44.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="34.5283018867924,8.47169811320755" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="36.9433962264151,82.5471698113207" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="{x:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <x:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="62"
+          IsExpanded="True"
+          PanelSize="227,147"
+          Size="227,209"
+          Id="Package\Evento Correcto"
+          TopLeft="49,348.5" />
+        <NodeLayout
+          Size="155.773584905661,43.9245283018868"
+          Id="Package\Resetear Variables Proceso\Tarea Reset Ejecucion TRAX_TO_CHILE_AR"
+          TopLeft="32.4905660377358,8.47169811320755" />
+        <ContainerLayout
+          HeaderHeight="44"
+          IsExpanded="False"
+          PanelSize="211,59.0188679245283"
+          Size="211,44"
+          Id="Package\Resetear Variables Proceso"
+          TopLeft="50,157.5" />
+        <NodeLayout
+          Size="215,44"
+          Id="Package\Tarea Evento Correcto"
+          TopLeft="51.0000000000001,259.5" />
+        <NodeLayout
+          Size="199,44"
+          Id="Package\Tarea Inicio TRAX_TO_CHILE_AR"
+          TopLeft="616,148.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="715.5,88.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="132,67.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="23.5,90"
+              Start="0,0"
+              End="23.5,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41"
+                    Point2="0,45"
+                    Point3="4,45" />
+                  <mssgle:LineSegment
+                    End="19.5,45" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.5,45"
+                    Point2="23.5,45"
+                    Point3="23.5,49" />
+                  <mssgle:LineSegment
+                    End="23.5,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2 1]"
+          TopLeft="160.5,303.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3 1]"
+          TopLeft="157,201.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+          TopLeft="58.4528301886792,18.9622641509434" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Evento Error\Send Mail Task"
+          TopLeft="60,83.3773584905661" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="{x:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <x:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="False"
+          PanelSize="257.169811320755,172.33962264151"
+          Size="236.188679245284,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Evento Error"
+          TopLeft="9.08490566037736,96.3679245283019" />
+        <NodeLayout
+          Size="168.716981132076,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Proceso Control Errores\Tarea Evento Fallo"
+          TopLeft="88.4150943396226,127.301886792453" />
+        <NodeLayout
+          Size="170.716981132076,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Proceso Control Errores\Tarea Reset Ejecucion TRAX_TO_CHILE_AR"
+          TopLeft="84.9433962264151,40.4339622641509" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Proceso Control Errores.PrecedenceConstraints[Restricción]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="{x:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <x:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="False"
+          PanelSize="321.094339622642,201.773584905661"
+          Size="243.207547169812,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Proceso Control Errores"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="127.084905660377,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.0754716981132049,46.9433962264151"
+              Start="0,0"
+              End="0.0754716981132049,39.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.4716981132076" />
+                  <mssgle:LineSegment
+                    End="0.0754716981132049,23.4716981132076" />
+                  <mssgle:LineSegment
+                    End="0.0754716981132049,39.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Derived Column"
+          TopLeft="5.5,168.820754716981" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Leidos"
+          TopLeft="5.5,87.1603773584906" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Registros Cargados"
+          TopLeft="5.5,332.141509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS"
+          TopLeft="5.5,413.801886792453" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\Data Conversion"
+          TopLeft="5.5,250.481132075472" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN.Paths[Row Count Output 11]"
+          TopLeft="73.3867924528302,376.066037735849">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN.Paths[Row Count Output 1]"
+          TopLeft="73.3867924528302,131.084905660377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN.Paths[Derived Column Output]"
+          TopLeft="73.3867924528302,212.745283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7358490566037"
+              Start="0,0"
+              End="0,30.2358490566037">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566037" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN.Paths[Data Conversion Output]"
+          TopLeft="73.3867924528302,294.405660377359">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7358490566037"
+              Start="0,0"
+              End="0,30.2358490566037">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566037" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\DESTINO ARTRANS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA AR TABLES\CARGA TRNS_SENTAI_QA_AR_TRAN\CARGA SENTAI_QA_AR_TRAN\SENTAI_QA_AR_TRANS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

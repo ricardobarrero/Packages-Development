@@ -1,0 +1,2917 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/8/2013 5:09:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{6BE13B3C-A367-42CF-B26B-703B16F493D8}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CRM - 104 - Territory"
+  DTS:PackageType="5"
+  DTS:VersionBuild="149"
+  DTS:VersionGUID="{4BE58B3E-DCAA-4B07-ADA9-984C49F90FF9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{60765EA5-12DA-4105-B796-FAEC3A0A1693}"
+      DTS:ObjectName="s2crmdb.CRMStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdb;Initial Catalog=CRMStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-CRM - 104 - Territory-{60765EA5-12DA-4105-B796-FAEC3A0A1693}s2crmdb.CRMStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D09D5B2C-D885-40C8-8E92-6656B0B61A27}"
+      DTS:ObjectName="s2crmdvlp.CRMStaging.ETLUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdvlp;Initial Catalog=CRMStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D0C64F23-2D67-445A-B2AB-C200D2D263D7}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{D0C64F23-2D67-445A-B2AB-C200D2D263D7}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{F1AAD30C-BE18-4563-A1FC-2EE4B1C518B2}"
+      DTS:ObjectName="Sentai_Replica.bodts">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=bodts;Dsn=Sentai_Replica;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB3sQ43OgYYPhWY8hTN/nyVAAAAAASAAACgAAAAEAAAAOYfHaESP/cAgEJ0y7CxuI8YAAAAyQ3LA0/g174COC+8bnhhSUaBbnI2DMlOFAAAAKljfQO3QY2BRT9eAlCbqcxTfwE+</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{C2C47D16-9A8B-4B73-AACB-956D1981B367}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;S2CRMDB.ETLUser&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{7EC126E5-5307-47FB-92BE-2C7218D667E9}"
+      DTS:ObjectName="S2CRMDB ETLUser" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;Sentai_Replica.bodts&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{2D1685DF-3282-47DB-B62B-86639DBF3F86}"
+      DTS:ObjectName="Sentai_Replica bodts" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C5E861BB-E0F5-410F-9812-82CDCA551558}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DB318CD3-3DC6-42C8-855A-E226E8312109}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9A0B641D-914C-4E90-8C65-6C925C901F75}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{082DBB82-7420-49D0-A049-FF57DC3A86DC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{8F39896F-8ACD-46A5-B397-BFD077A13862}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">12,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnExecStatusChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnInformation"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnProgress"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnQueryCancel"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnTaskFailed"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnVariableValueChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnWarning"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{686A65FE-0287-4F4D-9C6F-D7FBB48C324E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="1">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">13,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,24,ExecuteSQLExecutingQuery</DTS:Property>
+            <DTS:Property
+              DTS:EventName="ExecuteSQLExecutingQuery"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnExecStatusChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnInformation"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnProgress"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnQueryCancel"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnTaskFailed"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnVariableValueChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnWarning"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D0C64F23-2D67-445A-B2AB-C200D2D263D7}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete CRM - 104 - Territory  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{80FAE55C-3618-4C37-9742-3307974CD398}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="1">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">15,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,17,SendMailTaskBegin,15,SendMailTaskEnd,16,SendMailTaskInfo</DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnExecStatusChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnInformation"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnProgress"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnQueryCancel"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnTaskFailed"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnVariableValueChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnWarning"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskBegin"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskEnd"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskInfo"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{C2C47D16-9A8B-4B73-AACB-956D1981B367}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :CRM - 104 - Territory" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{40941CA1-E89B-49BD-A462-094593E3456B}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load_Territory_from_Trax PRO"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{34C1B29E-4026-4FEC-A5BC-EADE2A5F9E3F}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load_Territory_from_Trax PRO">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load_Territory_from_Trax PRO\Failed Territory ControlTable"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Update Customer ControlTable"
+          DTS:DTSID="{B74F05EB-4200-47F5-85E3-225137000083}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Failed Territory ControlTable"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{60765EA5-12DA-4105-B796-FAEC3A0A1693}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 0,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Territory" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{42B70F18-1380-49E7-B656-045C728492C2}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Territory Trax"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="CRMStaging Territory"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Territory]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[Copy of Description]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="71"
+                          cachedName="Copy of Description"
+                          externalMetadataColumnId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Description]" />
+                        <inputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[Copy of Terr-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Copy of Terr-ID"
+                          externalMetadataColumnId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[Terr_ID]"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Terr-ID]" />
+                        <inputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[Copy of EIS-Desc]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="Copy of EIS-Desc"
+                          externalMetadataColumnId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[EIS_Desc]"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of EIS-Desc]" />
+                        <inputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[Copy of SSC-UDF-1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="Copy of SSC-UDF-1"
+                          externalMetadataColumnId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[SSC_UDF_1]"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of SSC-UDF-1]" />
+                        <inputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[Copy of SSC-UDF-2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="Copy of SSC-UDF-2"
+                          externalMetadataColumnId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[SSC_UDF_2]"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of SSC-UDF-2]" />
+                        <inputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[Terr_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Terr_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="EIS_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[SSC_UDF_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SSC_UDF_1" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[SSC_UDF_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SSC_UDF_2" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="CompanyID" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Inputs[Data Conversion Input].Columns[Description]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="Description"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Inputs[Data Conversion Input].Columns[Terr-ID]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="Terr-ID"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[Terr-ID]" />
+                        <inputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Inputs[Data Conversion Input].Columns[EIS-Desc]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="EIS-Desc"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[EIS-Desc]" />
+                        <inputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Inputs[Data Conversion Input].Columns[SSC-UDF-1]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="SSC-UDF-1"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[SSC-UDF-1]" />
+                        <inputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Inputs[Data Conversion Input].Columns[SSC-UDF-2]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="SSC-UDF-2"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[SSC-UDF-2]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Description]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="71"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Description]"
+                          name="Copy of Description"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[Description]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Terr-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="8"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Terr-ID]"
+                          name="Copy of Terr-ID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[Terr-ID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of EIS-Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="40"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of EIS-Desc]"
+                          name="Copy of EIS-Desc"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[EIS-Desc]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of SSC-UDF-1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="40"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of SSC-UDF-1]"
+                          name="Copy of SSC-UDF-1"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[SSC-UDF-1]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of SSC-UDF-2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="40"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of SSC-UDF-2]"
+                          name="Copy of SSC-UDF-2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[SSC-UDF-2]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Inputs[Derived Column Input].Columns[Copy of Terr-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Copy of Terr-ID"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Terr-ID]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[LOWER](#{Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Terr-ID]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">LOWER([Copy of Terr-ID])</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Extracts data from a relational database by using a .NET provider."
+                  name="Territory TRAX"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select
+"Machine-ID",
+UPPER("Cust-ID") as "CustID",
+"Name",
+"Legal-name",
+"Search-name",
+address[1] + ' ' + address[2]  + ' ' + address[3]  + ' ' + address[4]  + ' ' + address[5]  as "Address",
+PRO_ELEMENT("Address",1,1) as Address1,
+PRO_ELEMENT("Address",2,2) as Address2 ,
+PRO_ELEMENT("Address",3,3)  as Address3,
+PRO_ELEMENT("Address",4,4) as Address4,
+PRO_ELEMENT("Address",5,5)  as Address5,
+"City", 
+"Prov-ID" ,
+"Postal-code",
+"Country-ID", 
+"Telephone", 
+"FAX", 
+"Report-code",
+"Status-code", 
+"Term-ID", 
+"Tax-group-ID",
+"Carrier-ID", 
+"Terr-ID", 
+"Stmt-freq", 
+"Credit-limit",
+"Min-charge",
+"Grace-days" ,
+"Cred-rating", 
+"Interest-ID", 
+"Stmt-type", 
+"Ship-charge", 
+"Charge-cust", 
+"Mail-cust", 
+"Entity-list", 
+"Priority",
+"Comm-ID", 
+"Create-date",
+"Currency-ID",
+"Currency-vals" ,
+"AR-gl",
+"Tax-reg-no", 
+"Non-maintained",
+substring("SIC-code",1,16) as "SIC-Code", 
+"Level-ID", 
+"Phrase-ID", 
+"Cash",
+"On-hold",
+"Oper-ID", 
+"Review-code", 
+upper("Sales-vals") as "Sales-vals", 
+"Lang-ID", 
+"Perform-code", 
+"TZ-ID", 
+"UDF-1", 
+"UDF-2", 
+"EIS-Desc",
+"Ins-comp-name", 
+"Policy-no", 
+"Expiry-date",
+"SSC-UDF-1", 
+"SSC-UDF-2", 
+"E-mail", 
+"FOB-ID", 
+"Phone-2", 
+"Cellular", 
+"Pager", 
+"Web-site",
+"Ch-comm-reg-no", 
+"Ch-comm-city", 
+"Prof-ID", 
+"Require-PO",
+"Accept-BO",
+"In-forecast" ,
+"DUNS_number" ,
+"Warehouse-pick",
+"Auto-fax" ,
+"Loc-ID", 
+"Wave-ID", 
+"SDQ-ship", 
+"SDQ-invoice", 
+"WMS-print",
+"Contact-Name",
+"Contact-Title",
+"Updated-On",
+"Carrier-List",
+"cr-status-id",
+"credit-hold",
+"submit-stmt",
+"crm-entity-ID",
+"crm-group-ID",
+"submit-doc",
+"CRM-reference"
+FROM "PUB"."customer"
+WHERE "Cust-ID" not like 'XAR%'
+and "Cust-ID" not like 'XGB%'
+and "Cust-ID" not like 'XCB%'
+and "Cust-ID" not like 'A%'
+and "Cust-ID" not like 'XHS%'
+and "Cust-ID" not like 'XCT%'</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"PUB"."territory"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      connectionManagerRefId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[Terr-ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].ExternalColumns[Terr-ID]"
+                          length="8"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[Terr-ID]"
+                          name="Terr-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[Description]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          length="40"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[EIS-Desc]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].ExternalColumns[EIS-Desc]"
+                          length="40"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[EIS-Desc]"
+                          name="EIS-Desc"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[SSC-UDF-1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].ExternalColumns[SSC-UDF-1]"
+                          length="40"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[SSC-UDF-1]"
+                          name="SSC-UDF-1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[SSC-UDF-2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].ExternalColumns[SSC-UDF-2]"
+                          length="40"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].Columns[SSC-UDF-2]"
+                          name="SSC-UDF-2"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].ExternalColumns[Terr-ID]"
+                          dataType="wstr"
+                          length="8"
+                          name="Terr-ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].ExternalColumns[EIS-Desc]"
+                          dataType="wstr"
+                          length="40"
+                          name="EIS-Desc" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].ExternalColumns[SSC-UDF-1]"
+                          dataType="wstr"
+                          length="40"
+                          name="SSC-UDF-1" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output].ExternalColumns[SSC-UDF-2]"
+                          dataType="wstr"
+                          length="40"
+                          name="SSC-UDF-2" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[Terr-ID]"
+                          dataType="wstr"
+                          length="8"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[Terr-ID]"
+                          name="Terr-ID" />
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[EIS-Desc]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[EIS-Desc]"
+                          name="EIS-Desc" />
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[SSC-UDF-1]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[SSC-UDF-1]"
+                          name="SSC-UDF-1" />
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[SSC-UDF-2]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[SSC-UDF-2]"
+                          name="SSC-UDF-2" />
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax.Paths[ADO NET Source Output]"
+                  endId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Inputs[Data Conversion Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX.Outputs[ADO NET Source Output]" />
+                <path
+                  refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax.Paths[Data Conversion Output]"
+                  endId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Inputs[Derived Column Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Load_Territory_from_Trax PRO\Load Territory Trax.Paths[Derived Column Output]"
+                  endId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column.Outputs[Derived Column Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Territory_from_Trax PRO\Truncate Table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EA544DB7-39F3-4043-9AA2-BA2AA68B3044}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{60765EA5-12DA-4105-B796-FAEC3A0A1693}"
+              SQLTask:SqlStatementSource="use CRMStaging&#xA;go&#xA;&#xA;Truncate Table dbo.Territory;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Territory_from_Trax PRO\update CompanyID"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1F60F7EB-154D-4404-BD60-BC9BA507902A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="update CompanyID"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{60765EA5-12DA-4105-B796-FAEC3A0A1693}"
+              SQLTask:SqlStatementSource="--- UPDATE COMPANYID &#xA;UPDATE A SET &#xA;COMPANYID=(CASE &#xA;WHEN [Terr_ID] LIKE 'CO%' THEN  'XCO'&#xA;WHEN [Terr_ID] LIKE 'SV%' THEN  'XSV'&#xA;WHEN [Terr_ID] LIKE 'GT%' THEN  'XGT'&#xA;WHEN [Terr_ID] LIKE 'CR%' THEN  'XCR'&#xA;WHEN [Terr_ID] LIKE 'JM%' THEN  'XJM'&#xA;WHEN [Terr_ID] LIKE 'UY%' THEN  'XUY'&#xA;WHEN [Terr_ID] LIKE 'EC%' THEN  'XEC'&#xA;WHEN [Terr_ID] LIKE 'PE%' THEN  'XPE'&#xA;WHEN [Terr_ID] LIKE 'CL%' THEN  'XCL'&#xA;WHEN [Terr_ID] LIKE 'MX%' THEN  'XMX'&#xA;WHEN [Terr_ID] LIKE 'CB%' THEN  'XCB'&#xA;WHEN [Terr_ID] LIKE 'IQ%' THEN  'XIQ'&#xA;WHEN [Terr_ID] LIKE 'BO%' THEN  'XBO'&#xA;WHEN [Terr_ID] LIKE 'PA%' THEN  'XPA'&#xA;WHEN [Terr_ID] LIKE 'US%' THEN  'XUS'&#xA;WHEN [Terr_ID] LIKE 'HN%' THEN  'XHN'&#xA;WHEN [Terr_ID] LIKE 'NI%' THEN  'XNI'&#xA;END)&#xA;FROM Territory A&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Territory_from_Trax PRO\Update Territory ControlTable"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Update Customer ControlTable"
+          DTS:DTSID="{2B7758F4-33A7-48D7-A0A7-CDD9B82E4984}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Territory ControlTable"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{60765EA5-12DA-4105-B796-FAEC3A0A1693}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 1,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Territory'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Territory_from_Trax PRO.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{E2F27E6A-AE5A-4004-8E3A-496222600A9F}"
+          DTS:From="Package\Load_Territory_from_Trax PRO\Truncate Table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load_Territory_from_Trax PRO\Load Territory Trax" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Territory_from_Trax PRO.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{7CC2D25E-7708-4EEC-84DE-025E849F2ED8}"
+          DTS:From="Package\Load_Territory_from_Trax PRO\Load Territory Trax"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load_Territory_from_Trax PRO\Update Territory ControlTable" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Territory_from_Trax PRO.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{E98AEBF0-851B-406D-8C4E-09BA7A1CC182}"
+          DTS:From="Package\Load_Territory_from_Trax PRO\Load Territory Trax"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Load_Territory_from_Trax PRO\Failed Territory ControlTable"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Territory_from_Trax PRO.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{7D706121-E54F-4729-AA59-3EE0CB315E05}"
+          DTS:From="Package\Load_Territory_from_Trax PRO\Load Territory Trax"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Load_Territory_from_Trax PRO\update CompanyID" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Territory DEV"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{13FBCDBD-CE27-4EE6-8666-C39CBFCECA12}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Territory DEV">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Territory DEV\Load Table Territory DEV"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{70DB6F51-C27D-471F-B741-95410AE2021F}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Table Territory DEV"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Territory CRMStaging DEV"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Territory]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[Description]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[Terr_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Terr_ID"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Terr_ID]"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Terr_ID]" />
+                        <inputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[EIS_Desc]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="EIS_Desc"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[EIS_Desc]"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[EIS_Desc]" />
+                        <inputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[SSC_UDF_1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SSC_UDF_1"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[SSC_UDF_1]"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[SSC_UDF_1]" />
+                        <inputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[SSC_UDF_2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SSC_UDF_2"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[SSC_UDF_2]"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[SSC_UDF_2]" />
+                        <inputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[CompanyID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="CompanyID"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[CompanyID]" />
+                        <inputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[LastExtraction]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Terr_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Terr_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="EIS_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[SSC_UDF_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="SSC_UDF_1" />
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[SSC_UDF_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="SSC_UDF_2" />
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="CompanyID" />
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Territory CRMStaging PRO"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Territory]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          length="50"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Terr_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Terr_ID]"
+                          length="50"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Terr_ID]"
+                          name="Terr_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[EIS_Desc]"
+                          length="50"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[EIS_Desc]"
+                          name="EIS_Desc"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[SSC_UDF_1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[SSC_UDF_1]"
+                          length="50"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[SSC_UDF_1]"
+                          name="SSC_UDF_1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[SSC_UDF_2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[SSC_UDF_2]"
+                          length="50"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[SSC_UDF_2]"
+                          name="SSC_UDF_2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[CompanyID]"
+                          length="4"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[CompanyID]"
+                          name="CompanyID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Terr_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Terr_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="EIS_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[SSC_UDF_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SSC_UDF_1" />
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[SSC_UDF_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SSC_UDF_2" />
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="CompanyID" />
+                        <externalMetadataColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[CompanyID]"
+                          name="CompanyID" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Terr_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Terr_ID]"
+                          name="Terr_ID" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[EIS_Desc]"
+                          name="EIS_Desc" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[SSC_UDF_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[SSC_UDF_1]"
+                          name="SSC_UDF_1" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[SSC_UDF_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[SSC_UDF_2]"
+                          name="SSC_UDF_2" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          name="LastExtraction" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Territory DEV\Load Table Territory DEV.Paths[OLE DB Source Output]"
+                  endId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Territory DEV\Truncate Table Territory"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{A2057FC6-95E4-4E7A-8158-5569792F6966}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Table Territory"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D09D5B2C-D885-40C8-8E92-6656B0B61A27}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE DBO.TERRITORY;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Territory DEV.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{B51665E0-B2A9-4CCE-9B4B-F71174402899}"
+          DTS:From="Package\Territory DEV\Truncate Table Territory"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Territory DEV\Load Table Territory DEV" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B73C8C94-9B77-4F52-9F90-03BBDCA2D4AD}"
+      DTS:From="Package\Load_Territory_from_Trax PRO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{7A97322B-DCAF-4132-987E-7BAEE9481CB9}"
+      DTS:From="Package\Territory DEV"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{E45D974D-0DF3-43D9-8EA4-CB126452E0A6}"
+      DTS:From="Package\Load_Territory_from_Trax PRO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Territory DEV" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="27.3584905660377,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="27.3584905660377,121.792452830189" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="95.2452830188679,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,69.3962264150944"
+              Start="0,0"
+              End="0,61.8962264150944">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.8962264150944" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="204,180"
+          Size="204,224"
+          Id="Package\Evento Correcto"
+          TopLeft="199.405660377359,456.669811320755" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Territory_from_Trax PRO\Failed Territory ControlTable"
+          TopLeft="201.754716981132,110.716981132075" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Territory_from_Trax PRO\Load Territory Trax"
+          TopLeft="30.2264150943397,108.471698113208" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Territory_from_Trax PRO\Truncate Table"
+          TopLeft="30.2264150943397,26.811320754717" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Load_Territory_from_Trax PRO\update CompanyID"
+          TopLeft="5.5,188" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Territory_from_Trax PRO\Update Territory ControlTable"
+          TopLeft="191.962264150943,194.358490566038" />
+        <EdgeLayout
+          Id="Package\Load_Territory_from_Trax PRO.PrecedenceConstraints[Constraint]"
+          TopLeft="98.1132075471699,70.7358490566038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Territory_from_Trax PRO.PrecedenceConstraints[Constraint 1]"
+          TopLeft="98.2264150943397,152.471698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="161.735849056604,41.88679245283"
+              Start="0,0"
+              End="161.735849056604,34.38679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.943396226415" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.943396226415"
+                    Point2="0,20.943396226415"
+                    Point3="4,20.943396226415" />
+                  <mssgle:LineSegment
+                    End="157.735849056604,20.943396226415" />
+                  <mssgle:CubicBezierSegment
+                    Point1="157.735849056604,20.943396226415"
+                    Point2="161.735849056604,20.943396226415"
+                    Point3="161.735849056604,24.943396226415" />
+                  <mssgle:LineSegment
+                    End="161.735849056604,34.38679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Territory_from_Trax PRO.PrecedenceConstraints[Constraint 2]"
+          TopLeft="166.22641509434,131.594339622641">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="35.5283018867923,0"
+              Start="0,0"
+              End="28.0283018867923,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="28.0283018867923,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-1.22719671285385,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Territory_from_Trax PRO.PrecedenceConstraints[Constraint 3]"
+          TopLeft="76.8930817610064,152.471698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="13.6069182389936,35.528301886792"
+              Start="0,0"
+              End="13.6069182389936,28.028301886792">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.4591926283456" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.4591926283456"
+                    Point2="0,14.4591926283456"
+                    Point3="4,14.4591926283456" />
+                  <mssgle:LineSegment
+                    End="9.60691823899364,14.4591926283456" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.60691823899364,14.4591926283456"
+                    Point2="13.6069182389936,14.4591926283456"
+                    Point3="13.6069182389936,18.4591926283456" />
+                  <mssgle:LineSegment
+                    End="13.6069182389936,28.028301886792" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="356,301"
+          Size="356,345"
+          Id="Package\Load_Territory_from_Trax PRO"
+          TopLeft="44.5,5.5" />
+        <NodeLayout
+          Size="187,44"
+          Id="Package\Territory DEV\Load Table Territory DEV"
+          TopLeft="39.5094339622642,91.2264150943396" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Territory DEV\Truncate Table Territory"
+          TopLeft="64.9811320754717,9.56603773584908" />
+        <EdgeLayout
+          Id="Package\Territory DEV.PrecedenceConstraints[Constraint]"
+          TopLeft="132.867924528302,53.4905660377359">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="266,231"
+          Size="266,275"
+          Id="Package\Territory DEV"
+          TopLeft="493.216981132075,9.27358490566036" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="222.5,350.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="46.2389937106923,106.169811320755"
+              Start="0,0"
+              End="46.2389937106923,98.669811320755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.2061522648853" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,59.2061522648853"
+                    Point2="0,63.2061522648853"
+                    Point3="4,63.2061522648853" />
+                  <mssgle:LineSegment
+                    End="42.2389937106923,63.2061522648853" />
+                  <mssgle:CubicBezierSegment
+                    Point1="42.2389937106923,63.2061522648853"
+                    Point2="46.2389937106923,63.2061522648853"
+                    Point3="46.2389937106923,67.2061522648853" />
+                  <mssgle:LineSegment
+                    End="46.2389937106923,98.669811320755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="626.349056603774,284.179245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-283.547169811321,172.490566037736"
+              Start="0,0"
+              End="-283.547169811321,164.990566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,86.2264150943396" />
+                  <mssgle:LineSegment
+                    End="-283.547169811321,86.2264150943396" />
+                  <mssgle:LineSegment
+                    End="-283.547169811321,164.990566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="400.5,178">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="92.716981132075,-31.2264150943396"
+              Start="0,0"
+              End="85.216981132075,-31.2264150943396">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="42.3584905660375,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="42.3584905660375,0"
+                    Point2="46.3584905660375,0"
+                    Point3="46.3584905660375,-4" />
+                  <mssgle:LineSegment
+                    End="46.3584905660375,-27.2264150943396" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.3584905660375,-27.2264150943396"
+                    Point2="46.3584905660375,-31.2264150943396"
+                    Point3="50.3584905660375,-31.2264150943396" />
+                  <mssgle:LineSegment
+                    End="85.216981132075,-31.2264150943396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load_Territory_from_Trax PRO\Load Territory Trax">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Derived Column"
+          TopLeft="17.028301886792,201.141509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Data Conversion"
+          TopLeft="13.292452830189,96.3490566037736" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory"
+          TopLeft="21.4622641509434,331.764150943396" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\Load_Territory_from_Trax PRO\Load Territory Trax.Paths[ADO NET Source Output]"
+          TopLeft="77.3962264150945,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46.8490566037736"
+              Start="0,0"
+              End="0,39.3490566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.3490566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Territory_from_Trax PRO\Load Territory Trax.Paths[Derived Column Output]"
+          TopLeft="87.2452830188677,245.141509433962">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86.6226415094339"
+              Start="0,0"
+              End="0,79.1226415094339">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,79.1226415094339" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Territory_from_Trax PRO\Load Territory Trax.Paths[Data Conversion Output]"
+          TopLeft="83.1603773584905,140.349056603774">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.7924528301884"
+              Start="0,0"
+              End="0,53.2924528301884">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.2924528301884" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_Territory_from_Trax PRO\Load Territory Trax\CRMStaging Territory">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_Territory_from_Trax PRO\Load Territory Trax\Territory TRAX">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Territory DEV\Load Table Territory DEV">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="154,44"
+          Id="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="156,44"
+          Id="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV"
+          TopLeft="5.5,87.1603773584906" />
+        <EdgeLayout
+          Id="Package\Territory DEV\Load Table Territory DEV.Paths[OLE DB Source Output]"
+          TopLeft="82.3679245283019,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.981132075471706,37.7358490566038"
+              Start="0,0"
+              End="0.981132075471706,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="0.981132075471706,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="0.981132075471706,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging DEV">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Territory DEV\Load Table Territory DEV\Territory CRMStaging PRO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,958 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/28/2017 1:02:56 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{AADEB224-06ED-4EA8-ACF8-37ADD493D8DC}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="HRIS - 004 - DVLP"
+  DTS:PackageType="5"
+  DTS:VersionBuild="128"
+  DTS:VersionGUID="{7A4B7FFD-A07F-4C1A-BF2B-CAB45F55FB17}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[File_Employee]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{76A35F2F-B281-4F3A-B8F1-86A0955B36F6}"
+      DTS:ObjectName="File_Employee">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="E:\HRIS\Employee\Employee.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Compa¤ia"
+              DTS:DTSID="{5A5CE237-FAB3-4A5B-8BC8-C912988D0A60}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Nombre"
+              DTS:DTSID="{FC18BEDB-BDB7-433F-AFD4-4C599F5692B3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Apellido"
+              DTS:DTSID="{9DE42050-312A-4D5A-A392-B7132BA4E741}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Cargo"
+              DTS:DTSID="{9D011EA6-1D7B-49B2-A427-59547D07340A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Email"
+              DTS:DTSID="{52F82894-E383-45DE-AC11-DF59B100911B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="UserID"
+              DTS:DTSID="{0C38BBD4-EB42-44B7-B779-9A4010DBE026}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Fecha_Ingreso"
+              DTS:DTSID="{1D0F56CE-A2DE-4B9D-84F1-354356CB4FB7}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Orange HRIS]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{A29BC03E-851C-4BC7-8C3A-3FECE069DEBF}"
+      DTS:ObjectName="Orange HRIS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=workflow;Dsn=Orange HRIS;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACXByJunkKBCiHm9xUfDjLJAAAAAASAAACgAAAAEAAAAGY1TTr3fm7xh9i1P2tDDRAoAAAAxOsgJRkUCz8+tdGlMyRFw3EAQc7m9J4MSwaiNch2i8Vh+3Ywk7JvUxQAAACyZcAqDlx3A116RzU0tErVBFofdw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7FD68134-9305-4E3D-B013-0896DBCB03FA}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-HRIS-{7FD68134-9305-4E3D-B013-0896DBCB03FA}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{B5DCDC77-F2C3-48C1-BA7E-71813B244B01}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;Orange HRIS&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{4037FAF8-B318-430C-9C32-2C259CB30ACD}"
+      DTS:ObjectName="HRIS" />
+  </DTS:Configurations>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\load file employee"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{58AE2699-648C-404E-B052-9150F8F16B92}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load file employee"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\load file employee\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\load file employee\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load file employee\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\load file employee\Data Conversion.Inputs[Data Conversion Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\load file employee\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\load file employee\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load file employee\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load file employee\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load file employee\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load file employee\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load file employee\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\load file employee\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load file employee\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\load file employee\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load file employee\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\load file employee\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                      name="LastExtraction"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\load file employee\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\load file employee\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load file employee\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load file employee\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load file employee\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load file employee\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load file employee\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[HRIS_Employee_Test]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load file employee\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[emp_number]"
+                      cachedDataType="i4"
+                      cachedName="emp_number"
+                      externalMetadataColumnId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[emp_number]"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[emp_number]" />
+                    <inputColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Compañia]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Compañia"
+                      externalMetadataColumnId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Compañia]"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Compañia]" />
+                    <inputColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="Nombre"
+                      externalMetadataColumnId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Apellido]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="Apellido"
+                      externalMetadataColumnId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Apellido]"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Apellido]" />
+                    <inputColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Cargo]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="Cargo"
+                      externalMetadataColumnId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cargo]"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Cargo]" />
+                    <inputColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Email]"
+                      cachedDataType="wstr"
+                      cachedLength="75"
+                      cachedName="Email"
+                      externalMetadataColumnId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Email]" />
+                    <inputColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UserID]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="UserID"
+                      externalMetadataColumnId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UserID]"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[UserID]" />
+                    <inputColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Fecha_Ingreso]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha_Ingreso"
+                      externalMetadataColumnId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Fecha_Ingreso]"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Fecha_Ingreso]" />
+                    <inputColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LastExtraction"
+                      externalMetadataColumnId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                      lineageId="Package\load file employee\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[emp_number]"
+                      dataType="i4"
+                      name="emp_number" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Compañia]"
+                      dataType="wstr"
+                      length="9"
+                      name="Compañia" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="150"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Apellido]"
+                      dataType="wstr"
+                      length="150"
+                      name="Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cargo]"
+                      dataType="wstr"
+                      length="150"
+                      name="Cargo" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      dataType="wstr"
+                      length="75"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UserID]"
+                      dataType="wstr"
+                      length="60"
+                      name="UserID" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Fecha_Ingreso]"
+                      dataType="dbTimeStamp"
+                      name="Fecha_Ingreso" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="LastExtraction" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load file employee\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load file employee\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load file employee\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load file employee\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load file employee\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load file employee\Query Employee"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Query Employee"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT e.emp_number,c.company_code AS Compañia,  emp_firstname AS Nombre,
+                                        emp_lastname AS Apellido,
+                                        job_title AS Cargo,
+                                        emp_work_email AS Email,
+                                        u.user_name AS UserID,
+                                        e.joined_date AS Fecha_Ingreso
+                                        FROM hs_hr_employee e
+                                        INNER JOIN imx_sec_employee ec ON e.employee_id = ec.emp_number
+                                        INNER JOIN ohrm_user u ON e.employee_id = u.emp_number /*or u.emp_number = ''*/
+                                        INNER JOIN imx_sec_companies c ON ec.company_id = c.company_id
+                                        INNER JOIN ohrm_job_title et ON e.job_title_code = et.id
+                                        WHERE emp_status&lt;&gt; 1 
+                                        ORDER BY e.emp_number ASC
+                                        /*AND e.joined_date &gt;= CURDATE()-15*/</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load file employee\Query Employee.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Orange HRIS]"
+                  connectionManagerRefId="Package.ConnectionManagers[Orange HRIS]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[emp_number]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[emp_number]"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[emp_number]"
+                      name="emp_number"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Compañia]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[Compañia]"
+                      length="9"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Compañia]"
+                      name="Compañia"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[Nombre]"
+                      length="150"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Apellido]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[Apellido]"
+                      length="150"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Apellido]"
+                      name="Apellido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Cargo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[Cargo]"
+                      length="150"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Cargo]"
+                      name="Cargo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[Email]"
+                      length="75"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Email]"
+                      name="Email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[UserID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[UserID]"
+                      length="60"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[UserID]"
+                      name="UserID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Fecha_Ingreso]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[Fecha_Ingreso]"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].Columns[Fecha_Ingreso]"
+                      name="Fecha_Ingreso"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[emp_number]"
+                      dataType="i4"
+                      name="emp_number" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[Compañia]"
+                      dataType="wstr"
+                      length="9"
+                      name="Compañia" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="150"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[Apellido]"
+                      dataType="wstr"
+                      length="150"
+                      name="Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[Cargo]"
+                      dataType="wstr"
+                      length="150"
+                      name="Cargo" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[Email]"
+                      dataType="wstr"
+                      length="75"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[UserID]"
+                      dataType="wstr"
+                      length="60"
+                      name="UserID" />
+                    <externalMetadataColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output].ExternalColumns[Fecha_Ingreso]"
+                      dataType="dbTimeStamp"
+                      name="Fecha_Ingreso" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[emp_number]"
+                      dataType="i4"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[emp_number]"
+                      name="emp_number" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[Compañia]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[Compañia]"
+                      name="Compañia" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[Nombre]"
+                      name="Nombre" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[Apellido]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[Apellido]"
+                      name="Apellido" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[Cargo]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[Cargo]"
+                      name="Cargo" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[Email]"
+                      dataType="wstr"
+                      length="75"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[Email]"
+                      name="Email" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[UserID]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[UserID]"
+                      name="UserID" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[Fecha_Ingreso]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[Fecha_Ingreso]"
+                      name="Fecha_Ingreso" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load file employee\Query Employee.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\load file employee.Paths[ADO NET Source Output]"
+              endId="Package\load file employee\Derived Column.Inputs[Derived Column Input]"
+              name="ADO NET Source Output"
+              startId="Package\load file employee\Query Employee.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\load file employee.Paths[Data Conversion Output]"
+              endId="Package\load file employee\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\load file employee\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\load file employee.Paths[Derived Column Output]"
+              endId="Package\load file employee\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\load file employee\Derived Column.Outputs[Derived Column Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:Description="Send Mail Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{89BFC502-EE21-4A50-9C71-69DE64BD8353}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{B5DCDC77-F2C3-48C1-BA7E-71813B244B01}"
+          SendMailTask:From="sqladmin@intcomex.com"
+          SendMailTask:To="Yenny.Bautista@intcomex.com;Maria.Sastoque@intcomex.com"
+          SendMailTask:CC="marlon.claro@intcomex.com"
+          SendMailTask:Subject="Informacion Empleados"
+          SendMailTask:MessageSource="Buenos dias&#xA;&#xA;Se adjunta archivo con la información solicitada de los empleados&#xA;" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask">
+          <SendMailTask:Attachments
+            SendMailTask:FileName="E:\HRIS\Employee\Employee.csv" />
+        </SendMailTask:SendMailTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3AC53CCB-54AB-437F-8431-9D413C78595F}"
+      DTS:From="Package\load file employee"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Send Mail Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\load file employee"
+          TopLeft="20.5377358490566,41.349056603774" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Send Mail Task"
+          TopLeft="26,120" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="102.018867924528,83.349056603774">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,36.650943396226"
+              Start="0,0"
+              End="0,29.150943396226">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.150943396226" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\load file employee">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\load file employee\Query Employee"
+          TopLeft="29,0" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\load file employee\Data Conversion"
+          TopLeft="40.5,191.198113207547" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\load file employee\Derived Column"
+          TopLeft="37.4622641509434,101.367924528302" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\load file employee\OLE DB Destination"
+          TopLeft="27,298" />
+        <EdgeLayout
+          Id="Package\load file employee.Paths[Derived Column Output]"
+          TopLeft="111.481132075472,143.367924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.8301886792451"
+              Start="0,0"
+              End="0,40.3301886792451">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.3301886792451" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\load file employee.Paths[Data Conversion Output]"
+          TopLeft="110.5,235.198113207547">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.801886792453"
+              Start="0,0"
+              End="0,55.301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\load file employee.Paths[ADO NET Source Output]"
+          TopLeft="110.731132075472,42">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.3679245283019"
+              Start="0,0"
+              End="0,51.8679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.8679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\load file employee\Query Employee">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\load file employee\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

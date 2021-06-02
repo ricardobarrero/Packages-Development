@@ -1,0 +1,1678 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/5/2019 2:43:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S9SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{5E9257C3-B407-4113-80FC-B2B78718494B}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="SKUC - 003 - DWH_ProductStatusSkuC_VW"
+  DTS:PackageType="5"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{24B54C8C-6D71-425B-B159-C4569C44B20C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser16]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{F5592CB3-878E-4C44-B08B-BE71F7F65094}"
+      DTS:ObjectName="INTCOMEX_DWH.dwhuser16">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Etluser;Dsn=IQ16;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{887F79A3-F09C-4723-B880-C5F2DC4DF535}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{B81F18BD-8899-40B3-9EAE-FBCD1690678C}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=clientarrayus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLAPP2List.SKUCentral]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8814388C-FA69-474D-A9D2-0A5086DBB71B}"
+      DTS:ObjectName="SQLAPP2List.SKUCentral">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLAPP2List;Initial Catalog=SKUCentral;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;INTCOMEX_DWH.dwhuser16&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{80376236-CE4D-4BD6-A71F-DADF63AB7A65}"
+      DTS:ObjectName="INTCOMEX_DWH dwhuser16" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{43C255E5-D791-4850-B32D-49B8A56B4C7A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{59D16964-49B6-4C5D-A51A-BD057E715FB6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5465B15D-66EB-4995-A3D7-C60D14EEE702}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3D0E971B-A32F-4E2E-88B8-C03CC4BCCCC1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{CC9486D2-96B9-4B41-884C-C7FEA3DDF8CC}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D90DB2C8-9E74-44C8-8997-00FEF6336A84}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{887F79A3-F09C-4723-B880-C5F2DC4DF535}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete SKUC - 003 - DWH_ProductStatusSkuC_VW  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{7B8D82E9-FD14-4F6D-A6BC-0FE2FB65909E}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{B81F18BD-8899-40B3-9EAE-FBCD1690678C}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :SKUC - 003 - DWH_ProductStatusSkuC_VW" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{2670AACA-9FB3-4833-A561-8E61CEA50CB2}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DWH_ProductStatusSkuC_VW"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{CB2F9C9A-33D9-4B05-8CF9-67088C6C7363}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DWH_ProductStatusSkuC_VW">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{B6987E78-CF09-4B1E-8655-F914D88CA262}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DWH_ProductStatusSkuC_VW"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[DWH_ProductStatusSkuC_VW]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].Columns[CompanyId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CompanyId"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[CompanyId]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[CompanyId]" />
+                        <inputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].Columns[CountryId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="2"
+                          cachedName="CountryId"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[CountryId]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[CountryId]" />
+                        <inputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].Columns[Alias]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Alias"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[Alias]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[Alias]" />
+                        <inputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].Columns[LocalRecno]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="LocalRecno"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[LocalRecno]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[LocalRecno]" />
+                        <inputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].Columns[LocalSku]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="LocalSku"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[LocalSku]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[LocalSku]" />
+                        <inputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].Columns[ManufacturerId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="ManufacturerId"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[ManufacturerId]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[ManufacturerId]" />
+                        <inputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].Columns[BrandId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="BrandId"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[BrandId]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[BrandId]" />
+                        <inputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].Columns[Mpn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Mpn"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[Mpn]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[Mpn]" />
+                        <inputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].Columns[TraxStatus]"
+                          cachedDataType="i4"
+                          cachedName="TraxStatus"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[TraxStatus]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[TraxStatus]" />
+                        <inputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].Columns[WebStatus]"
+                          cachedDataType="bool"
+                          cachedName="WebStatus"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[WebStatus]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[WebStatus]" />
+                        <inputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].Columns[ESDStatus]"
+                          cachedDataType="i4"
+                          cachedName="ESDStatus"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[ESDStatus]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[ESDStatus]" />
+                        <inputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[CompanyId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="CompanyId" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[CountryId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="CountryId" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[Alias]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Alias" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[LocalRecno]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LocalRecno" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[LocalSku]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LocalSku" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[ManufacturerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="ManufacturerId" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[BrandId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="BrandId" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[Mpn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Mpn" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[TraxStatus]"
+                          dataType="i4"
+                          name="TraxStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[WebStatus]"
+                          dataType="bool"
+                          name="WebStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[ESDStatus]"
+                          dataType="i4"
+                          name="ESDStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Source View SKUC"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[DWH_ProductStatusSkuC_VW]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SQLAPP2List.SKUCentral]"
+                      connectionManagerRefId="Package.ConnectionManagers[SQLAPP2List.SKUCentral]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[CompanyId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[CompanyId]"
+                          length="50"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[CompanyId]"
+                          name="CompanyId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[CountryId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[CountryId]"
+                          length="2"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[CountryId]"
+                          name="CountryId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[Alias]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[Alias]"
+                          length="50"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[Alias]"
+                          name="Alias"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[LocalRecno]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[LocalRecno]"
+                          length="50"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[LocalRecno]"
+                          name="LocalRecno"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[LocalSku]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[LocalSku]"
+                          length="50"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[LocalSku]"
+                          name="LocalSku"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[ManufacturerId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[ManufacturerId]"
+                          length="10"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[ManufacturerId]"
+                          name="ManufacturerId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[BrandId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[BrandId]"
+                          length="10"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[BrandId]"
+                          name="BrandId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[Mpn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[Mpn]"
+                          length="50"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[Mpn]"
+                          name="Mpn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[TraxStatus]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[TraxStatus]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[TraxStatus]"
+                          name="TraxStatus"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[WebStatus]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[WebStatus]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[WebStatus]"
+                          name="WebStatus"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[ESDStatus]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[ESDStatus]"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].Columns[ESDStatus]"
+                          name="ESDStatus"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[CompanyId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CompanyId" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[CountryId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="CountryId" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[Alias]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Alias" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[LocalRecno]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LocalRecno" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[LocalSku]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LocalSku" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[ManufacturerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="ManufacturerId" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[BrandId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="BrandId" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[Mpn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Mpn" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[TraxStatus]"
+                          dataType="i4"
+                          name="TraxStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[WebStatus]"
+                          dataType="bool"
+                          name="WebStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output].ExternalColumns[ESDStatus]"
+                          dataType="i4"
+                          name="ESDStatus" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[CompanyId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[CompanyId]"
+                          name="CompanyId" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[CountryId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[CountryId]"
+                          name="CountryId" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[Alias]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[Alias]"
+                          name="Alias" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[LocalRecno]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[LocalRecno]"
+                          name="LocalRecno" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[LocalSku]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[LocalSku]"
+                          name="LocalSku" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[ManufacturerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[ManufacturerId]"
+                          name="ManufacturerId" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[BrandId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[BrandId]"
+                          name="BrandId" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[Mpn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[Mpn]"
+                          name="Mpn" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[TraxStatus]"
+                          dataType="i4"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[TraxStatus]"
+                          name="TraxStatus" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[WebStatus]"
+                          dataType="bool"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[WebStatus]"
+                          name="WebStatus" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[ESDStatus]"
+                          dataType="i4"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[ESDStatus]"
+                          name="ESDStatus" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task.Paths[Data Conversion Output]"
+                  endId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task.Paths[Derived Column Output]"
+                  endId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task.Paths[OLE DB Source Output]"
+                  endId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load DWH_ProductStatusSkuC_VW\Truncate Tbale truncate table DWH_ProductStatusSkuC_VW"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EA732298-0555-4C7F-AE37-2A4F2D3438BF}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Tbale truncate table DWH_ProductStatusSkuC_VW"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{887F79A3-F09C-4723-B880-C5F2DC4DF535}"
+              SQLTask:SqlStatementSource="truncate table DWH_ProductStatusSkuC_VW" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load DWH_ProductStatusSkuC_VW.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{A284AB68-4305-471A-A272-30E252341B07}"
+          DTS:From="Package\Load DWH_ProductStatusSkuC_VW\Truncate Tbale truncate table DWH_ProductStatusSkuC_VW"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\sp IQ"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{F0AE8CA5-783C-48D4-AC47-3BABE2DBBB37}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="sp IQ">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\sp IQ\dw_dataload_SKUC_DWH_ProductStatusSkuC_VW"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{FE58D2EA-673B-4C29-AE44-EE1A17DD96B2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="dw_dataload_SKUC_DWH_ProductStatusSkuC_VW"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F5592CB3-878E-4C44-B08B-BE71F7F65094}"
+              SQLTask:SqlStatementSource="&#xA;EXEC &quot;dwhuser&quot;.&quot;dw_dataload_SKUC_DWH_ProductStatusSkuC_VW&quot;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Evento Correcto"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{979927E2-5A95-4F7B-8FCD-101F4FBC07ED}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Evento Correcto"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Tarea Evento Correcto"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Correcto','Ejecucion Correcta')"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{887F79A3-F09C-4723-B880-C5F2DC4DF535}"
+          SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;&#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Correcto','Ejecucion Correcta')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{9590CAFE-1A26-4E3F-8BB1-E3E5340F1FF5}"
+      DTS:From="Package\Load DWH_ProductStatusSkuC_VW"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\sp IQ" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{19A1A605-8DC1-452C-946F-D3AF4A993B8D}"
+      DTS:From="Package\Tarea Evento Correcto"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{989DCFDA-0D24-4F06-AC2D-D5E02A54795D}"
+      DTS:From="Package\sp IQ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Tarea Evento Correcto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{8B4DF420-E4C0-45FC-B1DD-2A778821034A}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{C8920B3D-D62F-4805-908D-EF7F17985338}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Event Error"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Send Mail  Error Event"
+          DTS:DTSID="{14755CC1-FBC0-489B-BEF2-F2E38BAED1B1}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Event Error">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Event Error"</DTS:PropertyExpression>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Event Error\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{3AC5C0CF-E26E-4573-A81D-C443B9FC6368}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{887F79A3-F09C-4723-B880-C5F2DC4DF535}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Event Error\Send Mail Task"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{42679AC6-2BF9-4726-A75B-2B46A4B09B3C}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send Mail Task"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError] + @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{B81F18BD-8899-40B3-9EAE-FBCD1690678C}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :SKUC - 003 - DWH_ProductStatusSkuC_VW" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Event Error.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{E0827FD6-9A5F-468D-9B4A-1692A7A829C9}"
+              DTS:From="Package.EventHandlers[OnError]\Event Error\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Event Error\Send Mail Task" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Process Control Errors"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Task Error Event"
+          DTS:DTSID="{8A5DB602-F46A-442B-A1FD-F43D77C0FB78}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Process Control Errors">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Process Control Errors"</DTS:PropertyExpression>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors\Task Event Error"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{B43491C2-2EBE-4369-8589-A8379E974ED2}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Task Event Error"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Task Event Error"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{887F79A3-F09C-4723-B880-C5F2DC4DF535}"
+                  SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors\Task Reset Execution SKUC - 003 - DWH_ProductStatusSkuC_VW"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:Disabled="True"
+              DTS:DTSID="{0CB92CC1-3329-4702-B55B-530BEF7D4910}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Task Reset Execution SKUC - 003 - DWH_ProductStatusSkuC_VW"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Task Reset Execution "+ @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{1E4CB9B6-8B16-417F-B4F8-872D34FB4916}"
+                  SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors.PrecedenceConstraints[Restricción]"
+              DTS:CreationName=""
+              DTS:DTSID="{8AA0CBB1-9E73-47F0-A0CD-4D2E388058FB}"
+              DTS:From="Package.EventHandlers[OnError]\Process Control Errors\Task Reset Execution SKUC - 003 - DWH_ProductStatusSkuC_VW"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Restricción"
+              DTS:To="Package.EventHandlers[OnError]\Process Control Errors\Task Event Error" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{19D9E3DE-B18B-4B73-815B-6329C335AADF}"
+          DTS:From="Package.EventHandlers[OnError]\Process Control Errors"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Event Error" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="48.3018867924528,16.1698113207547" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="51.3018867924528,96.2264150943396" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="117.801886792453,60.1698113207547">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,36.0566037735849"
+              Start="0,0"
+              End="0,28.5566037735849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5566037735849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="220,195"
+          Size="220,239"
+          Id="Package\Evento Correcto"
+          TopLeft="71,692" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task"
+          TopLeft="56,86.5" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Load DWH_ProductStatusSkuC_VW\Truncate Tbale truncate table DWH_ProductStatusSkuC_VW"
+          TopLeft="56,5.5" />
+        <EdgeLayout
+          Id="Package\Load DWH_ProductStatusSkuC_VW.PrecedenceConstraints[Constraint]"
+          TopLeft="134.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="268,183"
+          Size="268,226"
+          Id="Package\Load DWH_ProductStatusSkuC_VW"
+          TopLeft="56,88" />
+        <NodeLayout
+          Size="317,42"
+          Id="Package\sp IQ\dw_dataload_SKUC_DWH_ProductStatusSkuC_VW"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="328,103"
+          Size="328,146"
+          Id="Package\sp IQ"
+          TopLeft="21,394" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Tarea Evento Correcto"
+          TopLeft="95.5,598" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="187.5,314">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,80"
+              Start="0,0"
+              End="0,72.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="184.5,640">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="186.5,540">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Event Error\Mensaje"
+          TopLeft="52.6415094339623,21.4528301886793" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Event Error\Send Mail Task"
+          TopLeft="52.6415094339623,111.339622641509" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Event Error.PrecedenceConstraints[Constraint]"
+          TopLeft="120.528301886792,65.377358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,45.9622641509434"
+              Start="0,0"
+              End="0,38.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="249,189.075471698114"
+          Size="249,233"
+          Id="Package.EventHandlers[OnError]\Event Error"
+          TopLeft="60,342" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Process Control Errors\Task Event Error"
+          TopLeft="50.8301886792453,117.641509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Process Control Errors\Task Reset Execution SKUC - 003 - DWH_ProductStatusSkuC_VW"
+          TopLeft="50.8301886792453,17.3018867924528" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Process Control Errors.PrecedenceConstraints[Restricción]"
+          TopLeft="118.716981132075,61.2264150943396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,56.4150943396226"
+              Start="0,0"
+              End="0,48.9150943396226">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.9150943396226" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="249,189.075471698114"
+          Size="249,233"
+          Id="Package.EventHandlers[OnError]\Process Control Errors"
+          TopLeft="70,60" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="194.5,293">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-10,49"
+              Start="0,0"
+              End="-10,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="-4,24.5" />
+                  <mssgle:LineSegment
+                    End="-6,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6,24.5"
+                    Point2="-10,24.5"
+                    Point3="-10,28.5" />
+                  <mssgle:LineSegment
+                    End="-10,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC"
+          TopLeft="32,12" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Data Conversion"
+          TopLeft="30,160" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Derived Column"
+          TopLeft="34,81" />
+        <EdgeLayout
+          Id="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="109.5,123">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="113,54">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="220,42"
+          Id="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW"
+          TopLeft="0,236" />
+        <EdgeLayout
+          Id="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task.Paths[Data Conversion Output]"
+          TopLeft="109,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\Source View SKUC">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load DWH_ProductStatusSkuC_VW\Data Flow Task\DWH_ProductStatusSkuC_VW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

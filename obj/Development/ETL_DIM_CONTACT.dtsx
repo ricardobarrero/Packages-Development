@@ -1,0 +1,1306 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/8/2013 5:09:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{06D720C5-7697-49C2-8431-CAFA332872E7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ETL_DIM_CONTACT"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{C363DC6D-D3A3-4C4A-B6D3-A3920DBC5447}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{124CAF7C-2B90-49FE-814F-BE5080D64C35}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{124CAF7C-2B90-49FE-814F-BE5080D64C35}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0267E1BE-04D8-4AEE-B208-7F5208C31B92}"
+      DTS:ObjectName="S91SQLUS.INTXDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=INTXDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{0267E1BE-04D8-4AEE-B208-7F5208C31B92}s5sqlus.INTXDW;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{54332FBC-62F5-41EC-AA09-9F4470DB5A0F}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Carga Tabla DIM_CONTACT"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{76C8761A-01A0-4F94-B60C-B70551C66BDF}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Carga Tabla DIM_CONTACT"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Carga Tabla DIM_CONTACT"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[DIM_CONTACT]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[DIM_PK_COMPANY]"
+                          cachedDataType="ui1"
+                          cachedName="DIM_PK_COMPANY"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_COMPANY]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[DIM_PK_COMPANY]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[DIM_PK_CUSTOMER]"
+                          cachedDataType="i4"
+                          cachedName="DIM_PK_CUSTOMER"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_CUSTOMER]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[DIM_PK_CUSTOMER]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[companyid]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="companyid"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[companyid]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[companyid]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[customerid]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="24"
+                          cachedName="customerid"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[customerid]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[customerid]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[CUSTOMERID_SENTAI]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="24"
+                          cachedName="CUSTOMERID_SENTAI"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[CUSTOMERID_SENTAI]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[CUSTOMERID_SENTAI]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="200"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[Telephone]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="Telephone"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Telephone]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Telephone]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[FAX]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="FAX"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[FAX]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[FAX]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[Cellular]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="Cellular"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Cellular]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Cellular]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[Pager]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="Pager"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Pager]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Pager]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[Active]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="Active"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Active]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Active]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[Machine-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Machine-ID"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Machine_ID]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Machine-ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[Cust-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Cust-ID"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Cust_ID]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Cust-ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[Contact-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="Contact-ID"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Contact_ID]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Contact-ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[Is-principal]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="Is-principal"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Is_principal]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Is-principal]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[UDF-1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="UDF-1"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[UDF_1]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[UDF-1]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[UDF-2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="UDF-2"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[UDF_2]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[UDF-2]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[E-mail]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="120"
+                          cachedName="E-mail"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[E_mail]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[E-mail]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[Phone-2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="Phone-2"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Phone_2]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Phone-2]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[Web-site]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="120"
+                          cachedName="Web-site"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Web_site]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Web-site]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[Cont-Title]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Cont-Title"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Cont_Title]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Cont-Title]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[Contact-Title]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="120"
+                          cachedName="Contact-Title"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Contact_Title]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Contact-Title]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].Columns[CRM-reference]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="CRM-reference"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[CRM_reference]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[CRM-reference]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_COMPANY]"
+                          dataType="ui1"
+                          name="DIM_PK_COMPANY" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_CUSTOMER]"
+                          dataType="i4"
+                          name="DIM_PK_CUSTOMER" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[companyid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="companyid" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[customerid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="customerid" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[CUSTOMERID_SENTAI]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="CUSTOMERID_SENTAI" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Telephone]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Telephone" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[FAX]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="FAX" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Cellular]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Cellular" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Pager]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Pager" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Active]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Active" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Machine_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Machine_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Cust_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Cust_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Contact_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="Contact_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Is_principal]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Is_principal" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[UDF_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="UDF_1" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[UDF_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="UDF_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[E_mail]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="E_mail" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Phone_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Phone_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Web_site]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="Web_site" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Cont_Title]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Cont_Title" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[Contact_Title]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="Contact_Title" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[CRM_reference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="CRM_reference" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_CONTACT]"
+                          dataType="i4"
+                          name="DIM_PK_CONTACT" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="SENTAI_CUSTOMER_CONTACT_TMP"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[SENTAI_CUSTOMER_CONTACT_TMP]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+DIM_PK_COMPANY,
+DIM_PK_CUSTOMER,
+companyid,
+customerid,
+CUSTOMERID_SENTAI,
+[Machine-ID],
+[Cust-ID],
+Upper([Contact-ID]) AS [Contact-ID],
+Name,
+Telephone,
+CASE [Is-principal] WHEN 'False' THEN 'N' WHEN 'True' THEN 'Y' END AS [Is-principal],
+ FAX, [UDF-1], [UDF-2],
+Lower([E-mail]) AS [E-mail], [Phone-2], Cellular, Pager,
+Lower([Web-site]) AS [Web-site], LastExtraction, 
+                      [Cont-Title], [Contact-Title], [CRM-reference],
+CASE Active WHEN 'False' THEN 'N' WHEN 'True' THEN 'Y' END AS Active
+FROM         dbo.SENTAI_CUSTOMER_CONTACT_TMP</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[DIM_PK_COMPANY]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[DIM_PK_COMPANY]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[DIM_PK_COMPANY]"
+                          name="DIM_PK_COMPANY"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[DIM_PK_CUSTOMER]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[DIM_PK_CUSTOMER]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[DIM_PK_CUSTOMER]"
+                          name="DIM_PK_CUSTOMER"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[companyid]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[companyid]"
+                          length="4"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[companyid]"
+                          name="companyid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[customerid]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[customerid]"
+                          length="24"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[customerid]"
+                          name="customerid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[CUSTOMERID_SENTAI]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[CUSTOMERID_SENTAI]"
+                          length="24"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[CUSTOMERID_SENTAI]"
+                          name="CUSTOMERID_SENTAI"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Machine-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Machine-ID]"
+                          length="8"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Machine-ID]"
+                          name="Machine-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Cust-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Cust-ID]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Cust-ID]"
+                          name="Cust-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Contact-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Contact-ID]"
+                          length="20"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Contact-ID]"
+                          name="Contact-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="200"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Telephone]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Telephone]"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Telephone]"
+                          name="Telephone"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Is-principal]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Is-principal]"
+                          length="10"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Is-principal]"
+                          name="Is-principal"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[FAX]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[FAX]"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[FAX]"
+                          name="FAX"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[UDF-1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[UDF-1]"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[UDF-1]"
+                          name="UDF-1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[UDF-2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[UDF-2]"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[UDF-2]"
+                          name="UDF-2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[E-mail]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[E-mail]"
+                          length="120"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[E-mail]"
+                          name="E-mail"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Phone-2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Phone-2]"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Phone-2]"
+                          name="Phone-2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Cellular]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Cellular]"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Cellular]"
+                          name="Cellular"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Pager]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Pager]"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Pager]"
+                          name="Pager"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Web-site]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Web-site]"
+                          length="120"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Web-site]"
+                          name="Web-site"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Cont-Title]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Cont-Title]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Cont-Title]"
+                          name="Cont-Title"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Contact-Title]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Contact-Title]"
+                          length="120"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Contact-Title]"
+                          name="Contact-Title"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[CRM-reference]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[CRM-reference]"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[CRM-reference]"
+                          name="CRM-reference"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Active]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Active]"
+                          length="10"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].Columns[Active]"
+                          name="Active"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[DIM_PK_COMPANY]"
+                          dataType="ui1"
+                          name="DIM_PK_COMPANY" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[DIM_PK_CUSTOMER]"
+                          dataType="i4"
+                          name="DIM_PK_CUSTOMER" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[companyid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="companyid" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[customerid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="customerid" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[CUSTOMERID_SENTAI]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="CUSTOMERID_SENTAI" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Machine-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Machine-ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Cust-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Cust-ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Contact-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="Contact-ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Telephone]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Telephone" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Is-principal]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Is-principal" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[FAX]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="FAX" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[UDF-1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="UDF-1" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[UDF-2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="UDF-2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[E-mail]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="E-mail" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Phone-2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Phone-2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Cellular]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Cellular" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Pager]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Pager" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Web-site]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="Web-site" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Cont-Title]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Cont-Title" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Contact-Title]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          name="Contact-Title" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[CRM-reference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="CRM-reference" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output].ExternalColumns[Active]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Active" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[DIM_PK_COMPANY]"
+                          dataType="ui1"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[DIM_PK_COMPANY]"
+                          name="DIM_PK_COMPANY" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[DIM_PK_CUSTOMER]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[DIM_PK_CUSTOMER]"
+                          name="DIM_PK_CUSTOMER" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[companyid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[companyid]"
+                          name="companyid" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[customerid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[customerid]"
+                          name="customerid" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[CUSTOMERID_SENTAI]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[CUSTOMERID_SENTAI]"
+                          name="CUSTOMERID_SENTAI" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Machine-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Machine-ID]"
+                          name="Machine-ID" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Cust-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Cust-ID]"
+                          name="Cust-ID" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Contact-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Contact-ID]"
+                          name="Contact-ID" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Telephone]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Telephone]"
+                          name="Telephone" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Is-principal]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Is-principal]"
+                          name="Is-principal" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[FAX]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[FAX]"
+                          name="FAX" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[UDF-1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[UDF-1]"
+                          name="UDF-1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[UDF-2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[UDF-2]"
+                          name="UDF-2" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[E-mail]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[E-mail]"
+                          name="E-mail" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Phone-2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Phone-2]"
+                          name="Phone-2" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Cellular]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Cellular]"
+                          name="Cellular" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Pager]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Pager]"
+                          name="Pager" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Web-site]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Web-site]"
+                          name="Web-site" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          name="LastExtraction" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Cont-Title]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Cont-Title]"
+                          name="Cont-Title" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Contact-Title]"
+                          codePage="1252"
+                          dataType="str"
+                          length="120"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Contact-Title]"
+                          name="Contact-Title" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[CRM-reference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[CRM-reference]"
+                          name="CRM-reference" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Active]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[Active]"
+                          name="Active" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\Carga Tabla DIM_CONTACT.Paths[OLE DB Source Output]"
+                  endId="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Crea Tabla SENTAI_CUSTOMER_CONTACT_TMP"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{701FCAFE-F5DD-4AF8-9477-5378EF311DD1}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Crea Tabla SENTAI_CUSTOMER_CONTACT_TMP"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{124CAF7C-2B90-49FE-814F-BE5080D64C35}"
+              SQLTask:SqlStatementSource="use DWStaging&#xA;go&#xA;&#xA;drop table&#xA;DWSTAGING.DBO.SENTAI_CUSTOMER_CONTACT_TMP;&#xA;&#xA;SELECT T1.DIM_PK_COMPANY, T1.DIM_PK_CUSTOMER, T1.companyid, T1.customerid, T1.CUSTOMERID_SENTAI, T2.*&#xA;into DWSTAGING.DBO.SENTAI_CUSTOMER_CONTACT_TMP&#xA;FROM INTXDW.dbo.DIM_CUSTOMER T1&#xA;INNER JOIN dwstaging.dbo.SENTAI_CUST_CONTACT T2&#xA;ON T1.customerID_SENTAI = T2.[Cust-ID]&#xA;ORDER BY 1,2,3,4;&#xA;&#xA;TRUNCATE TABLE&#xA;INTXDW.DBO.DIM_CONTACT;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{B965256A-BBFA-4D6A-863F-B399188495B1}"
+          DTS:From="Package\Sequence Container\Crea Tabla SENTAI_CUSTOMER_CONTACT_TMP"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\Carga Tabla DIM_CONTACT" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="192,44"
+          Id="Package\Sequence Container\Carga Tabla DIM_CONTACT"
+          TopLeft="56.4150943396226,90.1320754716981" />
+        <NodeLayout
+          Size="290,44"
+          Id="Package\Sequence Container\Crea Tabla SENTAI_CUSTOMER_CONTACT_TMP"
+          TopLeft="7.54716981132075,8.47169811320754" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="152.301886792453,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.0377358490566166,37.7358490566038"
+              Start="0,0"
+              End="-0.0377358490566166,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566166,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566166,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="305,141"
+          Size="305,185"
+          Id="Package\Sequence Container"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Sequence Container\Carga Tabla DIM_CONTACT">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="235,44"
+          Id="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="192,44"
+          Id="Package\Sequence Container\Carga Tabla DIM_CONTACT\Carga Tabla DIM_CONTACT"
+          TopLeft="26.9716981132076,87.1603773584906" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Carga Tabla DIM_CONTACT.Paths[OLE DB Source Output]"
+          TopLeft="122.820754716981,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Carga Tabla DIM_CONTACT\SENTAI_CUSTOMER_CONTACT_TMP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

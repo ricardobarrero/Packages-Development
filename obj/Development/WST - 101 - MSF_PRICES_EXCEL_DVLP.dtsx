@@ -1,0 +1,1381 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/1/2014 4:06:27 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SQLDVLP2"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{741F7283-1CE3-4BD8-B5BE-967A45DF4171}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="WST - 101 - MSF_PRICES_EXCEL_DVLP"
+  DTS:PackageType="5"
+  DTS:VersionBuild="105"
+  DTS:VersionGUID="{5DD086AB-7030-4ACA-BF66-DF3A02DFFA57}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[192.168.23.150.trax.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7BE8024C-BE61-4D72-94AE-F37DDD64653B}"
+      DTS:ObjectName="192.168.23.150.trax.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=192.168.23.150;User ID=sa;Initial Catalog=trax;Provider=SQLOLEDB.1;Application Name=SSIS-WST - 101 - MSF_PRICES-{7BE8024C-BE61-4D72-94AE-F37DDD64653B}192.168.23.150.trax.sa;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{FD499E00-8415-4BF9-BB89-EC567BC41FB0}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\intcomex\Shares\SQLPack\Files_Extraction\WST_ MSF_PRICES\Copia de Lista de Precios Marzo 2021_actualizada.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PRESTOREDBDVLP\STOREDVLP.IntcomexStore]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8899997D-F599-4C8E-992C-4759034F8B60}"
+      DTS:ObjectName="PRESTOREDBDVLP\STOREDVLP.IntcomexStore">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=PRESTOREDBDVLP\STOREDVLP;Initial Catalog=IntcomexStore;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8B08AA8B-A345-41C2-8991-F321C4B3D6F1}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-ListProducts-{8B08AA8B-A345-41C2-8991-F321C4B3D6F1}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{8145580B-4F37-4BB4-9700-A601A0F937BB}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;s5sqlus.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;SQLWSTList.ETLUser&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{9B389C32-9541-4CEC-825B-64455EB566FF}"
+      DTS:ObjectName="SQLWSTList IntcomexStore" />
+  </DTS:Configurations>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DATA_LOAD_PROCESS"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{E68D0374-6CAC-4573-A29E-DC8A5E27578E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DATA_LOAD_PROCESS">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\DATA_LOAD_PROCESS\INSERT_INTO_LICENSE_PRODUCT"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6D1774E2-6C20-4CC4-A5BF-6928267B21EE}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="INSERT_INTO_LICENSE_PRODUCT"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8899997D-F599-4C8E-992C-4759034F8B60}"
+              SQLTask:SqlStatementSource="-------insert into intcomexstore.dbo.licenseproduct-----&#xA;&#xA;&#xA;&#xA;INSERT INTO [IntcomexStore].[dbo].[LicenseProduct]&#xA;select &#xA;&#xA;PartNumber,&#xA;ItemName,&#xA;TypeLicenseId,&#xA;ProductTypeId,&#xA;FamilyId,&#xA;[P_venta],&#xA;GETDATE(),&#xA;GETDATE()&#xA; &#xA;from SQLAPPList.DWSTAGING.dbo.STG_PRODUCTS_MICROSOFT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\DATA_LOAD_PROCESS\TRUNCATE TABLES_PROCESS"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BB4D2858-5567-4D78-BFF3-3E18BC52D117}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE TABLES_PROCESS"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8899997D-F599-4C8E-992C-4759034F8B60}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE [IntcomexStore].[dbo]. LICENSEPRODUCT;&#xA;&#xA;truncate table  [IntcomexStore].[dbo].[LicenseProductType];&#xA;&#xA;truncate table  [IntcomexStore].[dbo].[LicenseProductFamily];&#xA;&#xA;TRUNCATE TABLE [IntcomexStore].[dbo].[LicenseProductLicenseType];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\DATA_LOAD_PROCESS\UPDATE_FIELDS"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D9AA1B07-9509-43C1-9090-8B4AFB4FA026}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="UPDATE_FIELDS"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8899997D-F599-4C8E-992C-4759034F8B60}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="---INSERT INTO LICENSEPRODUCTTYPE-----&#xA;&#xA;insert into intcomexstore.dbo.LicenseProductType&#xA;select distinct [TIPO DE LICENCIA], GETDATE() as CreationDate,null&#xA;from SQLAPPList.DWSTAGING.dbo.STG_PRODUCTS_MICROSOFT;&#xA;&#xA;---------INSERT INTO LICENSEPRODUCTFAMILY-------&#xA;&#xA;insert into [IntcomexStore].[dbo].[LicenseProductFamily]&#xA;select DISTINCT [FAMILIA DE PRODUCTOS],GETDATE(),NULL&#xA;FROM  SQLAPPList.DWSTAGING.dbo.STG_PRODUCTS_MICROSOFT;&#xA;&#xA;&#xA;-------INSERT INTO [IntcomexStore].[dbo].[LicenseProductLicenseType]----------&#xA;&#xA;&#xA;&#xA;INSERT INTO [IntcomexStore].[dbo].[LicenseProductLicenseType]&#xA;SELECT DISTINCT [TIPO DE CLIENTE FINAL],GETDATE(),NULL&#xA;FROM SQLAPPList.DWSTAGING.dbo.STG_PRODUCTS_MICROSOFT;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;------UPDATE PRODUCTTYPEID---------&#xA;&#xA;update  B&#xA;SET B.ProductTypeid = A.ProductTypeid&#xA;FROM intcomexstore.dbo.LicenseProductType A, SQLAPPList.DWSTAGING.dbo.STG_PRODUCTS_MICROSOFT B&#xA;where B.[TIPO DE LICENCIA] = A.productTypeName;&#xA;&#xA;&#xA;---UPDATE TYPELICENSEID--------&#xA;&#xA;&#xA;update  B&#xA;set B.typelicenseid = A.typelicenseid &#xA;from intcomexstore.dbo.LicenseProductLicenseType A, SQLAPPList.DWSTAGING.dbo.STG_PRODUCTS_MICROSOFT B&#xA;where A.typelicensename = B.[TIPO DE CLIENTE FINAL];&#xA;&#xA;--------UPDATE FAMILYID----&#xA;update  B&#xA;set B.Familyid = A.Familyid&#xA;--SELECT A.FAMILYID &#xA;from intcomexstore.dbo.LicenseProductFamily A,   SQLAPPList.DWSTAGING.dbo.STG_PRODUCTS_MICROSOFT B&#xA;where A.Familyname = B.[FAMILIA DE PRODUCTOS];&#xA;&#xA;&#xA;/*&#xA;&#xA;&#xA;--&gt;&gt;&gt; UPDATE P_venta&#xA;&#xA;update a set P_venta=CONVERT (money,           &#xA;ROUND (a.P_venta,2)+cast((10-SUBSTRING (CONVERT(VARCHAR,ROUND(a.P_venta,2)),&#xA;    CHARINDEX('.',CONVERT (varchar,ROUND(a.P_venta,2)),1)+2,&#xA;    LEN((CONVERT(VARCHAR,ROUND(a.P_venta,2))))))as float)/CAST(100 as float)&#xA;    )&#xA;from SQLAPPList.DWSTAGING.dbo.STG_PRODUCTS_MICROSOFT a&#xA;where &#xA;SUBSTRING (CONVERT(VARCHAR,P_venta),CHARINDEX('.',CONVERT (varchar,P_venta),1)+2,LEN((CONVERT(VARCHAR,P_venta))))&lt;&gt;0&#xA;&#xA;update a  set P_venta=round(a.P_venta,2)&#xA;from SQLAPPList.DWSTAGING.dbo.STG_PRODUCTS_MICROSOFT a&#xA;where SUBSTRING (CONVERT(VARCHAR,a.P_venta),CHARINDEX('.',CONVERT (varchar,a.P_venta),1)+2,LEN((CONVERT(VARCHAR,a.P_venta))))=0&#xA;&#xA;&#xA;update a  set P_venta=round(a.[P_venta],2)&#xA;from SQLAPPList.DWSTAGING.dbo.STG_PRODUCTS_MICROSOFT a&#xA;where SUBSTRING (CONVERT(VARCHAR,a.[P_venta]),CHARINDEX('.',CONVERT (varchar,a.[P_venta]),1)+2,LEN((CONVERT(VARCHAR,a.[P_venta]))))=0&#xA;&#xA;&#xA;*/&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\DATA_LOAD_PROCESS.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{006DEC7A-9819-4B5F-8262-4235D30BEA2D}"
+          DTS:From="Package\DATA_LOAD_PROCESS\TRUNCATE TABLES_PROCESS"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\DATA_LOAD_PROCESS\UPDATE_FIELDS" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\DATA_LOAD_PROCESS.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{DEC3D85B-2645-4C0B-978B-351EF65F56E1}"
+          DTS:From="Package\DATA_LOAD_PROCESS\UPDATE_FIELDS"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\DATA_LOAD_PROCESS\INSERT_INTO_LICENSE_PRODUCT" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DELETE_ CONSTRAINTS"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{D5220736-6790-43D5-A465-6DA63645761E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DELETE_ CONSTRAINTS">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\DELETE_ CONSTRAINTS\DELETE_FOREIGN_KEY_LICENSE_PRODUCT"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EECB192E-6465-4C1A-AEAE-2A6F9716FAA3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DELETE_FOREIGN_KEY_LICENSE_PRODUCT"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8899997D-F599-4C8E-992C-4759034F8B60}"
+              SQLTask:SqlStatementSource="USE [IntcomexStore]&#xA;GO&#xA;ALTER TABLE [dbo].[LicenseProduct] DROP CONSTRAINT [FK_LicenseProduct_1]&#xA;GO&#xA;USE [IntcomexStore]&#xA;GO&#xA;ALTER TABLE [dbo].[LicenseProduct] DROP CONSTRAINT [FK_LicenseProduct_2]&#xA;GO&#xA;USE [IntcomexStore]&#xA;GO&#xA;ALTER TABLE [dbo].[LicenseProduct] DROP CONSTRAINT [FK_LicenseProduct_3]&#xA;GO&#xA;&#xA;&#xA;/*&#xA;USE [IntcomexStore]&#xA;GO&#xA;&#xA;IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_LicenseProduct_1]') AND parent_object_id = OBJECT_ID(N'[dbo].[LicenseProduct]'))&#xA;ALTER TABLE [dbo].[LicenseProduct] DROP CONSTRAINT [FK_LicenseProduct_1]&#xA;GO&#xA;&#xA;&#xA;&#xA;USE [IntcomexStore]&#xA;GO&#xA;&#xA;IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_LicenseProduct_2]') AND parent_object_id = OBJECT_ID(N'[dbo].[LicenseProduct]'))&#xA;ALTER TABLE [dbo].[LicenseProduct] DROP CONSTRAINT [FK_LicenseProduct_2]&#xA;GO&#xA;&#xA;&#xA;USE [IntcomexStore]&#xA;GO&#xA;&#xA;IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_LicenseProduct_3]') AND parent_object_id = OBJECT_ID(N'[dbo].[LicenseProduct]'))&#xA;ALTER TABLE [dbo].[LicenseProduct] DROP CONSTRAINT [FK_LicenseProduct_3]&#xA;GO&#xA;&#xA;&#xA;*/" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ENVIA CORREO"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{B71FB802-9D80-4C11-85F4-A2F9CA376918}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ENVIA CORREO">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\ENVIA CORREO\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{E4C26512-7DE0-4021-A7D9-7F750FD0642A}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{8145580B-4F37-4BB4-9700-A601A0F937BB}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL_Licence_Products_Microsoft"
+              SendMailTask:MessageSource="Se a ejecutado  el Paquete ETL_Licence_Products_Microsoft Correctamente" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\RE_CREATE_CONSTRAINTS"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{91133872-A82C-4079-ACA5-541C5EA81B2C}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="RE_CREATE_CONSTRAINTS">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\RE_CREATE_CONSTRAINTS\CREATE_CONSTRAINTS"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{AD69CAA8-7703-43E7-95A1-209333A789D7}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="CREATE_CONSTRAINTS"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8899997D-F599-4C8E-992C-4759034F8B60}"
+              SQLTask:SqlStatementSource="USE [IntcomexStore]&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[LicenseProduct]  WITH CHECK ADD  CONSTRAINT [FK_LicenseProduct_1] FOREIGN KEY([TypeLicenseId])&#xA;REFERENCES [dbo].[LicenseProductLicenseType] ([TypeLicenseId])&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[LicenseProduct] CHECK CONSTRAINT [FK_LicenseProduct_1]&#xA;GO&#xA;&#xA;USE [IntcomexStore]&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[LicenseProduct]  WITH CHECK ADD  CONSTRAINT [FK_LicenseProduct_2] FOREIGN KEY([ProductTypeId])&#xA;REFERENCES [dbo].[LicenseProductType] ([ProductTypeId])&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[LicenseProduct] CHECK CONSTRAINT [FK_LicenseProduct_2]&#xA;GO&#xA;&#xA;&#xA;USE [IntcomexStore]&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[LicenseProduct]  WITH CHECK ADD  CONSTRAINT [FK_LicenseProduct_3] FOREIGN KEY([FamilyId])&#xA;REFERENCES [dbo].[LicenseProductFamily] ([FamilyId])&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[LicenseProduct] CHECK CONSTRAINT [FK_LicenseProduct_3]&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{177D9BF6-4C0A-4660-929E-E93A4C5DB277}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\LOAD TABLE"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{388EAAEE-9F89-42C0-B591-5463B1A83425}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOAD TABLE"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\LOAD TABLE\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Inputs[Data Conversion Input].Columns[Descripcion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Descripcion"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Descripcion]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Inputs[Data Conversion Input].Columns[PartNumber]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="PartNumber"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[PartNumber]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Inputs[Data Conversion Input].Columns[Tipo de Licencia]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Tipo de Licencia"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Tipo de Licencia]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Inputs[Data Conversion Input].Columns[Tipo de Cliente]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Tipo de Cliente"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Tipo de Cliente]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Inputs[Data Conversion Input].Columns[Familia de Producto]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Familia de Producto"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Familia de Producto]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Sequence Container\LOAD TABLE\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[Descripcion]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="250"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[Descripcion]"
+                          name="Descripcion"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Descripcion]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[PartNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="250"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[PartNumber]"
+                          name="PartNumber"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[PartNumber]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[Tipo de Licencia]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="250"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[Tipo de Licencia]"
+                          name="Tipo de Licencia"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Tipo de Licencia]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[Tipo de Cliente]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="250"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[Tipo de Cliente]"
+                          name="Tipo de Cliente"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Tipo de Cliente]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[Familia de Producto]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="250"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[Familia de Producto]"
+                          name="Familia de Producto"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Familia de Producto]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Sequence Container\LOAD TABLE\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\LOAD TABLE\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\LOAD TABLE\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\LOAD TABLE\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Sequence Container\LOAD TABLE\Derived Column.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\LOAD TABLE\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Sequence Container\LOAD TABLE\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\LOAD TABLE\Excel Source"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Marzo$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\LOAD TABLE\Excel Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Descripcion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].ExternalColumns[Descripcion]"
+                          length="255"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Descripcion]"
+                          name="Descripcion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[PartNumber]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].ExternalColumns[PartNumber]"
+                          length="255"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[PartNumber]"
+                          name="PartNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Tipo de Licencia]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].ExternalColumns[Tipo de Licencia]"
+                          length="255"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Tipo de Licencia]"
+                          name="Tipo de Licencia"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Tipo de Cliente]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].ExternalColumns[Tipo de Cliente]"
+                          length="255"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Tipo de Cliente]"
+                          name="Tipo de Cliente"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Familia de Producto]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].ExternalColumns[Familia de Producto]"
+                          length="255"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Familia de Producto]"
+                          name="Familia de Producto"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Precio]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].ExternalColumns[Precio]"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Precio]"
+                          name="Precio"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].ExternalColumns[Descripcion]"
+                          dataType="wstr"
+                          length="255"
+                          name="Descripcion" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].ExternalColumns[PartNumber]"
+                          dataType="wstr"
+                          length="255"
+                          name="PartNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].ExternalColumns[Tipo de Licencia]"
+                          dataType="wstr"
+                          length="255"
+                          name="Tipo de Licencia" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].ExternalColumns[Tipo de Cliente]"
+                          dataType="wstr"
+                          length="255"
+                          name="Tipo de Cliente" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].ExternalColumns[Familia de Producto]"
+                          dataType="wstr"
+                          length="255"
+                          name="Familia de Producto" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].ExternalColumns[Precio]"
+                          dataType="r8"
+                          name="Precio" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[Descripcion]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[Descripcion]"
+                          name="Descripcion" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[PartNumber]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[PartNumber]"
+                          name="PartNumber" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[Tipo de Licencia]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[Tipo de Licencia]"
+                          name="Tipo de Licencia" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[Tipo de Cliente]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[Tipo de Cliente]"
+                          name="Tipo de Cliente" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[Familia de Producto]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[Familia de Producto]"
+                          name="Familia de Producto" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[Precio]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[Precio]"
+                          name="Precio" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="STG_PRODUCTS_MICROSOFT"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[STG_PRODUCTS_MICROSOFT]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].Columns[PartNumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="250"
+                          cachedName="PartNumber"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[PartNumber]"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[PartNumber]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].Columns[Descripcion]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="250"
+                          cachedName="Descripcion"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[ItemName]"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[Descripcion]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].Columns[Tipo de Licencia]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="250"
+                          cachedName="Tipo de Licencia"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[TIPO DE LICENCIA]"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[Tipo de Licencia]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].Columns[Familia de Producto]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="250"
+                          cachedName="Familia de Producto"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[FAMILIA DE PRODUCTOS]"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[Familia de Producto]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].Columns[Precio]"
+                          cachedDataType="r8"
+                          cachedName="Precio"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[p_venta]"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output].Columns[Precio]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].Columns[Tipo de Cliente]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="250"
+                          cachedName="Tipo de Cliente"
+                          externalMetadataColumnId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[tipo de cliente Final]"
+                          lineageId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output].Columns[Tipo de Cliente]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[PartNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="PartNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[ItemName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ItemName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[tipo de cliente Final]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="tipo de cliente Final" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[TIPO DE LICENCIA]"
+                          codePage="1252"
+                          dataType="str"
+                          length="250"
+                          name="TIPO DE LICENCIA" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[FAMILIA DE PRODUCTOS]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="FAMILIA DE PRODUCTOS" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[p_venta]"
+                          dataType="cy"
+                          name="p_venta" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[ProductTypeid]"
+                          dataType="i4"
+                          name="ProductTypeid" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[typelicenseid]"
+                          dataType="i4"
+                          name="typelicenseid" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input].ExternalColumns[FamilyID]"
+                          dataType="i4"
+                          name="FamilyID" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\LOAD TABLE.Paths[Data Conversion Output]"
+                  endId="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Sequence Container\LOAD TABLE\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Sequence Container\LOAD TABLE.Paths[Derived Column Output]"
+                  endId="Package\Sequence Container\LOAD TABLE\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\Sequence Container\LOAD TABLE\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Sequence Container\LOAD TABLE.Paths[Excel Source Output]"
+                  endId="Package\Sequence Container\LOAD TABLE\Derived Column.Inputs[Derived Column Input]"
+                  name="Excel Source Output"
+                  startId="Package\Sequence Container\LOAD TABLE\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\TRUNCATE TABLE STG_PRODUCTS_MICROSOFT"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F3C7343E-C7DD-4BE9-A064-93E8C4166D56}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE TABLE STG_PRODUCTS_MICROSOFT"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8B08AA8B-A345-41C2-8991-F321C4B3D6F1}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE DWSTAGING.dbo.STG_PRODUCTS_MICROSOFT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{5982F8A0-7BFB-4EF7-851B-61C64899FA2C}"
+          DTS:From="Package\Sequence Container\TRUNCATE TABLE STG_PRODUCTS_MICROSOFT"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\LOAD TABLE" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0A3DC987-D15D-4B96-B999-463F8CFB6389}"
+      DTS:From="Package\DATA_LOAD_PROCESS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\RE_CREATE_CONSTRAINTS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{FC155C0B-797E-445B-8CF8-4C39B8F4E48B}"
+      DTS:From="Package\DELETE_ CONSTRAINTS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\DATA_LOAD_PROCESS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{2ACF3A1A-8428-4925-87E2-7D8E4839D311}"
+      DTS:From="Package\Sequence Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\DELETE_ CONSTRAINTS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{F5A53417-979F-4884-98F2-B44F6BC68F31}"
+      DTS:From="Package\RE_CREATE_CONSTRAINTS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\ENVIA CORREO" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{DD88531D-F754-4D6D-807B-8435A7FA5847}"
+      DTS:EventID="7536741"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{9588FD57-066D-4F9B-82B9-0F71BE46ADAB}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables />
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="146,44"
+          Id="Package\DATA_LOAD_PROCESS\INSERT_INTO_LICENSE_PRODUCT"
+          TopLeft="1.6792452830189,187.754716981132" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DATA_LOAD_PROCESS\TRUNCATE TABLES_PROCESS"
+          TopLeft="10.7924528301887,29.9056603773585" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DATA_LOAD_PROCESS\UPDATE_FIELDS"
+          TopLeft="10.6792452830189,100.849056603774" />
+        <EdgeLayout
+          Id="Package\DATA_LOAD_PROCESS.PrecedenceConstraints[Constraint]"
+          TopLeft="78.6792452830189,73.8301886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.113207547169822,27.0188679245283"
+              Start="0,0"
+              End="-0.113207547169822,19.5188679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.5094339622641" />
+                  <mssgle:LineSegment
+                    End="-0.113207547169822,13.5094339622641" />
+                  <mssgle:LineSegment
+                    End="-0.113207547169822,19.5188679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DATA_LOAD_PROCESS.PrecedenceConstraints[Constraint 1]"
+          TopLeft="76.6792452830189,144.849056603774">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,42.905660377358"
+              Start="0,0"
+              End="0,35.405660377358">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.405660377358" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="192,287"
+          Size="192,331"
+          Id="Package\DATA_LOAD_PROCESS"
+          TopLeft="23.811320754717,513.990566037736" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DELETE_ CONSTRAINTS\DELETE_FOREIGN_KEY_LICENSE_PRODUCT"
+          TopLeft="10.9433962264151,16.8867924528302" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="158,69"
+          Size="158,113"
+          Id="Package\DELETE_ CONSTRAINTS"
+          TopLeft="40.7169811320755,330.443396226415" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\ENVIA CORREO\Send Mail Task"
+          TopLeft="19.8867924528302,11.9433962264151" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="186,70"
+          Size="186,114"
+          Id="Package\ENVIA CORREO"
+          TopLeft="26,1055.99056603774" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\RE_CREATE_CONSTRAINTS\CREATE_CONSTRAINTS"
+          TopLeft="9.9622641509434,20.8867924528302" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="164,79"
+          Size="164,123"
+          Id="Package\RE_CREATE_CONSTRAINTS"
+          TopLeft="33.6603773584906,894.556603773585" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Sequence Container\LOAD TABLE"
+          TopLeft="42.9811320754717,103.754716981132" />
+        <NodeLayout
+          Size="167,54"
+          Id="Package\Sequence Container\TRUNCATE TABLE STG_PRODUCTS_MICROSOFT"
+          TopLeft="22.9245283018868,9.90566037735849" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="109.452830188679,63.9056603773585">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,39.8490566037735"
+              Start="0,0"
+              End="0,32.3490566037735">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.3490566037735" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="213,203"
+          Size="213,247"
+          Id="Package\Sequence Container"
+          TopLeft="16.547169811321,23.7075471698113" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="117.735849056604,844.990566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,49.566037735849"
+              Start="0,0"
+              End="0,42.066037735849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.066037735849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="119.764150943396,443.443396226415">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,70.547169811321"
+              Start="0,0"
+              End="0,63.047169811321">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.047169811321" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="121.382075471698,270.707547169811">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,59.7358490566037"
+              Start="0,0"
+              End="0,52.2358490566037">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.2358490566037" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="117.330188679245,1017.55660377359">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,38.4339622641551"
+              Start="0,0"
+              End="0,30.9339622641551">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.9339622641551" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Sequence Container\LOAD TABLE">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="221,42"
+          Id="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT"
+          TopLeft="5.50000000000003,317.5" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Sequence Container\LOAD TABLE\Excel Source"
+          TopLeft="47.5,25.5" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Sequence Container\LOAD TABLE\Derived Column"
+          TopLeft="39,113.5" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Sequence Container\LOAD TABLE\Data Conversion"
+          TopLeft="37,216.5" />
+        <EdgeLayout
+          Id="Package\Sequence Container\LOAD TABLE.Paths[Data Conversion Output]"
+          TopLeft="115.5,258.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\LOAD TABLE.Paths[Excel Source Output]"
+          TopLeft="116.5,67.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\LOAD TABLE.Paths[Derived Column Output]"
+          TopLeft="115.5,155.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\LOAD TABLE\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\LOAD TABLE\STG_PRODUCTS_MICROSOFT">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

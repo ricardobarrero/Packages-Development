@@ -1,0 +1,2146 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/5/2018 6:45:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S9SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{917B4B96-AB1C-493B-81E4-7786670E0DCC}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DWH - 1001 - SHIP_AND_DEBITS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="45"
+  DTS:VersionGUID="{7506CDBA-77BD-4185-BAE0-9CD820148FFB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FILE IM_DATA_VALUE]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{4050D5F8-B2A7-4C5B-9733-7DF9E08D2075}"
+      DTS:ObjectName="FILE IM_DATA_VALUE">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\Intcomex\Shares\SQLPack\Files_Extraction\VendorOut\Archivos\im_data_value.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Control-ent"
+              DTS:DTSID="{D32FD245-6539-468F-8D9D-A5384FD7D25A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Machine-ID"
+              DTS:DTSID="{F6B60C46-B1C6-4F91-B73C-7688EFC2BCFE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Trans-no"
+              DTS:DTSID="{54F3C468-D264-4B4A-8F1F-CF9DB75611CE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Seq-no"
+              DTS:DTSID="{8B4EBC35-7597-49A3-B29F-A2C6703DE7F0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Amount"
+              DTS:DTSID="{F5C961B4-2C09-4C1B-8089-8F6806CBB6B8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Source-code"
+              DTS:DTSID="{2FC3BEC2-AD15-4AB3-A307-E446D5380ADC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Fiscal-prd"
+              DTS:DTSID="{E51B3F5C-EEF9-43BE-BBBA-C6EA61F93E80}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Fiscal-yr"
+              DTS:DTSID="{F5909D55-4F46-43CA-ADC6-AEB981795ADC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Create-date"
+              DTS:DTSID="{3EDD9179-BDE9-4F40-BAE5-3455DA3FE3A5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Prev-cost-left"
+              DTS:DTSID="{BCDC5A15-7A9F-40B3-9426-FB975AD440BD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Im-Update-date"
+              DTS:DTSID="{71DDEB73-45E9-4372-8ACD-1A27619DEA4C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Time-Stamp"
+              DTS:DTSID="{635D7510-B4F0-445D-A0D2-8DFD818BEAED}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser16]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{A7D968FA-F5E4-419F-8EF3-81E6773BB844}"
+      DTS:ObjectName="INTCOMEX_DWH.dwhuser16">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Etluser;Dsn=IQ16;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADdCluA1znJwFviasYVM8qNAAAAAASAAACgAAAAEAAAAIa+3+fUOW6Gb7nx1UmBYQIYAAAAcDRZ7BqNnoZUuzHr1sO9/QHO1PgB1cuGFAAAAD0GKg9k1cbD8xlOz0PCVwHTyy78</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{87EF0583-210D-4EB2-AFD2-761FCD8C946A}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{83ADA104-8004-42D8-91F9-7E5C94F4D712}"
+      DTS:ObjectName="S91SQLUS.INTXDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=INTXDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{BB2FF7BB-4BB1-4440-AD12-9613E5C44499}"
+      DTS:ObjectName="Sentai_Replica.bodts">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=bodts;Dsn=Sentai_Replica;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABCWmUAGg+yU8V2Da4TQwgeAAAAAASAAACgAAAAEAAAADh+XEoC6TdnF2x6B5iNrUIYAAAAmkC+Ve44HSfqKtqaERJrYast0jS2NufHFAAAACXFT2pj3a2WrqC/lXHQTGLWXFfc</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{29820BCE-2AFC-4579-BE18-2A42BB659E8B}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=clientarrayus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;INTCOMEX_DWH.dwhuser16&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{AD749213-D34A-4A46-8369-330E34E08B7D}"
+      DTS:ObjectName="INTCOMEX_DWH dwhuser16" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;Sentai_Replica.bodts&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{BCE8C2DC-7673-4D69-83B8-18C1D37DDF68}"
+      DTS:ObjectName="Sentai_Replica bodts" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4E54B368-1977-4EAC-8BC4-727F8DCCF352}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0B37A5AA-9E01-43BF-9E7D-0BEDF5179AC5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{821D3853-4E90-4C43-87F7-9AA390A4A6F5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_RowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C2536103-048A-4F73-BC54-BDD049608265}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0FDCCA9E-1DB3-4EF0-982E-46F802A44743}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dm_trns_fact_inventory_last_receipt_sd"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{B0D2120E-C845-4BCE-AA3C-37E607EA6351}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dm_trns_fact_inventory_last_receipt_sd">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\dm_trns_fact_inventory_last_receipt_sd\dm_trns_fact_inventory_last_receipt_sd"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{CE126416-BF9C-419F-8545-DED63D39FDAE}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="dm_trns_fact_inventory_last_receipt_sd"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87EF0583-210D-4EB2-AFD2-761FCD8C946A}"
+              SQLTask:SqlStatementSource="EXEC dm_trns_fact_inventory_last_receipt_sd" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{FC2FA208-128B-4B5F-922B-E7FF98DB9CB5}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{646EDFFC-5086-4A31-92C7-504CF3B2FEB3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87EF0583-210D-4EB2-AFD2-761FCD8C946A}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete DWH - 1001 - SHIP_AND_DEBITS  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{31B1899B-6036-46AF-A294-A8BA870FC6EB}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{29820BCE-2AFC-4579-BE18-2A42BB659E8B}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :DWH - 1001 - SHIP_AND_DEBITS" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{CDEB7067-DF9E-45C2-8CE2-A70B8CB3840B}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\IQ 16"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{9DE083E3-803D-4B16-B8FB-7C98194AF4A4}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="IQ 16">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\IQ 16\dw_dataload_fact_inventory_last_receipt_sd"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{19C7133B-4A12-482D-B078-DF486B601EA8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="dw_dataload_fact_inventory_last_receipt_sd"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A7D968FA-F5E4-419F-8EF3-81E6773BB844}"
+              SQLTask:SqlStatementSource="exec dwhuser.dw_dataload_fact_inventory_last_receipt_sd" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOAD FACT_IM_TRANS_VALUE"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{40DB063C-1DBC-40DF-BB58-419401A7635A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD FACT_IM_TRANS_VALUE">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOAD FACT_IM_TRANS_VALUE\dm_trns_fact_im_trans_value"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{05001DA3-17D8-43F9-B9FF-4AC000B6C52D}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="dm_trns_fact_im_trans_value"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87EF0583-210D-4EB2-AFD2-761FCD8C946A}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[dm_trns_fact_im_trans_value]  " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOAD STG_IM_TRANS_VALUE"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{42EE7AC2-7785-44CC-B199-BB55CD35ABD7}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD STG_IM_TRANS_VALUE">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{E5FDDC22-379C-4618-88E9-F0E778C9A5AA}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SENTAI_IM_TRANS_VALUE INC"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Inputs[Data Conversion Input].Columns[Control-ent]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Control-ent"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Control-ent]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Inputs[Data Conversion Input].Columns[Machine-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Machine-ID"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Machine-ID]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Outputs[Data Conversion Output].Columns[Control-ent]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Outputs[Data Conversion Output].Columns[Control-ent]"
+                          name="Control-ent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Control-ent]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Outputs[Data Conversion Output].Columns[Machine-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Outputs[Data Conversion Output].Columns[Machine-ID]"
+                          name="Machine-ID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Machine-ID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Inputs[Derived Column Input].Columns[Control-ent]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Control-ent"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Control-ent]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Outputs[Derived Column Output].Columns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Outputs[Derived Column Output].Columns[CompanyID]"
+                          name="CompanyID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Control-ent]} == "i" ? "XUS" : [UPPER](#{Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Control-ent]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">[Control-ent] == "i" ? "XUS" : UPPER([Control-ent])</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="FILE IM_DATA_VALUE"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[FILE IM_DATA_VALUE]"
+                      connectionManagerRefId="Package.ConnectionManagers[FILE IM_DATA_VALUE]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Control-ent]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Control-ent]"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Control-ent]"
+                          name="Control-ent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Machine-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Machine-ID]"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Machine-ID]"
+                          name="Machine-ID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Trans-no]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Trans-no]"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Trans-no]"
+                          name="Trans-no"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Seq-no]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Seq-no]"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Seq-no]"
+                          name="Seq-no"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Amount]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Amount]"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Amount]"
+                          name="Amount"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Source-code]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Source-code]"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Source-code]"
+                          name="Source-code"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Fiscal-prd]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Fiscal-prd]"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Fiscal-prd]"
+                          name="Fiscal-prd"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Fiscal-yr]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Fiscal-yr]"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Fiscal-yr]"
+                          name="Fiscal-yr"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Create-date]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Create-date]"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Create-date]"
+                          name="Create-date"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Prev-cost-left]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Prev-cost-left]"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Prev-cost-left]"
+                          name="Prev-cost-left"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Im-Update-date]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Im-Update-date]"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Im-Update-date]"
+                          name="Im-Update-date"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Time-Stamp]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Time-Stamp]"
+                          length="50"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Time-Stamp]"
+                          name="Time-Stamp"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Control-ent]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Control-ent" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Machine-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Machine-ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Trans-no]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Trans-no" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Seq-no]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Seq-no" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Amount]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Amount" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Source-code]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Source-code" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Fiscal-prd]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Fiscal-prd" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Fiscal-yr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Fiscal-yr" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Create-date]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Create-date" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Prev-cost-left]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Prev-cost-left" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Im-Update-date]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Im-Update-date" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].ExternalColumns[Time-Stamp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Time-Stamp" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="SENTAI_IM_TRANS_VALUE"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[SENTAI_IM_TRANS_VALUE]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].Columns[Trans-no]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Trans-no"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Trans_no]"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Trans-no]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].Columns[Seq-no]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Seq-no"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Seq_no]"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Seq-no]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].Columns[Fiscal-prd]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Fiscal-prd"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Fiscal_prd]"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Fiscal-prd]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].Columns[Fiscal-yr]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Fiscal-yr"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Fiscal_yr]"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Fiscal-yr]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].Columns[Create-date]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Create-date"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Create_date]"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Create-date]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].Columns[Prev-cost-left]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Prev-cost-left"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Prev_cost_left]"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Prev-cost-left]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].Columns[Control-ent]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Control-ent"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Control_ent]"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Outputs[Data Conversion Output].Columns[Control-ent]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].Columns[Machine-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Machine-ID"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Machine_ID]"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Outputs[Data Conversion Output].Columns[Machine-ID]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].Columns[CompanyID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CompanyID"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Outputs[Derived Column Output].Columns[CompanyID]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].Columns[Amount]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Amount"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Amount]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].Columns[Source-code]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Source-code"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Source_code]"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Source-code]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].Columns[Time-Stamp]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Time-Stamp"
+                          externalMetadataColumnId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[DateTimeStamp]"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output].Columns[Time-Stamp]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Control_ent]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="Control_ent" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Machine_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Machine_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Trans_no]"
+                          dataType="i4"
+                          name="Trans_no" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Seq_no]"
+                          dataType="i4"
+                          name="Seq_no" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Entry_no]"
+                          dataType="i4"
+                          name="Entry_no" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                          dataType="numeric"
+                          name="Amount"
+                          precision="19"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Source_code]"
+                          dataType="i4"
+                          name="Source_code" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Fiscal_prd]"
+                          dataType="i4"
+                          name="Fiscal_prd" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Fiscal_yr]"
+                          dataType="i4"
+                          name="Fiscal_yr" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Link_machine]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Link_machine" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Link_recno]"
+                          dataType="i4"
+                          name="Link_recno" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[User_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="User_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Create_date]"
+                          dataType="dbTimeStamp"
+                          name="Create_date" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Create_time]"
+                          dataType="i4"
+                          name="Create_time" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Other_gl]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          name="Other_gl" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Other_ent]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="Other_ent" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Revalue_qty]"
+                          dataType="numeric"
+                          name="Revalue_qty"
+                          precision="19"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Unit_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Unit_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Prev_cost_left]"
+                          dataType="numeric"
+                          name="Prev_cost_left"
+                          precision="19"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[Fiscal_yr_prd]"
+                          dataType="i4"
+                          name="Fiscal_yr_prd" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="CompanyID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input].ExternalColumns[DateTimeStamp]"
+                          dataType="dbTimeStamp"
+                          name="DateTimeStamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC.Paths[Data Conversion Output]"
+                  endId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC.Paths[Derived Column Output]"
+                  endId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC.Paths[Flat File Source Output]"
+                  endId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column.Inputs[Derived Column Input]"
+                  name="Flat File Source Output"
+                  startId="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD STG_IM_TRANS_VALUE\TRUNCATE SENTAI_IM_TRANS_VALUE"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E575591F-80EF-4D6F-B363-8E24422735A0}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE SENTAI_IM_TRANS_VALUE"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87EF0583-210D-4EB2-AFD2-761FCD8C946A}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE SENTAI_IM_TRANS_VALUE" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD STG_IM_TRANS_VALUE.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{D2D6F9CD-53E5-4E00-9904-C41A6CBB8E9C}"
+          DTS:From="Package\LOAD STG_IM_TRANS_VALUE\TRUNCATE SENTAI_IM_TRANS_VALUE"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Evento Correcto"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3F9AF0C0-5B17-40D8-9CC1-46445FBEBA8D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Evento Correcto"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Tarea Evento Correcto"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Correcto','Ejecucion Correcta')"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{87EF0583-210D-4EB2-AFD2-761FCD8C946A}"
+          SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;&#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Correcto','Ejecucion Correcta')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{716CB9FC-A033-4CA0-BC08-A425CD447F3D}"
+      DTS:From="Package\LOAD STG_IM_TRANS_VALUE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\LOAD FACT_IM_TRANS_VALUE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{FFA1015A-256E-4D4B-A943-8C8AD95AD6C9}"
+      DTS:From="Package\Tarea Evento Correcto"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{A3DAA27B-2FAB-43F4-A936-185F05B97AC9}"
+      DTS:From="Package\LOAD FACT_IM_TRANS_VALUE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\dm_trns_fact_inventory_last_receipt_sd" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{E9B13C60-F66F-4C24-9DE3-91B890D6C7C3}"
+      DTS:From="Package\dm_trns_fact_inventory_last_receipt_sd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\IQ 16" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{58047E14-12DB-46FD-8AED-E7359CCB5910}"
+      DTS:From="Package\IQ 16"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Tarea Evento Correcto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{1EEAD6AA-67C9-4C2C-BCBD-819AF23C961D}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{133BC145-B375-4F25-B4B5-62071784DD48}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Event Error"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Send Mail  Error Event"
+          DTS:DTSID="{E53C5674-4968-4BE1-B47A-9780436AEF2D}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Event Error">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Event Error"</DTS:PropertyExpression>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Event Error\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{F350EFEA-FB6E-4FF1-B132-7CFB77FF3C5A}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{87EF0583-210D-4EB2-AFD2-761FCD8C946A}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Event Error\Send Mail Task"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{08E2A7A7-2085-450A-B777-2C6D0AACDD48}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send Mail Task"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError] + @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{29820BCE-2AFC-4579-BE18-2A42BB659E8B}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :DWH - 1001 - SHIP_AND_DEBITS" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Event Error.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{FA87DACB-D90B-4D47-97D5-D66410A8F39A}"
+              DTS:From="Package.EventHandlers[OnError]\Event Error\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Event Error\Send Mail Task" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Process Control Errors"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Task Error Event"
+          DTS:DTSID="{9D4CB3CC-DB85-4479-9E5A-86C6F07AAF3F}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Process Control Errors">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Process Control Errors"</DTS:PropertyExpression>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors\Task Event Error"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{F40E71DF-BDFF-41BF-A77B-939C88328BDF}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Task Event Error"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Task Event Error"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{87EF0583-210D-4EB2-AFD2-761FCD8C946A}"
+                  SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors\Task Reset Execution DWH - 1001 - SHIP_AND_DEBITS"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:Disabled="True"
+              DTS:DTSID="{322A510D-6C78-495D-8DF5-91C85B9A4D2B}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Task Reset Execution DWH - 1001 - SHIP_AND_DEBITS"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Task Reset Execution "+ @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{1E4CB9B6-8B16-417F-B4F8-872D34FB4916}"
+                  SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors.PrecedenceConstraints[Restricción]"
+              DTS:CreationName=""
+              DTS:DTSID="{915DDCC2-C8A8-4EAA-9375-FBBF41CA6464}"
+              DTS:From="Package.EventHandlers[OnError]\Process Control Errors\Task Reset Execution DWH - 1001 - SHIP_AND_DEBITS"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Restricción"
+              DTS:To="Package.EventHandlers[OnError]\Process Control Errors\Task Event Error" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="267,42"
+          Id="Package\dm_trns_fact_inventory_last_receipt_sd\dm_trns_fact_inventory_last_receipt_sd"
+          TopLeft="14,19" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="290,116"
+          Size="290,159"
+          Id="Package\dm_trns_fact_inventory_last_receipt_sd"
+          TopLeft="307,499" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="48.3018867924528,16.1698113207547" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="51.3018867924528,96.2264150943396" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="117.801886792453,60.1698113207547">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,36.0566037735849"
+              Start="0,0"
+              End="0,28.5566037735849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5566037735849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="220,195"
+          Size="220,239"
+          Id="Package\Evento Correcto"
+          TopLeft="348,992" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\IQ 16\dw_dataload_fact_inventory_last_receipt_sd"
+          TopLeft="30,20" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="241,113"
+          Size="241,156"
+          Id="Package\IQ 16"
+          TopLeft="338,695" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\LOAD FACT_IM_TRANS_VALUE\dm_trns_fact_im_trans_value"
+          TopLeft="5.5,8" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="249,105"
+          Size="249,148"
+          Id="Package\LOAD FACT_IM_TRANS_VALUE"
+          TopLeft="333,313" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC"
+          TopLeft="5.5,115.5" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\LOAD STG_IM_TRANS_VALUE\TRUNCATE SENTAI_IM_TRANS_VALUE"
+          TopLeft="36.5,5.5" />
+        <EdgeLayout
+          Id="Package\LOAD STG_IM_TRANS_VALUE.PrecedenceConstraints[Constraint 3]"
+          TopLeft="119,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="244,212"
+          Size="244,255"
+          Id="Package\LOAD STG_IM_TRANS_VALUE"
+          TopLeft="340,11" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Tarea Evento Correcto"
+          TopLeft="365,907" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="459.75,266">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="457.75,949">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="454.75,461">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="455.25,658">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="458,851">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Event Error\Mensaje"
+          TopLeft="52.6415094339623,21.4528301886793" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Event Error\Send Mail Task"
+          TopLeft="52.6415094339623,111.339622641509" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Event Error.PrecedenceConstraints[Constraint]"
+          TopLeft="120.528301886792,65.377358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,45.9622641509434"
+              Start="0,0"
+              End="0,38.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="249,189.075471698114"
+          Size="249,233"
+          Id="Package.EventHandlers[OnError]\Event Error"
+          TopLeft="60,342" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Process Control Errors\Task Event Error"
+          TopLeft="50.8301886792453,117.641509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Process Control Errors\Task Reset Execution DWH - 1001 - SHIP_AND_DEBITS"
+          TopLeft="50.8301886792453,17.3018867924528" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Process Control Errors.PrecedenceConstraints[Restricción]"
+          TopLeft="118.716981132075,61.2264150943396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,56.4150943396226"
+              Start="0,0"
+              End="0,48.9150943396226">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.9150943396226" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="249,189.075471698114"
+          Size="249,233"
+          Id="Package.EventHandlers[OnError]\Process Control Errors"
+          TopLeft="70,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="208,42"
+          Id="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE"
+          TopLeft="323,318" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Derived Column"
+          TopLeft="348,113" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\FILE IM_DATA_VALUE"
+          TopLeft="337,19" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\Data Conversion"
+          TopLeft="343,215" />
+        <EdgeLayout
+          Id="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC.Paths[Data Conversion Output]"
+          TopLeft="424,257">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC.Paths[Flat File Source Output]"
+          TopLeft="427,61">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC.Paths[Derived Column Output]"
+          TopLeft="423,155">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD STG_IM_TRANS_VALUE\SENTAI_IM_TRANS_VALUE INC\SENTAI_IM_TRANS_VALUE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

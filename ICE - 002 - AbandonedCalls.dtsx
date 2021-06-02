@@ -1,0 +1,1476 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/8/2017 5:37:42 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S8SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{C4BB0C8B-09D8-4842-B6AA-99892967FA68}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ICE - 002 - AbandonedCalls"
+  DTS:PackageType="5"
+  DTS:VersionBuild="63"
+  DTS:VersionGUID="{5032A6B1-AEE2-4ADC-BDEF-3752FB008F1F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser154]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{557AB0F6-B61D-4911-8BB7-CEE0DD6461E4}"
+      DTS:ObjectName="INTCOMEX_DWH.dwhuser154">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Etluser;Dsn=IQ154;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser16]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{26958E32-6382-4525-97FB-7A10357549B6}"
+      DTS:ObjectName="INTCOMEX_DWH.dwhuser16">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Etluser;Dsn=IQ16;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{49097578-578A-48FF-931D-EA42F85C782C}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2C7A8A27-61F5-4B4C-92FA-385F4C3EAD47}"
+      DTS:ObjectName="S91SQLUS.INTXDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=INTXDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{31B82149-F98D-4F8B-A031-B633BD6023FA}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=ClientArrayus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;INTCOMEX_DWH.dwhuser16&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{A3290495-A64C-4E41-A034-A37BCE17BCB6}"
+      DTS:ObjectName="INTCOMEX_DWH dwhuser16" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CBAC295E-275D-4CA8-B935-C00D73323385}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{51AF0EF7-9EA3-4BB5-AC44-9D6B3A8051D0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3917523B-DDC6-46E9-9BEB-E7BED8B8CBD3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{77658283-01B8-4C76-B7E2-25FB8E8F26F4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3F51B87D-93F8-4F2F-BECC-44BDF9A311B1}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD ICE_STG_SUMMARY_BY_MONTH"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Data Conversion.Inputs[Data Conversion Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Derived Column.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ICE_STG_Summary_by_month]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CompanyID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="CompanyID"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompanyID]" />
+                    <inputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TeamShortName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="TeamShortName"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TeamShortName]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[TeamShortName]" />
+                    <inputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TeamName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="TeamName"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TeamName]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[TeamName]" />
+                    <inputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SwitchID]"
+                      cachedDataType="i4"
+                      cachedName="SwitchID"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SwitchID]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[SwitchID]" />
+                    <inputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Abandonadas]"
+                      cachedDataType="i4"
+                      cachedName="Abandonadas"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Abandonadas]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Abandonadas]" />
+                    <inputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Month]"
+                      cachedDataType="i4"
+                      cachedName="Month"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Month_num]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Month]" />
+                    <inputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Year]"
+                      cachedDataType="i4"
+                      cachedName="Year"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Year_num]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Year]" />
+                    <inputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Total_Inbound]"
+                      cachedDataType="i4"
+                      cachedName="Total_Inbound"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[inbound]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Total_Inbound]" />
+                    <inputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Day]"
+                      cachedDataType="i4"
+                      cachedName="Day"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Day_Num]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Day]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="CompanyID" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TeamShortName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="TeamShortName" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TeamName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="TeamName" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SwitchID]"
+                      dataType="i4"
+                      name="SwitchID" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Abandonadas]"
+                      dataType="i4"
+                      name="Abandonadas" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[inbound]"
+                      dataType="i4"
+                      name="inbound" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Year_num]"
+                      dataType="i4"
+                      name="Year_num" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Month_num]"
+                      dataType="i4"
+                      name="Month_num" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Day_Num]"
+                      dataType="i4"
+                      name="Day_Num" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">declare @Date_ini datetime
+declare @Date_end datetime
+
+select @Date_ini = dateadd(d,-1,dateadd(mm,datediff(m,0,getdate()-1),1 )) 
+select @Date_end =dateadd(s,-1,dateadd(mm,datediff(m,0,getdate()-1)+1,0))
+print @Date_ini
+print @Date_end
+
+
+
+SELECT CompanyID, year(StartDateTime) AS Year, Month(StartDateTime)  AS Month, Day(StartDateTime)  AS Day, 
+--TeamShortName, TeamName, SwitchID,
+QueueShortName as TeamShortName,  '' as TeamName, SwitchID, 
+ sum( AbandonedInt1+AbandonedInt2+AbandonedInt3+
+           AbandonedInt4+AbandonedInt5+AbandonedInt6) AS Abandonadas,
+             sum(
+             HandledInThisQueueInt1+HandledInThisQueueInt2+
+           HandledInThisQueueInt3+ HandledInThisQueueInt4+ 
+             HandledInThisQueueInt5+
+           HandledInThisQueueInt6 +
+                 AbandonedInt1+AbandonedInt2+AbandonedInt3+
+           AbandonedInt4+AbandonedInt5+AbandonedInt6
+                ) AS Total_Inbound              
+from (
+
+       SELECT DISTINCT Stat_QueueActivity.CompanyID,  ACDQueue.QueueShortName,
+           Stat_QueueActivity.StartDateTime, Stat_QueueActivity.SwitchID,
+             
+                    Stat_QueueActivity.IntervalID,
+                    Stat_QueueActivity.IntervalDuration,
+           Convert(varchar(8),Stat_QueueActivity.QueueID)+' - '+isnull(ACDQueue.QueueName,' ') AS QueueName, 
+                                             Stat_QueueActivity.HandledInThisQueueInt1, Stat_QueueActivity.HandledInThisQueueInt2,
+           Stat_QueueActivity.HandledInThisQueueInt3, Stat_QueueActivity.HandledInThisQueueInt4, Stat_QueueActivity.HandledInThisQueueInt5,
+           Stat_QueueActivity.HandledInThisQueueInt6, Stat_QueueActivity.HandledInOtherQueueInt1, Stat_QueueActivity.HandledInOtherQueueInt2,
+           Stat_QueueActivity.HandledInOtherQueueInt3, Stat_QueueActivity.HandledInOtherQueueInt4, Stat_QueueActivity.HandledInOtherQueueInt5,
+           Stat_QueueActivity.HandledInOtherQueueInt6, 
+                Stat_QueueActivity.AbandonedInt1, Stat_QueueActivity.AbandonedInt2, Stat_QueueActivity.AbandonedInt3,
+           Stat_QueueActivity.AbandonedInt4, Stat_QueueActivity.AbandonedInt5, Stat_QueueActivity.AbandonedInt6, Stat_QueueActivity.Removed,
+           Stat_QueueActivity.TotalHandledInThisQueueTime, Stat_QueueActivity.TotalHandledInOtherQueueTime, 
+                Stat_QueueActivity.TotalAbandonedTime,
+           Stat_QueueActivity.TotalRemovedTime, Stat_QueueActivity.LongestHandledInThisQueueTime, Stat_QueueActivity.LongestHandledInOtherQueueTime,
+           Stat_QueueActivity.LongestAbandonedTime, Stat_QueueActivity.LongestRemovedTime, Stat_QueueActivity.TotalHandledLessThanTargetASA,
+           Stat_QueueActivity.TotalHandledLessThanTargetASAOther, Stat_QueueActivity.TotalHandledLessThanTargetASA2,
+           Stat_QueueActivity.TotalHandledLessThanTargetASAOther2, Stat_QueueActivity.TotalAbandonedLessThanThreshold As AbandonedLessThanThreshold,
+           Stat_QueueActivity.MinAgentsLoggedOn, Stat_QueueActivity.MaxAgentsLoggedOn, 
+                RemovedInt1,RemovedInt2,RemovedInt3,RemovedInt4,RemovedInt5,RemovedInt6,
+                RolledUp, TotalAbandonedLessThanThreshold
+               
+       FROM
+           [dbo].[ICE_Stat_QueueActivity_I]  Stat_QueueActivity inner  JOIN 
+              [dbo].[ICE_ACDQueue] ACDQueue
+               ON
+               Stat_QueueActivity.SwitchID = ACDQueue.SwitchID AND
+           Stat_QueueActivity.QueueID = ACDQueue.QueueID AND
+             Stat_QueueActivity.CompanyID = ACDQueue.CompanyID  and 
+                            CONVERT(VARCHAR, ACDQueue.LastExtraction, 112) = convert(varchar, getdate(),112)                                 
+       WHERE
+           Stat_QueueActivity.CompanyID in ( 'XCR' , 'XSV', 'XPA','XEC','XMX', 'XGT', 'XUY','XPE', 'XCL','XCB') and                   
+                Stat_QueueActivity.StartDateTime BETWEEN @Date_ini and @Date_end --dateadd(d,-1,dateadd(mm,datediff(m,0,getdate()-9),1 )) AND  dateadd(s,-1,dateadd(mm,datediff(m,0,getdate()-9)+1,0)) 
+             AND Stat_QueueActivity.QueueID BETWEEN  6000 AND 9999               
+                    ) 
+       tt
+       group by CompanyID, year(StartDateTime)   , Month(StartDateTime)  ,Day(StartDateTime),
+          QueueShortName, SwitchID --, IntervalID, Startdatetime
+          ORDER BY CompanyID, QueueShortName,SwitchID
+
+
+
+
+/*
+declare @Date_ini datetime
+declare @Date_end datetime
+
+select @Date_ini = dateadd(d,-1,dateadd(mm,datediff(m,0,getdate()-1),1 )) 
+select @Date_end =dateadd(s,-1,dateadd(mm,datediff(m,0,getdate()-1)+1,0))
+print @Date_ini
+print @Date_end
+
+
+
+SELECT CompanyID, year(StartDateTime) AS Year, Month(StartDateTime)  AS Month,
+--TeamShortName, TeamName, SwitchID,
+QueueShortName as TeamShortName,  '' as TeamName, SwitchID, 
+ sum( AbandonedInt1+AbandonedInt2+AbandonedInt3+
+           AbandonedInt4+AbandonedInt5+AbandonedInt6) AS Abandonadas,
+             sum(
+             HandledInThisQueueInt1+HandledInThisQueueInt2+
+           HandledInThisQueueInt3+ HandledInThisQueueInt4+ 
+             HandledInThisQueueInt5+
+           HandledInThisQueueInt6 +
+                 AbandonedInt1+AbandonedInt2+AbandonedInt3+
+           AbandonedInt4+AbandonedInt5+AbandonedInt6
+                ) AS Total_Inbound              
+from (
+
+       SELECT DISTINCT Stat_QueueActivity.CompanyID,  ACDQueue.QueueShortName,
+           Stat_QueueActivity.StartDateTime, Stat_QueueActivity.SwitchID,
+             
+                    Stat_QueueActivity.IntervalID,
+                    Stat_QueueActivity.IntervalDuration,
+           Convert(varchar(8),Stat_QueueActivity.QueueID)+' - '+isnull(ACDQueue.QueueName,' ') AS QueueName, 
+                                             Stat_QueueActivity.HandledInThisQueueInt1, Stat_QueueActivity.HandledInThisQueueInt2,
+           Stat_QueueActivity.HandledInThisQueueInt3, Stat_QueueActivity.HandledInThisQueueInt4, Stat_QueueActivity.HandledInThisQueueInt5,
+           Stat_QueueActivity.HandledInThisQueueInt6, Stat_QueueActivity.HandledInOtherQueueInt1, Stat_QueueActivity.HandledInOtherQueueInt2,
+           Stat_QueueActivity.HandledInOtherQueueInt3, Stat_QueueActivity.HandledInOtherQueueInt4, Stat_QueueActivity.HandledInOtherQueueInt5,
+           Stat_QueueActivity.HandledInOtherQueueInt6, 
+                Stat_QueueActivity.AbandonedInt1, Stat_QueueActivity.AbandonedInt2, Stat_QueueActivity.AbandonedInt3,
+           Stat_QueueActivity.AbandonedInt4, Stat_QueueActivity.AbandonedInt5, Stat_QueueActivity.AbandonedInt6, Stat_QueueActivity.Removed,
+           Stat_QueueActivity.TotalHandledInThisQueueTime, Stat_QueueActivity.TotalHandledInOtherQueueTime, 
+                Stat_QueueActivity.TotalAbandonedTime,
+           Stat_QueueActivity.TotalRemovedTime, Stat_QueueActivity.LongestHandledInThisQueueTime, Stat_QueueActivity.LongestHandledInOtherQueueTime,
+           Stat_QueueActivity.LongestAbandonedTime, Stat_QueueActivity.LongestRemovedTime, Stat_QueueActivity.TotalHandledLessThanTargetASA,
+           Stat_QueueActivity.TotalHandledLessThanTargetASAOther, Stat_QueueActivity.TotalHandledLessThanTargetASA2,
+           Stat_QueueActivity.TotalHandledLessThanTargetASAOther2, Stat_QueueActivity.TotalAbandonedLessThanThreshold As AbandonedLessThanThreshold,
+           Stat_QueueActivity.MinAgentsLoggedOn, Stat_QueueActivity.MaxAgentsLoggedOn, 
+                RemovedInt1,RemovedInt2,RemovedInt3,RemovedInt4,RemovedInt5,RemovedInt6,
+                RolledUp, TotalAbandonedLessThanThreshold
+               
+       FROM
+           [dbo].[ICE_Stat_QueueActivity_I]  Stat_QueueActivity inner  JOIN 
+              [dbo].[ICE_ACDQueue] ACDQueue
+               ON
+               Stat_QueueActivity.SwitchID = ACDQueue.SwitchID AND
+           Stat_QueueActivity.QueueID = ACDQueue.QueueID AND
+             Stat_QueueActivity.CompanyID = ACDQueue.CompanyID  and 
+                            CONVERT(VARCHAR, ACDQueue.LastExtraction, 112) = convert(varchar, getdate(),112)                                 
+       WHERE
+           Stat_QueueActivity.CompanyID in ( 'XCR' , 'XSV', 'XPA','XEC','XMX', 'XGT', 'XUY','XPE','XCL','XCB') and                   
+                Stat_QueueActivity.StartDateTime BETWEEN @Date_ini and @Date_end --dateadd(d,-1,dateadd(mm,datediff(m,0,getdate()-9),1 )) AND  dateadd(s,-1,dateadd(mm,datediff(m,0,getdate()-9)+1,0)) 
+             AND Stat_QueueActivity.QueueID BETWEEN  6000 AND 9999               
+                    ) 
+       tt
+       group by CompanyID, year(StartDateTime)   , Month(StartDateTime)  ,
+          QueueShortName, SwitchID --, IntervalID, Startdatetime
+          ORDER BY CompanyID, QueueShortName,SwitchID
+
+*/</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompanyID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CompanyID]"
+                      length="4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompanyID]"
+                      name="CompanyID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Year]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Year]"
+                      name="Year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Month]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Month]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Month]"
+                      name="Month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[TeamShortName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TeamShortName]"
+                      length="8"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[TeamShortName]"
+                      name="TeamShortName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[TeamName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TeamName]"
+                      length="40"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[TeamName]"
+                      name="TeamName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[SwitchID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SwitchID]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[SwitchID]"
+                      name="SwitchID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Abandonadas]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Abandonadas]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Abandonadas]"
+                      name="Abandonadas"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Total_Inbound]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Total_Inbound]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Total_Inbound]"
+                      name="Total_Inbound"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Day]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Day]"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].Columns[Day]"
+                      name="Day"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CompanyID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="CompanyID" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Year]"
+                      dataType="i4"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Month]"
+                      dataType="i4"
+                      name="Month" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TeamShortName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="TeamShortName" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TeamName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="TeamName" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SwitchID]"
+                      dataType="i4"
+                      name="SwitchID" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Abandonadas]"
+                      dataType="i4"
+                      name="Abandonadas" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Total_Inbound]"
+                      dataType="i4"
+                      name="Total_Inbound" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Day]"
+                      dataType="i4"
+                      name="Day" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CompanyID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CompanyID]"
+                      name="CompanyID" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Year]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Year]"
+                      name="Year" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Month]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Month]"
+                      name="Month" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Day]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Day]"
+                      name="Day" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TeamShortName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TeamShortName]"
+                      name="TeamShortName" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TeamName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TeamName]"
+                      name="TeamName" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SwitchID]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SwitchID]"
+                      name="SwitchID" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Abandonadas]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Abandonadas]"
+                      name="Abandonadas" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Total_Inbound]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Total_Inbound]"
+                      name="Total_Inbound" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH.Paths[Data Conversion Output]"
+              endId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH.Paths[Derived Column Output]"
+              endId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH.Paths[OLE DB Source Output]"
+              endId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Derived Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SP IQ dw_dataload_RH_FACT_ABANDONED_CALL IQ16"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{382437DD-424F-4259-A392-EA9809C0D28D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SP IQ dw_dataload_RH_FACT_ABANDONED_CALL IQ16"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26958E32-6382-4525-97FB-7A10357549B6}"
+          SQLTask:SqlStatementSource="EXEC dwhuser.dw_dataload_RH_FACT_ABANDONED_CALL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE TABLE ICE_STG_SUMMARY_BY_MONTH"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2B17CF8E-B45C-4A55-80F9-99D9717E60B8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE TABLE ICE_STG_SUMMARY_BY_MONTH"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2C7A8A27-61F5-4B4C-92FA-385F4C3EAD47}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE ICE_STG_Summary_by_month" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update FIX Inbound y Abandonadas"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{89C48ACF-4C8C-46C7-80BD-933C0961F306}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update FIX Inbound y Abandonadas"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2C7A8A27-61F5-4B4C-92FA-385F4C3EAD47}"
+          SQLTask:SqlStatementSource="--=========================================================================================&#xA;--Update para corregir el error en XCB donde se dejo abierto el sistema el 15 de Junio&#xA;--y salen llamadas abandonadas, debe salir en cero porque ese dia no se laboro en XCB.&#xA;-- Marlon D. Claro 20200615&#xA;--Update para corregir el error en XCB donde se dejo abierto el sistema el 27 de Diciembre &#xA;--y salen llamadas abandonadas, debe salir en cero porque ese dia no se laboro en XCB.&#xA;-- Marlon D. Claro 20191227&#xA;--==========================================================================================&#xA;&#xA;&#xA;update ICE_STG_Summary_by_month&#xA;set inbound = 0,&#xA;    abandonadas = 0&#xA;where CompanyID='xcb' and Year_num=2020 and Month_num=06 and Day_Num=15 &#xA;&#xA;&#xA;update ICE_STG_Summary_by_month&#xA;set inbound = 0,&#xA;    abandonadas = 0&#xA;where CompanyID='xcb' and Year_num=2019 and Month_num=12 and Day_Num=27 &#xA;&#xA;--=========================================================================================&#xA;-- Update para corregir el error en XUY donde se dejo abierto el sistema el 18  de Mayo&#xA;-- pedido por Juan Pablo Herrera &#xA;-- Marlon D. Claro 20200518&#xA;--==========================================================================================&#xA;&#xA;update ICE_STG_Summary_by_month&#xA;set&#xA;    abandonadas = 0&#xA;where CompanyID='xuy' and Year_num=2020 and Month_num=5 and Day_Num in (18) &#xA;&#xA;--=========================================================================================&#xA;-- Update para corregir el error en XGT donde se dejo abierto el sistema el 29  de Junio&#xA;-- pedido por Juan Pablo Herrera &#xA;-- Marlon D. Claro 20200630&#xA;--==========================================================================================&#xA;&#xA;update ICE_STG_Summary_by_month&#xA;set&#xA;    abandonadas = 0&#xA;where CompanyID='xgt' and Year_num=2020 and Month_num=6 and Day_Num in (29) &#xA;&#xA;&#xA;--=========================================================================================&#xA;-- Update para corregir el error en XCR donde se dejo abierto el sistema el 30  de Noviembre&#xA;-- pedido por Juan Pablo Herrera  aprobado por Bruno Duran&#xA;-- Marlon D. Claro 20201201&#xA;--==========================================================================================&#xA;&#xA;update ICE_STG_Summary_by_month&#xA; set inbound = 0,&#xA;      abandonadas = 0&#xA;where CompanyID='xcr' and Year_num=2020 and Month_num=11 and Day_Num=30 "
+          SQLTask:TypeConversionMode="None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Z - Correct Event"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Send Mail  Correct Event"
+      DTS:DTSID="{1683F08C-3293-4856-B376-9F92F62FCEEF}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Z - Correct Event">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Z - Correct Event"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{796A80DD-96FF-4B0D-B495-3829ED36490B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se a ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{49097578-578A-48FF-931D-EA42F85C782C}"
+              SQLTask:SqlStatementSource="Select  'Se a ejecutado  el Paquete ICE - 002 - AbandonedCalls  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{3D3A625F-CD40-4101-A9B2-F14124325191}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{31B82149-F98D-4F8B-A031-B633BD6023FA}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :ICE - 002 - AbandonedCalls" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{B188071E-D5B8-4475-B6F7-2F49AD513F7C}"
+          DTS:From="Package\Z - Correct Event\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Z - Correct Event\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2680B1F8-E4E3-479E-849A-4FA023E274F3}"
+      DTS:From="Package\TRUNCATE TABLE ICE_STG_SUMMARY_BY_MONTH"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\LOAD ICE_STG_SUMMARY_BY_MONTH" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{05705605-1CF2-469A-8733-1A6CE46AD66C}"
+      DTS:From="Package\LOAD ICE_STG_SUMMARY_BY_MONTH"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Update FIX Inbound y Abandonadas" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{9A12B5CB-8E24-4CBA-8E8D-9F077124793E}"
+      DTS:From="Package\SP IQ dw_dataload_RH_FACT_ABANDONED_CALL IQ16"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Z - Correct Event" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{49A6DF1E-752A-4060-AE18-1C38AE70AB3E}"
+      DTS:From="Package\Update FIX Inbound y Abandonadas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\SP IQ dw_dataload_RH_FACT_ABANDONED_CALL IQ16" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{9DF5EAAB-4072-4EC5-85A6-EFB576CEECAA}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{943257B4-8942-432F-9896-708EC1A31B3F}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Event Error"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Send Mail  Error Event"
+          DTS:DTSID="{76249EE0-9BE7-4932-8F18-2FF743A598CB}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Event Error">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Event Error"</DTS:PropertyExpression>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Event Error\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{9E45D6A3-F58F-4FEC-B9D6-DF8392D9B04E}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{49097578-578A-48FF-931D-EA42F85C782C}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Event Error\Send Mail Task"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{AE0C144C-2B4F-46F4-8758-C04DDE32BBF9}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send Mail Task"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError] + @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{CBF1EFCC-97A3-4D6B-8694-D6E58C4060B9}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :ICE - 002 - AbandonedCalls" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Event Error.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{198D7FF7-87DB-4E8C-BFD0-CA219EC8006A}"
+              DTS:From="Package.EventHandlers[OnError]\Event Error\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Event Error\Send Mail Task" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="265,42"
+          Id="Package\LOAD ICE_STG_SUMMARY_BY_MONTH"
+          TopLeft="147,125" />
+        <NodeLayout
+          Size="342,42"
+          Id="Package\SP IQ dw_dataload_RH_FACT_ABANDONED_CALL IQ16"
+          TopLeft="111,375" />
+        <NodeLayout
+          Size="324,42"
+          Id="Package\TRUNCATE TABLE ICE_STG_SUMMARY_BY_MONTH"
+          TopLeft="108,39" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Update FIX Inbound y Abandonadas"
+          TopLeft="195,258" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\Mensaje"
+          TopLeft="7.54716981132083,8.47169811320759" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\Send Mail Task"
+          TopLeft="7.54716981132083,90.1320754716983" />
+        <EdgeLayout
+          Id="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          TopLeft="75.433962264151,52.3962264150944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7358490566039"
+              Start="0,0"
+              End="0,30.2358490566039">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566039" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="151,141"
+          Size="151,185"
+          Id="Package\Z - Correct Event"
+          TopLeft="204,516" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="270,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.5,44"
+              Start="0,0"
+              End="9.5,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="4,22" />
+                  <mssgle:LineSegment
+                    End="5.5,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.5,22"
+                    Point2="9.5,22"
+                    Point3="9.5,26" />
+                  <mssgle:LineSegment
+                    End="9.5,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="278,167">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,91"
+              Start="0,0"
+              End="0,83.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,83.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="280.75,417">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,99"
+              Start="0,0"
+              End="0,91.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,91.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="279.25,300">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,75"
+              Start="0,0"
+              End="0,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="--=========================================================================================&#xA;-- Update para corregir el error en XMX donde se dejo abierto el sistema el 24 de diciembre &#xA;-- y salen llamadas abandonadas, debe salir en cero porque ese dia no se laboro en XMX.&#xA;-- Marlon D. Claro 20181227&#xA;--=========================================================================================="
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="777,104"
+          Id="672c3744-9359-4393-ae20-60724271cc36"
+          TopLeft="384,224" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Event Error\Mensaje"
+          TopLeft="41.5471698113207,19.5660377358491" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Event Error\Send Mail Task"
+          TopLeft="41.9622641509434,105.566037735849" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Event Error.PrecedenceConstraints[Constraint]"
+          TopLeft="109.433962264151,63.4905660377358">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.415094339622641,42.0754716981132"
+              Start="0,0"
+              End="0.415094339622641,34.5754716981132">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0188679245283" />
+                  <mssgle:LineSegment
+                    End="0.415094339622641,21.0188679245283" />
+                  <mssgle:LineSegment
+                    End="0.415094339622641,34.5754716981132" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="292,189.075471698114"
+          Size="292,233"
+          Id="Package.EventHandlers[OnError]\Event Error"
+          TopLeft="81,99" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\LOAD ICE_STG_SUMMARY_BY_MONTH">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source"
+          TopLeft="38,30" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Data Conversion"
+          TopLeft="36,221" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\Derived Column"
+          TopLeft="37,124" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination"
+          TopLeft="32,309" />
+        <EdgeLayout
+          Id="Package\LOAD ICE_STG_SUMMARY_BY_MONTH.Paths[OLE DB Source Output]"
+          TopLeft="113.5,72">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD ICE_STG_SUMMARY_BY_MONTH.Paths[Derived Column Output]"
+          TopLeft="114,166">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD ICE_STG_SUMMARY_BY_MONTH.Paths[Data Conversion Output]"
+          TopLeft="115.75,263">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD ICE_STG_SUMMARY_BY_MONTH\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

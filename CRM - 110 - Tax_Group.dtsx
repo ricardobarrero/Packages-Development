@@ -1,0 +1,2378 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/26/2015 2:07:51 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{5DADDA4F-DBD0-4F7F-AFA7-4CF0226326AB}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CRM - 110 - Tax_Group"
+  DTS:PackageType="5"
+  DTS:VersionBuild="55"
+  DTS:VersionGUID="{8C0084BA-2B66-40D5-81A0-265D3246078B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D7008301-F5C0-4CD3-9FED-3191513E6D5A}"
+      DTS:ObjectName="s2crmdb.CRMStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdb;Initial Catalog=CRMStaging;Provider=SQLNCLI11;Integrated Security=SSPI;Application Name=SSIS-CRM - 110 - Tax_Group-{D7008301-F5C0-4CD3-9FED-3191513E6D5A}s2crmdb.CRMStaging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2430490E-A7A2-459A-A263-909D4B6462F0}"
+      DTS:ObjectName="s2crmdvlp.CRMStaging.ETLUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdvlp;Initial Catalog=CRMStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5D0BA267-E402-4625-82CD-805050D36094}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{DB526858-66BB-4735-B04A-E9BBE337204C}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{F6D3F872-8AD4-454B-95BD-7C49F6076013}"
+      DTS:ObjectName="Sentai_Replica.bodts">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=bodts;Dsn=Sentai_Replica;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADZdoNp+GY0POSC5/p/OM/KAAAAAASAAACgAAAAEAAAALwXwJy6MAXCpVmQevbPO0EYAAAA2vfylh3w8WUcZ3xF3WGXPGxBDKGzMKQ2FAAAAOv8MsUvoyocm+vMCnM0AzCNVI0s</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{99702D4E-3CB3-4E31-A7DF-A253E6E1C2D1}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;S2CRMDB.ETLUser&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{54ADEF9F-C542-42C7-8007-F868E6ED2932}"
+      DTS:ObjectName="S2CRMDB ETLUser" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;Sentai_Replica.bodts&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{CFC2E527-B067-4B4C-AC9B-C9939F9D0BDC}"
+      DTS:ObjectName="Sentai_Replica bodts" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{36D7BB76-E931-46E4-BCEB-61B8C3469D36}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1D37BE8D-BAAD-444C-B610-87424DD53FD9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9B8D0A98-52D8-4D58-BB31-5A5BA542D03D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2B807A0F-784C-44EA-87E0-7A45D2FB7E1C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{E66228BF-FE8B-4BC4-9758-4AD563ECCCA3}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{A53675A1-5070-40AE-8921-54C305012405}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5D0BA267-E402-4625-82CD-805050D36094}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete CRM - 110 - Tax_Group  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{B3AD3ECF-EB64-47B5-A73F-F7FD2ED21414}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject]+ @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{99702D4E-3CB3-4E31-A7DF-A253E6E1C2D1}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :CRM - 110 - Tax_Group" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{BF095C18-25F5-45EB-922D-17CBD6119FE6}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{A86798D0-6899-4542-8910-82693168DD2A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD SENTAI_TAX_GROUP TO S5SQLUS">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{FAD6211E-3DF7-436E-9A11-2E2064263152}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[SENTAI_Tax_Group]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Tax_group_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Tax_group_ID"
+                          externalMetadataColumnId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Tax_group_ID]"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Tax_group_ID]" />
+                        <inputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Description]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[File_vals]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="2"
+                          cachedName="File_vals"
+                          externalMetadataColumnId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[File_vals]"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[File_vals]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Tax_group_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Tax_group_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[File_vals]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="File_vals" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Tax_Group]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Tax_group_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Tax_group_ID]"
+                          length="8"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Tax_group_ID]"
+                          name="Tax_group_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          length="40"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[File_vals]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[File_vals]"
+                          length="2"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[File_vals]"
+                          name="File_vals"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CompanyID]"
+                          length="4"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompanyID]"
+                          name="CompanyID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Tax_group_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Tax_group_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[File_vals]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="File_vals" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="CompanyID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CompanyID]"
+                          name="CompanyID" />
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Tax_group_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Tax_group_ID]"
+                          name="Tax_group_ID" />
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[File_vals]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[File_vals]"
+                          name="File_vals" />
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          name="LastExtraction" />
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task.Paths[OLE DB Source Output]"
+                  endId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DA155152-0913-4C18-8AAD-53BA2C47C538}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5D0BA267-E402-4625-82CD-805050D36094}"
+              SQLTask:SqlStatementSource="truncate table SENTAI_Tax_Group" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{8431C81D-C9D5-4E33-AC59-4755F2903571}"
+          DTS:From="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C2D1A8CA-8C38-4E96-84CD-E5085BA711E7}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD TAX-GROUP FROM TRAX TO PROD">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{D0B95639-048B-452B-A3FD-5DDE10484F38}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Extracts data from a relational database by using a .NET provider."
+                  name="ADO NET Source"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"PUB"."tax-group"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      connectionManagerRefId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Tax-group-ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Tax-group-ID]"
+                          length="8"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Tax-group-ID]"
+                          name="Tax-group-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Description]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          length="40"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[File-vals]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[File-vals]"
+                          length="510"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[File-vals]"
+                          name="File-vals"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Tax-group-ID]"
+                          dataType="wstr"
+                          length="8"
+                          name="Tax-group-ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[File-vals]"
+                          dataType="wstr"
+                          length="510"
+                          name="File-vals" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Tax-group-ID]"
+                          dataType="wstr"
+                          length="8"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Tax-group-ID]"
+                          name="Tax-group-ID" />
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[File-vals]"
+                          dataType="wstr"
+                          length="510"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[File-vals]"
+                          name="File-vals" />
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[Tax-group-ID]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="Tax-group-ID"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Tax-group-ID]" />
+                        <inputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[Description]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="Description"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[File-vals]"
+                          cachedDataType="wstr"
+                          cachedLength="510"
+                          cachedName="File-vals"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[File-vals]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Tax-group-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="8"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Tax-group-ID]"
+                          name="Tax-group-ID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Tax-group-ID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="40"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[Description]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[File-vals]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="510"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[File-vals]"
+                          name="File-vals"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[File-vals]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Tax_Group]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Tax-group-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Tax-group-ID"
+                          externalMetadataColumnId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Tax_group_ID]"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Tax-group-ID]" />
+                        <inputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Description]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[File-vals]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="510"
+                          cachedName="File-vals"
+                          externalMetadataColumnId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[File_vals]"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[File-vals]" />
+                        <inputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Tax_group_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Tax_group_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[File_vals]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="File_vals" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="CompanyID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task.Paths[ADO NET Source Output]"
+                  endId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]" />
+                <path
+                  refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task.Paths[Data Conversion Output]"
+                  endId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task.Paths[Derived Column Output]"
+                  endId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Execute SQL Task 1"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5A34DD97-6E97-47FE-BA22-AB154D0C2574}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task 1"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D7008301-F5C0-4CD3-9FED-3191513E6D5A}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 1,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Tax_Group'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Execute SQL Task 2"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8845B9C0-B360-430A-97F2-1EA43B24649C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task 2"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D7008301-F5C0-4CD3-9FED-3191513E6D5A}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 0,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Tax_Group'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\TRUNCATE TABLE TAX_GROUP"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B5DC3F3E-2573-4C01-8010-70143BEEAC52}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE TABLE TAX_GROUP"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D7008301-F5C0-4CD3-9FED-3191513E6D5A}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE TAX_GROUP" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Update CompanyID"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{345407D7-24C4-4A25-A653-4A12C76A6567}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update CompanyID"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D7008301-F5C0-4CD3-9FED-3191513E6D5A}"
+              SQLTask:SqlStatementSource="--- UPDATE COMPANYID &#xA;UPDATE A SET &#xA;COMPANYID=(CASE &#xA;WHEN [Tax_group_ID] LIKE 'CO%' THEN  'XCB'&#xA;WHEN [Tax_group_ID] LIKE 'CL%' THEN  'XCL'&#xA;WHEN [Tax_group_ID] LIKE 'IQ%' THEN  'XIQ'&#xA;WHEN [Tax_group_ID] LIKE 'UY%' THEN  'XUY'&#xA;WHEN [Tax_group_ID] LIKE 'BO%' THEN  'XBO'&#xA;WHEN [Tax_group_ID] LIKE 'PE%' THEN  'XPE'&#xA;WHEN [Tax_group_ID] LIKE 'EC%' THEN  'XEC'&#xA;WHEN [Tax_group_ID] LIKE 'CB%' THEN  'XCB'&#xA;WHEN [Tax_group_ID] LIKE 'PA%' THEN  'XPA'&#xA;WHEN [Tax_group_ID] LIKE 'CR%' THEN  'XCR'&#xA;WHEN [Tax_group_ID] LIKE 'SV%' THEN  'XSV'&#xA;WHEN [Tax_group_ID] LIKE 'GT%' THEN  'XGT'&#xA;WHEN [Tax_group_ID] LIKE 'JM%' THEN  'XJM'&#xA;WHEN [Tax_group_ID] LIKE 'US%' THEN  'XUS'&#xA;WHEN [Tax_group_ID] LIKE 'HN%' THEN  'XHN'&#xA;WHEN [Tax_group_ID] LIKE 'NI%' THEN  'XNI'&#xA;WHEN [Tax_group_ID] LIKE 'MX%' THEN  'XMX'&#xA;&#xA;END)&#xA;FROM Tax_Group A&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{D7A4FE28-531A-462C-9CC5-AA639FEFB427}"
+          DTS:From="Package\LOAD TAX-GROUP FROM TRAX TO PROD\TRUNCATE TABLE TAX_GROUP"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{8F3B9A3F-BFDA-42B1-95E1-C0332A8E866A}"
+          DTS:From="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Execute SQL Task 1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{04F7FBD7-42A8-4860-AEC4-335860D84A39}"
+          DTS:From="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Execute SQL Task 2"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD TAX-GROUP FROM TRAX TO PROD.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{1AEEA3A3-2D4F-4137-A79B-3FD15A850639}"
+          DTS:From="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Update CompanyID" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOAD TAX_GROUP TO DEV"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{D1668823-B152-4106-9FDB-11FE7CCC25AC}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD TAX_GROUP TO DEV">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{84B166E9-38BD-42B2-9AD2-4F6B8CEE1A75}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Tax_Group]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Tax_group_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Tax_group_ID"
+                          externalMetadataColumnId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Tax_group_ID]"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Tax_group_ID]" />
+                        <inputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Description]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[File_vals]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="2"
+                          cachedName="File_vals"
+                          externalMetadataColumnId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[File_vals]"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[File_vals]" />
+                        <inputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CompanyID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="CompanyID"
+                          externalMetadataColumnId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompanyID]" />
+                        <inputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastExtraction]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Tax_group_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Tax_group_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[File_vals]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="File_vals" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="CompanyID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Tax_Group]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Tax_group_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Tax_group_ID]"
+                          length="8"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Tax_group_ID]"
+                          name="Tax_group_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          length="40"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[File_vals]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[File_vals]"
+                          length="2"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[File_vals]"
+                          name="File_vals"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CompanyID]"
+                          length="4"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompanyID]"
+                          name="CompanyID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Tax_group_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Tax_group_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[File_vals]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="File_vals" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="CompanyID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CompanyID]"
+                          name="CompanyID" />
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Tax_group_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Tax_group_ID]"
+                          name="Tax_group_ID" />
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[File_vals]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[File_vals]"
+                          name="File_vals" />
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          name="LastExtraction" />
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task.Paths[OLE DB Source Output]"
+                  endId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD TAX_GROUP TO DEV\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4FFEEAA4-E33F-469D-AB26-289902D27E1F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{2430490E-A7A2-459A-A263-909D4B6462F0}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE TAX_GROUP" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD TAX_GROUP TO DEV.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{1E1BF640-6BF9-492A-9380-40DE19C06D44}"
+          DTS:From="Package\LOAD TAX_GROUP TO DEV\Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\LOAD TAX_GROUP TO DEV\Data Flow Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0C03C74C-6A33-45D7-B6C6-136B7CF06C2B}"
+      DTS:From="Package\LOAD TAX-GROUP FROM TRAX TO PROD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\LOAD TAX_GROUP TO DEV" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{CF882CCD-D756-408D-9270-B8DABD3DA7B3}"
+      DTS:From="Package\LOAD TAX-GROUP FROM TRAX TO PROD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{0894FED5-9394-4A65-9BDD-CA28CE13350B}"
+      DTS:From="Package\LOAD TAX-GROUP FROM TRAX TO PROD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Evento Correcto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="11.4716981132075,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="10.5283018867925,100.207547169811" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="79.3584905660377,52.3962264150944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.943396226415103,47.811320754717"
+              Start="0,0"
+              End="-0.943396226415103,40.311320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-0.943396226415103,23.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-0.943396226415103,40.311320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="159,157"
+          Size="159,201"
+          Id="Package\Evento Correcto"
+          TopLeft="96.4433962264151,432.707547169811" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task"
+          TopLeft="28.9811320754717,95.7547169811321" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Execute SQL Task"
+          TopLeft="28.9433962264151,10.9245283018868" />
+        <EdgeLayout
+          Id="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS.PrecedenceConstraints[Constraint]"
+          TopLeft="96.8301886792452,54.8490566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.0377358490566166,40.9056603773585"
+              Start="0,0"
+              End="0.0377358490566166,33.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4528301886792" />
+                  <mssgle:LineSegment
+                    End="0.0377358490566166,20.4528301886792" />
+                  <mssgle:LineSegment
+                    End="0.0377358490566166,33.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="219,162"
+          Size="219,206"
+          Id="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS"
+          TopLeft="458.443396226415,213.688679245283" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD TAX_GROUP TO DEV\Data Flow Task"
+          TopLeft="7.62264150943395,87.3396226415095" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD TAX_GROUP TO DEV\Execute SQL Task"
+          TopLeft="7.54716981132077,8.47169811320755" />
+        <EdgeLayout
+          Id="Package\LOAD TAX_GROUP TO DEV.PrecedenceConstraints[Constraint]"
+          TopLeft="75.4339622641509,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.0754716981132333,34.9433962264151"
+              Start="0,0"
+              End="0.0754716981132333,27.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.4716981132075" />
+                  <mssgle:LineSegment
+                    End="0.0754716981132333,17.4716981132075" />
+                  <mssgle:LineSegment
+                    End="0.0754716981132333,27.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="187,138"
+          Size="187,182"
+          Id="Package\LOAD TAX_GROUP TO DEV"
+          TopLeft="460.896226415094,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task"
+          TopLeft="14.5283018867924,101.339622641509" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Execute SQL Task 1"
+          TopLeft="206.603773584906,177.150943396226" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Execute SQL Task 2"
+          TopLeft="208.301886792453,102.320754716981" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD\TRUNCATE TABLE TAX_GROUP"
+          TopLeft="13.5471698113207,7.49056603773585" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Update CompanyID"
+          TopLeft="7,184" />
+        <EdgeLayout
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD.PrecedenceConstraints[Constraint]"
+          TopLeft="81.4339622641509,51.4150943396226">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.981132075471692,49.9245283018868"
+              Start="0,0"
+              End="0.981132075471692,42.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.9433962264151" />
+                  <mssgle:LineSegment
+                    End="0.981132075471692,24.9433962264151" />
+                  <mssgle:LineSegment
+                    End="0.981132075471692,42.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD.PrecedenceConstraints[Constraint 1]"
+          TopLeft="82.5283018867924,145.339622641509">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="192.075471698113,31.811320754717"
+              Start="0,0"
+              End="192.075471698113,24.311320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.9056603773585" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.9056603773585"
+                    Point2="0,15.9056603773585"
+                    Point3="4,15.9056603773585" />
+                  <mssgle:LineSegment
+                    End="188.075471698113,15.9056603773585" />
+                  <mssgle:CubicBezierSegment
+                    Point1="188.075471698113,15.9056603773585"
+                    Point2="192.075471698113,15.9056603773585"
+                    Point3="192.075471698113,19.9056603773585" />
+                  <mssgle:LineSegment
+                    End="192.075471698113,24.311320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD.PrecedenceConstraints[Constraint 2]"
+          TopLeft="150.301886792453,123.301886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="58,0.98113207547172"
+              Start="0,0"
+              End="50.5,0.98113207547172">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="28.9811320754717,0" />
+                  <mssgle:LineSegment
+                    End="28.9811320754717,0.98113207547172" />
+                  <mssgle:LineSegment
+                    End="50.5,0.98113207547172" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="13.7397844192217,-19.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD.PrecedenceConstraints[Constraint 3]"
+          TopLeft="61.1949685534591,145.339622641509">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="31.3050314465409,38.660377358491"
+              Start="0,0"
+              End="31.3050314465409,31.160377358491">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.7338745063626" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.7338745063626"
+                    Point2="0,15.7338745063626"
+                    Point3="4,15.7338745063626" />
+                  <mssgle:LineSegment
+                    End="27.3050314465409,15.7338745063626" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27.3050314465409,15.7338745063626"
+                    Point2="31.3050314465409,15.7338745063626"
+                    Point3="31.3050314465409,19.7338745063626" />
+                  <mssgle:LineSegment
+                    End="31.3050314465409,31.160377358491" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="352,276"
+          Size="352,320"
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD"
+          TopLeft="5.5,63.3867924528302" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="357.5,171.38679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="103.396226415094,-74.8867924528302"
+              Start="0,0"
+              End="95.896226415094,-74.8867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="37.667136018023,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="37.667136018023,0"
+                    Point2="41.667136018023,0"
+                    Point3="41.667136018023,-4" />
+                  <mssgle:LineSegment
+                    End="41.667136018023,-70.8867924528302" />
+                  <mssgle:CubicBezierSegment
+                    Point1="41.667136018023,-70.8867924528302"
+                    Point2="41.667136018023,-74.8867924528302"
+                    Point3="45.667136018023,-74.8867924528302" />
+                  <mssgle:LineSegment
+                    End="95.896226415094,-74.8867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="357.5,275.38679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="100.943396226415,41.3018867924528"
+              Start="0,0"
+              End="93.443396226415,41.3018867924528">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.6786820613911,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36.6786820613911,0"
+                    Point2="40.6786820613911,0"
+                    Point3="40.6786820613911,4" />
+                  <mssgle:LineSegment
+                    End="40.6786820613911,37.3018867924528" />
+                  <mssgle:CubicBezierSegment
+                    Point1="40.6786820613911,37.3018867924528"
+                    Point2="40.6786820613911,41.3018867924528"
+                    Point3="44.6786820613911,41.3018867924528" />
+                  <mssgle:LineSegment
+                    End="93.443396226415,41.3018867924528" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="178.721698113208,383.38679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,49.3207547169808"
+              Start="0,0"
+              End="0,41.8207547169808">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.8207547169808" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source"
+          TopLeft="12.5188679245283,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination"
+          TopLeft="5.5,142.292452830189" />
+        <EdgeLayout
+          Id="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="80.4056603773585,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-7.01886792452831,92.8679245283019"
+              Start="0,0"
+              End="-7.01886792452831,85.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.4150943396226" />
+                  <mssgle:LineSegment
+                    End="-7.01886792452831,46.4150943396226" />
+                  <mssgle:LineSegment
+                    End="-7.01886792452831,85.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD SENTAI_TAX_GROUP TO S5SQLUS\Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\LOAD TAX_GROUP TO DEV\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination"
+          TopLeft="5.5,129.311320754717" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source"
+          TopLeft="9.5,5.5" />
+        <EdgeLayout
+          Id="Package\LOAD TAX_GROUP TO DEV\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="77.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-4,79.8867924528302"
+              Start="0,0"
+              End="-4,72.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-4,39.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-4,72.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD TAX_GROUP TO DEV\Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination"
+          TopLeft="26.5,267.216981132075" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Data Conversion"
+          TopLeft="23.5188679245283,170.367924528302" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\ADO NET Source"
+          TopLeft="17.5,5.5" />
+        <EdgeLayout
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task.Paths[Data Conversion Output]"
+          TopLeft="93.0094339622642,214.367924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.849056603773"
+              Start="0,0"
+              End="0,45.349056603773">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.349056603773" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154,42"
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\Derived Column"
+          TopLeft="18,86" />
+        <EdgeLayout
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task.Paths[ADO NET Source Output]"
+          TopLeft="85.5,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.5,36.5"
+              Start="0,0"
+              End="9.5,29">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.25"
+                    Point2="0,18.25"
+                    Point3="4,18.25" />
+                  <mssgle:LineSegment
+                    End="5.5,18.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.5,18.25"
+                    Point2="9.5,18.25"
+                    Point3="9.5,22.25" />
+                  <mssgle:LineSegment
+                    End="9.5,29" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="93.2594339622642,128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.367924528302"
+              Start="0,0"
+              End="0,34.867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD TAX-GROUP FROM TRAX TO PROD\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

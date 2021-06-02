@@ -1,0 +1,873 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/11/2017 3:58:53 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S8SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{3B4E8F92-C202-425C-BFE6-6076AAB186EA}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="TRAX_ACCOUNTING_TO_IQ"
+  DTS:PackageType="5"
+  DTS:VersionBuild="48"
+  DTS:VersionGUID="{036AA8D6-B800-4462-82FB-0521C3FB9308}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[IQ16.ETLUser]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{AFE280F0-875A-4797-B20C-3A2940FE90F4}"
+      DTS:ObjectName="IQ16.ETLUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=ETLUser;Dsn=IQ16;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACkHKsCn2ovKmTqbHTV8GaRAAAAAASAAACgAAAAEAAAAK/Yb2i9pbiLtR7FBi6Q2JoYAAAAL75Bw9xbjKkTStI/evHO7Kg1Aa0I/VEMFAAAAP6K4VubXSP6IDSTo6As3EdhBjhd</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4DBB00F8-C767-45FD-9E08-EE3ADFC0E1BA}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{2219CF62-4FCD-4A55-92C2-5BF81F3E053B}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=ClientArrayus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;IQ16.ETLUser&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{9858424D-1F37-412C-AF70-859F43F5FC83}"
+      DTS:ObjectName="IQ16 ETLUser" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{253C8CC2-75CE-44B2-83F5-5F46CE6DFD02}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7B08BD02-076D-49D5-94B6-F39936A83A69}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailToBO">
+      <DTS:VariableValue
+        DTS:DataType="8">rvargas@intcomex.com;talvarado@intcomex.com;joelserrano@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6842D7CA-C859-4ACC-A4E2-065FB0BE983A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4CD1A578-5EEC-4883-9955-778E78F3F570}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E612118A-C46F-4CD0-827A-4C227F96E088}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dw_dataload_gl_MAPP"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{24D581C4-482F-4880-AAE2-C9A544D2375F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dw_dataload_gl_MAPP"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AFE280F0-875A-4797-B20C-3A2940FE90F4}"
+          SQLTask:SqlStatementSource="exec &quot;dwhuser&quot;.&quot;dw_dataload_gl_MAPP&quot;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\GL_DETAIL_DISTIBUTION 154"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{472D1AD2-05DD-4424-AEAE-FD41A7702A7D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="GL_DETAIL_DISTIBUTION 154"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{763169F0-9036-419E-9C24-44AD8F90B3DD}"
+          SQLTask:SqlStatementSource="--- SE COLOCÓ EN UN PROCESO A PARTE, YA QUE NO SE ESTABA CARGANDO EL DATO.&#xA;EXEC DWHUSER.DW_DATALOAD_GL_DETAIL_DISTR_AP_AR_IM &#xA;COMMIT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\GL_DETAIL_DISTRIBUTION_AP_NOTES 154"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{107F69E1-7161-4F51-9956-2EFDADF57257}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="GL_DETAIL_DISTRIBUTION_AP_NOTES 154"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{763169F0-9036-419E-9C24-44AD8F90B3DD}"
+          SQLTask:SqlStatementSource="EXEC DWHUSER.dw_dataload_gl_detail_distr_AP_Notes&#xA;COMMIT&#xA;&#xA;EXEC DWHUSER.dw_dataload_gl_detail_distr_AR_Notes&#xA;COMMIT&#xA;&#xA;EXEC dwhuser.dw_dataload_gl_detail_distr_GL_Notes&#xA;COMMIT&#xA;&#xA;--exec dwhuser.dw_dataload_auditoria_tabla_IQ_15_4_Accounting&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\IQ16_GL_DETAIL_DISTIBUTION"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{22A4026B-FF70-415D-88C6-14CB53889B6D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="IQ16_GL_DETAIL_DISTIBUTION"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AFE280F0-875A-4797-B20C-3A2940FE90F4}"
+          SQLTask:SqlStatementSource="--- SE COLOCÓ EN UN PROCESO A PARTE, YA QUE NO SE ESTABA CARGANDO EL DATO.&#xA;EXEC DWHUSER.DW_DATALOAD_GL_DETAIL_DISTR_AP_AR_IM &#xA;COMMIT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\IQ16_GL_DETAIL_DISTRIBUTION_AP_NOTES"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C4EEAB62-344A-4F46-BA0A-22A0DFCC7537}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="IQ16_GL_DETAIL_DISTRIBUTION_AP_NOTES"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AFE280F0-875A-4797-B20C-3A2940FE90F4}"
+          SQLTask:SqlStatementSource="EXEC DWHUSER.dw_dataload_gl_detail_distr_AP_Notes&#xA;COMMIT&#xA;&#xA;EXEC DWHUSER.dw_dataload_gl_detail_distr_AR_Notes&#xA;COMMIT&#xA;&#xA;EXEC dwhuser.dw_dataload_gl_detail_distr_GL_Notes&#xA;COMMIT&#xA;&#xA;--exec dwhuser.dw_dataload_auditoria_tabla_IQ_15_4_Accounting&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\IQ16_LOAD PROCEDURES"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8082CE36-4E41-4AF8-A8CF-FFFF702C8B38}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="IQ16_LOAD PROCEDURES"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AFE280F0-875A-4797-B20C-3A2940FE90F4}"
+          SQLTask:SqlStatementSource="EXEC DWHUSER.GL_BOSRC_MCOA_CATALOG_SAPBPC   -- SP NUEVO 2020-02-13&#xA;COMMIT&#xA;&#xA;EXEC DWHUSER.DW_DATALOAD_GL_CATALOG @TYPE = 'F'&#xA;COMMIT&#xA;&#xA;EXEC DWHUSER.GL_ACCOUNT_BOSRC_BPC  -- SP NUEVO 2020-02-13&#xA;COMMIT&#xA;&#xA;EXEC DWHUSER.DW_DATALOAD_GL_TRANS @TYPE = 'F'&#xA;COMMIT&#xA;&#xA;EXEC DWHUSER.DW_DATALOAD_GL_CATALOG @TYPE = 'F'&#xA;COMMIT&#xA;&#xA;EXEC DWHUSER.GL_ACCOUNT_BOSRC_BPC  -- SP NUEVO 2020-02-13&#xA;COMMIT&#xA;&#xA;EXEC DWHUSER.DW_DATALOAD_SENTAI_SO_PACK_IM&#xA;COMMIT&#xA;&#xA;EXEC DWHUSER.DW_DATALOAD_GL_DD_DESCRIPTION&#xA;COMMIT&#xA;&#xA;EXEC DWHUSER.DW_DATALOAD_GL_QA&#xA;COMMIT&#xA;&#xA;--EXEC DWHUSER.DW_DATALOAD_DASH_INCOME_STATEMENT  @YEAR_NUM = YEAR(GETDATE()-1) &#xA;--COMMIT&#xA;--EXEC DWHUSER.DW_DATALOAD_DASH_INCOME_STATEMENT  @YEAR_NUM = YEAR(DATEADD(YY,-1,GETDATE()-1))&#xA;--COMMIT&#xA;&#xA;EXEC DWHUSER.DW_DATALOAD_P_L_VARIATION   @YEAR_NUM = YEAR(GETDATE()-1) , @MONTH_NUM =  MONTH(GETDATE()-1)&#xA;COMMIT&#xA;EXEC DWHUSER.DW_DATALOAD_P_L_VARIATION  @YEAR_NUM = YEAR(DATEADD(MM,-1,GETDATE()-1)) , @MONTH_NUM = MONTH(DATEADD(MM,-1,GETDATE()-1))&#xA;COMMIT&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOAD TO SYBASEIQ 154"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{E260E049-8FFE-4EC5-B6BA-4493722B5C46}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD TO SYBASEIQ 154"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{763169F0-9036-419E-9C24-44AD8F90B3DD}"
+          SQLTask:SqlStatementSource="EXEC DWHUSER.DW_DATALOAD_GL_CATALOG @TYPE = 'F'&#xA;COMMIT&#xA;EXEC DWHUSER.DW_DATALOAD_GL_TRANS @TYPE = 'F'&#xA;COMMIT&#xA;EXEC DWHUSER.DW_DATALOAD_GL_CATALOG @TYPE = 'F'&#xA;COMMIT&#xA;EXEC DWHUSER.DW_DATALOAD_SENTAI_SO_PACK_IM&#xA;COMMIT&#xA;EXEC DWHUSER.DW_DATALOAD_GL_DD_DESCRIPTION&#xA;COMMIT&#xA;EXEC DWHUSER.DW_DATALOAD_GL_QA&#xA;COMMIT&#xA;&#xA;--EXEC DWHUSER.DW_DATALOAD_DASH_INCOME_STATEMENT  @YEAR_NUM = YEAR(GETDATE()-1) &#xA;--COMMIT&#xA;--EXEC DWHUSER.DW_DATALOAD_DASH_INCOME_STATEMENT  @YEAR_NUM = YEAR(DATEADD(YY,-1,GETDATE()-1))&#xA;--COMMIT&#xA;&#xA;EXEC DWHUSER.DW_DATALOAD_P_L_VARIATION   @YEAR_NUM = YEAR(GETDATE()-1) , @MONTH_NUM =  MONTH(GETDATE()-1)&#xA;COMMIT&#xA;EXEC DWHUSER.DW_DATALOAD_P_L_VARIATION  @YEAR_NUM = YEAR(DATEADD(MM,-1,GETDATE()-1)) , @MONTH_NUM = MONTH(DATEADD(MM,-1,GETDATE()-1))&#xA;COMMIT&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C8F402E7-A39E-48ED-96B1-F781DCD9786A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4D399D27-D343-4866-978D-44FBE2BDF777}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4DBB00F8-C767-45FD-9E08-EE3ADFC0E1BA}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete TRAX_ACCOUNTING_TO_IQ  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{F968694A-EF05-415F-83BE-DE960196801A}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="CCLine">@[User::VStr_EmailToBO]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject]+ @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{2219CF62-4FCD-4A55-92C2-5BF81F3E053B}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:CC="rvargas@intcomex.com;talvarado@intcomex.com;joelserrano@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :TRAX_ACCOUNTING_TO_IQ" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{E1F98CC5-D750-4D10-BB74-DB59B83ECDD1}"
+          DTS:From="Package\Sequence Container\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7001026D-D4F2-4B57-B664-4AE48417EA67}"
+      DTS:From="Package\GL_DETAIL_DISTIBUTION 154"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\LOAD TO SYBASEIQ 154" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C6CBC9F2-2D5A-4D75-9521-82974E451AA6}"
+      DTS:From="Package\LOAD TO SYBASEIQ 154"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\GL_DETAIL_DISTRIBUTION_AP_NOTES 154" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{BE00E756-5B2B-4C2A-88D2-5D1892B54540}"
+      DTS:From="Package\GL_DETAIL_DISTRIBUTION_AP_NOTES 154"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Sequence Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{85EACEA4-D388-488C-BB5D-4B75D1F258B5}"
+      DTS:From="Package\IQ16_GL_DETAIL_DISTIBUTION"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\IQ16_LOAD PROCEDURES" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{BFC3E7AB-7E94-4008-B70F-7A877C20173E}"
+      DTS:From="Package\IQ16_LOAD PROCEDURES"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\IQ16_GL_DETAIL_DISTRIBUTION_AP_NOTES" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{FC0282F0-A518-42E6-9D57-795D7DDC84C0}"
+      DTS:From="Package\IQ16_GL_DETAIL_DISTRIBUTION_AP_NOTES"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\dw_dataload_gl_MAPP" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{4346496B-F0B9-41E0-AA12-E4BFF328ED7F}"
+      DTS:From="Package\dw_dataload_gl_MAPP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Sequence Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{6E13817E-CA4F-4B9A-8A21-8AA20A029935}"
+      DTS:EventID="1074921472"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{AA97DFFD-753E-4A89-845A-C5D988F9C205}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Sequence Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{AD110811-877A-4D5F-A8D8-F164DB92A2E7}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sequence Container">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{D3AB0748-6B7A-4FCF-8A9C-2EC1C1D02CA1}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{4DBB00F8-C767-45FD-9E08-EE3ADFC0E1BA}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Send Mail Task"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{D3B752F2-7B43-4B88-807D-3C6C3E867E82}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send Mail Task">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="CCLine">@[User::VStr_EmailToBO]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError] + @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{2219CF62-4FCD-4A55-92C2-5BF81F3E053B}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:CC="rvargas@intcomex.com;talvarado@intcomex.com;joelserrano@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :TRAX_ACCOUNTING_TO_IQ" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{C99CBCC8-11F4-4DEE-BA82-B31CB91DA257}"
+              DTS:From="Package.EventHandlers[OnError]\Sequence Container\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Sequence Container\Send Mail Task" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Tarea Evento Fallo"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2546E152-E0FE-478C-B8E6-DD684FA4CA93}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Evento Fallo">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Tarea Evento Fallo"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4DBB00F8-C767-45FD-9E08-EE3ADFC0E1BA}"
+              SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{C3B4F1E8-52C9-428A-B530-786FB8E190A6}"
+          DTS:From="Package.EventHandlers[OnError]\Tarea Evento Fallo"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Sequence Container" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\dw_dataload_gl_MAPP"
+          TopLeft="509,354" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\GL_DETAIL_DISTIBUTION 154"
+          TopLeft="176,70" />
+        <NodeLayout
+          Size="288,42"
+          Id="Package\GL_DETAIL_DISTRIBUTION_AP_NOTES 154"
+          TopLeft="113,252" />
+        <NodeLayout
+          Size="233,42"
+          Id="Package\IQ16_GL_DETAIL_DISTIBUTION"
+          TopLeft="489,66" />
+        <NodeLayout
+          Size="296,42"
+          Id="Package\IQ16_GL_DETAIL_DISTRIBUTION_AP_NOTES"
+          TopLeft="467,245" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\IQ16_LOAD PROCEDURES"
+          TopLeft="507,148" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\LOAD TO SYBASEIQ 154"
+          TopLeft="165,151" />
+        <NodeLayout
+          Size="118,42"
+          Id="Package\Sequence Container\Mensaje"
+          TopLeft="33,6" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Sequence Container\Send Mail Task"
+          TopLeft="14,105" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="90.5,48">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,189"
+          Size="205,232"
+          Id="Package\Sequence Container"
+          TopLeft="281,524" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="260,112">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="259.75,193">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="257,294">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="93.6666666666666,230"
+              Start="0,0"
+              End="93.6666666666666,222.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,132.931268151016" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,132.931268151016"
+                    Point2="0,136.931268151016"
+                    Point3="4,136.931268151016" />
+                  <mssgle:LineSegment
+                    End="89.6666666666666,136.931268151016" />
+                  <mssgle:CubicBezierSegment
+                    Point1="89.6666666666666,136.931268151016"
+                    Point2="93.6666666666666,136.931268151016"
+                    Point3="93.6666666666666,140.931268151016" />
+                  <mssgle:LineSegment
+                    End="93.6666666666666,222.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="607,108">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="611.75,190">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="615,287">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-13.5,67"
+              Start="0,0"
+              End="-13.5,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5"
+                    Point2="0,33.5"
+                    Point3="-4,33.5" />
+                  <mssgle:LineSegment
+                    End="-9.5,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.5,33.5"
+                    Point2="-13.5,33.5"
+                    Point3="-13.5,37.5" />
+                  <mssgle:LineSegment
+                    End="-13.5,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="601.5,396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-185.166666666667,128"
+              Start="0,0"
+              End="-185.166666666667,120.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.2052274927396" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,72.2052274927396"
+                    Point2="0,76.2052274927396"
+                    Point3="-4,76.2052274927396" />
+                  <mssgle:LineSegment
+                    End="-181.166666666667,76.2052274927396" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-181.166666666667,76.2052274927396"
+                    Point2="-185.166666666667,76.2052274927396"
+                    Point3="-185.166666666667,80.2052274927396" />
+                  <mssgle:LineSegment
+                    End="-185.166666666667,120.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Se adiciono el paso &quot;dwhuser&quot;.&quot;dw_dataload_gl_MAPP&quot; en IQ &#xA;Al full e incremental &#xA;"
+          ParentId="Package"
+          FontInfo="{x:Null}"
+          Size="355,72"
+          Id="a2abc24c-6507-4351-a81e-dc20aec29e0b"
+          TopLeft="709,345" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="118,42"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Mensaje"
+          TopLeft="33,6" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Send Mail Task"
+          TopLeft="14,105" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="90.5,48">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,247"
+          Size="205,290"
+          Id="Package.EventHandlers[OnError]\Sequence Container"
+          TopLeft="13,161" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package.EventHandlers[OnError]\Tarea Evento Fallo"
+          TopLeft="28,46" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="112.5,88">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2712 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/13/2010 4:12:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S0SQL2K8"
+  DTS:CreatorName="INTCOMEX\Fredy Gomez"
+  DTS:Description="Load And Update Of Table FACT_WT_METRICS"
+  DTS:DTSID="{B9EBB236-BEE2-438C-952F-81FC7314533C}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DWH - 500 - SerialNumbersXUS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="510"
+  DTS:VersionGUID="{AB0301CA-F5C3-4D2D-8F41-B72DF97491C1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser16]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{9ABBDEE6-FA4B-47E4-9F35-BAA00DC970E6}"
+      DTS:ObjectName="INTCOMEX_DWH.dwhuser16">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Etluser;Dsn=IQ16;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAABk8YO5okFkHmU4aw8MMYvAAAAAASAAACgAAAAEAAAACdVre926rLPwlwr6395l2YYAAAAwtuwvQQx1ztrjsZthQrA1YqMiPmnjfXxFAAAAPw9qQN5YFwqYMu1LcdnBTutS5OJ</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D0CCE607-EBEB-418D-A012-8D120840194D}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-DWH - 500 - SerialNumbersXUS-{D0CCE607-EBEB-418D-A012-8D120840194D}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS_2.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0BBE305D-39CA-4868-99E5-FDAE52515950}"
+      DTS:ObjectName="S91SQLUS_2.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{2ADB3646-921F-4785-B33C-8056A6D8D2FE}"
+      DTS:ObjectName="Sentai_Replica.bodts">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=bodts;Dsn=Sentai_Replica;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAJ0vYUglxbhNFIWWRKEgNhAAAAAASAAACgAAAAEAAAAHNaiDb0P4sQKr6UsKYSglcYAAAAAkzP68T0N8VGqSWADSmLAW5nNOmqjIMbFAAAAIyvK8s5JY/PV20hX0m8tImf5chv</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{278F5D9F-1662-4E77-B072-ABD572605F31}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLAPPList.INTXDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C93B0025-C435-4576-BA84-A17D29A00A12}"
+      DTS:ObjectName="SQLAPPList.INTXDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=INTXDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-SENTAI_AP_TRANS_IN-{968487B2-E36A-46DC-8B01-7E8225FFABB4}S5SQLUS.INTXDW;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WTLIVEODBC.WT_INT]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{9519D311-4162-4C7D-AB20-1F200D309B42}"
+      DTS:ObjectName="WTLIVEODBC.WT_INT">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=WT_INT;DSN=WTLIVEODBC;">
+          <DTS:Password
+            DTS:Name="PWD"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABpbvDBOBOdUf+px3ZIj5WrAAAAAASAAACgAAAAEAAAAJUKxjyrHir2t4A8LpPCtxEYAAAALyPCyhTrOK+6tPwGUW3AlawnnVpHteSJFAAAAM9W2mK/Yu4/QgiWAaB2FxYbeb9f</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[XML]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3638F333-B9E7-4149-8C9B-C9C54E312E7D}"
+      DTS:ObjectName="XML">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{0BBE305D-39CA-4868-99E5-FDAE52515950}S0SQL2K8.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;INTCOMEX_DWH.dwhuser16&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{A4E276BC-CC6D-49E2-AED2-E7C72CCA54E9}"
+      DTS:ObjectName="INTCOMEX_DWH dwhuser16" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;Sentai_Replica.bodts&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{989CC210-C545-4544-8D24-0AEAD5233926}"
+      DTS:ObjectName="Sentai_Replica bodts" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;WTLIVEODBC.WT_INT&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{C52BFDB3-1229-42AA-9C4A-B8AB5381D27C}"
+      DTS:ObjectName="WTLIVEODBC WT_INT" />
+  </DTS:Configurations>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="S91SQLUS.DWStaging"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{2886AF51-C187-4783-BEDC-91E807AC3406}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{261F5566-AAA8-4E8B-9C27-FA8C71ABE26A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VBool_Validacion">
+      <DTS:VariableValue
+        DTS:DataType="11">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1E5E64BA-6886-4602-8D87-F2E2976E9030}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VInt_Ejecucion">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E81A4620-AFC8-4B61-814A-BF185B950703}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VInt_TipoEjecucion">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FEB57D21-02FD-4AD3-B451-98F8C015DCB4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8D907E7A-F3BF-4BD0-89E6-3AC0C77CF684}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{75D3C41E-94A8-4A75-A525-DFBB8250F536}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2A979F73-7195-4635-A4EF-232BD1E2568E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">18,7,OnError,19,OnExecStatusChanged,13,OnInformation,25,OnPipelinePostEndOfRowset,25,OnPipelinePostPrimeOutput,24,OnPipelinePreEndOfRowset,24,OnPipelinePrePrimeOutput,18,OnPipelineRowsSent,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{2886AF51-C187-4783-BEDC-91E807AC3406}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\C - DELETE TABLES"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Delete Tables"
+      DTS:DTSID="{B49F6455-ECDF-40C9-B33F-DE6B4CC083B9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="C - DELETE TABLES"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0BBE305D-39CA-4868-99E5-FDAE52515950}"
+          SQLTask:SqlStatementSource="truncate table dwstaging.dbo.STG_INVENTORY_SERIALS_XUS&#xA;truncate table dwstaging.dbo.STG_WM_SERIALS_XUS&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::VInt_TipoEjecucion"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\exec dm_trns_fact_IMEI_XUS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E60237EC-16B6-498A-B146-BE9DDE0C5C0A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="exec dm_trns_fact_IMEI_XUS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0BBE305D-39CA-4868-99E5-FDAE52515950}"
+          SQLTask:SqlStatementSource="EXEC dbo.dm_trns_fact_imei_xus" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\exec dm_trns_fact_inventory_serials_xus"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{22F1A5D4-86BA-4FAA-AA33-C1BB382B3A21}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="exec dm_trns_fact_inventory_serials_xus"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0BBE305D-39CA-4868-99E5-FDAE52515950}"
+          SQLTask:SqlStatementSource="exec dwstaging.dbo.dm_trns_fact_inventory_serials_xus" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\exec dw_dataload_fact_imei_xus IQ16"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{21DC824A-4342-4315-B41F-EF20B4629343}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="exec dw_dataload_fact_imei_xus IQ16"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9ABBDEE6-FA4B-47E4-9F35-BAA00DC970E6}"
+          SQLTask:SqlStatementSource="exec dwhuser.dw_dataload_fact_imei_xus" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\exec dw_dataload_fact_inventory_serials_xus IQ16"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3894B28D-B199-489C-8D53-C0D2CFCC62E6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="exec dw_dataload_fact_inventory_serials_xus IQ16"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9ABBDEE6-FA4B-47E4-9F35-BAA00DC970E6}"
+          SQLTask:SqlStatementSource="exec dwhuser.dw_dataload_fact_inventory_serials_xus" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\G - Reset Process Variables"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Reset Process Variables"
+      DTS:DTSID="{AAC8122A-93B6-45D4-809F-EBD7685F15C7}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="G - Reset Process Variables">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"G - Reset Process Variables"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\G - Reset Process Variables\Tarea Reset Ejecucion DWH - 500 - SerialNumbersXUS"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{77BFE3CC-B258-4A9F-B352-108624547156}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Reset Ejecucion DWH - 500 - SerialNumbersXUS"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Tarea Reset Ejecucion "+ @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{0BBE305D-39CA-4868-99E5-FDAE52515950}"
+              SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\H - Correct Event Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Correct Event Task"
+      DTS:DTSID="{AC97070E-2F59-4A7B-A82B-8F55B6A5F426}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="H - Correct Event Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"H - Correct Event Task"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Correcto','Ejecucion Correcta')"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0BBE305D-39CA-4868-99E5-FDAE52515950}"
+          SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;&#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Correcto','Ejecucion Correcta')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\I - Correct Event"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Send Mail  Correct Event"
+      DTS:DTSID="{66E8C4C6-F4B2-40D0-A89A-BDEC9D7EA486}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="I - Correct Event">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"I - Correct Event"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\I - Correct Event\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B0559D3F-3600-46D1-9AE5-308FCA71AFF6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se a ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{0BBE305D-39CA-4868-99E5-FDAE52515950}"
+              SQLTask:SqlStatementSource="Select  'Se a ejecutado  el Paquete DWH - 500 - SerialNumbersXUS  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\I - Correct Event\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{5B363D20-97E1-4918-B62E-B4DD97508784}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{278F5D9F-1662-4E77-B072-ABD572605F31}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :DWH - 500 - SerialNumbersXUS" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\I - Correct Event.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{FB78EE7E-A6BC-4665-8D06-C634E9C22495}"
+          DTS:From="Package\I - Correct Event\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\I - Correct Event\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Serials XUS WMSTools"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0A2CC97D-3F30-4403-8EE9-36FC5C1833E6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Serials XUS WMSTools"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Serials XUS WMSTools\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Serials XUS WMSTools\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Serials XUS WMSTools\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Serials XUS WMSTools\Data Conversion.Inputs[Data Conversion Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Serials XUS WMSTools\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Serials XUS WMSTools\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Serials XUS WMSTools\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Serials XUS WMSTools\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI)"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="STG_WM_SERIALS_XUS (IMEI)"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[STG_WM_SERIALS_XUS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[S91SQLUS_2.DWStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[S91SQLUS_2.DWStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].Columns[PRODUCT_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="PRODUCT_ID"
+                      externalMetadataColumnId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_ID]"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[PRODUCT_ID]" />
+                    <inputColumn
+                      refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].Columns[DETAIL_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="32"
+                      cachedName="DETAIL_ID"
+                      externalMetadataColumnId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].ExternalColumns[DETAIL_ID]"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[DETAIL_ID]" />
+                    <inputColumn
+                      refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].Columns[TAG_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="TAG_ID"
+                      externalMetadataColumnId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].ExternalColumns[TAG_ID]"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[TAG_ID]" />
+                    <inputColumn
+                      refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].Columns[PROD_SYNONYM]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="PROD_SYNONYM"
+                      externalMetadataColumnId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].ExternalColumns[PROD_SYNONYM]"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[PROD_SYNONYM]" />
+                    <inputColumn
+                      refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].Columns[FULL_ADDRESS]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="FULL_ADDRESS"
+                      externalMetadataColumnId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].ExternalColumns[FULL_ADDRESS]"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[FULL_ADDRESS]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].ExternalColumns[TAG_ID]"
+                      dataType="wstr"
+                      length="24"
+                      name="TAG_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="PRODUCT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].ExternalColumns[DETAIL_ID]"
+                      dataType="wstr"
+                      length="32"
+                      name="DETAIL_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].ExternalColumns[PROD_SYNONYM]"
+                      dataType="wstr"
+                      length="40"
+                      name="PROD_SYNONYM" />
+                    <externalMetadataColumn
+                      refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].ExternalColumns[FULL_ADDRESS]"
+                      dataType="wstr"
+                      length="40"
+                      name="FULL_ADDRESS" />
+                    <externalMetadataColumn
+                      refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                      dataType="dbTimeStamp"
+                      name="LastExtraction" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Serials XUS WMSTools\WT Seriales (IMEI)"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Extracts data from a relational database by using a .NET provider."
+              name="WT Seriales (IMEI)"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT            mtds.tag_id, mtds.product_id, p.prod_synonym, mtds.detail_id, sl.full_address
+FROM        (
+                        (
+                              wm_storage_loc_tag slt
+                              RIGHT JOIN  wm_storage_loc sl
+                              ON                (slt.loc_id =  sl.loc_id)
+                              AND               (slt.zone_no =  sl.zone_no)
+                        )
+                        LEFT JOIN   (
+                                                wm_master_tag_d mtd
+                                                LEFT JOIN   wm_master_tag_d_s mtds
+                                                ON                mtd.comp_tag =  mtds.tag_id
+                                          )
+                        ON                slt.tag_id =  mtd.tag_id
+                  )
+LEFT JOIN   vw_product p
+ON                mtds.product_id = p.product_id
+WHERE       mtds.tag_id NOT LIKE '310*'
+--AND               (mtds.product_id = '#productIdLOG#'
+--OR                p.prod_synonym = '#lcase(productIdLOG)#'
+--OR                p.mpn = '#productIdLOG#')
+
+UNION
+
+SELECT            mtds.tag_id, mtds.product_id, p.prod_synonym, mtds.detail_id, sl.full_address
+FROM        wm_master_tag_d_s mtds, wm_storage_loc_tag slt, wm_storage_loc sl, vw_product p
+WHERE       slt.tag_id = mtds.tag_id
+AND               sl.zone_no = slt.zone_no
+AND               sl.loc_id = slt.loc_id
+AND               p.product_id = mtds.product_id
+AND               mtds.tag_id NOT LIKE '310*'
+--AND               (mtds.product_id = '#productIdLOG#'
+--OR                p.prod_synonym = '#lcase(productIdLOG)#'
+--OR                p.mpn = '#productIdLOG#')
+AND               sl.full_address LIKE '%'
+
+UNION
+
+SELECT            NULL AS tag_id, slps.product_id, p.prod_synonym, slps.detail_id, sl.full_address
+FROM        (
+                        (
+                              wm_storage_loc_prod_s slps
+                              INNER JOIN  wm_storage_loc sl
+                              ON                sl.zone_no = slps.zone_no
+                              AND               sl.loc_id = slps.loc_id
+                        )
+                        INNER JOIN  vw_product p
+                        ON                p.product_id = slps.product_id
+                  )
+WHERE       --(slps.product_id = '#productIdLOG#'
+--OR                p.prod_synonym = '#lcase(productIdLOG)#'
+--OR                p.mpn = '#productIdLOG#')
+              sl.full_address LIKE '%'
+
+ORDER BY    full_address, tag_id, detail_id</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"WT_INT"."WM_MASTER_TAG_D_S"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[WTLIVEODBC.WT_INT]"
+                  connectionManagerRefId="Package.ConnectionManagers[WTLIVEODBC.WT_INT]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[TAG_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].ExternalColumns[TAG_ID]"
+                      length="24"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[TAG_ID]"
+                      name="TAG_ID"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[PRODUCT_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].ExternalColumns[PRODUCT_ID]"
+                      length="20"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[PROD_SYNONYM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].ExternalColumns[PROD_SYNONYM]"
+                      length="40"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[PROD_SYNONYM]"
+                      name="PROD_SYNONYM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[DETAIL_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].ExternalColumns[DETAIL_ID]"
+                      length="32"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[DETAIL_ID]"
+                      name="DETAIL_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[FULL_ADDRESS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].ExternalColumns[FULL_ADDRESS]"
+                      length="40"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].Columns[FULL_ADDRESS]"
+                      name="FULL_ADDRESS"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].ExternalColumns[TAG_ID]"
+                      dataType="wstr"
+                      length="24"
+                      name="TAG_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].ExternalColumns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="PRODUCT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].ExternalColumns[PROD_SYNONYM]"
+                      dataType="wstr"
+                      length="40"
+                      name="PROD_SYNONYM" />
+                    <externalMetadataColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].ExternalColumns[DETAIL_ID]"
+                      dataType="wstr"
+                      length="32"
+                      name="DETAIL_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output].ExternalColumns[FULL_ADDRESS]"
+                      dataType="wstr"
+                      length="40"
+                      name="FULL_ADDRESS" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[TAG_ID]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[TAG_ID]"
+                      name="TAG_ID" />
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID" />
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[PROD_SYNONYM]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[PROD_SYNONYM]"
+                      name="PROD_SYNONYM" />
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[DETAIL_ID]"
+                      dataType="wstr"
+                      length="32"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[DETAIL_ID]"
+                      name="DETAIL_ID" />
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[FULL_ADDRESS]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[FULL_ADDRESS]"
+                      name="FULL_ADDRESS" />
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Serials XUS WMSTools.Paths[ADO NET Source Output]"
+              endId="Package\Serials XUS WMSTools\Data Conversion.Inputs[Data Conversion Input]"
+              name="ADO NET Source Output"
+              startId="Package\Serials XUS WMSTools\WT Seriales (IMEI).Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Serials XUS WMSTools.Paths[Data Conversion Output]"
+              endId="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI).Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Serials XUS WMSTools\Data Conversion.Outputs[Data Conversion Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transferir STG_INVENTORY_SERIALS_XUS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{ABA3D0D6-8E6F-4FF3-9CA6-BBD83852CDB4}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transferir STG_INVENTORY_SERIALS_XUS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Inputs[Data Conversion Input].Columns[COMPANYID]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="COMPANYID"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].Columns[COMPANYID]" />
+                    <inputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Inputs[Data Conversion Input].Columns[LocalRecno]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="LocalRecno"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].Columns[LocalRecno]" />
+                    <inputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Inputs[Data Conversion Input].Columns[SerialNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="SerialNumber"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].Columns[SerialNumber]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Output].Columns[COMPANYID_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Output].Columns[COMPANYID_conv]"
+                      name="COMPANYID_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].Columns[COMPANYID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Output].Columns[LocalRecno_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Output].Columns[LocalRecno_conv]"
+                      name="LocalRecno_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].Columns[LocalRecno]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Output].Columns[SerialNumber_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="40"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Output].Columns[SerialNumber_conv]"
+                      name="SerialNumber_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].Columns[SerialNumber]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="STG_INVENTORY_SERIALS_XUS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[STG_INVENTORY_SERIALS_XUS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[S91SQLUS_2.DWStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[S91SQLUS_2.DWStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Inputs[OLE DB Destination Input].Columns[SerialNumber_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="SerialNumber_conv"
+                      externalMetadataColumnId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Inputs[OLE DB Destination Input].ExternalColumns[SerialNumber]"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Output].Columns[SerialNumber_conv]" />
+                    <inputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Inputs[OLE DB Destination Input].Columns[LocalRecno_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="LocalRecno_conv"
+                      externalMetadataColumnId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Inputs[OLE DB Destination Input].ExternalColumns[LocalRecno]"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Output].Columns[LocalRecno_conv]" />
+                    <inputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Inputs[OLE DB Destination Input].Columns[COMPANYID_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="COMPANYID_conv"
+                      externalMetadataColumnId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Inputs[OLE DB Destination Input].ExternalColumns[COMPANYID]"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Output].Columns[COMPANYID_conv]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Inputs[OLE DB Destination Input].ExternalColumns[SerialNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SerialNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Inputs[OLE DB Destination Input].ExternalColumns[COMPANYID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="COMPANYID" />
+                    <externalMetadataColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Inputs[OLE DB Destination Input].ExternalColumns[LocalRecno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LocalRecno" />
+                    <externalMetadataColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                      dataType="dbTimeStamp"
+                      name="LastExtraction" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Extracts data from a relational database by using a .NET provider."
+              name="WT Seriales"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 'XUS' as CompanyID,
+    "WT_INT"."WM_PRODUCT_SYN"."PRODUCT_ID" as "LocalRecno", 
+    "WT_INT"."WM_PRODUCT_SYN"."PROD_SYNONYM" as "SerialNumber"
+    FROM "WT_INT"."WM_PRODUCT_SYN" 
+    WHERE ( "WM_SYN_TYPE_ID" = 'bc' )</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[WTLIVEODBC.WT_INT]"
+                  connectionManagerRefId="Package.ConnectionManagers[WTLIVEODBC.WT_INT]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].Columns[COMPANYID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].ExternalColumns[COMPANYID]"
+                      length="3"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].Columns[COMPANYID]"
+                      name="COMPANYID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].Columns[LocalRecno]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].ExternalColumns[LocalRecno]"
+                      length="20"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].Columns[LocalRecno]"
+                      name="LocalRecno"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].Columns[SerialNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].ExternalColumns[SerialNumber]"
+                      length="40"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].Columns[SerialNumber]"
+                      name="SerialNumber"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].ExternalColumns[COMPANYID]"
+                      dataType="wstr"
+                      length="3"
+                      name="COMPANYID" />
+                    <externalMetadataColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].ExternalColumns[LocalRecno]"
+                      dataType="wstr"
+                      length="20"
+                      name="LocalRecno" />
+                    <externalMetadataColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output].ExternalColumns[SerialNumber]"
+                      dataType="wstr"
+                      length="40"
+                      name="SerialNumber" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Error Output].Columns[COMPANYID]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Error Output].Columns[COMPANYID]"
+                      name="COMPANYID" />
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Error Output].Columns[LocalRecno]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Error Output].Columns[LocalRecno]"
+                      name="LocalRecno" />
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Error Output].Columns[SerialNumber]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Error Output].Columns[SerialNumber]"
+                      name="SerialNumber" />
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Transferir STG_INVENTORY_SERIALS_XUS.Paths[ADO NET Source Output]"
+              endId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Inputs[Data Conversion Input]"
+              name="ADO NET Source Output"
+              startId="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Transferir STG_INVENTORY_SERIALS_XUS.Paths[Data Conversion Output]"
+              endId="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion.Outputs[Data Conversion Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B5C99554-F6CF-4971-ADB4-767A9C78582E}"
+      DTS:From="Package\C - DELETE TABLES"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Transferir STG_INVENTORY_SERIALS_XUS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6401B256-6388-48A6-95DE-3BB194755360}"
+      DTS:From="Package\Transferir STG_INVENTORY_SERIALS_XUS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\exec dm_trns_fact_inventory_serials_xus" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{D109E732-9D0E-4FFA-9A3C-891C414759DE}"
+      DTS:From="Package\exec dw_dataload_fact_imei_xus IQ16"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\G - Reset Process Variables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{372A2869-89E5-4721-A049-215DE2639774}"
+      DTS:From="Package\exec dm_trns_fact_inventory_serials_xus"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\exec dw_dataload_fact_inventory_serials_xus IQ16" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{D923B2B9-1BB0-494C-9A87-37F902FFB9E7}"
+      DTS:From="Package\exec dm_trns_fact_IMEI_XUS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\exec dw_dataload_fact_imei_xus IQ16" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{E78FDAD1-D5F4-4BDE-9382-7B36922BDD76}"
+      DTS:From="Package\exec dw_dataload_fact_inventory_serials_xus IQ16"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\G - Reset Process Variables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{5F181304-44B9-4F1E-A670-05B684C9444A}"
+      DTS:From="Package\H - Correct Event Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\I - Correct Event" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{602D6A7E-6581-411F-95DB-DDFB848B78D5}"
+      DTS:From="Package\G - Reset Process Variables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\H - Correct Event Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{7EB62096-90D3-4772-A56A-A19460109B1A}"
+      DTS:From="Package\C - DELETE TABLES"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Serials XUS WMSTools" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{6D9BD1D0-1CE6-4CF4-AA88-BB4610589AE6}"
+      DTS:From="Package\Serials XUS WMSTools"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\exec dm_trns_fact_IMEI_XUS" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{7BA1D0FF-3C74-41D3-B4CB-18B373C43532}"
+      DTS:EventID="67108868"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{8B64ADE2-5060-4B18-835B-8DA6EFE69F03}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Event Error"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Send Mail  Error Event"
+          DTS:DTSID="{E46AB9F5-E0F1-4D17-83EA-959310E8C5C7}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Event Error">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Event Error"</DTS:PropertyExpression>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Event Error\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{29375A84-F9BE-4B80-BDE5-F418004731C4}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{0BBE305D-39CA-4868-99E5-FDAE52515950}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Event Error\Send Mail Task"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{45EDB408-EC06-43B0-9DF0-628DE8D2C699}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send Mail Task"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError] + @[System::PackageName] </DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{278F5D9F-1662-4E77-B072-ABD572605F31}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :DWH - 500 - SerialNumbersXUS" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Event Error.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{156D0FC6-4A3F-4E98-A595-E7273BBE5EE1}"
+              DTS:From="Package.EventHandlers[OnError]\Event Error\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Event Error\Send Mail Task" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Process Control Errors"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Task Error Event"
+          DTS:DTSID="{8EDBE0FD-258E-4B97-879F-4780DD87B5EC}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Process Control Errors">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Process Control Errors"</DTS:PropertyExpression>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors\Tarea Evento Fallo"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{A5D72890-0D68-4B0D-91D4-221B73ECCD89}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tarea Evento Fallo"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Tarea Evento Fallo"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{0BBE305D-39CA-4868-99E5-FDAE52515950}"
+                  SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors\Tarea Reset Ejecucion DWH - 500 - SerialNumbersXUS"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{339F5F81-1710-4387-A462-C50278D23ECC}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tarea Reset Ejecucion DWH - 500 - SerialNumbersXUS"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Tarea Reset Ejecucion "+ @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{0BBE305D-39CA-4868-99E5-FDAE52515950}"
+                  SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Process Control Errors.PrecedenceConstraints[Restricción]"
+              DTS:CreationName=""
+              DTS:DTSID="{D2C4EB88-8E1F-4DCA-8049-BE70BEBBADEA}"
+              DTS:From="Package.EventHandlers[OnError]\Process Control Errors\Tarea Reset Ejecucion DWH - 500 - SerialNumbersXUS"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Restricción"
+              DTS:To="Package.EventHandlers[OnError]\Process Control Errors\Tarea Evento Fallo" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{F53A9A72-DA72-4124-AC74-0863CC6F738F}"
+          DTS:From="Package.EventHandlers[OnError]\Process Control Errors"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Event Error" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="229,44"
+          Id="Package\C - DELETE TABLES"
+          TopLeft="417.292452830189,5.5" />
+        <NodeLayout
+          Size="229,44"
+          Id="Package\exec dm_trns_fact_IMEI_XUS"
+          TopLeft="151.5,161.688679245283" />
+        <NodeLayout
+          Size="229,44"
+          Id="Package\exec dm_trns_fact_inventory_serials_xus"
+          TopLeft="590.047169811321,166.820754716981" />
+        <NodeLayout
+          Size="261,42"
+          Id="Package\exec dw_dataload_fact_imei_xus IQ16"
+          TopLeft="197.5,239.462264150943" />
+        <NodeLayout
+          Size="320,42"
+          Id="Package\exec dw_dataload_fact_inventory_serials_xus IQ16"
+          TopLeft="585.5,239.462264150943" />
+        <NodeLayout
+          Size="183,44"
+          Id="Package\G - Reset Process Variables\Tarea Reset Ejecucion DWH - 500 - SerialNumbersXUS"
+          TopLeft="80.4150943396227,27.7924528301887" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="False"
+          PanelSize="324,101"
+          Size="231,44"
+          Id="Package\G - Reset Process Variables"
+          TopLeft="417.292452830189,332.141509433962" />
+        <NodeLayout
+          Size="227,44"
+          Id="Package\H - Correct Event Task"
+          TopLeft="417.669811320755,413.801886792453" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\I - Correct Event\Mensaje"
+          TopLeft="43.1698113207547,26.4716981132076" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\I - Correct Event\Send Mail Task"
+          TopLeft="43.1698113207547,117.11320754717" />
+        <EdgeLayout
+          Id="Package\I - Correct Event.PrecedenceConstraints[Constraint]"
+          TopLeft="111.056603773585,70.3962264150944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46.7169811320755"
+              Start="0,0"
+              End="0,39.2169811320755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.2169811320755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="226,212"
+          Size="226,255"
+          Id="Package\I - Correct Event"
+          TopLeft="418.084905660377,495.462264150943" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Serials XUS WMSTools"
+          TopLeft="264.537735849057,88.8207547169811" />
+        <NodeLayout
+          Size="229,44"
+          Id="Package\Transferir STG_INVENTORY_SERIALS_XUS"
+          TopLeft="590.047169811321,88.1415094339623" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="573.103773584906,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="131.245283018868,38.7169811320755"
+              Start="0,0"
+              End="131.245283018868,31.2169811320755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.3584905660377" />
+                  <mssgle:LineSegment
+                    End="131.245283018868,19.3584905660377" />
+                  <mssgle:LineSegment
+                    End="131.245283018868,31.2169811320755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="704.349056603774,132.066037735849">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.7547169811321"
+              Start="0,0"
+              End="0,27.2547169811321">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.2547169811321" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="328,281.462264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="167.625786163522,50.679245283019"
+              Start="0,0"
+              End="167.625786163522,43.179245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.1983808952126" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.1983808952126"
+                    Point2="0,30.1983808952126"
+                    Point3="4,30.1983808952126" />
+                  <mssgle:LineSegment
+                    End="163.625786163522,30.1983808952126" />
+                  <mssgle:CubicBezierSegment
+                    Point1="163.625786163522,30.1983808952126"
+                    Point2="167.625786163522,30.1983808952126"
+                    Point3="167.625786163522,34.1983808952126" />
+                  <mssgle:LineSegment
+                    End="167.625786163522,43.179245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="704.547169811321,210.820754716981">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.9528301886789,28.641509433962"
+              Start="0,0"
+              End="40.9528301886789,21.141509433962">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.320754716981" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.320754716981"
+                    Point2="0,14.320754716981"
+                    Point3="4,14.320754716981" />
+                  <mssgle:LineSegment
+                    End="36.9528301886789,14.320754716981" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36.9528301886789,14.320754716981"
+                    Point2="40.9528301886789,14.320754716981"
+                    Point3="40.9528301886789,18.320754716981" />
+                  <mssgle:LineSegment
+                    End="40.9528301886789,21.141509433962" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="266,205.688679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62,33.77358490566"
+              Start="0,0"
+              End="62,26.27358490566">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.88679245283" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.88679245283"
+                    Point2="0,16.88679245283"
+                    Point3="4,16.88679245283" />
+                  <mssgle:LineSegment
+                    End="58,16.88679245283" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58,16.88679245283"
+                    Point2="62,16.88679245283"
+                    Point3="62,20.88679245283" />
+                  <mssgle:LineSegment
+                    End="62,26.27358490566" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="745.5,281.462264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-175.540880503144,50.679245283019"
+              Start="0,0"
+              End="-175.540880503144,43.179245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.1983808952125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.1983808952125"
+                    Point2="0,30.1983808952125"
+                    Point3="-4,30.1983808952125" />
+                  <mssgle:LineSegment
+                    End="-171.540880503144,30.1983808952125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-171.540880503144,30.1983808952125"
+                    Point2="-175.540880503144,30.1983808952125"
+                    Point3="-175.540880503144,34.1983808952125" />
+                  <mssgle:LineSegment
+                    End="-175.540880503144,43.179245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="530.952830188679,457.72641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7358490566037"
+              Start="0,0"
+              End="0,30.2358490566037">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566037" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="531.981132075472,376.141509433962">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.660377358491"
+              Start="0,0"
+              End="0,30.160377358491">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.160377358491" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="494.959119496855,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-138.421383647799,39.3207547169811"
+              Start="0,0"
+              End="-138.421383647799,31.8207547169811">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.891996268962" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.891996268962"
+                    Point2="0,15.891996268962"
+                    Point3="-4,15.891996268962" />
+                  <mssgle:LineSegment
+                    End="-134.421383647799,15.891996268962" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-134.421383647799,15.891996268962"
+                    Point2="-138.421383647799,15.891996268962"
+                    Point3="-138.421383647799,19.891996268962" />
+                  <mssgle:LineSegment
+                    End="-138.421383647799,31.8207547169811" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="356.537735849057,130.820754716981">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-90.537735849057,30.8679245283019"
+              Start="0,0"
+              End="-90.537735849057,23.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.4339622641509" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.4339622641509"
+                    Point2="0,15.4339622641509"
+                    Point3="-4,15.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-86.537735849057,15.4339622641509" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-86.537735849057,15.4339622641509"
+                    Point2="-90.537735849057,15.4339622641509"
+                    Point3="-90.537735849057,19.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-90.537735849057,23.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Event Error\Mensaje"
+          TopLeft="78.4905660377358,31.5660377358491" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Event Error\Send Mail Task"
+          TopLeft="78.9056603773585,117.566037735849" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Event Error.PrecedenceConstraints[Constraint]"
+          TopLeft="146.377358490566,75.4905660377359">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.415094339622641,42.0754716981132"
+              Start="0,0"
+              End="0.415094339622641,34.5754716981132">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0188679245283" />
+                  <mssgle:LineSegment
+                    End="0.415094339622641,21.0188679245283" />
+                  <mssgle:LineSegment
+                    End="0.415094339622641,34.5754716981132" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="292,190"
+          Size="292,233"
+          Id="Package.EventHandlers[OnError]\Event Error"
+          TopLeft="7.57547169811323,259.72641509434" />
+        <NodeLayout
+          Size="230,44"
+          Id="Package.EventHandlers[OnError]\Process Control Errors\Tarea Evento Fallo"
+          TopLeft="32.0377358490566,88.2452830188679" />
+        <NodeLayout
+          Size="225,44"
+          Id="Package.EventHandlers[OnError]\Process Control Errors\Tarea Reset Ejecucion DWH - 500 - SerialNumbersXUS"
+          TopLeft="34.5283018867925,14.8867924528302" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Process Control Errors.PrecedenceConstraints[Restricción]"
+          TopLeft="146.830188679245,58.811320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.4339622641509"
+              Start="0,0"
+              End="0,21.9339622641509">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9339622641509" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="296,159.075471698114"
+          Size="296,203"
+          Id="Package.EventHandlers[OnError]\Process Control Errors"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="153.38679245283,208.745283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.0377358490566024,50.9811320754717"
+              Start="0,0"
+              End="-0.0377358490566024,43.4811320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.4716981132075" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566024,25.4716981132075" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566024,43.4811320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Serials XUS WMSTools">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Serials XUS WMSTools\WT Seriales (IMEI)"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Serials XUS WMSTools\Data Conversion"
+          TopLeft="5.5,95.3490566037736" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Serials XUS WMSTools\STG_WM_SERIALS_XUS (IMEI)"
+          TopLeft="5.5,208.141509433962" />
+        <EdgeLayout
+          Id="Package\Serials XUS WMSTools.Paths[Data Conversion Output]"
+          TopLeft="73.3867924528302,139.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68.8679245283019"
+              Start="0,0"
+              End="0,61.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Serials XUS WMSTools.Paths[ADO NET Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.9245283018868"
+              Start="0,0"
+              End="0,38.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Serials XUS WMSTools\WT Seriales (IMEI)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Transferir STG_INVENTORY_SERIALS_XUS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Transferir STG_INVENTORY_SERIALS_XUS\STG_INVENTORY_SERIALS_XUS"
+          TopLeft="5.5,208.141509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Transferir STG_INVENTORY_SERIALS_XUS\Data Conversion"
+          TopLeft="5.5,95.3490566037736" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Transferir STG_INVENTORY_SERIALS_XUS\WT Seriales"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\Transferir STG_INVENTORY_SERIALS_XUS.Paths[Data Conversion Output]"
+          TopLeft="73.3867924528302,139.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68.8679245283019"
+              Start="0,0"
+              End="0,61.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transferir STG_INVENTORY_SERIALS_XUS.Paths[ADO NET Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.9245283018868"
+              Start="0,0"
+              End="0,38.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

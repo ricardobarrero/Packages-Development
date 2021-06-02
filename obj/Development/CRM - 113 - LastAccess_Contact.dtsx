@@ -1,0 +1,1861 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/26/2015 2:07:51 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{A2E823E6-9451-4999-A4A1-AA498E506544}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CRM - 113 - LastAccess_Contact"
+  DTS:PackageType="5"
+  DTS:VersionBuild="73"
+  DTS:VersionGUID="{162266B8-FF4E-4FB9-9D63-2BDD3649529E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{338DF786-9ABC-45AC-B55D-2389CF52ACF8}"
+      DTS:ObjectName="s2crmdb.CRMStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdb;Initial Catalog=CRMStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-CRM - 110 - Tax_Group-{338DF786-9ABC-45AC-B55D-2389CF52ACF8}s2crmdb.CRMStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1DE2429B-DCA9-47B2-97FA-FBC0B7397EE6}"
+      DTS:ObjectName="s2crmdvlp.CRMStaging.ETLUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdvlp;Initial Catalog=CRMStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D811861E-C7E8-4956-A985-B4C036227A57}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{DB526858-66BB-4735-B04A-E9BBE337204C}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{0B3B5C82-6CA0-4F13-8DEF-DD058189B685}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLWSTList.IntcomexStore]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B4A508C8-E1F0-47A0-A3D0-C8B376780960}"
+      DTS:ObjectName="SQLWSTList.IntcomexStore">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLWSTList;Initial Catalog=IntcomexStore;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4290E86C-B870-4FDA-8ABE-F0BF4DAE9D26}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E8F07674-F227-4936-A66C-425939DBA74D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9CA7F0AA-3F13-42E3-8E9D-26F651ADC2F3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C5A97E26-1E10-4E84-8ED0-D4CE5B42EC2E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{A4F377EB-D79B-4FF2-A1E2-646728B83B75}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9C646577-9B32-469D-B337-7E37466EDC8B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D811861E-C7E8-4956-A985-B4C036227A57}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete CRM - 113 - LastAccess_Contact  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{89ACDCD1-5D6C-4E20-A915-62BC582C0264}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject]+ @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{0B3B5C82-6CA0-4F13-8DEF-DD058189B685}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :CRM - 113 - LastAccess_Contact" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{2B1AA8BB-CE35-46B1-961A-368CF3B1B3A1}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DVLP"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C01A2323-F604-4782-B7F3-B301D60D04F6}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DVLP">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load DVLP\load STG_LastAccess_Contact"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{FD0E2CB7-695F-43E7-BBB2-DAC598389A97}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load STG_LastAccess_Contact"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[STG_LastAccess_Contact]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CustomerId"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[CustomerId]" />
+                        <inputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[WebUser]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="WebUser"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WebUser]"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[WebUser]" />
+                        <inputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CompanyId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CompanyId"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyId]"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[CompanyId]" />
+                        <inputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastAccess]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastAccess"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastAccess]"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[LastAccess]" />
+                        <inputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IsAdmin]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="IsAdmin"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsAdmin]"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[IsAdmin]" />
+                        <inputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Email]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="Email"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[Email]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CustomerId" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WebUser]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="WebUser" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CompanyId" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastAccess]"
+                          dataType="dbTimeStamp"
+                          name="LastAccess" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsAdmin]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="IsAdmin" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="Email" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="STG_LastAccess_Contact"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[STG_LastAccess_Contact]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[CustomerId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
+                          length="50"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[CustomerId]"
+                          name="CustomerId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[WebUser]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[WebUser]"
+                          length="50"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[WebUser]"
+                          name="WebUser"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[CompanyId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[CompanyId]"
+                          length="50"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[CompanyId]"
+                          name="CompanyId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[LastAccess]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[LastAccess]"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[LastAccess]"
+                          name="LastAccess"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[IsAdmin]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[IsAdmin]"
+                          length="1"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[IsAdmin]"
+                          name="IsAdmin"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[Email]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                          length="150"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].Columns[Email]"
+                          name="Email"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CustomerId" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[WebUser]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="WebUser" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[CompanyId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CompanyId" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[LastAccess]"
+                          dataType="dbTimeStamp"
+                          name="LastAccess" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[IsAdmin]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="IsAdmin" />
+                        <externalMetadataColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="Email" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
+                          name="CustomerId" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[WebUser]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[WebUser]"
+                          name="WebUser" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[CompanyId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[CompanyId]"
+                          name="CompanyId" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[LastAccess]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[LastAccess]"
+                          name="LastAccess" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[IsAdmin]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[IsAdmin]"
+                          name="IsAdmin" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[Email]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[Email]"
+                          name="Email" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          name="LastExtraction" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load DVLP\load STG_LastAccess_Contact.Paths[OLE DB Source Output]"
+                  endId="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load DVLP\Truncate STG_LastAccess_Contact"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{771B7414-F315-4537-8BB9-36FE02EC04C3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate STG_LastAccess_Contact"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1DE2429B-DCA9-47B2-97FA-FBC0B7397EE6}"
+              SQLTask:SqlStatementSource="truncate table STG_LastAccess_Contact" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load DVLP.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{8E7A1429-9271-4DAF-94C4-8FA72C8FB0BB}"
+          DTS:From="Package\Load DVLP\Truncate STG_LastAccess_Contact"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load DVLP\load STG_LastAccess_Contact" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOAD STG_LastAccess_Contact"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{B5EE7F5C-BDDA-4905-B0E3-18D91712B17C}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD STG_LastAccess_Contact">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOAD STG_LastAccess_Contact\Execute SQL Task 1"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0B7BDD0E-EFA6-49AB-9B8C-479F087695A5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task 1"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{338DF786-9ABC-45AC-B55D-2389CF52ACF8}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 1,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'STG_LastAccess_Contact'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD STG_LastAccess_Contact\Execute SQL Task 2"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{85307F75-CDEF-4AD9-A3A9-FEB5FB31FFA6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task 2"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{338DF786-9ABC-45AC-B55D-2389CF52ACF8}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 0,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'STG_LastAccess_Contact'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{3C5AC190-30D8-40B8-B74C-8C9A5C14CF2D}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load STG_LastAccess_Contact"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Data Conversion.Inputs[Data Conversion Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[STG_LastAccess_Contact]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CustomerId"
+                          externalMetadataColumnId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerId]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[WebUser]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="WebUser"
+                          externalMetadataColumnId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WebUser]"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].Columns[WebUser]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CompanyId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CompanyId"
+                          externalMetadataColumnId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyId]"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompanyId]" />
+                        <inputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Ultimo Acceso]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Ultimo Acceso"
+                          externalMetadataColumnId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastAccess]"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ultimo Acceso]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CustomerId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WebUser]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="WebUser" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CompanyId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastAccess]"
+                          dataType="dbTimeStamp"
+                          name="LastAccess" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsAdmin]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="IsAdmin" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="Email" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select CustomerId,  WebUser       ,CompanyId,   MAX(AccessDateTime) as "Ultimo Acceso"
+from AccessLog  al with (nolock)
+where
+accessDateTime &gt; '2017-01-01' and AccessGranted=1
+group by  CustomerId,      WebUser       ,CompanyId
+
+
+/*
+select CustomerId,  WebUser       ,CompanyId,   max([Ultimo Acceso] )as LastAccess
+from 
+(
+select CustomerId,  WebUser       ,CompanyId,   MAX(AccessDateTime) as "Ultimo Acceso"
+from AccessLog  al with (nolock)
+where
+accessDateTime &gt; '2017-01-01' and AccessGranted=1
+group by  CustomerId,      WebUser       ,CompanyId
+union
+select * from openquery([S8SQLUS],'select CustomerId,  WebUser       ,CompanyId,   MAX(AccessDateTime) as "Ultimo Acceso"
+from IntcomexStore_Archiving.dbo.AccessLog  al with (nolock)
+where
+accessDateTime &gt; ''2017-01-01'' and AccessGranted=1
+group by  CustomerId,      WebUser       ,CompanyId'
+)
+) as tabla
+group by  CustomerId,      WebUser       ,CompanyId
+;
+*/
+/*
+select CustomerId,  WebUser       ,CompanyId,   max([Ultimo Acceso] )as LastAccess
+from 
+(
+select CustomerId,  WebUser       ,CompanyId,   MAX(AccessDateTime) as "Ultimo Acceso"
+from AccessLog  al with (nolock)
+where
+accessDateTime &gt; '2017-01-01' and AccessGranted=1
+group by  CustomerId,      WebUser       ,CompanyId
+union
+select CustomerId,  WebUser       ,CompanyId,   MAX(AccessDateTime) as "Ultimo Acceso"
+from 
+IntcomexStore_Archiving.dbo.AccessLog al with (nolock)
+where
+accessDateTime &gt; '2017-01-01' and AccessGranted=1
+group by  CustomerId,      WebUser       ,CompanyId
+) as tabla
+group by  CustomerId,      WebUser       ,CompanyId
+;
+*/</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SQLWSTList.IntcomexStore]"
+                      connectionManagerRefId="Package.ConnectionManagers[SQLWSTList.IntcomexStore]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
+                          length="50"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerId]"
+                          name="CustomerId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].Columns[WebUser]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WebUser]"
+                          length="50"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].Columns[WebUser]"
+                          name="WebUser"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompanyId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CompanyId]"
+                          length="50"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompanyId]"
+                          name="CompanyId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ultimo Acceso]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Ultimo Acceso]"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ultimo Acceso]"
+                          name="Ultimo Acceso"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CustomerId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WebUser]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="WebUser" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CompanyId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CompanyId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Ultimo Acceso]"
+                          dataType="dbTimeStamp"
+                          name="Ultimo Acceso" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
+                          name="CustomerId" />
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WebUser]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WebUser]"
+                          name="WebUser" />
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CompanyId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CompanyId]"
+                          name="CompanyId" />
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Ultimo Acceso]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Ultimo Acceso]"
+                          name="Ultimo Acceso" />
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact.Paths[Data Conversion Output]"
+                  endId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact.Paths[Derived Column Output]"
+                  endId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact.Paths[OLE DB Source Output]"
+                  endId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD STG_LastAccess_Contact\TRUNCATE TABLE STG_LastAccess_Contact"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C4C83C21-E034-4AE7-BD37-5D7A5898F4A5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE TABLE STG_LastAccess_Contact"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{338DF786-9ABC-45AC-B55D-2389CF52ACF8}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE STG_LastAccess_Contact" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD STG_LastAccess_Contact\UPDATE IsAdmin-Email"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{79C2C844-F426-486F-980B-81493F116D12}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="UPDATE IsAdmin-Email"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{338DF786-9ABC-45AC-B55D-2389CF52ACF8}"
+              SQLTask:SqlStatementSource="update  C&#xA;set IsAdmin ='Y'&#xA;from S2CRMDB.CRMStaging.dbo.STG_LastAccess_Contact C INNER JOIN S91SQLUS.DWStaging.dbo.SENTAI_WEB_USER_ADMIN S&#xA;on C.WebUser COLLATE SQL_Latin1_General_CP1253_CI_AI=S.&quot;User_ID&quot;&#xA;&#xA;update S2CRMDB.CRMStaging.dbo.STG_LastAccess_Contact&#xA;set IsAdmin ='N'&#xA;where IsAdmin is null&#xA;&#xA;update C&#xA;set C.email = T.&quot;e-mail&quot;&#xA;from CRMStaging.dbo.STG_LastAccess_Contact C inner join Customer T&#xA;on T.custid=C.customerid" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD STG_LastAccess_Contact.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{768DCD6D-1E2B-4B45-8C2F-2682B2F71772}"
+          DTS:From="Package\LOAD STG_LastAccess_Contact\TRUNCATE TABLE STG_LastAccess_Contact"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD STG_LastAccess_Contact.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{623E4391-2B7E-467F-B7DA-AD941C715FB9}"
+          DTS:From="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\LOAD STG_LastAccess_Contact\Execute SQL Task 1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD STG_LastAccess_Contact.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{4DD2AF9D-7204-4B7C-A303-5FD70F015494}"
+          DTS:From="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\LOAD STG_LastAccess_Contact\Execute SQL Task 2"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD STG_LastAccess_Contact.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{0A08C27A-1C72-4464-8D45-3F09BC37F4C7}"
+          DTS:From="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\LOAD STG_LastAccess_Contact\UPDATE IsAdmin-Email" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{43BB8C2C-57F8-4713-86D4-70940900B551}"
+      DTS:From="Package\LOAD STG_LastAccess_Contact"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load DVLP" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{A7414253-9E20-4401-82C4-826C3D46D568}"
+      DTS:From="Package\LOAD STG_LastAccess_Contact"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Evento Correcto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="11.4716981132075,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="10.5283018867925,100.207547169811" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="79.3584905660377,52.3962264150944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.943396226415103,47.811320754717"
+              Start="0,0"
+              End="-0.943396226415103,40.311320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-0.943396226415103,23.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-0.943396226415103,40.311320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="159,157"
+          Size="159,201"
+          Id="Package\Evento Correcto"
+          TopLeft="98.4433962264151,394.707547169811" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Load DVLP\load STG_LastAccess_Contact"
+          TopLeft="35.5,99.5" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Load DVLP\Truncate STG_LastAccess_Contact"
+          TopLeft="64.5,8.5" />
+        <EdgeLayout
+          Id="Package\Load DVLP.PrecedenceConstraints[Constraint]"
+          TopLeft="145.5,50.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="276,192"
+          Size="276,235"
+          Id="Package\Load DVLP"
+          TopLeft="532,86" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD STG_LastAccess_Contact\Execute SQL Task 1"
+          TopLeft="284.603773584906,167.150943396226" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD STG_LastAccess_Contact\Execute SQL Task 2"
+          TopLeft="293.301886792453,21.320754716981" />
+        <NodeLayout
+          Size="222,42"
+          Id="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact"
+          TopLeft="14.5283018867924,101.339622641509" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD STG_LastAccess_Contact\TRUNCATE TABLE STG_LastAccess_Contact"
+          TopLeft="26.5471698113207,5.49056603773585" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\LOAD STG_LastAccess_Contact\UPDATE IsAdmin-Email"
+          TopLeft="16,188" />
+        <EdgeLayout
+          Id="Package\LOAD STG_LastAccess_Contact.PrecedenceConstraints[Constraint]"
+          TopLeft="92.2044025157232,49.4905660377358">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,51.8490566037732"
+              Start="0,0"
+              End="0,44.3490566037732">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.3490566037732" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD STG_LastAccess_Contact.PrecedenceConstraints[Constraint 1]"
+          TopLeft="125.528301886792,143.339622641509">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="227.075471698114,23.811320754717"
+              Start="0,0"
+              End="227.075471698114,16.311320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.90566037735852" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.90566037735852"
+                    Point2="0,11.9056603773585"
+                    Point3="4,11.9056603773585" />
+                  <mssgle:LineSegment
+                    End="223.075471698114,11.9056603773585" />
+                  <mssgle:CubicBezierSegment
+                    Point1="223.075471698114,11.9056603773585"
+                    Point2="227.075471698114,11.9056603773585"
+                    Point3="227.075471698114,15.9056603773585" />
+                  <mssgle:LineSegment
+                    End="227.075471698114,16.311320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD STG_LastAccess_Contact.PrecedenceConstraints[Constraint 2]"
+          TopLeft="161.194968553459,101.339622641509">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="200.106918238994,-36.018867924528"
+              Start="0,0"
+              End="200.106918238994,-28.518867924528">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-10.562189894353" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-10.562189894353"
+                    Point2="0,-14.562189894353"
+                    Point3="4,-14.562189894353" />
+                  <mssgle:LineSegment
+                    End="196.106918238994,-14.562189894353" />
+                  <mssgle:CubicBezierSegment
+                    Point1="196.106918238994,-14.562189894353"
+                    Point2="200.106918238994,-14.562189894353"
+                    Point3="200.106918238994,-18.562189894353" />
+                  <mssgle:LineSegment
+                    End="200.106918238994,-28.518867924528" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="84.812111463247,-9.562189894353,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD STG_LastAccess_Contact.PrecedenceConstraints[Constraint 3]"
+          TopLeft="93.6808176100629,143.339622641509">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,44.660377358491"
+              Start="0,0"
+              End="0,37.160377358491">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.160377358491" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="444,286"
+          Size="444,330"
+          Id="Package\LOAD STG_LastAccess_Contact"
+          TopLeft="11.5,35.3867924528302" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="455.5,201.943396226415">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="76.5,0"
+              Start="0,0"
+              End="69,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="69,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="233.5,365.38679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-55.5566037735849,29.3207547169808"
+              Start="0,0"
+              End="-55.5566037735849,21.8207547169808">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.6603773584904" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.6603773584904"
+                    Point2="0,14.6603773584904"
+                    Point3="-4,14.6603773584904" />
+                  <mssgle:LineSegment
+                    End="-51.5566037735849,14.6603773584904" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-51.5566037735849,14.6603773584904"
+                    Point2="-55.5566037735849,14.6603773584904"
+                    Point3="-55.5566037735849,18.6603773584904" />
+                  <mssgle:LineSegment
+                    End="-55.5566037735849,21.8207547169808" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load DVLP\load STG_LastAccess_Contact">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="196,42"
+          Id="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact"
+          TopLeft="18,16" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination"
+          TopLeft="21,135" />
+        <EdgeLayout
+          Id="Package\Load DVLP\load STG_LastAccess_Contact.Paths[OLE DB Source Output]"
+          TopLeft="116,58">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-9.5,77"
+              Start="0,0"
+              End="-9.5,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.5"
+                    Point2="0,38.5"
+                    Point3="-4,38.5" />
+                  <mssgle:LineSegment
+                    End="-5.5,38.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.5,38.5"
+                    Point2="-9.5,38.5"
+                    Point3="-9.5,42.5" />
+                  <mssgle:LineSegment
+                    End="-9.5,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load DVLP\load STG_LastAccess_Contact\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load DVLP\load STG_LastAccess_Contact\STG_LastAccess_Contact">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source"
+          TopLeft="23,4" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination"
+          TopLeft="26.5,268.216981132075" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Data Conversion"
+          TopLeft="23.5188679245283,171.367924528302" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\Derived Column"
+          TopLeft="18,87" />
+        <EdgeLayout
+          Id="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact.Paths[OLE DB Source Output]"
+          TopLeft="96.5,46">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact.Paths[Derived Column Output]"
+          TopLeft="93.2594339622642,129">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,42.367924528302"
+              Start="0,0"
+              End="0,34.867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact.Paths[Data Conversion Output]"
+          TopLeft="93.0094339622642,215.367924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,52.849056603773"
+              Start="0,0"
+              End="0,45.349056603773">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.349056603773" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD STG_LastAccess_Contact\Load STG_LastAccess_Contact\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

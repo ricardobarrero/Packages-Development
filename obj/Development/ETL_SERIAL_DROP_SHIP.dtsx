@@ -1,0 +1,2437 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/31/2020 4:34:02 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S9SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{9237EEF6-5FF0-4179-A71D-C6F59BB54628}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ETL_SERIAL_DROP_SHIP"
+  DTS:PackageType="5"
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{71059163-2F9E-4283-8F35-B4825265F1A3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{5DE75DB3-CA58-4258-81F2-D0C0563E7C4E}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\Intcomex\Shares\SQLPack\Files_Extraction\VendorOut\Archivos\IMEI_Detail_Claro_NI.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[IQ16.etluser]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{07C58E71-B5D4-4F3C-A070-353FE49A41AE}"
+      DTS:ObjectName="IQ16.etluser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=etluser;Dsn=IQ16;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2CB60815-9970-4A88-8823-39BDE332D609}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{94ED8520-6DEE-4E9A-B669-308E8BB3D02E}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C7F1CFE3-9BDD-46CC-89EC-17FB66D90264}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VInt_Ejecucion">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EE5EE1C3-F598-4D15-8E70-5C52E0BF13D4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VInt_TipoEjecucion">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{89D64673-F155-4232-9709-80D1AE50E9C1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AE3755C6-F54B-4772-A538-10547915319A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3E182030-D660-4373-8342-3A5A8F993FF4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{ACE59AF7-235D-41E2-8F4E-B7E71EF66E70}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\A - Execution Control"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execution Control"
+      DTS:DTSID="{F5AA2A3D-431F-4775-A321-A0D62D34981B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="A - Execution Control"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="2" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"A - Execution Control"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">" Declare @Ejecucion int  IF (Select Ejecucion From ETL.Log_Ejecucion where Paquete = '"+@[System::PackageName]+"')= 0 Set @Ejecucion=1 Else  Set @Ejecucion=0 select @ejecucion"</DTS:PropertyExpression>
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\A - Execution Control.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{569A7793-701D-4056-9A8D-0BD600E1A2DF}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{4073D135-2E0A-4144-8C30-6A81543732A8}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\A - Execution Control.EventHandlers[OnError]\A - Execution Control"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{A14E962F-2CAB-4426-8A43-3F3AFDF0A539}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="A - Execution Control"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+ 
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{2CB60815-9970-4A88-8823-39BDE332D609}"
+                  SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA; &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='ETL_SERIAL_DROP_SHIP'&#xA;&#xA;AND NAME_TASK ='A - Execution Control'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\A - Execution Control.EventHandlers[OnPostExecute]"
+          DTS:CreationName="OnPostExecute"
+          DTS:DTSID="{B3616123-772C-434B-8A24-69D79DCEEAF0}"
+          DTS:EventID="0"
+          DTS:EventName="OnPostExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{260AFA02-21B9-4B9B-BB7C-7EA5737EC4BF}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\A - Execution Control.EventHandlers[OnPostExecute]\A - Execution Control"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{3C6E9374-4A39-473D-A51D-8274395ED1A7}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="A - Execution Control"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+ 
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{2CB60815-9970-4A88-8823-39BDE332D609}"
+                  SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA; &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='ETL_SERIAL_DROP_SHIP'&#xA;&#xA;AND NAME_TASK ='A - Execution Control'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\A - Execution Control.EventHandlers[OnPreExecute]"
+          DTS:CreationName="OnPreExecute"
+          DTS:DTSID="{99010F9F-44C5-4C82-91B6-9B4C41ECBAC4}"
+          DTS:EventID="0"
+          DTS:EventName="OnPreExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{BBD8C243-1C2D-46FF-ACCD-C4392608DC2C}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\A - Execution Control.EventHandlers[OnPreExecute]\A - Execution Control"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{C7D1BF98-8BF9-4F3B-B8AF-FA607FC7CD60}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="A - Execution Control"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"',
+
+CASE WHEN "+ (DT_STR, 10, 1252) @[User::VInt_TipoEjecucion] +"=0 THEN 'I'
+
+
+WHEN "+(DT_STR, 10, 1252) @[User::VInt_TipoEjecucion] +"=1 THEN 'F'
+
+ELSE 'ERROR'
+ END,
+1,
+GETDATE()"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{2CB60815-9970-4A88-8823-39BDE332D609}"
+                  SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'ETL_SERIAL_DROP_SHIP',&#xA;'A - Execution Control',&#xA;&#xA;CASE WHEN 1=0 THEN 'I'&#xA;&#xA;&#xA;WHEN 1=1 THEN 'F'&#xA;&#xA;ELSE 'ERROR'&#xA; END,&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2CB60815-9970-4A88-8823-39BDE332D609}"
+          SQLTask:SqlStatementSource=" Declare @Ejecucion int  IF (Select Ejecucion From ETL.Log_Ejecucion where Paquete = 'ETL_SERIAL_DROP_SHIP')= 0 Set @Ejecucion=1 Else  Set @Ejecucion=0 select @ejecucion"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::VInt_Ejecucion" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\B - Task Home ETL_SERIAL_DROP_SHIP"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task Home "
+      DTS:DTSID="{494F6881-3EB0-43B2-8F4B-8CB73E92EC6C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="B - Task Home ETL_SERIAL_DROP_SHIP"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="2" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"B - Task Home "+ @[System::PackageName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 1, Fecha_inicio = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\B - Task Home ETL_SERIAL_DROP_SHIP.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{009E9BDB-F563-48B0-98C0-2F7C74CB4AF4}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{338CA21A-4152-4414-90A2-6639B7397526}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\B - Task Home ETL_SERIAL_DROP_SHIP.EventHandlers[OnPostExecute]"
+          DTS:CreationName="OnPostExecute"
+          DTS:DTSID="{7309320D-F23F-4B7D-A536-74ECB5E1E6C7}"
+          DTS:EventID="0"
+          DTS:EventName="OnPostExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{E8B07CA0-9089-4FC7-8E34-8A27A35D289E}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\B - Task Home ETL_SERIAL_DROP_SHIP.EventHandlers[OnPreExecute]"
+          DTS:CreationName="OnPreExecute"
+          DTS:DTSID="{EC50D93B-DD4E-4452-9CBF-E1C84EA5FFDC}"
+          DTS:EventID="2097267"
+          DTS:EventName="OnPreExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{F27C21E1-5A39-4B34-B0D8-9424CD47AAC7}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2CB60815-9970-4A88-8823-39BDE332D609}"
+          SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 1, Fecha_inicio = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\C - Carga STG_SERIAL_DROP_SHIP"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{EE882125-3E6E-48F5-9866-3FEF2986CBAE}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="C - Carga STG_SERIAL_DROP_SHIP">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{14B7BBF9-8DB8-40D7-B782-F1BBBE36E4E5}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load File"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Inputs[Data Conversion Input].Columns[Model]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Model"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Model]" />
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Inputs[Data Conversion Input].Columns[Customer Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Customer Name"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Customer Name]" />
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Inputs[Data Conversion Input].Columns[IMEI]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="IMEI"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[IMEI]" />
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Inputs[Data Conversion Input].Columns[SKU]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SKU"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[SKU]" />
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Inputs[Data Conversion Input].Columns[MPN]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="MPN"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[MPN]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[Model]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="150"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[Model]"
+                          name="Model"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Model]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[Customer Name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="150"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[Customer Name]"
+                          name="Customer Name"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Customer Name]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[IMEI]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="150"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[IMEI]"
+                          name="IMEI"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[IMEI]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[SKU]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="150"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[SKU]"
+                          name="SKU"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[SKU]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[MPN]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="150"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[MPN]"
+                          name="MPN"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[MPN]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Outputs[Derived Column Output].Columns[QTY]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Outputs[Derived Column Output].Columns[QTY]"
+                          name="QTY"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">-1</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">-1</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Hoja1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Invoice #]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[Invoice #]"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Invoice #]"
+                          name="Invoice #"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Invoice date]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[Invoice date]"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Invoice date]"
+                          name="Invoice date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Model]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[Model]"
+                          length="255"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Model]"
+                          name="Model"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Customer Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer Name]"
+                          length="255"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Customer Name]"
+                          name="Customer Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[IMEI]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[IMEI]"
+                          length="255"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[IMEI]"
+                          name="IMEI"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[SKU]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[SKU]"
+                          length="255"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[SKU]"
+                          name="SKU"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[MPN]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[MPN]"
+                          length="255"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[MPN]"
+                          name="MPN"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[Invoice #]"
+                          dataType="r8"
+                          name="Invoice #" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[Invoice date]"
+                          dataType="date"
+                          name="Invoice date" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[Model]"
+                          dataType="wstr"
+                          length="255"
+                          name="Model" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Customer Name" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[IMEI]"
+                          dataType="wstr"
+                          length="255"
+                          name="IMEI" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[SKU]"
+                          dataType="wstr"
+                          length="255"
+                          name="SKU" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].ExternalColumns[MPN]"
+                          dataType="wstr"
+                          length="255"
+                          name="MPN" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[Invoice #]"
+                          dataType="r8"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[Invoice #]"
+                          name="Invoice #" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[Invoice date]"
+                          dataType="date"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[Invoice date]"
+                          name="Invoice date" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[Model]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[Model]"
+                          name="Model" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[Customer Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[Customer Name]"
+                          name="Customer Name" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[IMEI]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[IMEI]"
+                          name="IMEI" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[SKU]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[SKU]"
+                          name="SKU" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[MPN]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[MPN]"
+                          name="MPN" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dwh].[STG_SERIAL_DROP_SHIP]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Invoice #]"
+                          cachedDataType="r8"
+                          cachedName="Invoice #"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Transno]"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Invoice #]" />
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Invoice date]"
+                          cachedDataType="date"
+                          cachedName="Invoice date"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Transdate]"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output].Columns[Invoice date]" />
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Model]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="Model"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Model]"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[Model]" />
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Customer Name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="Customer Name"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerName]"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[Customer Name]" />
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IMEI]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="IMEI"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IMEI]"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[IMEI]" />
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SKU]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="SKU"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocalSKU]"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[SKU]" />
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MPN]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="MPN"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MPN]"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output].Columns[MPN]" />
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[QTY]"
+                          cachedDataType="i4"
+                          cachedName="QTY"
+                          externalMetadataColumnId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QTY]"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Outputs[Derived Column Output].Columns[QTY]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Transno]"
+                          dataType="i4"
+                          name="Transno" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Transdate]"
+                          dataType="dbTimeStamp"
+                          name="Transdate" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Model]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="Model" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="CustomerName" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IMEI]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="IMEI" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocalSKU]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="LocalSKU" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MPN]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="MPN" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_COMPANY]"
+                          dataType="i4"
+                          name="DIM_PK_COMPANY" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_PRODUCT]"
+                          dataType="i4"
+                          name="DIM_PK_PRODUCT" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DIM_PK_TIME]"
+                          dataType="i4"
+                          name="DIM_PK_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="CompanyID" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="CustomerID" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PackNo]"
+                          dataType="i4"
+                          name="PackNo" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Pack_Line]"
+                          dataType="i4"
+                          name="Pack_Line" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PackDate]"
+                          dataType="dbTimeStamp"
+                          name="PackDate" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProdRecno]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="ProdRecno" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                          dataType="i4"
+                          name="Quantity" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QTY]"
+                          dataType="i4"
+                          name="QTY" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[im_Trans_No]"
+                          dataType="i4"
+                          name="im_Trans_No" />
+                        <externalMetadataColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[im_Trans_Date]"
+                          dataType="dbTimeStamp"
+                          name="im_Trans_Date" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File.Paths[Data Conversion Output]"
+                  endId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File.Paths[Derived Column Output]"
+                  endId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File.Paths[Excel Source Output]"
+                  endId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column.Inputs[Derived Column Input]"
+                  name="Excel Source Output"
+                  startId="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\C - Carga STG_SERIAL_DROP_SHIP\truncate  STG_SERIAL_DROP_SHIP"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F9467EFC-5883-415B-9E92-D8791F1AD37E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="truncate  STG_SERIAL_DROP_SHIP"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{2CB60815-9970-4A88-8823-39BDE332D609}"
+              SQLTask:SqlStatementSource="truncate table dwh.[STG_SERIAL_DROP_SHIP] " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\C - Carga STG_SERIAL_DROP_SHIP\Updates"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7DE4B944-9871-4BF9-B265-2AE2E2AF300C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Updates"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{2CB60815-9970-4A88-8823-39BDE332D609}"
+              SQLTask:SqlStatementSource="--===============================&#xA;--update dim_pk&#xA;--===============================&#xA;&#xA;UPDATE dwh.STG_SERIAL_DROP_SHIP&#xA;SET DIM_PK_PRODUCT = p.dIM_pk_product&#xA;FROM INTXDW.DBO.DIM_PRODUCT P INNER JOIN dwh.STG_SERIAL_DROP_SHIP S ON (P.localSKU=S.LOCALSKU)&#xA;&#xA;UPDATE dwh.STG_SERIAL_DROP_SHIP&#xA;SET DIM_PK_COMPANY = p.DIM_PK_COMPANY&#xA;FROM INTXDW.DBO.DIM_COMPANY P INNER JOIN dwh.STG_SERIAL_DROP_SHIP S ON (P.companyid=S.COMPANYID)&#xA;&#xA;--================================&#xA;-- update fields&#xA;--================================&#x9;   &#xA;&#xA;&#xA;UPDATE S&#xA;&#x9;   SET packno = Link_trans_no,&#xA;&#x9;       Pack_Line = Link_Line_no,&#xA;&#x9;&#x9;   PackDate = trans_date,&#xA;&#x9;&#x9;   ProdRecno = prod_recno,&#xA;&#x9;&#x9;   quantity = i.quantity,&#xA;&#x9;&#x9;   im_Trans_No=trans_no,&#xA;&#x9;&#x9;   im_Trans_Date = trans_date,&#xA;&#x9;&#x9;   dim_pk_time = convert(int, convert(varchar(11),trans_date,112))&#xA;&#x9;    from intxdw.dwh.FACT_DD_IM_TRANS I  inner join dwh.STG_SERIAL_DROP_SHIP S on (I.SO_trans_no=S.Transno and I.companyID='XUS' and I.product_id=S.LocalSKU)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\C - Carga STG_SERIAL_DROP_SHIP.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{2243532F-F79E-4DE2-BA25-47E1EA0B1B16}"
+          DTS:From="Package\C - Carga STG_SERIAL_DROP_SHIP\truncate  STG_SERIAL_DROP_SHIP"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\C - Carga STG_SERIAL_DROP_SHIP.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{6407DFD9-4BB7-4F7E-B9AC-B7EB7E9C90EC}"
+          DTS:From="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\C - Carga STG_SERIAL_DROP_SHIP\Updates" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\D - Load IQ"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{CD99DCF2-0415-4413-8760-072F7D9086A6}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="D - Load IQ">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\D - Load IQ\dw_dataload_STG_SERIAL_DROP_SHIP"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0243EB23-EA32-415B-8636-643A17D8A034}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="dw_dataload_STG_SERIAL_DROP_SHIP"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{07C58E71-B5D4-4F3C-A070-353FE49A41AE}"
+              SQLTask:SqlStatementSource="exec &quot;dwhuser&quot;.&quot;dw_dataload_STG_SERIAL_DROP_SHIP&quot;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\E - RESET_PROCESS_VARIABLES"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{CDB85E43-F95E-43AB-9351-CBBEFCEE996E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="E - RESET_PROCESS_VARIABLES">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\E - RESET_PROCESS_VARIABLES\Tarea Reset Ejecucion ETL_SERIAL_DROP_SHIP"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C34AB0FD-86BA-435E-8CB9-F3027EF3454A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Reset Ejecucion ETL_SERIAL_DROP_SHIP"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Tarea Reset Ejecucion "+ @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{2CB60815-9970-4A88-8823-39BDE332D609}"
+              SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Z - Correct Event"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Send Mail  Correct Event"
+      DTS:DTSID="{C1B5D740-7C91-4483-92DB-79684F53A9E1}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Z - Correct Event">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Z - Correct Event"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{314B48B4-A38E-4A58-842E-8A3C26AC6496}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se a ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\Mensaje.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{B59F1DCF-E73A-462B-A490-DBF916F4D4E0}"
+              DTS:EventID="-346324864"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{D5078A00-6841-49F8-ABE5-FBFC2DB2D0F2}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\Mensaje.EventHandlers[OnPostExecute]"
+              DTS:CreationName="OnPostExecute"
+              DTS:DTSID="{A5F57395-9C54-47CD-846A-95FFA15145FD}"
+              DTS:EventID="2097267"
+              DTS:EventName="OnPostExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{290151AD-9E6C-4865-851D-B42503E59C5C}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\Mensaje.EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{F47D4846-34E3-4B84-B959-6BE583DE6A3B}"
+              DTS:EventID="2097267"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{6E1DC275-64A9-499C-99E5-C0A9F7862D76}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{2CB60815-9970-4A88-8823-39BDE332D609}"
+              SQLTask:SqlStatementSource="Select  'Se a ejecutado  el Paquete ETL_SERIAL_DROP_SHIP  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\N-Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{3528C23C-9399-420B-8A72-766CB8EDBAD4}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="N-Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{AECEFB98-1D15-4839-AA7D-D348D37B548B}"
+              DTS:EventID="0"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{C04CC180-80E6-40C4-AE18-3F3E29A0D662}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnPostExecute]"
+              DTS:CreationName="OnPostExecute"
+              DTS:DTSID="{090E31EE-604B-48E0-9D8E-7DF2B265E0F1}"
+              DTS:EventID="0"
+              DTS:EventName="OnPostExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{E0ACF543-BDB3-4409-AD6B-9907C737F889}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{8650FAA2-1F85-4574-AF8B-CCF9CB69BA2F}"
+              DTS:EventID="0"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{DC8AA30D-0E36-4BBD-AF12-B340AC792FE8}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{94ED8520-6DEE-4E9A-B669-308E8BB3D02E}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :ETL_SERIAL_DROP_SHIP" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{56840746-84AC-4853-A68D-5065D2B18A8B}"
+          DTS:From="Package\Z - Correct Event\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Z - Correct Event\N-Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{E066D6C7-CAF6-46C4-87FA-BE4BE62604A2}"
+      DTS:From="Package\C - Carga STG_SERIAL_DROP_SHIP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\D - Load IQ" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{A8BBD0E6-8F44-4DE7-8267-C55B7D8235AC}"
+      DTS:EvalOp="3"
+      DTS:Expression="@VInt_Ejecucion==1"
+      DTS:From="Package\A - Execution Control"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\B - Task Home ETL_SERIAL_DROP_SHIP" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{E0E444E4-7BBB-4CF6-B049-70659FEF5524}"
+      DTS:From="Package\B - Task Home ETL_SERIAL_DROP_SHIP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\C - Carga STG_SERIAL_DROP_SHIP" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{0B320D5F-F6D0-4223-9EE5-63AE926B76BA}"
+      DTS:From="Package\D - Load IQ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\E - RESET_PROCESS_VARIABLES" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{9BAE1A6B-A167-4F0F-80ED-7A5B95A0D005}"
+      DTS:From="Package\E - RESET_PROCESS_VARIABLES"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Z - Correct Event" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{17CAD4B3-2188-4A93-8604-6DF99B789D89}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{27E51DA5-1BF2-4FA0-9692-74801EF1CADC}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Evento Error"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{AB3518F1-3E85-4526-9104-89E6DE316D30}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Evento Error">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{0037633F-F0C8-4BC0-B310-5377EE599D4E}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{2CB60815-9970-4A88-8823-39BDE332D609}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error\Send error email"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{CEE42C20-1E26-4D36-AAFF-D527C0290A4E}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send error email"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError]+ @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{94ED8520-6DEE-4E9A-B669-308E8BB3D02E}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :ETL_SERIAL_DROP_SHIP" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{E95B094B-485B-48E3-A234-709B8BC77DD7}"
+              DTS:From="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Evento Error\Send error email" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Sequence Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{223C230F-7944-4756-AAEF-5696CAD50754}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sequence Container">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{7B7E4DF6-A21A-4DD7-BB62-6AE909B7D78B}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tare Evento Fallo"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Tare Evento Fallo"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{2CB60815-9970-4A88-8823-39BDE332D609}"
+                  SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{FD5CB7DC-9C58-4FE1-B9F7-01EA7FEC3B64}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tarea de ejecucion"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{2CB60815-9970-4A88-8823-39BDE332D609}"
+                  SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{C85BD6E7-938D-43C4-9650-E763331EBE7A}"
+              DTS:From="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{8769B60B-AAAA-40F2-BCBC-F348C3156D51}"
+          DTS:From="Package.EventHandlers[OnError]\Sequence Container"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Evento Error" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\A - Execution Control"
+          TopLeft="507,0" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\B - Task Home ETL_SERIAL_DROP_SHIP"
+          TopLeft="507,104" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File"
+          TopLeft="87,104" />
+        <NodeLayout
+          Size="246,42"
+          Id="Package\C - Carga STG_SERIAL_DROP_SHIP\truncate  STG_SERIAL_DROP_SHIP"
+          TopLeft="26,12" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\C - Carga STG_SERIAL_DROP_SHIP\Updates"
+          TopLeft="72,195" />
+        <EdgeLayout
+          Id="Package\C - Carga STG_SERIAL_DROP_SHIP.PrecedenceConstraints[Constraint]"
+          TopLeft="148.25,54">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\C - Carga STG_SERIAL_DROP_SHIP.PrecedenceConstraints[Constraint 1]"
+          TopLeft="150.5,146">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="315,309"
+          Size="315,352"
+          Id="Package\C - Carga STG_SERIAL_DROP_SHIP"
+          TopLeft="420,211" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\D - Load IQ\dw_dataload_STG_SERIAL_DROP_SHIP"
+          TopLeft="17,24" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="290,133"
+          Size="290,176"
+          Id="Package\D - Load IQ"
+          TopLeft="433,640" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\E - RESET_PROCESS_VARIABLES\Tarea Reset Ejecucion ETL_SERIAL_DROP_SHIP"
+          TopLeft="19,18" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="259,115"
+          Size="259,158"
+          Id="Package\E - RESET_PROCESS_VARIABLES"
+          TopLeft="448,865" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\Mensaje"
+          TopLeft="10.7547169811321,8.58490566037722" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\N-Send Mail Task"
+          TopLeft="10.4905660377359,81.3773584905659" />
+        <EdgeLayout
+          Id="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          TopLeft="78.6415094339623,52.509433962264">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.264150943396203,28.867924528302"
+              Start="0,0"
+              End="-0.264150943396203,21.367924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.4150943396228" />
+                  <mssgle:LineSegment
+                    End="-0.264150943396203,14.4150943396228" />
+                  <mssgle:LineSegment
+                    End="-0.264150943396203,21.367924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="155,144"
+          Size="155,188"
+          Id="Package\Z - Correct Event"
+          TopLeft="500.5,1099" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="577.75,563">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,77"
+              Start="0,0"
+              End="0,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="575,44">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="576.25,148">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,63"
+              Start="0,0"
+              End="0,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="577.75,816">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="577.75,1023">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,76"
+              Start="0,0"
+              End="0,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+          TopLeft="14.3018867924528,18.811320754717" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Evento Error\Send error email"
+          TopLeft="14.8301886792453,91.6792452830189" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+          TopLeft="82.188679245283,62.7358490566038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.528301886792434,28.9433962264151"
+              Start="0,0"
+              End="0.528301886792434,21.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.4528301886792" />
+                  <mssgle:LineSegment
+                    End="0.528301886792434,14.4528301886792" />
+                  <mssgle:LineSegment
+                    End="0.528301886792434,21.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="158,155.075471698114"
+          Size="158,199"
+          Id="Package.EventHandlers[OnError]\Evento Error"
+          TopLeft="61.9622641509434,321.622641509434" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo"
+          TopLeft="13.8867924528302,84.2075471698113" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion"
+          TopLeft="14.377358490566,13.8301886792453" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="82.2641509433962,57.7547169811321">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.490566037735846,26.4528301886792"
+              Start="0,0"
+              End="-0.490566037735846,18.9528301886792">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.2075471698113" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,13.2075471698113" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,18.9528301886792" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="161,138.075471698114"
+          Size="161,182"
+          Id="Package.EventHandlers[OnError]\Sequence Container"
+          TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="140.603773584906,242.22641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.188679245283026,79.3962264150943"
+              Start="0,0"
+              End="0.188679245283026,71.8962264150943">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.6981132075472" />
+                  <mssgle:LineSegment
+                    End="0.188679245283026,39.6981132075472" />
+                  <mssgle:LineSegment
+                    End="0.188679245283026,71.8962264150943" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\A - Execution Control.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\A - Execution Control.EventHandlers[OnPreExecute]\A - Execution Control"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\A - Execution Control.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\A - Execution Control.EventHandlers[OnPostExecute]\A - Execution Control"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\A - Execution Control.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\A - Execution Control.EventHandlers[OnError]\A - Execution Control"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\B - Task Home ETL_SERIAL_DROP_SHIP.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{2f4f45f7-1ab3-4d8a-85d5-fe00d8eb080a}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\B - Task Home ETL_SERIAL_DROP_SHIP.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{a80a1d76-a01c-4ca1-ad6c-dd8a61a8a837}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\B - Task Home ETL_SERIAL_DROP_SHIP.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{75097a36-eb9f-4a88-acf1-a7dda7916c03}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="139,42"
+          Id="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Excel Source"
+          TopLeft="41,28" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\OLE DB Destination"
+          TopLeft="33,282" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Data Conversion"
+          TopLeft="40,199" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File\Derived Column"
+          TopLeft="40,111" />
+        <EdgeLayout
+          Id="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File.Paths[Excel Source Output]"
+          TopLeft="113.75,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File.Paths[Derived Column Output]"
+          TopLeft="117.5,153">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\C - Carga STG_SERIAL_DROP_SHIP\Load File.Paths[Data Conversion Output]"
+          TopLeft="118.25,241">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\Z - Correct Event\Mensaje.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{1394bbc6-eb5e-4a6e-9123-37bf4a4c43e1}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Z - Correct Event\Mensaje.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{1aceb8aa-0e55-4077-a43f-cd64440e28f4}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Z - Correct Event\Mensaje.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{abeea0a6-ab3a-43ba-b98c-5a6b96ec679e}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{5108b150-b74e-43d9-adb5-dc8b8d786a06}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{13ef30c7-cd7a-4854-85b2-10647d53c94e}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="{49d9082b-36a2-4d4c-8fc5-b03d7006991a}"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

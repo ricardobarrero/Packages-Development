@@ -1,0 +1,626 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/25/2017 12:24:40 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{CE4D4CF0-7D0F-4189-9C54-C50C96A76271}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ETL_KILL_SESSIONS_SYBASE_CENTRAL"
+  DTS:PackageType="5"
+  DTS:VersionBuild="55"
+  DTS:VersionGUID="{891F62D8-9311-4C41-8907-7AFE126E5849}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser16]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{A4E389B4-C50C-4908-9AAD-244B593238E1}"
+      DTS:ObjectName="INTCOMEX_DWH.dwhuser16">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Etluser;Dsn=IQ16;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAC0jgekSa5r+/wyihS04kz4AAAAAASAAACgAAAAEAAAAH6vrV4bMSGLmB4SzTjZ1jMYAAAATnk4Z5EdEhmam95uRisu2SdaPaqNWv/gFAAAABTB01i5GT4USb8z+RGWektSfxtW</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{06A95F74-671F-46A7-A909-1024F3A4A2C3}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{06A95F74-671F-46A7-A909-1024F3A4A2C3}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{2EFCB3CA-F087-4A91-82D2-5CB86D899284}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;INTCOMEX_DWH.dwhuser16&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{1164D7FF-8BAD-49D5-9985-1EE698A29888}"
+      DTS:ObjectName="INTCOMEX_DWH dwhuser16" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1736EBA6-9BD9-46E2-8919-B0CF1E4CCE9B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BB361376-F6A0-495F-881D-684DF823F9E3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4208F253-F1BA-46E3-88CF-71EE57F74C0B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E1F464F9-0C73-419B-B63C-897FC40DED9F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\IQ16 - sp kill sessions Sybase Central"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5D98980A-08B6-489D-9AB9-5B325A25BE71}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="IQ16 - sp kill sessions Sybase Central"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A4E389B4-C50C-4908-9AAD-244B593238E1}"
+          SQLTask:SqlStatementSource="exec &quot;dbo&quot;.&quot;sp_killCentralSessions&quot;;&#xA;&#xA;exec &quot;dbo&quot;.&quot;sp_killdwhuserSessions&quot;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Z - Correct Event"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Send Mail  Correct Event"
+      DTS:DTSID="{E9D565A3-296A-4B59-AAE4-31357CF7ADA1}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Z - Correct Event">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Z - Correct Event"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{768D505E-F600-43D6-81F0-4DCFC4BF9619}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se a ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{06A95F74-671F-46A7-A909-1024F3A4A2C3}"
+              SQLTask:SqlStatementSource="Select  'Se a ejecutado  el Paquete ETL_KILL_SESSIONS_SYBASE_CENTRAL  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\N-Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{69441ED2-51F5-4AAD-8270-18E6B00EFB54}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="N-Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{9C7B38D7-8004-413D-BF8C-96AD589CAB33}"
+              DTS:EventID="7536741"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{43920470-F07F-40D7-A0F7-601CBB2FACB4}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Evento Error"
+                  DTS:CreationName="STOCK:SEQUENCE"
+                  DTS:Description="Sequence Container"
+                  DTS:DTSID="{F16E02C0-B248-4326-99E7-F7B984D487A1}"
+                  DTS:ExecutableType="STOCK:SEQUENCE"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Evento Error">
+                  <DTS:Variables />
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Evento Error\Mensaje"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{8155AC67-88FF-447A-8566-3C68B9FDC4FD}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Mensaje"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{06A95F74-671F-46A7-A909-1024F3A4A2C3}"
+                          SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                          <SQLTask:ResultBinding
+                            SQLTask:ResultName="0"
+                            SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="0"
+                            SQLTask:DtsVariableName="System::PackageName"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                        </SQLTask:SqlTaskData>
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                    <DTS:Executable
+                      DTS:refId="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Evento Error\Send error email"
+                      DTS:CreationName="Microsoft.SendMailTask"
+                      DTS:Description="Send Mail Task"
+                      DTS:DTSID="{3F9FB5B1-806A-47B2-9351-0767939C777E}"
+                      DTS:ExecutableType="Microsoft.SendMailTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Send error email"
+                      DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+                      <DTS:PropertyExpression
+                        DTS:Name="Subject">@[User::VStr_SubjectError]+ @[System::PackageName]</DTS:PropertyExpression>
+                      <DTS:PropertyExpression
+                        DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SendMailTask:SendMailTaskData
+                          SendMailTask:SMTPServer="{2EFCB3CA-F087-4A91-82D2-5CB86D899284}"
+                          SendMailTask:From="sqladmin@intcomex.com"
+                          SendMailTask:To="ETLSupport@intcomex.com"
+                          SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :ETL_KILL_SESSIONS_SYBASE_CENTRAL" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                  <DTS:PrecedenceConstraints>
+                    <DTS:PrecedenceConstraint
+                      DTS:refId="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+                      DTS:CreationName=""
+                      DTS:DTSID="{BF08C197-4EA4-400A-A592-E29D5D878DCC}"
+                      DTS:From="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Evento Error\Mensaje"
+                      DTS:LogicalAnd="True"
+                      DTS:ObjectName="Constraint"
+                      DTS:To="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Evento Error\Send error email" />
+                  </DTS:PrecedenceConstraints>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Sequence Container"
+                  DTS:CreationName="STOCK:SEQUENCE"
+                  DTS:Description="Sequence Container"
+                  DTS:DTSID="{2A7C185F-A22C-4D08-9D07-EE6B7EC17F32}"
+                  DTS:ExecutableType="STOCK:SEQUENCE"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Sequence Container">
+                  <DTS:Variables />
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{709E828C-D60B-4D50-A718-FE48E1367F3C}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Tare Evento Fallo"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="Name">"Tare Evento Fallo"</DTS:PropertyExpression>
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{06A95F74-671F-46A7-A909-1024F3A4A2C3}"
+                          SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="0"
+                            SQLTask:DtsVariableName="System::PackageName"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="1"
+                            SQLTask:DtsVariableName="System::ErrorDescription"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                        </SQLTask:SqlTaskData>
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                    <DTS:Executable
+                      DTS:refId="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion ETL_BOM"
+                      DTS:CreationName="Microsoft.ExecuteSQLTask"
+                      DTS:Description="Execute SQL Task"
+                      DTS:DTSID="{3AF554F7-317E-4E20-BD20-F59F36415264}"
+                      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Tarea de ejecucion ETL_BOM"
+                      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                      <DTS:Variables />
+                      <DTS:PropertyExpression
+                        DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+                      <DTS:ObjectData>
+                        <SQLTask:SqlTaskData
+                          SQLTask:Connection="{06A95F74-671F-46A7-A909-1024F3A4A2C3}"
+                          SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                          <SQLTask:ParameterBinding
+                            SQLTask:ParameterName="0"
+                            SQLTask:DtsVariableName="System::PackageName"
+                            SQLTask:ParameterDirection="Input"
+                            SQLTask:DataType="129"
+                            SQLTask:ParameterSize="-1" />
+                        </SQLTask:SqlTaskData>
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                  <DTS:PrecedenceConstraints>
+                    <DTS:PrecedenceConstraint
+                      DTS:refId="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+                      DTS:CreationName=""
+                      DTS:DTSID="{F1195133-A746-4466-99EA-8D9DB7B00EBD}"
+                      DTS:From="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion ETL_BOM"
+                      DTS:LogicalAnd="True"
+                      DTS:ObjectName="Constraint"
+                      DTS:To="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo" />
+                  </DTS:PrecedenceConstraints>
+                </DTS:Executable>
+              </DTS:Executables>
+              <DTS:PrecedenceConstraints>
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{70F8B660-171C-4EDF-83C6-BDECA1ACF86B}"
+                  DTS:From="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Sequence Container"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint"
+                  DTS:To="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Evento Error" />
+              </DTS:PrecedenceConstraints>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{2EFCB3CA-F087-4A91-82D2-5CB86D899284}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :ETL_KILL_SESSIONS_SYBASE_CENTRAL" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{DBF15891-B1E9-48E1-8EDF-D39D5D81386A}"
+          DTS:From="Package\Z - Correct Event\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Z - Correct Event\N-Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{155D3EDC-F648-4CD1-BF7E-2B3140CAEED7}"
+      DTS:From="Package\IQ16 - sp kill sessions Sybase Central"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Z - Correct Event" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="255,42"
+          Id="Package\IQ16 - sp kill sessions Sybase Central"
+          TopLeft="104.5,22.8962264150943" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\Mensaje"
+          TopLeft="7.54716981132076,8.47169811320757" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\N-Send Mail Task"
+          TopLeft="8.9811320754717,94.3584905660377" />
+        <EdgeLayout
+          Id="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          TopLeft="75.4339622641509,52.3962264150944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="1.43396226415094,41.9622641509434"
+              Start="0,0"
+              End="1.43396226415094,34.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.9811320754717" />
+                  <mssgle:LineSegment
+                    End="1.43396226415094,20.9811320754717" />
+                  <mssgle:LineSegment
+                    End="1.43396226415094,34.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="163,145"
+          Size="163,189"
+          Id="Package\Z - Correct Event"
+          TopLeft="153.5,114.896226415094" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="233.5,64.8962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,49.9999999999997"
+              Start="0,0"
+              End="0,42.4999999999997">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.4999999999997" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Evento Error\Mensaje"
+          TopLeft="13.0188679245283,8.47169811320754" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Evento Error\Send error email"
+          TopLeft="7.54716981132075,85.3396226415095" />
+        <EdgeLayout
+          Id="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+          TopLeft="80.9056603773585,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-5.47169811320755,32.9433962264151"
+              Start="0,0"
+              End="-5.47169811320755,25.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.4528301886792" />
+                  <mssgle:LineSegment
+                    End="-5.47169811320755,16.4528301886792" />
+                  <mssgle:LineSegment
+                    End="-5.47169811320755,25.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="156.33962264151,135.886792452831"
+          Size="156.33962264151,179.811320754717"
+          Id="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Evento Error"
+          TopLeft="5.5,256.066037735849" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo"
+          TopLeft="7.54716981132075,83.8301886792453" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion ETL_BOM"
+          TopLeft="11.0566037735849,8.47169811320754" />
+        <EdgeLayout
+          Id="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="78.9433962264151,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-3.50943396226414,31.4339622641509"
+              Start="0,0"
+              End="-3.50943396226414,23.9339622641509">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.6981132075472" />
+                  <mssgle:LineSegment
+                    End="-3.50943396226414,15.6981132075472" />
+                  <mssgle:LineSegment
+                    End="-3.50943396226414,23.9339622641509" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="176.716981132076,134.377358490567"
+          Size="176.716981132076,178.301886792453"
+          Id="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError]\Sequence Container"
+          TopLeft="9.04716981132075,5.5" />
+        <EdgeLayout
+          Id="Package\Z - Correct Event\N-Send Mail Task.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="97.3867924528302,183.801886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-13.7358490566038,72.2641509433962"
+              Start="0,0"
+              End="-13.7358490566038,64.7641509433962">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.1132075471698" />
+                  <mssgle:LineSegment
+                    End="-13.7358490566038,36.1132075471698" />
+                  <mssgle:LineSegment
+                    End="-13.7358490566038,64.7641509433962" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

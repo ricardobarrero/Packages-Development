@@ -1,0 +1,2586 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/8/2013 5:09:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{AF56B7D9-A7E9-4473-9C2F-9D2C6D920126}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ETL_WebUsers_Dynamics"
+  DTS:PackageType="5"
+  DTS:VersionBuild="118"
+  DTS:VersionGUID="{48B00B13-DBE5-44B3-9B42-A31FACF7A638}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AC230749-2C3B-4173-B11B-348308DC796C}"
+      DTS:ObjectName="s2crmdb.CRMStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdb;Initial Catalog=CRMStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-ETL_WebUsers_Dynamics-{AC230749-2C3B-4173-B11B-348308DC796C}s2crmdb.CRMStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{06BC47D5-2086-4A81-992C-AF5CB1246E02}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{06BC47D5-2086-4A81-992C-AF5CB1246E02}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{8396F603-5884-442E-AAD6-EC0B72E3D432}"
+      DTS:ObjectName="Sentai_Replica.bodts">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=bodts;Dsn=Sentai_Replica;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADuIybVuTdvioeGCAu4AbDSAAAAAASAAACgAAAAEAAAAOAAqefe1EIwng3rl1WElAsYAAAAXE+W5Mn5aOTh/J3x3n48jTQGpvT5MYLDFAAAAIVVydB7v4GcS6OleTiq4/VoJVzB</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{94B0FE4B-CEFF-45D2-8460-CEE60B235CB6}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;Sentai_Replica.bodts&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{07575F9F-B95C-4F8C-8ECD-99E18AE4C1F0}"
+      DTS:ObjectName="Sentai_Replica bodts" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;S2CRMDB.ETLUser&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{BDDBDA64-2015-437F-A7D2-C6576568CEA2}"
+      DTS:ObjectName="S2CRMDB ETLUser" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A7ADBD5A-6855-485A-9ACA-138C199CFA4F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4B923D84-58DE-4CBA-939A-2B67381EDD3C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D9AF208A-2036-4DAD-8B42-E849089A7B7E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C7260310-D778-4540-BF45-F7DFDB26A18C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C628E9D8-6F49-4DA1-86C6-3636F67BD966}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">12,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnExecStatusChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnInformation"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnProgress"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnQueryCancel"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnTaskFailed"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnVariableValueChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnWarning"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C85BAC90-C9CD-4499-8EED-89915100D1F9}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="1">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">13,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,24,ExecuteSQLExecutingQuery</DTS:Property>
+            <DTS:Property
+              DTS:EventName="ExecuteSQLExecutingQuery"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnExecStatusChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnInformation"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnProgress"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnQueryCancel"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnTaskFailed"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnVariableValueChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnWarning"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{06BC47D5-2086-4A81-992C-AF5CB1246E02}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete ETL_WebUsers_Dynamics  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{F722FD34-1666-40E0-B073-DE306520E9ED}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="1">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">15,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,17,SendMailTaskBegin,15,SendMailTaskEnd,16,SendMailTaskInfo</DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnExecStatusChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnInformation"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnProgress"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnQueryCancel"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnTaskFailed"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnVariableValueChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnWarning"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskBegin"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskEnd"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskInfo"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{94B0FE4B-CEFF-45D2-8460-CEE60B235CB6}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :ETL_WebUsers_Dynamics" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{15501526-23A8-40C7-9DD0-2A36119EED91}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\WebUser DEV"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{80C6805D-CF83-4758-8DCC-A2A5FDBEEC34}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="WebUser DEV">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\WebUser DEV\Load Web_User DEV from PROD"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{85F49FFB-49B0-4057-B13B-92BAEA688CC1}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Web_User DEV from PROD"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Web_User CRMStaging"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Web_User]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Connections[OleDbConnection]"
+                      connectionManagerID="{3963FDD8-5E54-43F7-891A-7BDDD8D9A0FE}:invalid"
+                      connectionManagerRefId="{3963FDD8-5E54-43F7-891A-7BDDD8D9A0FE}:invalid"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[User_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].ExternalColumns[User_ID]"
+                          length="72"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[User_ID]"
+                          name="User_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[Cust-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].ExternalColumns[Cust-ID]"
+                          length="24"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[Cust-ID]"
+                          name="Cust-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[Name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="200"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[e_mail]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].ExternalColumns[e_mail]"
+                          length="97"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[e_mail]"
+                          name="e_mail"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[Browse_product]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].ExternalColumns[Browse_product]"
+                          length="1"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[Browse_product]"
+                          name="Browse_product"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[Active]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].ExternalColumns[Active]"
+                          length="1"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[Active]"
+                          name="Active"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].ExternalColumns[User_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="72"
+                          name="User_ID" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].ExternalColumns[Cust-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="Cust-ID" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].ExternalColumns[e_mail]"
+                          codePage="1252"
+                          dataType="str"
+                          length="97"
+                          name="e_mail" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].ExternalColumns[Browse_product]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Browse_product" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].ExternalColumns[Active]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Active" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[User_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="72"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[User_ID]"
+                          name="User_ID" />
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[Cust-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[Cust-ID]"
+                          name="Cust-ID" />
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[e_mail]"
+                          codePage="1252"
+                          dataType="str"
+                          length="97"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[e_mail]"
+                          name="e_mail" />
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[Browse_product]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[Browse_product]"
+                          name="Browse_product" />
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[Active]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[Active]"
+                          name="Active" />
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Web_User DEV"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Web_User]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Connections[OleDbConnection]"
+                      connectionManagerID="{C4503FF4-1C62-4A3E-AE50-DC4A86A4587A}:invalid"
+                      connectionManagerRefId="{C4503FF4-1C62-4A3E-AE50-DC4A86A4587A}:invalid"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].Columns[User_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="72"
+                          cachedName="User_ID"
+                          externalMetadataColumnId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].ExternalColumns[User_ID]"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[User_ID]" />
+                        <inputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].Columns[Cust-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="24"
+                          cachedName="Cust-ID"
+                          externalMetadataColumnId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].ExternalColumns[Cust-ID]"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[Cust-ID]" />
+                        <inputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].Columns[e_mail]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="97"
+                          cachedName="e_mail"
+                          externalMetadataColumnId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].ExternalColumns[e_mail]"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[e_mail]" />
+                        <inputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="200"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].Columns[Browse_product]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="Browse_product"
+                          externalMetadataColumnId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].ExternalColumns[Browse_product]"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[Browse_product]" />
+                        <inputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].Columns[Active]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="Active"
+                          externalMetadataColumnId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].ExternalColumns[Active]"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output].Columns[Active]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="118"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].ExternalColumns[User_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="72"
+                          name="User_ID" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].ExternalColumns[Cust-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="Cust-ID" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].ExternalColumns[e_mail]"
+                          codePage="1252"
+                          dataType="str"
+                          length="97"
+                          name="e_mail" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].ExternalColumns[Browse_product]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Browse_product" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input].ExternalColumns[Active]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Active" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\WebUser DEV\Load Web_User DEV from PROD.Paths[OLE DB Source Output]"
+                  endId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\WebUser DEV\Truncate Table Web_User"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{31E84BBC-34EC-4918-B580-EF4C79FFAFB2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Table Web_User"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C4503FF4-1C62-4A3E-AE50-DC4A86A4587A}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE DBO.WEB_USER;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\WebUser DEV.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{E80CF32C-8037-4045-A598-49AA64A5DCD0}"
+          DTS:From="Package\WebUser DEV\Truncate Table Web_User"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\WebUser DEV\Load Web_User DEV from PROD" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\WebUser PRO"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{A773334C-EEE1-403D-A507-57F300000410}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="WebUser PRO">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\WebUser PRO\Load WebUser Trax"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{EAD82BCF-50F9-4B78-9ED9-2D9B896C8547}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load WebUser Trax"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Inputs[Data Conversion Input].Columns[User_ID]"
+                          cachedDataType="wstr"
+                          cachedLength="148"
+                          cachedName="User_ID"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[User_ID]" />
+                        <inputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Inputs[Data Conversion Input].Columns[Cust-ID]"
+                          cachedDataType="wstr"
+                          cachedLength="34"
+                          cachedName="Cust-ID"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Cust-ID]" />
+                        <inputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Inputs[Data Conversion Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="182"
+                          cachedName="Name"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Inputs[Data Conversion Input].Columns[e_mail]"
+                          cachedDataType="wstr"
+                          cachedLength="150"
+                          cachedName="e_mail"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[e_mail]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of User_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="72"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of User_ID]"
+                          name="Copy of User_ID"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[User_ID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Cust-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="24"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Cust-ID]"
+                          name="Copy of Cust-ID"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Cust-ID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="200"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Name]"
+                          name="Copy of Name"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Name]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of e_mail]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="97"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of e_mail]"
+                          name="Copy of e_mail"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[e_mail]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\WebUser PRO\Load WebUser Trax\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\WebUser PRO\Load WebUser Trax\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\WebUser PRO\Load WebUser Trax\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\WebUser PRO\Load WebUser Trax\Derived Column.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\WebUser PRO\Load WebUser Trax\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\WebUser PRO\Load WebUser Trax\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="WebUser Dynamics"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Web_User]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].Columns[Copy of Name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="200"
+                          cachedName="Copy of Name"
+                          externalMetadataColumnId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Name]" />
+                        <inputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].Columns[Copy of User_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="72"
+                          cachedName="Copy of User_ID"
+                          externalMetadataColumnId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].ExternalColumns[User_ID]"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of User_ID]" />
+                        <inputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].Columns[Copy of Cust-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="24"
+                          cachedName="Copy of Cust-ID"
+                          externalMetadataColumnId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].ExternalColumns[Cust-ID]"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Cust-ID]" />
+                        <inputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].Columns[Copy of e_mail]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="97"
+                          cachedName="Copy of e_mail"
+                          externalMetadataColumnId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].ExternalColumns[e_mail]"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of e_mail]" />
+                        <inputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].Columns[Browse_product]"
+                          cachedDataType="bool"
+                          cachedName="Browse_product"
+                          externalMetadataColumnId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].ExternalColumns[Browse_product]"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Browse_product]" />
+                        <inputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].Columns[Active]"
+                          cachedDataType="bool"
+                          cachedName="Active"
+                          externalMetadataColumnId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].ExternalColumns[Active]"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Active]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].ExternalColumns[User_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="72"
+                          name="User_ID" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].ExternalColumns[Cust-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="Cust-ID" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].ExternalColumns[e_mail]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          name="e_mail" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].ExternalColumns[Browse_product]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Browse_product" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input].ExternalColumns[Active]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Active" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Extracts data from a relational database by using a .NET provider."
+                  name="WebUser TRAX"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+User_ID,
+"Cust-ID",
+Name,
+E_mail,
+Browse_product,
+Active
+FROM "PUB"."web_user"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"PUB"."WEB_User"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      connectionManagerRefId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[User_ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].ExternalColumns[User_ID]"
+                          length="148"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[User_ID]"
+                          name="User_ID"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Cust-ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].ExternalColumns[Cust-ID]"
+                          length="34"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Cust-ID]"
+                          name="Cust-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                          length="182"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[e_mail]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].ExternalColumns[e_mail]"
+                          length="150"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[e_mail]"
+                          name="e_mail"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Browse_product]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].ExternalColumns[Browse_product]"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Browse_product]"
+                          name="Browse_product"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Active]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].ExternalColumns[Active]"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].Columns[Active]"
+                          name="Active"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].ExternalColumns[User_ID]"
+                          dataType="wstr"
+                          length="148"
+                          name="User_ID" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].ExternalColumns[Cust-ID]"
+                          dataType="wstr"
+                          length="34"
+                          name="Cust-ID" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="182"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].ExternalColumns[e_mail]"
+                          dataType="wstr"
+                          length="150"
+                          name="e_mail" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].ExternalColumns[Browse_product]"
+                          dataType="bool"
+                          name="Browse_product" />
+                        <externalMetadataColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output].ExternalColumns[Active]"
+                          dataType="bool"
+                          name="Active" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[User_ID]"
+                          dataType="wstr"
+                          length="148"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[User_ID]"
+                          name="User_ID" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[Cust-ID]"
+                          dataType="wstr"
+                          length="34"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[Cust-ID]"
+                          name="Cust-ID" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="182"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[e_mail]"
+                          dataType="wstr"
+                          length="150"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[e_mail]"
+                          name="e_mail" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[Browse_product]"
+                          dataType="bool"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[Browse_product]"
+                          name="Browse_product" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[Active]"
+                          dataType="bool"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[Active]"
+                          name="Active" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\WebUser PRO\Load WebUser Trax.Paths[ADO NET Source Output]"
+                  endId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Inputs[Data Conversion Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX.Outputs[ADO NET Source Output]" />
+                <path
+                  refId="Package\WebUser PRO\Load WebUser Trax.Paths[Data Conversion Output]"
+                  endId="Package\WebUser PRO\Load WebUser Trax\Derived Column.Inputs[Derived Column Input]"
+                  name="Data Conversion Output"
+                  startId="Package\WebUser PRO\Load WebUser Trax\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\WebUser PRO\Load WebUser Trax.Paths[Derived Column Output]"
+                  endId="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\WebUser PRO\Load WebUser Trax\Derived Column.Outputs[Derived Column Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\WebUser PRO\Truncate Table Web_user"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6A9DC07A-90F5-4B6D-8F4D-B6BEFD09ED3D}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Table Web_user"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AC230749-2C3B-4173-B11B-348308DC796C}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE DBO.WEB_USER;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\WebUser PRO\Update Customer ControlTable"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Update Customer ControlTable"
+          DTS:DTSID="{AD2BE990-8C4E-4AC6-9173-4DF456FC0DB8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Customer ControlTable"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AC230749-2C3B-4173-B11B-348308DC796C}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 1,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Web_User'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\WebUser PRO\Update Customer ControlTable 1"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Update Customer ControlTable"
+          DTS:DTSID="{4A912709-E626-4BBD-B627-0C19B575B5EA}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Customer ControlTable 1"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AC230749-2C3B-4173-B11B-348308DC796C}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 0,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Web_User'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\WebUser PRO.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{F57DEF2C-8F9F-41BA-BD3B-38DE766FCA6F}"
+          DTS:From="Package\WebUser PRO\Truncate Table Web_user"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\WebUser PRO\Load WebUser Trax" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\WebUser PRO.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{3178F359-8071-43FE-A43B-89BB49DC437B}"
+          DTS:From="Package\WebUser PRO\Load WebUser Trax"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\WebUser PRO\Update Customer ControlTable" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\WebUser PRO.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{B39F917D-3A1A-4781-8B64-7ED0B668FCEF}"
+          DTS:From="Package\WebUser PRO\Load WebUser Trax"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\WebUser PRO\Update Customer ControlTable 1"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3EA340B8-A523-4BAC-A0D0-B4D51935C526}"
+      DTS:From="Package\WebUser PRO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\WebUser DEV" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{00020801-C2E3-4653-9F3B-01A8ABDCCCBD}"
+      DTS:From="Package\WebUser DEV"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Evento Correcto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="27.3584905660377,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="27.3584905660377,121.792452830189" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="95.2452830188679,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,69.3962264150944"
+              Start="0,0"
+              End="0,61.8962264150944">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.8962264150944" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="204,180"
+          Size="204,224"
+          Id="Package\Evento Correcto"
+          TopLeft="406.896226415094,400.896226415094" />
+        <NodeLayout
+          Size="187,44"
+          Id="Package\WebUser DEV\Load Web_User DEV from PROD"
+          TopLeft="39.6226415094339,90.1320754716981" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\WebUser DEV\Truncate Table Web_User"
+          TopLeft="65.0943396226415,8.47169811320757" />
+        <EdgeLayout
+          Id="Package\WebUser DEV.PrecedenceConstraints[Constraint]"
+          TopLeft="132.981132075472,52.3962264150944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="266,222"
+          Size="266,266"
+          Id="Package\WebUser DEV"
+          TopLeft="551.839622641509,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\WebUser PRO\Load WebUser Trax"
+          TopLeft="62.7169811320754,105.528301886792" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\WebUser PRO\Truncate Table Web_user"
+          TopLeft="62.566037735849,13.5283018867924" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\WebUser PRO\Update Customer ControlTable"
+          TopLeft="276.301886792453,67.377358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\WebUser PRO\Update Customer ControlTable 1"
+          TopLeft="277.433962264151,126.849056603774" />
+        <EdgeLayout
+          Id="Package\WebUser PRO.PrecedenceConstraints[Constraint]"
+          TopLeft="130.452830188679,57.4528301886792">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.150943396226467,48.0754716981132"
+              Start="0,0"
+              End="0.150943396226467,40.5754716981132">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.0377358490566" />
+                  <mssgle:LineSegment
+                    End="0.150943396226467,24.0377358490566" />
+                  <mssgle:LineSegment
+                    End="0.150943396226467,40.5754716981132" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\WebUser PRO.PrecedenceConstraints[Constraint 1]"
+          TopLeft="198.490566037736,127.490566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="77.811320754717,-38.1509433962264"
+              Start="0,0"
+              End="70.311320754717,-38.1509433962264">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="38.9056603773585,0" />
+                  <mssgle:LineSegment
+                    End="38.9056603773585,-38.1509433962264" />
+                  <mssgle:LineSegment
+                    End="70.311320754717,-38.1509433962264" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\WebUser PRO.PrecedenceConstraints[Constraint 2]"
+          TopLeft="198.490566037736,127.490566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="78.9433962264151,21.3207547169811"
+              Start="0,0"
+              End="71.4433962264151,21.3207547169811">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="39.4716981132076,0" />
+                  <mssgle:LineSegment
+                    End="39.4716981132076,21.3207547169811" />
+                  <mssgle:LineSegment
+                    End="71.4433962264151,21.3207547169811" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="24.2303504569576,-19.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="430,217"
+          Size="430,260"
+          Id="Package\WebUser PRO"
+          TopLeft="5.5,9.87735849056605" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="435.952830188679,140.103773584906">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="115.88679245283,-1.47169811320755"
+              Start="0,0"
+              End="108.38679245283,-1.47169811320755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="57.9622641509434,0" />
+                  <mssgle:LineSegment
+                    End="57.9622641509434,-1.47169811320755" />
+                  <mssgle:LineSegment
+                    End="108.38679245283,-1.47169811320755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="684.669811320755,271.764150943396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-175.88679245283,129.132075471698"
+              Start="0,0"
+              End="-175.88679245283,121.632075471698">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.5660377358491" />
+                  <mssgle:LineSegment
+                    End="-175.88679245283,64.5660377358491" />
+                  <mssgle:LineSegment
+                    End="-175.88679245283,121.632075471698" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\WebUser DEV\Load Web_User DEV from PROD">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User DEV"
+          TopLeft="8.48113207547169,193.009433962264" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\WebUser DEV\Load Web_User DEV from PROD\Web_User CRMStaging"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\WebUser DEV\Load Web_User DEV from PROD.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="2.98113207547169,143.584905660377"
+              Start="0,0"
+              End="2.98113207547169,136.084905660377">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.7735849056604" />
+                  <mssgle:LineSegment
+                    End="2.98113207547169,71.7735849056604" />
+                  <mssgle:LineSegment
+                    End="2.98113207547169,136.084905660377" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\WebUser PRO\Load WebUser Trax">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX"
+          TopLeft="5.5754716981132,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics"
+          TopLeft="5.65094339622641,273.877358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\WebUser PRO\Load WebUser Trax\Derived Column"
+          TopLeft="5.5754716981132,179.462264150943" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\WebUser PRO\Load WebUser Trax\Data Conversion"
+          TopLeft="5.5,94.9339622641509" />
+        <EdgeLayout
+          Id="Package\WebUser PRO\Load WebUser Trax.Paths[Data Conversion Output]"
+          TopLeft="73.3867924528302,138.858490566038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.0754716981132049,40.6037735849057"
+              Start="0,0"
+              End="0.0754716981132049,33.1037735849057">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3018867924528" />
+                  <mssgle:LineSegment
+                    End="0.0754716981132049,20.3018867924528" />
+                  <mssgle:LineSegment
+                    End="0.0754716981132049,33.1037735849057" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\WebUser PRO\Load WebUser Trax.Paths[ADO NET Source Output]"
+          TopLeft="73.4622641509434,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.0754716981132049,45.5094339622641"
+              Start="0,0"
+              End="-0.0754716981132049,38.0094339622641">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.7547169811321" />
+                  <mssgle:LineSegment
+                    End="-0.0754716981132049,22.7547169811321" />
+                  <mssgle:LineSegment
+                    End="-0.0754716981132049,38.0094339622641" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\WebUser PRO\Load WebUser Trax.Paths[Derived Column Output]"
+          TopLeft="73.4622641509434,223.38679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.0754716981132049,50.4905660377358"
+              Start="0,0"
+              End="0.0754716981132049,42.9905660377358">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.245283018868" />
+                  <mssgle:LineSegment
+                    End="0.0754716981132049,25.245283018868" />
+                  <mssgle:LineSegment
+                    End="0.0754716981132049,42.9905660377358" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\WebUser PRO\Load WebUser Trax\WebUser TRAX">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\WebUser PRO\Load WebUser Trax\WebUser Dynamics">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

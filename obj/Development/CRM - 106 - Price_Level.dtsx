@@ -1,0 +1,2960 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/8/2013 5:09:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{21086481-9C0C-4EDB-8325-C10761D2DA2A}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CRM - 106 - Price_Level"
+  DTS:PackageType="5"
+  DTS:VersionBuild="135"
+  DTS:VersionGUID="{62B0C92A-5D27-447E-A2CF-93A1328CE3D6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D7013DE0-672A-4FDB-891F-B5A79B5FF1FE}"
+      DTS:ObjectName="s2crmdb.CRMStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdb;Initial Catalog=CRMStaging;Provider=SQLNCLI11;Integrated Security=SSPI;Application Name=SSIS-CRM - 106 - Price_Level-{D7013DE0-672A-4FDB-891F-B5A79B5FF1FE}s2crmdb.CRMStaging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4211D594-3D92-491C-ADBE-1A95763FF150}"
+      DTS:ObjectName="s2crmdvlp.CRMStaging.ETLUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdvlp;Initial Catalog=CRMStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{185C2E50-4173-455F-9A1C-97AF1A82CED8}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{185C2E50-4173-455F-9A1C-97AF1A82CED8}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{C3465CB8-448B-4CBB-A43E-D448313EAB97}"
+      DTS:ObjectName="Sentai_Replica.bodts">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=bodts;Dsn=Sentai_Replica;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAD1eoZgybU0BpPWeGpbpvo1AAAAAASAAACgAAAAEAAAANxu90QgC+WjXANi+yltjJkYAAAATBzLAiyTaaAsz42hrUe9wEQy1H2rWbsfFAAAAKZ7NTrEepob9vR21L7pyx5Sw11c</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{465D6683-F605-48FC-9A89-4D12F00A13D5}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;S2CRMDB.ETLUser&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{81D1197E-CCC6-43AD-9656-17B43CDF96FE}"
+      DTS:ObjectName="S2CRMDB ETLUser" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;Sentai_Replica.bodts&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{6FDE79FC-7EAA-4CEF-B10E-A785F3472832}"
+      DTS:ObjectName="Sentai_Replica bodts" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A9BF55A2-921F-41CE-B919-9B5FA57C844E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2FF61FD8-2511-48A7-97E5-A5E6445E7CA9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{13AB8A6B-9408-4D4D-A71B-E10F37884E87}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7D264A55-6D0B-412F-922B-8124DDBAE652}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{624CB784-F380-4068-99B4-442DFDB57804}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">12,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnExecStatusChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnInformation"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnProgress"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnQueryCancel"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnTaskFailed"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnVariableValueChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnWarning"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{CA8A723C-83FC-4A42-94C4-FEA8EFDD878B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="1">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">13,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,24,ExecuteSQLExecutingQuery</DTS:Property>
+            <DTS:Property
+              DTS:EventName="ExecuteSQLExecutingQuery"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnExecStatusChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnInformation"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnProgress"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnQueryCancel"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnTaskFailed"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnVariableValueChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnWarning"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{185C2E50-4173-455F-9A1C-97AF1A82CED8}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete CRM - 106 - Price_Level  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{9650A64F-5DA5-4522-B592-A9DAB987A455}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="1">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">15,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,17,SendMailTaskBegin,15,SendMailTaskEnd,16,SendMailTaskInfo</DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnExecStatusChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnInformation"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnProgress"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnQueryCancel"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnTaskFailed"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnVariableValueChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnWarning"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskBegin"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskEnd"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskInfo"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{465D6683-F605-48FC-9A89-4D12F00A13D5}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :CRM - 106 - Price_Level" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{DB7788AF-C821-4490-8E97-3885429A7AC6}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load_Price_Level_from_Trax PRO"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{B3FC3B26-BCA8-49FD-A610-CCA2E3F605E7}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load_Price_Level_from_Trax PRO">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load_Price_Level_from_Trax PRO\Failed Price-Level ControlTable"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Update Customer ControlTable"
+          DTS:DTSID="{13B6D1AC-1061-43C1-A7A1-DE19E48D998C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Failed Price-Level ControlTable"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D7013DE0-672A-4FDB-891F-B5A79B5FF1FE}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 0,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Price_Level'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{375381B9-3027-4239-854E-D2450C500D65}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Price-Level Trax"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="CRMStaging Price-level"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Price_Level]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].Columns[Copy of Description]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="Copy of Description"
+                          externalMetadataColumnId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Description]" />
+                        <inputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].Columns[Copy of Level-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Copy of Level-ID"
+                          externalMetadataColumnId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[Level_ID]"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Level-ID]" />
+                        <inputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].Columns[Use-margin]"
+                          cachedDataType="bool"
+                          cachedName="Use-margin"
+                          externalMetadataColumnId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[Use_margin]"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Use-margin]" />
+                        <inputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].Columns[Copy of Currency-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Copy of Currency-ID"
+                          externalMetadataColumnId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[Currency_ID]"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Currency-ID]" />
+                        <inputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].Columns[Min-charge]"
+                          cachedDataType="numeric"
+                          cachedName="Min-charge"
+                          cachedPrecision="17"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[Min_charge]"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Min-charge]" />
+                        <inputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].Columns[Copy of EIS-Desc]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="Copy of EIS-Desc"
+                          externalMetadataColumnId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[EIS_Desc]"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of EIS-Desc]" />
+                        <inputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="EIS_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[Level_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Level_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[Use_margin]"
+                          dataType="bool"
+                          name="Use_margin" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[Currency_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Currency_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[Min_charge]"
+                          dataType="numeric"
+                          name="Min_charge"
+                          precision="17"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="CompanyID" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Inputs[Data Conversion Input].Columns[EIS-Desc]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="EIS-Desc"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[EIS-Desc]" />
+                        <inputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Inputs[Data Conversion Input].Columns[Level-ID]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="Level-ID"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Level-ID]" />
+                        <inputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Inputs[Data Conversion Input].Columns[Description]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="Description"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Inputs[Data Conversion Input].Columns[Currency-ID]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="Currency-ID"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Currency-ID]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of EIS-Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="40"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of EIS-Desc]"
+                          name="Copy of EIS-Desc"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[EIS-Desc]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Level-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="8"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Level-ID]"
+                          name="Copy of Level-ID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Level-ID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Description]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="40"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Description]"
+                          name="Copy of Description"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Description]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Currency-ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="8"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Currency-ID]"
+                          name="Copy of Currency-ID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Currency-ID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Inputs[Derived Column Input].Columns[Copy of Level-ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Copy of Level-ID"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Level-ID]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[UPPER](#{Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Level-ID]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">UPPER([Copy of Level-ID])</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Extracts data from a relational database by using a .NET provider."
+                  name="Price-Level TRAX"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select
+"Machine-ID",
+UPPER("Cust-ID") as "CustID",
+"Name",
+"Legal-name",
+"Search-name",
+address[1] + ' ' + address[2]  + ' ' + address[3]  + ' ' + address[4]  + ' ' + address[5]  as "Address",
+PRO_ELEMENT("Address",1,1) as Address1,
+PRO_ELEMENT("Address",2,2) as Address2 ,
+PRO_ELEMENT("Address",3,3)  as Address3,
+PRO_ELEMENT("Address",4,4) as Address4,
+PRO_ELEMENT("Address",5,5)  as Address5,
+"City", 
+"Prov-ID" ,
+"Postal-code",
+"Country-ID", 
+"Telephone", 
+"FAX", 
+"Report-code",
+"Status-code", 
+"Term-ID", 
+"Tax-group-ID",
+"Carrier-ID", 
+"Terr-ID", 
+"Stmt-freq", 
+"Credit-limit",
+"Min-charge",
+"Grace-days" ,
+"Cred-rating", 
+"Interest-ID", 
+"Stmt-type", 
+"Ship-charge", 
+"Charge-cust", 
+"Mail-cust", 
+"Entity-list", 
+"Priority",
+"Comm-ID", 
+"Create-date",
+"Currency-ID",
+"Currency-vals" ,
+"AR-gl",
+"Tax-reg-no", 
+"Non-maintained",
+substring("SIC-code",1,16) as "SIC-Code", 
+"Level-ID", 
+"Phrase-ID", 
+"Cash",
+"On-hold",
+"Oper-ID", 
+"Review-code", 
+upper("Sales-vals") as "Sales-vals", 
+"Lang-ID", 
+"Perform-code", 
+"TZ-ID", 
+"UDF-1", 
+"UDF-2", 
+"EIS-Desc",
+"Ins-comp-name", 
+"Policy-no", 
+"Expiry-date",
+"SSC-UDF-1", 
+"SSC-UDF-2", 
+"E-mail", 
+"FOB-ID", 
+"Phone-2", 
+"Cellular", 
+"Pager", 
+"Web-site",
+"Ch-comm-reg-no", 
+"Ch-comm-city", 
+"Prof-ID", 
+"Require-PO",
+"Accept-BO",
+"In-forecast" ,
+"DUNS_number" ,
+"Warehouse-pick",
+"Auto-fax" ,
+"Loc-ID", 
+"Wave-ID", 
+"SDQ-ship", 
+"SDQ-invoice", 
+"WMS-print",
+"Contact-Name",
+"Contact-Title",
+"Updated-On",
+"Carrier-List",
+"cr-status-id",
+"credit-hold",
+"submit-stmt",
+"crm-entity-ID",
+"crm-group-ID",
+"submit-doc",
+"CRM-reference"
+FROM "PUB"."customer"
+WHERE "Cust-ID" not like 'XAR%'
+and "Cust-ID" not like 'XGB%'
+and "Cust-ID" not like 'XCB%'
+and "Cust-ID" not like 'A%'
+and "Cust-ID" not like 'XHS%'
+and "Cust-ID" not like 'XCT%'</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"PUB"."price-level"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      connectionManagerRefId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Level-ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].ExternalColumns[Level-ID]"
+                          length="8"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Level-ID]"
+                          name="Level-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Description]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          length="40"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Use-margin]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].ExternalColumns[Use-margin]"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Use-margin]"
+                          name="Use-margin"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Currency-ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].ExternalColumns[Currency-ID]"
+                          length="8"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Currency-ID]"
+                          name="Currency-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Min-charge]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].ExternalColumns[Min-charge]"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[Min-charge]"
+                          name="Min-charge"
+                          precision="17"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[EIS-Desc]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].ExternalColumns[EIS-Desc]"
+                          length="40"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].Columns[EIS-Desc]"
+                          name="EIS-Desc"
+                          truncationRowDisposition="IgnoreFailure" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].ExternalColumns[Level-ID]"
+                          dataType="wstr"
+                          length="8"
+                          name="Level-ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].ExternalColumns[Use-margin]"
+                          dataType="bool"
+                          name="Use-margin" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].ExternalColumns[Currency-ID]"
+                          dataType="wstr"
+                          length="8"
+                          name="Currency-ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].ExternalColumns[Min-charge]"
+                          dataType="numeric"
+                          name="Min-charge"
+                          precision="17"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output].ExternalColumns[EIS-Desc]"
+                          dataType="wstr"
+                          length="40"
+                          name="EIS-Desc" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[Level-ID]"
+                          dataType="wstr"
+                          length="8"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[Level-ID]"
+                          name="Level-ID" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[Use-margin]"
+                          dataType="bool"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[Use-margin]"
+                          name="Use-margin" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[Currency-ID]"
+                          dataType="wstr"
+                          length="8"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[Currency-ID]"
+                          name="Currency-ID" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[Min-charge]"
+                          dataType="numeric"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[Min-charge]"
+                          name="Min-charge"
+                          precision="17"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[EIS-Desc]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[EIS-Desc]"
+                          name="EIS-Desc" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax.Paths[ADO NET Source Output]"
+                  endId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Inputs[Data Conversion Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX.Outputs[ADO NET Source Output]" />
+                <path
+                  refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax.Paths[Data Conversion Output]"
+                  endId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Inputs[Derived Column Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax.Paths[Derived Column Output]"
+                  endId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column.Outputs[Derived Column Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Price_Level_from_Trax PRO\Truncate Table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2D27BD07-37EE-446F-AB68-0E3DEC817478}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D7013DE0-672A-4FDB-891F-B5A79B5FF1FE}"
+              SQLTask:SqlStatementSource="use CRMStaging&#xA;go&#xA;&#xA;Truncate Table dbo.Price_Level;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Price_Level_from_Trax PRO\Update CompanyID"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EE2B2292-DBE7-490B-A0A3-E6F930A644DC}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update CompanyID"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D7013DE0-672A-4FDB-891F-B5A79B5FF1FE}"
+              SQLTask:SqlStatementSource="--- UPDATE COMPANYID &#xA;UPDATE A SET &#xA;COMPANYID=(CASE &#xA;WHEN Level_ID LIKE 'CO%' THEN  'XCO'&#xA;WHEN Level_ID LIKE 'SV%' THEN  'XSV'&#xA;WHEN Level_ID LIKE 'XGT%' THEN  'XGT'&#xA;WHEN Level_ID LIKE 'CR%' THEN  'XCR'&#xA;WHEN Level_ID LIKE 'XJM%' THEN  'XJM'&#xA;WHEN Level_ID LIKE 'XUY%' THEN  'XUY'&#xA;WHEN Level_ID LIKE 'XEC%' THEN  'XEC'&#xA;WHEN Level_ID LIKE 'XPE%' THEN  'XPE'&#xA;WHEN Level_ID LIKE 'CL%' THEN  'XCL'&#xA;WHEN Level_ID LIKE 'MX%' THEN  'XMX'&#xA;WHEN Level_ID LIKE 'XCB%' THEN  'XCB'&#xA;WHEN Level_ID LIKE 'XIQX%' THEN  'XIQ'&#xA;WHEN Level_ID LIKE 'XBOX%' THEN  'XBO'&#xA;WHEN Level_ID LIKE 'XPA%' THEN  'XPA'&#xA;WHEN Level_ID LIKE 'XUS%' THEN  'XUS'&#xA;WHEN Level_ID LIKE 'XNI%' THEN  'XNI'&#xA;END)&#xA;FROM Price_Level A" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Price_Level_from_Trax PRO\Update Price-Level ControlTable"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Update Customer ControlTable"
+          DTS:DTSID="{A9EC0D89-1D2A-4854-AB6B-AB41946736C4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Price-Level ControlTable"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D7013DE0-672A-4FDB-891F-B5A79B5FF1FE}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 1,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Price_Level'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Price_Level_from_Trax PRO.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{595BAEBD-CD13-4579-BFE0-4EB342A0ECCD}"
+          DTS:From="Package\Load_Price_Level_from_Trax PRO\Truncate Table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Price_Level_from_Trax PRO.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{7A3F0D24-6467-44C4-AEB8-2E16A59E6CBA}"
+          DTS:From="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load_Price_Level_from_Trax PRO\Update Price-Level ControlTable" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Price_Level_from_Trax PRO.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{33D15FA7-F398-4F76-ADFB-E5DFE646F2F3}"
+          DTS:From="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Load_Price_Level_from_Trax PRO\Failed Price-Level ControlTable"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Price_Level_from_Trax PRO.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{7B155D00-2298-4A8D-BA0A-C900E41245F9}"
+          DTS:From="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Load_Price_Level_from_Trax PRO\Update CompanyID" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Price_Level DEV"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{FFC4FED3-02D6-4C73-B278-14351A7AA03C}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Price_Level DEV">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Price_Level DEV\Load Table Territory DEV"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{E0541884-543C-4405-9016-083D11FCCEDE}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Table Territory DEV"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Price_Level CRMStaging DEV"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Price_Level]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdvlp.CRMStaging.ETLUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[Description]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="71"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[EIS_Desc]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="EIS_Desc"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[EIS_Desc]"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[EIS_Desc]" />
+                        <inputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[CompanyID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="CompanyID"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[CompanyID]" />
+                        <inputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[Level_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Level_ID"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Level_ID]"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Level_ID]" />
+                        <inputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[Use_margin]"
+                          cachedDataType="bool"
+                          cachedName="Use_margin"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Use_margin]"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Use_margin]" />
+                        <inputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[Currency_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Currency_ID"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Currency_ID]"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Currency_ID]" />
+                        <inputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].Columns[Min_charge]"
+                          cachedDataType="numeric"
+                          cachedName="Min_charge"
+                          cachedPrecision="17"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Min_charge]"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Min_charge]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="EIS_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="CompanyID" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Level_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Level_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Use_margin]"
+                          dataType="bool"
+                          name="Use_margin" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Currency_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Currency_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Min_charge]"
+                          dataType="numeric"
+                          name="Min_charge"
+                          precision="17"
+                          scale="2" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Price_Level CRMStaging PRO"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Price_Level]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          length="71"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[EIS_Desc]"
+                          length="40"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[EIS_Desc]"
+                          name="EIS_Desc"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[CompanyID]"
+                          length="4"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[CompanyID]"
+                          name="CompanyID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Level_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Level_ID]"
+                          length="8"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Level_ID]"
+                          name="Level_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Use_margin]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Use_margin]"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Use_margin]"
+                          name="Use_margin"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Currency_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Currency_ID]"
+                          length="8"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Currency_ID]"
+                          name="Currency_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Min_charge]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Min_charge]"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Min_charge]"
+                          name="Min_charge"
+                          precision="17"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="EIS_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="CompanyID" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Level_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Level_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Use_margin]"
+                          dataType="bool"
+                          name="Use_margin" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Currency_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Currency_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Min_charge]"
+                          dataType="numeric"
+                          name="Min_charge"
+                          precision="17"
+                          scale="2" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[CompanyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[CompanyID]"
+                          name="CompanyID" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Level_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Level_ID]"
+                          name="Level_ID" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Use_margin]"
+                          dataType="bool"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Use_margin]"
+                          name="Use_margin" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Currency_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Currency_ID]"
+                          name="Currency_ID" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Min_charge]"
+                          dataType="numeric"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Min_charge]"
+                          name="Min_charge"
+                          precision="17"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[EIS_Desc]"
+                          name="EIS_Desc" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          name="LastExtraction" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Price_Level DEV\Load Table Territory DEV.Paths[OLE DB Source Output]"
+                  endId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Price_Level DEV\Truncate Table Price_Level"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EEDFAC90-6810-4283-A3D4-BFE19D16E0CF}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Table Price_Level"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4211D594-3D92-491C-ADBE-1A95763FF150}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE DBO.Price_Level;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Price_Level DEV.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{A25DD5DE-6DDF-4CD2-A93E-60650D361593}"
+          DTS:From="Package\Price_Level DEV\Truncate Table Price_Level"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Price_Level DEV\Load Table Territory DEV" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{4C398692-BC92-4CD7-A101-2BD05DD0C5EC}"
+      DTS:From="Package\Load_Price_Level_from_Trax PRO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{7BD48C87-A640-4F5D-BFAE-AB3387D9854F}"
+      DTS:From="Package\Price_Level DEV"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{4EBFC732-237C-4CAD-8F67-1B532934A754}"
+      DTS:From="Package\Load_Price_Level_from_Trax PRO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Price_Level DEV" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="27.3584905660377,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="27.3584905660377,121.792452830189" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="95.2452830188679,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,69.3962264150944"
+              Start="0,0"
+              End="0,61.8962264150944">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.8962264150944" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="204,180"
+          Size="204,224"
+          Id="Package\Evento Correcto"
+          TopLeft="193.367924528302,456.669811320755" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Price_Level_from_Trax PRO\Failed Price-Level ControlTable"
+          TopLeft="200.716981132075,107.716981132075" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax"
+          TopLeft="30.188679245283,108.471698113208" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Price_Level_from_Trax PRO\Truncate Table"
+          TopLeft="30.188679245283,26.811320754717" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Load_Price_Level_from_Trax PRO\Update CompanyID"
+          TopLeft="15,192" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Price_Level_from_Trax PRO\Update Price-Level ControlTable"
+          TopLeft="204.924528301887,183.358490566038" />
+        <EdgeLayout
+          Id="Package\Load_Price_Level_from_Trax PRO.PrecedenceConstraints[Constraint]"
+          TopLeft="98.0754716981132,70.7358490566038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Price_Level_from_Trax PRO.PrecedenceConstraints[Constraint 1]"
+          TopLeft="98.188679245283,152.471698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="174.735849056604,30.88679245283"
+              Start="0,0"
+              End="174.735849056604,23.38679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.443396226415" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.443396226415"
+                    Point2="0,15.443396226415"
+                    Point3="4,15.443396226415" />
+                  <mssgle:LineSegment
+                    End="170.735849056604,15.443396226415" />
+                  <mssgle:CubicBezierSegment
+                    Point1="170.735849056604,15.443396226415"
+                    Point2="174.735849056604,15.443396226415"
+                    Point3="174.735849056604,19.443396226415" />
+                  <mssgle:LineSegment
+                    End="174.735849056604,23.38679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Price_Level_from_Trax PRO.PrecedenceConstraints[Constraint 2]"
+          TopLeft="165.962264150943,130.433962264151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="34.754716981132,-0.754716981132077"
+              Start="0,0"
+              End="27.254716981132,-0.754716981132077">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="17.3962264150943,0" />
+                  <mssgle:LineSegment
+                    End="17.3962264150943,-0.754716981132077" />
+                  <mssgle:LineSegment
+                    End="27.254716981132,-0.754716981132077" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="2.1548787588443,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Price_Level_from_Trax PRO.PrecedenceConstraints[Constraint 3]"
+          TopLeft="76.8553459119497,152.471698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="23.6446540880503,39.528301886792"
+              Start="0,0"
+              End="23.6446540880503,32.028301886792">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.0870996050898" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.0870996050898"
+                    Point2="0,16.0870996050898"
+                    Point3="4,16.0870996050898" />
+                  <mssgle:LineSegment
+                    End="19.6446540880503,16.0870996050898" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.6446540880503,16.0870996050898"
+                    Point2="23.6446540880503,16.0870996050898"
+                    Point3="23.6446540880503,20.0870996050898" />
+                  <mssgle:LineSegment
+                    End="23.6446540880503,32.028301886792" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="356,289"
+          Size="356,333"
+          Id="Package\Load_Price_Level_from_Trax PRO"
+          TopLeft="38.5,5.5" />
+        <NodeLayout
+          Size="187,44"
+          Id="Package\Price_Level DEV\Load Table Territory DEV"
+          TopLeft="58.5094339622642,95.2264150943396" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Price_Level DEV\Truncate Table Price_Level"
+          TopLeft="64.9811320754717,9.56603773584908" />
+        <EdgeLayout
+          Id="Package\Price_Level DEV.PrecedenceConstraints[Constraint]"
+          TopLeft="167.981132075472,51.5660377358491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-15.9716981132075,43.6603773584905"
+              Start="0,0"
+              End="-15.9716981132075,36.1603773584905">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.8301886792453" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.8301886792453"
+                    Point2="0,21.8301886792453"
+                    Point3="-4,21.8301886792453" />
+                  <mssgle:LineSegment
+                    End="-11.9716981132075,21.8301886792453" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-11.9716981132075,21.8301886792453"
+                    Point2="-15.9716981132075,21.8301886792453"
+                    Point3="-15.9716981132075,25.8301886792453" />
+                  <mssgle:LineSegment
+                    End="-15.9716981132075,36.1603773584905" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="276,231"
+          Size="276,275"
+          Id="Package\Price_Level DEV"
+          TopLeft="487.179245283019,9.27358490566036" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="216.5,338.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="46.2012578616353,118.169811320755"
+              Start="0,0"
+              End="46.2012578616353,110.669811320755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.3501211364806" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,66.3501211364806"
+                    Point2="0,70.3501211364806"
+                    Point3="4,70.3501211364806" />
+                  <mssgle:LineSegment
+                    End="42.2012578616353,70.3501211364806" />
+                  <mssgle:CubicBezierSegment
+                    Point1="42.2012578616353,70.3501211364806"
+                    Point2="46.2012578616353,70.3501211364806"
+                    Point3="46.2012578616353,74.3501211364806" />
+                  <mssgle:LineSegment
+                    End="46.2012578616353,110.669811320755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="625.179245283019,284.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-297.14465408805,172.396226415095"
+              Start="0,0"
+              End="-297.14465408805,164.896226415095">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,98.6327729241614" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,98.6327729241614"
+                    Point2="0,102.632772924161"
+                    Point3="-4,102.632772924161" />
+                  <mssgle:LineSegment
+                    End="-293.14465408805,102.632772924161" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-293.14465408805,102.632772924161"
+                    Point2="-297.14465408805,102.632772924161"
+                    Point3="-297.14465408805,106.632772924161" />
+                  <mssgle:LineSegment
+                    End="-297.14465408805,164.896226415095" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="394.5,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="92.679245283019,-25.2264150943396"
+              Start="0,0"
+              End="85.179245283019,-25.2264150943396">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="42.3396226415095,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="42.3396226415095,0"
+                    Point2="46.3396226415095,0"
+                    Point3="46.3396226415095,-4" />
+                  <mssgle:LineSegment
+                    End="46.3396226415095,-21.2264150943396" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.3396226415095,-21.2264150943396"
+                    Point2="46.3396226415095,-25.2264150943396"
+                    Point3="50.3396226415095,-25.2264150943396" />
+                  <mssgle:LineSegment
+                    End="85.179245283019,-25.2264150943396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Data Conversion"
+          TopLeft="21,107.5" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX"
+          TopLeft="19.5,5.5" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level"
+          TopLeft="5.50000000000003,311.5" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Derived Column"
+          TopLeft="22,209.5" />
+        <EdgeLayout
+          Id="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax.Paths[Derived Column Output]"
+          TopLeft="99,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax.Paths[Data Conversion Output]"
+          TopLeft="99,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax.Paths[ADO NET Source Output]"
+          TopLeft="99,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\Price-Level TRAX">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_Price_Level_from_Trax PRO\Load Price-Level Trax\CRMStaging Price-level">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Price_Level DEV\Load Table Territory DEV">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="215,42"
+          Id="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO"
+          TopLeft="5.50000000000001,4.5" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV"
+          TopLeft="6.00000000000001,107.5" />
+        <EdgeLayout
+          Id="Package\Price_Level DEV\Load Table Territory DEV.Paths[OLE DB Source Output]"
+          TopLeft="113.25,46.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging DEV">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Price_Level DEV\Load Table Territory DEV\Price_Level CRMStaging PRO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

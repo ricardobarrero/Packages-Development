@@ -1,0 +1,2516 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/23/2015 4:04:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{C156AFFE-7768-4DB4-9349-D7D37D2ED2D6}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CRM - 109 - CREDIT_TERM"
+  DTS:PackageType="5"
+  DTS:VersionBuild="66"
+  DTS:VersionGUID="{7A5A0DF4-9DF1-4C1E-8C54-8593AE56140F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BDB5DF38-4915-4ED0-B949-D1F743E09475}"
+      DTS:ObjectName="s2crmdb.CRMStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdb;Initial Catalog=CRMStaging;Provider=SQLNCLI11;Integrated Security=SSPI;Application Name=SSIS-CRM - 109 - CREDIT_TERM-{BDB5DF38-4915-4ED0-B949-D1F743E09475}s2crmdb.CRMStaging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{49FD05A8-36AA-48EA-A858-6080353932F3}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{DB526858-66BB-4735-B04A-E9BBE337204C}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{6589B317-E6FF-4D5E-AB9B-D1B3783B7F53}"
+      DTS:ObjectName="Sentai_Replica.bodts">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=bodts;Dsn=Sentai_Replica;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAC8s0uEe5O3lrvdZ8mCENO3AAAAAASAAACgAAAAEAAAAP6/n/kXd9SCEI+q19wiu6EYAAAAa0klIdjJex4Yal/ZUEqQfGOhBRwraG/hFAAAAN+/K3llH6KV0CEkCJnYT29WgPF6</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{A0DA6900-8EB5-4332-93F0-F9ED2F840A93}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;S2CRMDB.ETLUser&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{406B83D1-5580-4840-BFC1-1FD8CE3A3884}"
+      DTS:ObjectName="S2CRMDB ETLUser" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;Sentai_Replica.bodts&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{E8E09CDE-8797-4B7E-A341-0C5E0B75C7C0}"
+      DTS:ObjectName="Sentai_Replica bodts" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B1355FF3-E1FC-455B-8039-96C19F142ECA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EB66A05E-B7F5-4415-907D-6C4894322D02}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F10B00D3-57EB-4568-B5E7-954BCC28CA26}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A0CD4E18-1EFC-4570-B7AE-8D9B37DAA36C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{1192AB6F-228A-41EC-BC88-C32CE3089406}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DADAB6A4-D8BB-4D4C-ABEF-109F1F580EFE}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{49FD05A8-36AA-48EA-A858-6080353932F3}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete CRM - 109 - CREDIT_TERM  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{3CCAEC0D-5319-467A-A97E-1BF8C4597AAF}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject]+ @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{A0DA6900-8EB5-4332-93F0-F9ED2F840A93}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :CRM - 109 - CREDIT_TERM" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{550A5E5D-8E41-44DC-BA23-3620B39B4B64}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{D6C47086-B7B8-4A3C-9548-CF6CA76659E1}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD CREDIT_TERMS FROM TRAX TO DEV">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{37A0A672-E636-4DA1-BE4F-0BC30D9449DB}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[Term_ID]"
+                          cachedDataType="wstr"
+                          cachedLength="12"
+                          cachedName="Term_ID"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Term_ID]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[Description]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="Description"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Description]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Term_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="12"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Term_ID]"
+                          name="Term_ID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Term_ID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="40"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Description]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Term_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="12"
+                          cachedName="Term_ID"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Term_ID]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[LOWER](#{Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Term_ID]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">LOWER([Data Conversion].Term_ID)</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="S1CRMDB CREDIT_TERM"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[CREDIT_TERM]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Connections[OleDbConnection]"
+                      connectionManagerID="{8EDD05D2-05D2-4111-839D-E1E3FFE5EB8A}:invalid"
+                      connectionManagerRefId="{8EDD05D2-05D2-4111-839D-E1E3FFE5EB8A}:invalid"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Term_ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Term_ID]"
+                          length="12"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Term_ID]"
+                          name="Term_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Description]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          length="40"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Pay_days]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Pay_days]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Pay_days]"
+                          name="Pay_days"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Pay_fixed]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Pay_fixed]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Pay_fixed]"
+                          name="Pay_fixed"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Pay_months]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Pay_months]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Pay_months]"
+                          name="Pay_months"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Disc_%]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Disc_%]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Disc_%]"
+                          name="Disc_%"
+                          precision="17"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Disc_days]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Disc_days]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Disc_days]"
+                          name="Disc_days"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Disc_fixed]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Disc_fixed]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Disc_fixed]"
+                          name="Disc_fixed"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Disc_months]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Disc_months]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Disc_months]"
+                          name="Disc_months"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Is_revolving]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Is_revolving]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Is_revolving]"
+                          name="Is_revolving"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Cut_off]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Cut_off]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Cut_off]"
+                          name="Cut_off"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Is_multiple]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Is_multiple]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Is_multiple]"
+                          name="Is_multiple"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Validate_pick]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Validate_pick]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Validate_pick]"
+                          name="Validate_pick"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Cod]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Cod]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Cod]"
+                          name="Cod"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Collect_fixed]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Collect_fixed]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Collect_fixed]"
+                          name="Collect_fixed"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Collect_days]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Collect_days]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Collect_days]"
+                          name="Collect_days"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Collect_months]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Collect_months]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Collect_months]"
+                          name="Collect_months"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Term_ID]"
+                          dataType="wstr"
+                          length="12"
+                          name="Term_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Pay_days]"
+                          dataType="i4"
+                          name="Pay_days" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Pay_fixed]"
+                          dataType="bool"
+                          name="Pay_fixed" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Pay_months]"
+                          dataType="i4"
+                          name="Pay_months" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Disc_%]"
+                          dataType="numeric"
+                          name="Disc_%"
+                          precision="17"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Disc_days]"
+                          dataType="i4"
+                          name="Disc_days" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Disc_fixed]"
+                          dataType="bool"
+                          name="Disc_fixed" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Disc_months]"
+                          dataType="i4"
+                          name="Disc_months" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Is_revolving]"
+                          dataType="bool"
+                          name="Is_revolving" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Cut_off]"
+                          dataType="i4"
+                          name="Cut_off" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Is_multiple]"
+                          dataType="bool"
+                          name="Is_multiple" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Validate_pick]"
+                          dataType="bool"
+                          name="Validate_pick" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Cod]"
+                          dataType="bool"
+                          name="Cod" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Collect_fixed]"
+                          dataType="bool"
+                          name="Collect_fixed" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Collect_days]"
+                          dataType="i4"
+                          name="Collect_days" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].ExternalColumns[Collect_months]"
+                          dataType="i4"
+                          name="Collect_months" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Term_ID]"
+                          dataType="wstr"
+                          length="12"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Term_ID]"
+                          name="Term_ID" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Pay_days]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Pay_days]"
+                          name="Pay_days" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Pay_fixed]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Pay_fixed]"
+                          name="Pay_fixed" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Pay_months]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Pay_months]"
+                          name="Pay_months" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Disc_%]"
+                          dataType="numeric"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Disc_%]"
+                          name="Disc_%"
+                          precision="17"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Disc_days]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Disc_days]"
+                          name="Disc_days" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Disc_fixed]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Disc_fixed]"
+                          name="Disc_fixed" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Disc_months]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Disc_months]"
+                          name="Disc_months" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Is_revolving]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Is_revolving]"
+                          name="Is_revolving" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Cut_off]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Cut_off]"
+                          name="Cut_off" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Is_multiple]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Is_multiple]"
+                          name="Is_multiple" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Validate_pick]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Validate_pick]"
+                          name="Validate_pick" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Cod]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Cod]"
+                          name="Cod" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Collect_fixed]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Collect_fixed]"
+                          name="Collect_fixed" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Collect_days]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Collect_days]"
+                          name="Collect_days" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Collect_months]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[Collect_months]"
+                          name="Collect_months" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="S1CRMDVLP CREDIT_TERM"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Credit_Term]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Connections[OleDbConnection]"
+                      connectionManagerID="{4D79EE3E-E87B-4517-B576-868A252D56F4}:invalid"
+                      connectionManagerRefId="{4D79EE3E-E87B-4517-B576-868A252D56F4}:invalid"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Pay_days]"
+                          cachedDataType="i4"
+                          cachedName="Pay_days"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Pay_days]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Pay_days]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Pay_fixed]"
+                          cachedDataType="bool"
+                          cachedName="Pay_fixed"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Pay_fixed]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Pay_fixed]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Pay_months]"
+                          cachedDataType="i4"
+                          cachedName="Pay_months"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Pay_months]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Pay_months]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Disc_%]"
+                          cachedDataType="numeric"
+                          cachedName="Disc_%"
+                          cachedPrecision="17"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Disc_%]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Disc_%]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Disc_days]"
+                          cachedDataType="i4"
+                          cachedName="Disc_days"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Disc_days]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Disc_days]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Disc_fixed]"
+                          cachedDataType="bool"
+                          cachedName="Disc_fixed"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Disc_fixed]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Disc_fixed]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Disc_months]"
+                          cachedDataType="i4"
+                          cachedName="Disc_months"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Disc_months]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Disc_months]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Is_revolving]"
+                          cachedDataType="bool"
+                          cachedName="Is_revolving"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Is_revolving]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Is_revolving]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Cut_off]"
+                          cachedDataType="i4"
+                          cachedName="Cut_off"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Cut_off]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Cut_off]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Is_multiple]"
+                          cachedDataType="bool"
+                          cachedName="Is_multiple"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Is_multiple]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Is_multiple]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Validate_pick]"
+                          cachedDataType="bool"
+                          cachedName="Validate_pick"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Validate_pick]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Validate_pick]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Cod]"
+                          cachedDataType="bool"
+                          cachedName="Cod"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Cod]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Collect_fixed]"
+                          cachedDataType="bool"
+                          cachedName="Collect_fixed"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Collect_fixed]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Collect_fixed]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Collect_days]"
+                          cachedDataType="i4"
+                          cachedName="Collect_days"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Collect_days]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Collect_days]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Collect_months]"
+                          cachedDataType="i4"
+                          cachedName="Collect_months"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Collect_months]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output].Columns[Collect_months]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Term_ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="12"
+                          cachedName="Term_ID"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Term_ID]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Term_ID]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].Columns[Description]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Description]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Term_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="12"
+                          name="Term_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Pay_days]"
+                          dataType="i4"
+                          name="Pay_days" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Pay_fixed]"
+                          dataType="bool"
+                          name="Pay_fixed" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Pay_months]"
+                          dataType="i4"
+                          name="Pay_months" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Disc_%]"
+                          dataType="numeric"
+                          name="Disc_%"
+                          precision="17"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Disc_days]"
+                          dataType="i4"
+                          name="Disc_days" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Disc_fixed]"
+                          dataType="bool"
+                          name="Disc_fixed" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Disc_months]"
+                          dataType="i4"
+                          name="Disc_months" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Is_revolving]"
+                          dataType="bool"
+                          name="Is_revolving" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Cut_off]"
+                          dataType="i4"
+                          name="Cut_off" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Is_multiple]"
+                          dataType="bool"
+                          name="Is_multiple" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Validate_pick]"
+                          dataType="bool"
+                          name="Validate_pick" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                          dataType="bool"
+                          name="Cod" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Collect_fixed]"
+                          dataType="bool"
+                          name="Collect_fixed" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Collect_days]"
+                          dataType="i4"
+                          name="Collect_days" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input].ExternalColumns[Collect_months]"
+                          dataType="i4"
+                          name="Collect_months" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task.Paths[Data Conversion Output]"
+                  endId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  name="Data Conversion Output"
+                  startId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task.Paths[Derived Column Output]"
+                  endId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task.Paths[OLE DB Source Output]"
+                  endId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\TRUNCATE TABLE CREDIT_TERM"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E965D743-FA1B-41DE-BD45-3EB54D15963C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE TABLE CREDIT_TERM"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4D79EE3E-E87B-4517-B576-868A252D56F4}"
+              SQLTask:SqlStatementSource="truncate table credit_term" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{62071219-7FA3-44A7-B1C4-6DF2E03179F3}"
+          DTS:From="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\TRUNCATE TABLE CREDIT_TERM"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{81C2C0FD-D751-46B8-BA75-A2AE4ED519B0}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD CREDIT_TERMS FROM TRAX TO PROD">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{D49EAFD8-4B89-4298-9FBE-F2C7CC8BB34D}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Term-ID]"
+                          cachedDataType="wstr"
+                          cachedLength="12"
+                          cachedName="Term-ID"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Term-ID]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[LOWER](#{Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Term-ID]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">LOWER([Term-ID])</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="s1crmdb credit_term"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Credit_Term]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Description]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Cod]"
+                          cachedDataType="bool"
+                          cachedName="Cod"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Cod]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Term-ID]"
+                          cachedDataType="wstr"
+                          cachedLength="12"
+                          cachedName="Term-ID"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Term_ID]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Term-ID]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Pay-days]"
+                          cachedDataType="i4"
+                          cachedName="Pay-days"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Pay_days]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Pay-days]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Pay-fixed]"
+                          cachedDataType="bool"
+                          cachedName="Pay-fixed"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Pay_fixed]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Pay-fixed]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Pay-months]"
+                          cachedDataType="i4"
+                          cachedName="Pay-months"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Pay_months]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Pay-months]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Disc-%]"
+                          cachedDataType="numeric"
+                          cachedName="Disc-%"
+                          cachedPrecision="17"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Disc_%]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Disc-%]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Disc-days]"
+                          cachedDataType="i4"
+                          cachedName="Disc-days"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Disc_days]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Disc-days]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Disc-fixed]"
+                          cachedDataType="bool"
+                          cachedName="Disc-fixed"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Disc_fixed]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Disc-fixed]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Disc-months]"
+                          cachedDataType="i4"
+                          cachedName="Disc-months"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Disc_months]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Disc-months]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Is-revolving]"
+                          cachedDataType="bool"
+                          cachedName="Is-revolving"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Is_revolving]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Is-revolving]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Cut-off]"
+                          cachedDataType="i4"
+                          cachedName="Cut-off"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Cut_off]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Cut-off]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Is-multiple]"
+                          cachedDataType="bool"
+                          cachedName="Is-multiple"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Is_multiple]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Is-multiple]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Validate-pick]"
+                          cachedDataType="bool"
+                          cachedName="Validate-pick"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Validate_pick]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Validate-pick]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Collect-fixed]"
+                          cachedDataType="bool"
+                          cachedName="Collect-fixed"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Collect_fixed]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Collect-fixed]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Collect-days]"
+                          cachedDataType="i4"
+                          cachedName="Collect-days"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Collect_days]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Collect-days]" />
+                        <inputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].Columns[Collect-months]"
+                          cachedDataType="i4"
+                          cachedName="Collect-months"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Collect_months]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Collect-months]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Term_ID]"
+                          dataType="wstr"
+                          length="12"
+                          name="Term_ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Pay_days]"
+                          dataType="i4"
+                          name="Pay_days" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Pay_fixed]"
+                          dataType="bool"
+                          name="Pay_fixed" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Pay_months]"
+                          dataType="i4"
+                          name="Pay_months" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Disc_%]"
+                          dataType="numeric"
+                          name="Disc_%"
+                          precision="17"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Disc_days]"
+                          dataType="i4"
+                          name="Disc_days" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Disc_fixed]"
+                          dataType="bool"
+                          name="Disc_fixed" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Disc_months]"
+                          dataType="i4"
+                          name="Disc_months" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Is_revolving]"
+                          dataType="bool"
+                          name="Is_revolving" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Cut_off]"
+                          dataType="i4"
+                          name="Cut_off" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Is_multiple]"
+                          dataType="bool"
+                          name="Is_multiple" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Validate_pick]"
+                          dataType="bool"
+                          name="Validate_pick" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                          dataType="bool"
+                          name="Cod" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Collect_fixed]"
+                          dataType="bool"
+                          name="Collect_fixed" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Collect_days]"
+                          dataType="i4"
+                          name="Collect_days" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input].ExternalColumns[Collect_months]"
+                          dataType="i4"
+                          name="Collect_months" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Extracts data from a relational database by using a .NET provider."
+                  name="trax credit terms"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"PUB"."credit-term"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      connectionManagerRefId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Term-ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Term-ID]"
+                          length="12"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Term-ID]"
+                          name="Term-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Description]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          length="40"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Pay-days]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Pay-days]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Pay-days]"
+                          name="Pay-days"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Pay-fixed]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Pay-fixed]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Pay-fixed]"
+                          name="Pay-fixed"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Pay-months]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Pay-months]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Pay-months]"
+                          name="Pay-months"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Disc-%]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Disc-%]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Disc-%]"
+                          name="Disc-%"
+                          precision="17"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Disc-days]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Disc-days]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Disc-days]"
+                          name="Disc-days"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Disc-fixed]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Disc-fixed]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Disc-fixed]"
+                          name="Disc-fixed"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Disc-months]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Disc-months]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Disc-months]"
+                          name="Disc-months"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Is-revolving]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Is-revolving]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Is-revolving]"
+                          name="Is-revolving"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Cut-off]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Cut-off]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Cut-off]"
+                          name="Cut-off"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Is-multiple]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Is-multiple]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Is-multiple]"
+                          name="Is-multiple"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Validate-pick]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Validate-pick]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Validate-pick]"
+                          name="Validate-pick"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Cod]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Cod]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Cod]"
+                          name="Cod"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Collect-fixed]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Collect-fixed]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Collect-fixed]"
+                          name="Collect-fixed"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Collect-days]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Collect-days]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Collect-days]"
+                          name="Collect-days"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Collect-months]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Collect-months]"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].Columns[Collect-months]"
+                          name="Collect-months"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Term-ID]"
+                          dataType="wstr"
+                          length="12"
+                          name="Term-ID" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Pay-days]"
+                          dataType="i4"
+                          name="Pay-days" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Pay-fixed]"
+                          dataType="bool"
+                          name="Pay-fixed" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Pay-months]"
+                          dataType="i4"
+                          name="Pay-months" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Disc-%]"
+                          dataType="numeric"
+                          name="Disc-%"
+                          precision="17"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Disc-days]"
+                          dataType="i4"
+                          name="Disc-days" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Disc-fixed]"
+                          dataType="bool"
+                          name="Disc-fixed" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Disc-months]"
+                          dataType="i4"
+                          name="Disc-months" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Is-revolving]"
+                          dataType="bool"
+                          name="Is-revolving" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Cut-off]"
+                          dataType="i4"
+                          name="Cut-off" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Is-multiple]"
+                          dataType="bool"
+                          name="Is-multiple" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Validate-pick]"
+                          dataType="bool"
+                          name="Validate-pick" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Cod]"
+                          dataType="bool"
+                          name="Cod" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Collect-fixed]"
+                          dataType="bool"
+                          name="Collect-fixed" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Collect-days]"
+                          dataType="i4"
+                          name="Collect-days" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output].ExternalColumns[Collect-months]"
+                          dataType="i4"
+                          name="Collect-months" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Term-ID]"
+                          dataType="wstr"
+                          length="12"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Term-ID]"
+                          name="Term-ID" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Pay-days]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Pay-days]"
+                          name="Pay-days" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Pay-fixed]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Pay-fixed]"
+                          name="Pay-fixed" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Pay-months]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Pay-months]"
+                          name="Pay-months" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Disc-%]"
+                          dataType="numeric"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Disc-%]"
+                          name="Disc-%"
+                          precision="17"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Disc-days]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Disc-days]"
+                          name="Disc-days" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Disc-fixed]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Disc-fixed]"
+                          name="Disc-fixed" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Disc-months]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Disc-months]"
+                          name="Disc-months" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Is-revolving]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Is-revolving]"
+                          name="Is-revolving" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Cut-off]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Cut-off]"
+                          name="Cut-off" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Is-multiple]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Is-multiple]"
+                          name="Is-multiple" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Validate-pick]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Validate-pick]"
+                          name="Validate-pick" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Cod]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Cod]"
+                          name="Cod" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Collect-fixed]"
+                          dataType="bool"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Collect-fixed]"
+                          name="Collect-fixed" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Collect-days]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Collect-days]"
+                          name="Collect-days" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Collect-months]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[Collect-months]"
+                          name="Collect-months" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task.Paths[ADO NET Source Output]"
+                  endId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms.Outputs[ADO NET Source Output]" />
+                <path
+                  refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task.Paths[Derived Column Output]"
+                  endId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{01DE6EA0-2E65-47DC-8F3F-6C42D52216CE}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BDB5DF38-4915-4ED0-B949-D1F743E09475}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 0,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'CREDIT_TERM'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Execute SQL Task 1"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{526D2B6B-429C-4171-946B-9A21D0143947}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task 1"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BDB5DF38-4915-4ED0-B949-D1F743E09475}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 1,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'CREDIT_TERM'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\TRUNCATE TABLE CREDIT_TERM"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F785C306-86A7-408D-84ED-7BAF734FD019}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE TABLE CREDIT_TERM"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BDB5DF38-4915-4ED0-B949-D1F743E09475}"
+              SQLTask:SqlStatementSource="truncate table crmstaging.dbo.credit_term" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{C511EC66-6BFB-436D-B594-C1B2B674FEA2}"
+          DTS:From="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\TRUNCATE TABLE CREDIT_TERM"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{A49C5E9C-77B9-4C6E-B228-0F7AC8980F8A}"
+          DTS:From="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Execute SQL Task 1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{DF5C1960-4912-43C4-9D54-689590536F16}"
+          DTS:From="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Execute SQL Task"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{AB068C79-DF51-4881-BFCB-206422223EFA}"
+      DTS:From="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{A031E40F-5351-405A-8F7D-2D0C4B2B9168}"
+      DTS:From="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{81C3C3A5-4931-487E-AA9B-3E5DB3084100}"
+      DTS:From="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Evento Correcto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="17.4716981132075,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="7.54716981132077,142.283018867924" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="85.3584905660377,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-9.92452830188682,89.8867924528302"
+              Start="0,0"
+              End="-9.92452830188682,82.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-9.92452830188682,44.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-9.92452830188682,82.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="161,193"
+          Size="161,237"
+          Id="Package\Evento Correcto"
+          TopLeft="304.518867924528,394.820754716981" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task"
+          TopLeft="33.9622641509434,100.77358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\TRUNCATE TABLE CREDIT_TERM"
+          TopLeft="37.8490566037736,16.8867924528302" />
+        <EdgeLayout
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV.PrecedenceConstraints[Constraint]"
+          TopLeft="105.735849056604,60.811320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-3.88679245283026,39.9622641509434"
+              Start="0,0"
+              End="-3.88679245283026,32.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-3.88679245283026,19.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-3.88679245283026,32.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="237,176"
+          Size="237,220"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV"
+          TopLeft="448.820754716981,15.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task"
+          TopLeft="38.8301886792453,112.77358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Execute SQL Task"
+          TopLeft="225.622641509434,113.754716981132" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Execute SQL Task 1"
+          TopLeft="34,196.622641509434" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\TRUNCATE TABLE CREDIT_TERM"
+          TopLeft="38.7169811320755,8.9245283018868" />
+        <EdgeLayout
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD.PrecedenceConstraints[Constraint]"
+          TopLeft="106.603773584906,52.8490566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.113207547169807,59.9245283018868"
+              Start="0,0"
+              End="0.113207547169807,52.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.9622641509434" />
+                  <mssgle:LineSegment
+                    End="0.113207547169807,29.9622641509434" />
+                  <mssgle:LineSegment
+                    End="0.113207547169807,52.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD.PrecedenceConstraints[Constraint 1]"
+          TopLeft="106.716981132075,156.698113207547">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-4.83018867924528,39.9245283018868"
+              Start="0,0"
+              End="-4.83018867924528,32.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-4.83018867924528,19.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-4.83018867924528,32.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD.PrecedenceConstraints[Constraint 2]"
+          TopLeft="174.603773584906,134.735849056604">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="51.0188679245283,0.98113207547172"
+              Start="0,0"
+              End="43.5188679245283,0.98113207547172">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="25.5094339622642,0" />
+                  <mssgle:LineSegment
+                    End="25.5094339622642,0.98113207547172" />
+                  <mssgle:LineSegment
+                    End="43.5188679245283,0.98113207547172" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="10.2680863060142,-19.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="372,264"
+          Size="372,308"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="377.009433962264,159.575471698113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="71.811320754717,-34.2641509433962"
+              Start="0,0"
+              End="64.311320754717,-34.2641509433962">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="35.8867924528302,0" />
+                  <mssgle:LineSegment
+                    End="35.8867924528302,-34.2641509433962" />
+                  <mssgle:LineSegment
+                    End="64.311320754717,-34.2641509433962" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="191.235849056604,313.650943396226">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="172.905660377358,81.1698113207547"
+              Start="0,0"
+              End="172.905660377358,73.6698113207547">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.566037735849" />
+                  <mssgle:LineSegment
+                    End="172.905660377358,40.566037735849" />
+                  <mssgle:LineSegment
+                    End="172.905660377358,73.6698113207547" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="608.707547169811,235.160377358491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-203.056603773585,159.660377358491"
+              Start="0,0"
+              End="-203.056603773585,152.160377358491">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,119.735849056604" />
+                  <mssgle:LineSegment
+                    End="-203.056603773585,119.735849056604" />
+                  <mssgle:LineSegment
+                    End="-203.056603773585,152.160377358491" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Derived Column"
+          TopLeft="13.4622641509434,179.198113207547" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDVLP CREDIT_TERM"
+          TopLeft="6.48113207547171,266.103773584906" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\S1CRMDB CREDIT_TERM"
+          TopLeft="18.4433962264151,5.5" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task\Data Conversion"
+          TopLeft="5.5,93.3490566037736" />
+        <EdgeLayout
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="81.3490566037736,223.122641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-6.98113207547169,42.9811320754717"
+              Start="0,0"
+              End="-6.98113207547169,35.4811320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.4716981132076" />
+                  <mssgle:LineSegment
+                    End="-6.98113207547169,21.4716981132076" />
+                  <mssgle:LineSegment
+                    End="-6.98113207547169,35.4811320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task.Paths[Data Conversion Output]"
+          TopLeft="73.3867924528302,137.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="7.96226415094338,41.9245283018868"
+              Start="0,0"
+              End="7.96226415094338,34.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.9433962264151" />
+                  <mssgle:LineSegment
+                    End="7.96226415094338,20.9433962264151" />
+                  <mssgle:LineSegment
+                    End="7.96226415094338,34.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO DEV\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="86.3301886792453,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-12.9433962264151,43.9245283018868"
+              Start="0,0"
+              End="-12.9433962264151,36.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-12.9433962264151,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-12.9433962264151,36.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\s1crmdb credit_term"
+          TopLeft="5.5,177.198113207547" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\trax credit terms"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task\Derived Column"
+          TopLeft="8.48113207547169,89.3490566037736" />
+        <EdgeLayout
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task.Paths[ADO NET Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="2.98113207547169,39.9245283018868"
+              Start="0,0"
+              End="2.98113207547169,32.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.9622641509434" />
+                  <mssgle:LineSegment
+                    End="2.98113207547169,19.9622641509434" />
+                  <mssgle:LineSegment
+                    End="2.98113207547169,32.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD CREDIT_TERMS FROM TRAX TO PROD\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="76.3679245283019,133.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-2.98113207547169,43.9245283018868"
+              Start="0,0"
+              End="-2.98113207547169,36.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-2.98113207547169,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-2.98113207547169,36.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2558 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/5/2014 1:16:59 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\xcoycuca"
+  DTS:DTSID="{5665B072-7CE1-432E-BEED-DA9542917726}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DWH - 905 - AP_BEMA"
+  DTS:PackageType="5"
+  DTS:VersionBuild="72"
+  DTS:VersionGUID="{A6FB2696-60B1-4AEA-BB37-61DB03B73790}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser16]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{D927DB66-0AFA-4683-A2F4-7D089D91360E}"
+      DTS:ObjectName="INTCOMEX_DWH.dwhuser16">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Etluser;Dsn=IQ16;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACvupuUlav8Dz+A/rRrLk8nAAAAAASAAACgAAAAEAAAABZZ39iu1iw9RSAi27gPPc0YAAAA0ngHWawsiJDe+RC7pP1vjwPOaQ1YmVTEFAAAALYLYs8g31yMyIa+cHNd6Q1Bv4g9</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package4-{E1EF6B35-033A-4488-9637-9DFC49857508}sqldvlp2.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{83FBEF48-7267-460A-8362-ECEA8D899AB6}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[xcl-bema2.Bema_Stgo_2013]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C572B4F1-E329-4875-B351-6B2457E9AE82}"
+      DTS:ObjectName="xcl-bema2.Bema_Stgo_2013">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=xcl-bema2;User ID=sistemas;Initial Catalog=Bema_Stgo_2013;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package4-{9E408781-DB5D-4612-9086-F2CF9CA08B10}192.168.23.91.Bema_Stgo_2013.SA;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADETnMjFM4OVqpxyKrlisI1AAAAAASAAACgAAAAEAAAANVo3atkjFPsfcJXkZBaS7kYAAAA9hEgtalAPBHxx1MdwJJgqXkscQXg/zCwFAAAAK5HlWzFH4U7d7KMLHO37C0iswxE</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;xcl-bema2.Bema_Stgo_2013&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{5E5914C1-E1C2-4E59-AA6F-3A0E2D7396A2}"
+      DTS:ObjectName="xcl-bema2 Bema_Stgo_2013" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;INTCOMEX_DWH.dwhuser16&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{6F8B8FEC-A29A-43D5-8EAB-9AA9FA907DD0}"
+      DTS:ObjectName="INTCOMEX_DWH dwhuser16" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FA82E42C-70C9-4CBD-AB71-419C905F0B0B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VInt_Ejecucion">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{81FF5239-B78D-4A25-A1AB-6CE1F636A245}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VInt_Tipo_Ejecucion">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{477D292B-3329-4445-A8B3-9A8D5BF7AC77}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5B51AECC-D111-4BAA-8093-B31C0F4F3EEA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{20CEE79E-3EA4-49E3-A305-FA428DD7B42F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{63E24FF7-6538-4756-804A-8E94B812E183}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\A- EXECUTION_CONTROL"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0DE46F0B-0969-4D7E-90DD-1A5A02C05ECF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="A- EXECUTION_CONTROL"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">" Declare @Ejecucion int  IF (Select Ejecucion From ETL.Log_Ejecucion where Paquete = '"+@[System::PackageName]+"')= 0 Set @Ejecucion=1 Else  Set @Ejecucion=0 select @ejecucion"</DTS:PropertyExpression>
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\A- EXECUTION_CONTROL.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{76F4513F-270D-4CC8-9BE1-A8663E3E5DD6}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{954975CC-BDB3-40A4-BFF0-C004CE219EF3}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\A- EXECUTION_CONTROL.EventHandlers[OnError]\A- EXECUTION_CONTROL"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{EF0A4279-6863-403B-8C16-5F12556E9CCE}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="A- EXECUTION_CONTROL"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+
+
+ERROR_DESCRIPTION=?,
+
+
+END_EXECUTION=GETDATE()
+
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                  SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA;&#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='DWH - 905 - AP_BEMA'&#xA;&#xA;&#xA;AND NAME_TASK ='A- EXECUTION_CONTROL'&#xA;&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\A- EXECUTION_CONTROL.EventHandlers[OnPostExecute]"
+          DTS:CreationName="OnPostExecute"
+          DTS:DTSID="{D9CD4045-C7BC-451D-994C-C8AA8F211857}"
+          DTS:EventID="0"
+          DTS:EventName="OnPostExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{365F54AB-6C9F-4194-A68C-6E11B83BC85C}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\A- EXECUTION_CONTROL.EventHandlers[OnPostExecute]\A- EXECUTION_CONTROL"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{9F3A4315-3CBE-45F9-A0CF-1F3ABAE90497}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="A- EXECUTION_CONTROL"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                  SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='DWH - 905 - AP_BEMA'&#xA;AND NAME_TASK ='A- EXECUTION_CONTROL'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\A- EXECUTION_CONTROL.EventHandlers[OnPreExecute]"
+          DTS:CreationName="OnPreExecute"
+          DTS:DTSID="{E11BE5A0-7993-4F03-AAB3-8B99115C4AD0}"
+          DTS:EventID="0"
+          DTS:EventName="OnPreExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{259E5882-21CE-4F64-8453-C12499B1198A}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\A- EXECUTION_CONTROL.EventHandlers[OnPreExecute]\A- EXECUTION_CONTROL"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{71415D32-5044-4BE3-98CF-6EA1823D80C8}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="A- EXECUTION_CONTROL"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"',
+
+CASE WHEN "+ (DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=0 THEN 'I'
+          
+
+WHEN "+(DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=1 THEN 'F'
+
+ELSE 'ERROR'
+ END,
+1,
+GETDATE()"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                  SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'DWH - 905 - AP_BEMA',&#xA;'A- EXECUTION_CONTROL',&#xA;&#xA;CASE WHEN 1=0 THEN 'I'&#xA;          &#xA;&#xA;WHEN 1=1 THEN 'F'&#xA;&#xA;ELSE 'ERROR'&#xA; END,&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+          SQLTask:SqlStatementSource=" Declare @Ejecucion int  IF (Select Ejecucion From ETL.Log_Ejecucion where Paquete = 'DWH - 905 - AP_BEMA')= 0 Set @Ejecucion=1 Else  Set @Ejecucion=0 select @ejecucion"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::VInt_Ejecucion" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C175AFB9-FB2D-42B2-A261-6A8502FC0C8C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="B - TASK_HOME_ B-DWH_403_SALES_ORDERS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 1, Fecha_inicio = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{65AD4DEA-56EE-4F13-9766-1172804A5D4F}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{5377CE04-1F30-4A1E-8E8B-2A1AA87232ED}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS.EventHandlers[OnError]\B - TASK_HOME_ B-DWH_403_SALES_ORDERS"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{2970812A-EE3A-4399-BD7D-1667ABE4318D}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="B - TASK_HOME_ B-DWH_403_SALES_ORDERS"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+
+
+ERROR_DESCRIPTION=?,
+
+
+END_EXECUTION=GETDATE()
+
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                  SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA;&#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='DWH - 905 - AP_BEMA'&#xA;&#xA;&#xA;AND NAME_TASK ='B - TASK_HOME_ B-DWH_403_SALES_ORDERS'&#xA;&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS.EventHandlers[OnPostExecute]"
+          DTS:CreationName="OnPostExecute"
+          DTS:DTSID="{8CEEFD75-7406-4C4C-8E70-3A19BD798C98}"
+          DTS:EventID="0"
+          DTS:EventName="OnPostExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{70EA0900-0CF6-49DE-90B3-4FE6CA907078}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS.EventHandlers[OnPostExecute]\B - TASK_HOME_ B-DWH_403_SALES_ORDERS"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{09FEFC22-2935-4BDD-A181-ADF6E63430A1}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="B - TASK_HOME_ B-DWH_403_SALES_ORDERS"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                  SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='DWH - 905 - AP_BEMA'&#xA;AND NAME_TASK ='B - TASK_HOME_ B-DWH_403_SALES_ORDERS'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS.EventHandlers[OnPreExecute]"
+          DTS:CreationName="OnPreExecute"
+          DTS:DTSID="{EC779C9E-CE78-4FF8-9614-829D3228AC17}"
+          DTS:EventID="0"
+          DTS:EventName="OnPreExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{9D606E31-DFCA-43C7-9314-F5491A49C086}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS.EventHandlers[OnPreExecute]\B - TASK_HOME_ B-DWH_403_SALES_ORDERS"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{C18E4F5E-0F9E-4A49-BE02-5CE7398F72E8}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="B - TASK_HOME_ B-DWH_403_SALES_ORDERS"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"',
+
+CASE WHEN "+ (DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=0 THEN 'I'
+          
+
+WHEN "+(DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=1 THEN 'F'
+
+ELSE 'ERROR'
+ END,
+1,
+GETDATE()"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                  SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'DWH - 905 - AP_BEMA',&#xA;'B - TASK_HOME_ B-DWH_403_SALES_ORDERS',&#xA;&#xA;CASE WHEN 1=0 THEN 'I'&#xA;          &#xA;&#xA;WHEN 1=1 THEN 'F'&#xA;&#xA;ELSE 'ERROR'&#xA; END,&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+          SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 1, Fecha_inicio = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DATALOAD_SERVER_CHILE"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{88540569-295A-4921-91E7-77AC5290D59C}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DATALOAD_SERVER_CHILE">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\DATALOAD_SERVER_CHILE\LOAD_DATA_TO_STG_BEMA_EXTRACTION"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{36A42D3C-157C-407C-BE93-5E8E44DF6EFE}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOAD_DATA_TO_STG_BEMA_EXTRACTION"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C572B4F1-E329-4875-B351-6B2457E9AE82}"
+              SQLTask:SqlStatementSource="/*  &#xA;insert into STG_BEMA_EXTRACTION&#xA;exec pr_bema_reporte_bemas_por_cobrar_resumen_marca_data @av_responsable = 'DANIEL' &#xA;*/&#xA;&#xA;insert into STG_BEMA_EXTRACTION (marca,des_marca,saldo,saldo_dia, [saldo_15_30],[saldo_31_60],[saldo_61_90],[saldo_90_180])&#xA;exec pr_bema_reporte_bemas_por_cobrar_resumen_marca_data @av_responsable = 'DANIEL'&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\DATALOAD_SERVER_CHILE\TRUNCATE_TABLE_STG_BEMA_EXTRACTION"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4D0A3AF5-B480-48F7-BF14-23D5100C88E0}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE_TABLE_STG_BEMA_EXTRACTION"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C572B4F1-E329-4875-B351-6B2457E9AE82}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE STG_BEMA_EXTRACTION" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\DATALOAD_SERVER_CHILE.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{87E702F0-79C9-4CA6-9257-E64B14488630}"
+          DTS:From="Package\DATALOAD_SERVER_CHILE\TRUNCATE_TABLE_STG_BEMA_EXTRACTION"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\DATALOAD_SERVER_CHILE\LOAD_DATA_TO_STG_BEMA_EXTRACTION" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DATA_SQL_S5SQLUS"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{0F965EB1-4678-4F98-B8AB-E05C2102D16A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DATA_SQL_S5SQLUS">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{0E99717B-4303-451C-8DA3-9B8946AEE0D2}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DATALOAD_STG_BEMA_STGO_2013"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="EXTRACT_TO_CHILE"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[STG_BEMA_EXTRACTION]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[xcl-bema2.Bema_Stgo_2013]"
+                      connectionManagerRefId="Package.ConnectionManagers[xcl-bema2.Bema_Stgo_2013]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[marca]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[marca]"
+                          length="4"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[marca]"
+                          name="marca"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[des_marca]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[des_marca]"
+                          length="100"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[des_marca]"
+                          name="des_marca"
+                          truncationRowDisposition="IgnoreFailure" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo]"
+                          name="saldo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_dia]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_dia]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_dia]"
+                          name="saldo_dia"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_15_30]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_15_30]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_15_30]"
+                          name="saldo_15_30"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_31_60]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_31_60]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_31_60]"
+                          name="saldo_31_60"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_61_90]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_61_90]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_61_90]"
+                          name="saldo_61_90"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_90_180]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_90_180]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_90_180]"
+                          name="saldo_90_180"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_181_360]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_181_360]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_181_360]"
+                          name="saldo_181_360"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_361_mas]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_361_mas]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_361_mas]"
+                          name="saldo_361_mas"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[marca]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="marca" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[des_marca]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="des_marca" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo]"
+                          dataType="cy"
+                          name="saldo" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_dia]"
+                          dataType="cy"
+                          name="saldo_dia" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_15_30]"
+                          dataType="cy"
+                          name="saldo_15_30" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_31_60]"
+                          dataType="cy"
+                          name="saldo_31_60" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_61_90]"
+                          dataType="cy"
+                          name="saldo_61_90" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_90_180]"
+                          dataType="cy"
+                          name="saldo_90_180" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_181_360]"
+                          dataType="cy"
+                          name="saldo_181_360" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].ExternalColumns[saldo_361_mas]"
+                          dataType="cy"
+                          name="saldo_361_mas" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[marca]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[marca]"
+                          name="marca" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[des_marca]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[des_marca]"
+                          name="des_marca" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo]"
+                          dataType="cy"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo]"
+                          name="saldo" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_dia]"
+                          dataType="cy"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_dia]"
+                          name="saldo_dia" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_15_30]"
+                          dataType="cy"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_15_30]"
+                          name="saldo_15_30" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_31_60]"
+                          dataType="cy"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_31_60]"
+                          name="saldo_31_60" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_61_90]"
+                          dataType="cy"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_61_90]"
+                          name="saldo_61_90" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_90_180]"
+                          dataType="cy"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_90_180]"
+                          name="saldo_90_180" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_181_360]"
+                          dataType="cy"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_181_360]"
+                          name="saldo_181_360" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_361_mas]"
+                          dataType="cy"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[saldo_361_mas]"
+                          name="saldo_361_mas" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="LOAD_STG_BEMA_2013"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[STG_BEMA_STGO_2013]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].Columns[marca]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="marca"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[marca]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[marca]" />
+                        <inputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].Columns[des_marca]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="des_marca"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[des_marca]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[des_marca]" />
+                        <inputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].Columns[saldo]"
+                          cachedDataType="cy"
+                          cachedName="saldo"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo]" />
+                        <inputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].Columns[saldo_dia]"
+                          cachedDataType="cy"
+                          cachedName="saldo_dia"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_dia]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_dia]" />
+                        <inputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].Columns[saldo_15_30]"
+                          cachedDataType="cy"
+                          cachedName="saldo_15_30"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_15_30]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_15_30]" />
+                        <inputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].Columns[saldo_31_60]"
+                          cachedDataType="cy"
+                          cachedName="saldo_31_60"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_31_60]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_31_60]" />
+                        <inputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].Columns[saldo_61_90]"
+                          cachedDataType="cy"
+                          cachedName="saldo_61_90"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_61_90]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_61_90]" />
+                        <inputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].Columns[saldo_90_180]"
+                          cachedDataType="cy"
+                          cachedName="saldo_90_180"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_90_180]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_90_180]" />
+                        <inputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].Columns[saldo_181_360]"
+                          cachedDataType="cy"
+                          cachedName="saldo_181_360"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_181_360]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_181_360]" />
+                        <inputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].Columns[saldo_361_mas]"
+                          cachedDataType="cy"
+                          cachedName="saldo_361_mas"
+                          externalMetadataColumnId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_361_mas]"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output].Columns[saldo_361_mas]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[marca]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="marca" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[des_marca]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          name="des_marca" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo]"
+                          dataType="cy"
+                          name="saldo" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_dia]"
+                          dataType="cy"
+                          name="saldo_dia" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_15_30]"
+                          dataType="cy"
+                          name="saldo_15_30" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_31_60]"
+                          dataType="cy"
+                          name="saldo_31_60" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_61_90]"
+                          dataType="cy"
+                          name="saldo_61_90" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_90_180]"
+                          dataType="cy"
+                          name="saldo_90_180" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_181_360]"
+                          dataType="cy"
+                          name="saldo_181_360" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[saldo_361_mas]"
+                          dataType="cy"
+                          name="saldo_361_mas" />
+                        <externalMetadataColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013.Paths[OLE DB Source Output]"
+                  endId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\DATA_SQL_S5SQLUS\TRUNCATE_TABLE_STG_BEMA_STGO_2013"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E7ED6700-4611-49A7-9F03-30C25A5C9FFB}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE_TABLE_STG_BEMA_STGO_2013"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE STG_BEMA_STGO_2013" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\DATA_SQL_S5SQLUS.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{505E64F9-1B90-47DF-8A41-E17DF3B38334}"
+          DTS:From="Package\DATA_SQL_S5SQLUS\TRUNCATE_TABLE_STG_BEMA_STGO_2013"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SP IQ16"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{F485677D-697E-47E1-AEE6-9E9C7914F2C9}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SP IQ16">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SP IQ16\exec dwhuser dw_dataload_fact_ap_bema"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{775C4CE7-806D-4824-8883-6CCA8D5DB026}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="exec dwhuser dw_dataload_fact_ap_bema"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D927DB66-0AFA-4683-A2F4-7D089D91360E}"
+              SQLTask:SqlStatementSource="exec &quot;dwhuser&quot;.&quot;dw_dataload_fact_ap_bema&quot;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\X -RESET_PROCESS_VARIABLE"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{36A55470-CCAA-4EF7-973B-2A425B990E33}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="X -RESET_PROCESS_VARIABLE">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="RESET VARIABLE EXECUTION"
+          DTS:DTSID="{F3025B99-8B47-46BF-8C67-FA13646FFB53}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="RESET  PROCESS VARIABLE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{CAED3B30-9D15-4EEF-A16C-586E8D22DEC9}"
+              DTS:EventID="0"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{4F137652-C591-43E1-9029-956B4BA83F93}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnError]\RESET  PROCESS VARIABLE"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{CC7278DF-6E56-44D5-8882-07A3300A809F}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="RESET  PROCESS VARIABLE"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+ 
+
+ERROR_DESCRIPTION=?,
+
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                      SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA; &#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='DWH - 905 - AP_BEMA'&#xA;&#xA;AND NAME_TASK ='RESET  PROCESS VARIABLE'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="System::ErrorDescription"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPostExecute]"
+              DTS:CreationName="OnPostExecute"
+              DTS:DTSID="{1E7DABF1-3F7D-4292-9EC0-423AE862FE13}"
+              DTS:EventID="0"
+              DTS:EventName="OnPostExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{161CE25F-08A0-47C9-BB38-080AF6A54F0A}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPostExecute]\RESET  PROCESS VARIABLE"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{C395998D-1A8E-4120-ADD1-59A51E9E9C67}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="RESET  PROCESS VARIABLE"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                      SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='DWH - 905 - AP_BEMA'&#xA;AND NAME_TASK ='RESET  PROCESS VARIABLE'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{F854ECC3-04BE-42B5-AB39-0029BBF2D817}"
+              DTS:EventID="0"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{B1DD21C6-0A31-4D93-A14D-92A95A52B610}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPreExecute]\RESET  PROCESS VARIABLE"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{3336BE74-D512-43F6-AB4B-2E544807B742}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="RESET  PROCESS VARIABLE"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"',
+
+CASE WHEN "+ (DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=0 THEN 'I'
+          
+
+WHEN "+(DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=1 THEN 'F'
+
+ELSE 'ERROR'
+ END,
+1,
+GETDATE()"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                      SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'DWH - 905 - AP_BEMA',&#xA;'RESET  PROCESS VARIABLE',&#xA;&#xA;CASE WHEN 1=0 THEN 'I'&#xA;          &#xA;&#xA;WHEN 1=1 THEN 'F'&#xA;&#xA;ELSE 'ERROR'&#xA; END,&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+              SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Z - Correct Event"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Send Mail  Correct Event"
+      DTS:DTSID="{6B58A40E-0ABC-4B99-9A24-13F49D1FBAD1}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Z - Correct Event">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Z - Correct Event"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C7C27E3D-8479-4E48-A721-D8511CF656A4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se a ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+              SQLTask:SqlStatementSource="Select  'Se a ejecutado  el Paquete DWH - 905 - AP_BEMA  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{12D9B2B5-FEF3-426B-A842-179ACBA00E8A}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEND_MAIL_TASK"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{4FC05442-0D93-4EEE-BD24-2495F67577DE}"
+              DTS:EventID="0"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{874E3877-F63B-4A18-AA7A-D710C6A49092}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnError]\SEND_MAIL_TASK"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{F7DEC1ED-D94E-4FDE-9271-D808727A45E0}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="SEND_MAIL_TASK"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+ 
+
+ERROR_DESCRIPTION=?,
+
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                      SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA; &#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='DWH - 905 - AP_BEMA'&#xA;&#xA;AND NAME_TASK ='SEND_MAIL_TASK'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="System::ErrorDescription"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPostExecute]"
+              DTS:CreationName="OnPostExecute"
+              DTS:DTSID="{84C1A1CE-12D7-48D5-B920-2904A4D15C5C}"
+              DTS:EventID="2097267"
+              DTS:EventName="OnPostExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{30DEF04C-FAEE-4B76-BAF7-589D959E413C}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPostExecute]\SEND_MAIL_TASK"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{3207FF93-57AD-42A4-BFCE-D83E245BB081}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="SEND_MAIL_TASK"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                      SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='DWH - 905 - AP_BEMA'&#xA;AND NAME_TASK ='SEND_MAIL_TASK'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{4924731C-A280-4959-A21B-0CD6814D95B7}"
+              DTS:EventID="2097267"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{4E41B7B6-E10F-43F7-A7BB-A9781D2D1795}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPreExecute]\SEND_MAIL_TASK"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{2DD567D5-21E6-42AC-B1D1-3A33FDC9334D}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="SEND_MAIL_TASK"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"',
+
+CASE WHEN "+ (DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=0 THEN 'I'
+          
+
+WHEN "+(DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=1 THEN 'F'
+
+ELSE 'ERROR'
+ END,
+1,
+GETDATE()"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                      SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'DWH - 905 - AP_BEMA',&#xA;'SEND_MAIL_TASK',&#xA;&#xA;CASE WHEN 1=0 THEN 'I'&#xA;          &#xA;&#xA;WHEN 1=1 THEN 'F'&#xA;&#xA;ELSE 'ERROR'&#xA; END,&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{83FBEF48-7267-460A-8362-ECEA8D899AB6}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :DWH - 905 - AP_BEMA" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{CBF72676-4079-4492-A1AD-5974191D9CC2}"
+          DTS:From="Package\Z - Correct Event\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Z - Correct Event\SEND_MAIL_TASK" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7DA176C0-9057-45D7-84EE-4527FDEF3460}"
+      DTS:From="Package\A- EXECUTION_CONTROL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{8095F54F-7856-4548-A562-AF3D980ADCA7}"
+      DTS:From="Package\DATALOAD_SERVER_CHILE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\DATA_SQL_S5SQLUS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{E02CC044-A56B-413B-9261-15418E0C3BF4}"
+      DTS:From="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\DATALOAD_SERVER_CHILE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{39A707AA-C10E-4F31-AA83-7216713720BB}"
+      DTS:From="Package\X -RESET_PROCESS_VARIABLE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Z - Correct Event" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{EFE51EAC-0D2C-4715-93CE-1CD272B8D261}"
+      DTS:From="Package\DATA_SQL_S5SQLUS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\SP IQ16" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{A3ED8123-4658-4E04-AEA5-3065E263FD25}"
+      DTS:From="Package\SP IQ16"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\X -RESET_PROCESS_VARIABLE" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{94C0BF2B-63E2-4185-BFE6-4D318DC3254C}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{AC4F2F47-1DE4-47FA-8DD4-96DAE017FED3}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Evento Error"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{6BAEC69B-8C84-4A98-A98B-1CC939932729}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Evento Error">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{C473DE07-E373-4F4E-90A3-6D65161581B1}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error\Send error email"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{076F2C0D-C850-41E1-AA8B-128C4805D58A}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send error email"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError]+ @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{83FBEF48-7267-460A-8362-ECEA8D899AB6}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :DWH - 905 - AP_BEMA" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{BF8CFD5A-8B4F-4469-92A6-E13EC0D00413}"
+              DTS:From="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Evento Error\Send error email" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Sequence Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{14D813C1-EB39-41EE-8A43-5180A65FD6DD}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sequence Container">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{0DBC5A4E-6819-4AD0-A819-BEE443A6B888}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tare Evento Fallo"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Tare Evento Fallo"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                  SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion ETL_BOM"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{8E6CB5DE-34E3-49AA-9793-3D7ECB5A9D1B}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tarea de ejecucion ETL_BOM"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{E1EF6B35-033A-4488-9637-9DFC49857508}"
+                  SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{F2F84667-4BFC-490B-B222-0A242B3AE06B}"
+              DTS:From="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion ETL_BOM"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{EAE1ED51-7CDD-4488-8C03-8DCF64FE25F9}"
+          DTS:From="Package.EventHandlers[OnError]\Sequence Container"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Evento Error" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\A- EXECUTION_CONTROL"
+          TopLeft="246.801886792453,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS"
+          TopLeft="246.311320754717,80.0660377358491" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013"
+          TopLeft="17.8867924528303,109.528301886793" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DATA_SQL_S5SQLUS\TRUNCATE_TABLE_STG_BEMA_STGO_2013"
+          TopLeft="18,22.9245283018868" />
+        <EdgeLayout
+          Id="Package\DATA_SQL_S5SQLUS.PrecedenceConstraints[Constraint]"
+          TopLeft="85.8867924528303,66.8490566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.11320754716985,42.6792452830189"
+              Start="0,0"
+              End="-0.11320754716985,35.1792452830189">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.3207547169811" />
+                  <mssgle:LineSegment
+                    End="-0.11320754716985,21.3207547169811" />
+                  <mssgle:LineSegment
+                    End="-0.11320754716985,35.1792452830189" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="194,176"
+          Size="194,220"
+          Id="Package\DATA_SQL_S5SQLUS"
+          TopLeft="216.5,484.820754716981" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DATALOAD_SERVER_CHILE\LOAD_DATA_TO_STG_BEMA_EXTRACTION"
+          TopLeft="14.5283018867924,101.603773584906" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DATALOAD_SERVER_CHILE\TRUNCATE_TABLE_STG_BEMA_EXTRACTION"
+          TopLeft="14.566037735849,13.754716981132" />
+        <EdgeLayout
+          Id="Package\DATALOAD_SERVER_CHILE.PrecedenceConstraints[Constraint 1]"
+          TopLeft="82.4528301886793,57.6792452830188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.0377358490566166,43.9245283018868"
+              Start="0,0"
+              End="-0.0377358490566166,36.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566166,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566166,36.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="167,176"
+          Size="167,220"
+          Id="Package\DATALOAD_SERVER_CHILE"
+          TopLeft="229.896226415094,223.160377358491" />
+        <NodeLayout
+          Size="150,61"
+          Id="Package\SP IQ16\exec dwhuser dw_dataload_fact_ap_bema"
+          TopLeft="13.9622641509434,7.90566037735857" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="175,85"
+          Size="175,129"
+          Id="Package\SP IQ16"
+          TopLeft="216.5,793.21698113208" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE"
+          TopLeft="7.54716981132071,8.47169811320759" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="249,59"
+          Size="249,103"
+          Id="Package\X -RESET_PROCESS_VARIABLE"
+          TopLeft="173.877358490566,1021.21698113208" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\Mensaje"
+          TopLeft="7.54716981132083,8.47169811320759" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\SEND_MAIL_TASK"
+          TopLeft="7.54716981132083,121.792452830189" />
+        <EdgeLayout
+          Id="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          TopLeft="75.433962264151,52.3962264150944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,69.3962264150944"
+              Start="0,0"
+              End="0,61.8962264150944">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.8962264150944" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="163,172"
+          Size="163,216"
+          Id="Package\Z - Correct Event"
+          TopLeft="212.141509433962,1157.21698113208" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="314.688679245283,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.490566037735903,30.6415094339623"
+              Start="0,0"
+              End="-0.490566037735903,23.1415094339623">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.3207547169811" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735903,15.3207547169811" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735903,23.1415094339623" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="313.518867924528,442.820754716981">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.113207547169736,42"
+              Start="0,0"
+              End="-0.113207547169736,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.9811320754717" />
+                  <mssgle:LineSegment
+                    End="-0.113207547169736,20.9811320754717" />
+                  <mssgle:LineSegment
+                    End="-0.113207547169736,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="314.198113207547,123.990566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.679245283018872,99.1698113207547"
+              Start="0,0"
+              End="-0.679245283018872,91.6698113207547">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5849056603774" />
+                  <mssgle:LineSegment
+                    End="-0.679245283018872,49.5849056603774" />
+                  <mssgle:LineSegment
+                    End="-0.679245283018872,91.6698113207547" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="296.009433962264,1124.21698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,33.000000000005"
+              Start="0,0"
+              End="0,25.500000000005">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.500000000005" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="313.5,704.820754716981">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-9.5,88.396226415099"
+              Start="0,0"
+              End="-9.5,80.896226415099">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.1981132075495" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.1981132075495"
+                    Point2="0,44.1981132075495"
+                    Point3="-4,44.1981132075495" />
+                  <mssgle:LineSegment
+                    End="-5.5,44.1981132075495" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.5,44.1981132075495"
+                    Point2="-9.5,44.1981132075495"
+                    Point3="-9.5,48.1981132075495" />
+                  <mssgle:LineSegment
+                    End="-9.5,80.896226415099" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="301.188679245283,922.21698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,98.999999999995"
+              Start="0,0"
+              End="0,91.499999999995">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,91.499999999995" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+          TopLeft="6.83018867924528,27.7924528301887" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Evento Error\Send error email"
+          TopLeft="8.30188679245282,104.660377358491" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+          TopLeft="74.7169811320755,71.7169811320754">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="1.47169811320754,32.9433962264151"
+              Start="0,0"
+              End="1.47169811320754,25.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.4528301886793" />
+                  <mssgle:LineSegment
+                    End="1.47169811320754,16.4528301886793" />
+                  <mssgle:LineSegment
+                    End="1.47169811320754,25.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="158,159.075471698114"
+          Size="158,203"
+          Id="Package.EventHandlers[OnError]\Evento Error"
+          TopLeft="10.4811320754717,319.990566037736" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo"
+          TopLeft="17.3584905660377,125.641509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion ETL_BOM"
+          TopLeft="16.8679245283019,23.3018867924528" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="84.7547169811321,67.2264150943396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.490566037735846,58.4150943396226"
+              Start="0,0"
+              End="0.490566037735846,50.9150943396226">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.2075471698113" />
+                  <mssgle:LineSegment
+                    End="0.490566037735846,29.2075471698113" />
+                  <mssgle:LineSegment
+                    End="0.490566037735846,50.9150943396226" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="168,196.075471698114"
+          Size="168,240"
+          Id="Package.EventHandlers[OnError]\Sequence Container"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="89.6132075471698,245.61320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.301886792452848,74.3773584905661"
+              Start="0,0"
+              End="-0.301886792452848,66.8773584905661">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.1698113207547" />
+                  <mssgle:LineSegment
+                    End="-0.301886792452848,37.1698113207547" />
+                  <mssgle:LineSegment
+                    End="-0.301886792452848,66.8773584905661" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\A- EXECUTION_CONTROL.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\A- EXECUTION_CONTROL.EventHandlers[OnPreExecute]\A- EXECUTION_CONTROL"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\A- EXECUTION_CONTROL.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\A- EXECUTION_CONTROL.EventHandlers[OnPostExecute]\A- EXECUTION_CONTROL"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\A- EXECUTION_CONTROL.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\A- EXECUTION_CONTROL.EventHandlers[OnError]\A- EXECUTION_CONTROL"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS.EventHandlers[OnPreExecute]\B - TASK_HOME_ B-DWH_403_SALES_ORDERS"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS.EventHandlers[OnPostExecute]\B - TASK_HOME_ B-DWH_403_SALES_ORDERS"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\B - TASK_HOME_ B-DWH_403_SALES_ORDERS.EventHandlers[OnError]\B - TASK_HOME_ B-DWH_403_SALES_ORDERS"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013"
+          TopLeft="5.5,112.330188679245" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE"
+          TopLeft="8.48113207547171,5.5" />
+        <EdgeLayout
+          Id="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013.Paths[OLE DB Source Output]"
+          TopLeft="76.3679245283019,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-2.98113207547172,62.9056603773585"
+              Start="0,0"
+              End="-2.98113207547172,55.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-2.98113207547172,31.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-2.98113207547172,55.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\EXTRACT_TO_CHILE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DATA_SQL_S5SQLUS\DATALOAD_STG_BEMA_STGO_2013\LOAD_STG_BEMA_2013">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <DtsEventHandler
+    design-time-name="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPreExecute]\RESET  PROCESS VARIABLE"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPostExecute]\RESET  PROCESS VARIABLE"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnError]\RESET  PROCESS VARIABLE"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPreExecute]\SEND_MAIL_TASK"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPostExecute]\SEND_MAIL_TASK"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnError]\SEND_MAIL_TASK"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

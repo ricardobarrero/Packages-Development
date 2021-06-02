@@ -1,0 +1,1484 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2015 11:06:38 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{8A791522-5AE5-4054-8E64-2A960A6780D2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="WFG – 001 - XAM_MKTG_SOLICITUD_CREDITO"
+  DTS:PackageType="5"
+  DTS:VersionBuild="107"
+  DTS:VersionGUID="{0BF35F6F-F0DE-432D-81B5-B89D38C0FBAE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{A9B5BE94-F114-44CD-B06D-E6BA4F66F81C}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\Intcomex\Shares\SQLPack\Files_Extraction\WFGEN_Mflow\Mflow.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DP_AFFILIATE_CODE"
+              DTS:DTSID="{40F9482F-2D40-4257-AB3A-B37AA62CD362}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="COMPANYID"
+              DTS:DTSID="{EB89C21E-BB52-4586-B21F-5BEBE15F4419}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="REQUEST_DATE"
+              DTS:DTSID="{A600CB1D-E789-466D-B43E-8D759415ADD9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DATE_CLOSE"
+              DTS:DTSID="{280223C4-11F4-4ACF-A64F-453EAC849D0E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="INVOICE_NUMBER"
+              DTS:DTSID="{682E9D82-E56B-46E3-AE9C-0347CB9F8B75}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DATE_OF_INVOICE"
+              DTS:DTSID="{1DC1A5E0-63E7-4177-81B6-57D9FE983248}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="INTCOMEX_SKU"
+              DTS:DTSID="{90CC5E58-69B1-466E-951F-E33BA6ACD581}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="QYT_INVOICED"
+              DTS:DTSID="{2B929E04-BC85-43A7-892C-8C3B5E7E7601}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DP_PRICE_INVOICED"
+              DTS:DTSID="{6F57649F-352A-465D-AE4A-29E6966F9942}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DP_PRICE_INVOICED_EXT"
+              DTS:DTSID="{F6CDFB2B-416B-416F-9612-DAE4955F77D6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DP_FIXED_PRICE"
+              DTS:DTSID="{477BB79C-B811-496F-B364-D3D6E90AEA1D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DP_FIXED_PRICE_EXT"
+              DTS:DTSID="{864D8DFD-6609-4A42-8D3D-F3C077A12240}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DP_DIFFERENCE"
+              DTS:DTSID="{7F6A41E7-FFE6-4827-83EA-17660C933D94}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DIVISION_NAME"
+              DTS:DTSID="{C81BF954-306F-4B6A-87DD-602B8AAE3749}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="REQUEST"
+              DTS:DTSID="{296786EB-47BB-4076-914E-414512E3E16A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Execution_Date"
+              DTS:DTSID="{32E6FFFD-658D-4D48-AF66-BEE07D219BFB}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C5B574AB-4D1F-434D-95B7-B2258C7741DF}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-WFG – 001 - XAM_MKTG_SOLICITUD_CREDITO-{C5B574AB-4D1F-434D-95B7-B2258C7741DF}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{F674E861-A38A-46A6-9BE7-8FD6BA10C705}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLAPP2List.WFGEN]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D8003F17-F826-4801-B266-7791C391C604}"
+      DTS:ObjectName="SQLAPP2List.WFGEN">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLAPP2List;Initial Catalog=WFGEN;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-WFG – 001 - XAM_MKTG_SOLICITUD_CREDITO-{D8003F17-F826-4801-B266-7791C391C604}S5SQLUS.WFGEN;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\REPORT_DEBIT_CREDIT"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{82FFB55E-495C-4E0C-A590-6AA35DB5A12B}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="REPORT_DEBIT_CREDIT">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{98FE011E-AC7F-4DA1-A5BF-100E746F9137}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GENERA ARCHIVO"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="CSV DEBIT_CREDIT"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                    <property
+                      dataType="System.Boolean"
+                      description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                      name="EscapeQualifier">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[DP_AFFILIATE_CODE]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="DP_AFFILIATE_CODE"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DP_AFFILIATE_CODE]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_AFFILIATE_CODE]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[COMPANYID]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="COMPANYID"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[COMPANYID]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[COMPANYID]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[DATE_CLOSE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="DATE_CLOSE"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DATE_CLOSE]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DATE_CLOSE]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[INVOICE_NUMBER]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="INVOICE_NUMBER"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[INVOICE_NUMBER]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[INVOICE_NUMBER]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[DATE_OF_INVOICE]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="DATE_OF_INVOICE"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DATE_OF_INVOICE]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DATE_OF_INVOICE]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[INTCOMEX_SKU]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="INTCOMEX_SKU"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[INTCOMEX_SKU]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[INTCOMEX_SKU]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[QYT_INVOICED]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="QYT_INVOICED"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[QYT_INVOICED]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[QYT_INVOICED]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[DIVISION_NAME]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="DIVISION_NAME"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DIVISION_NAME]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DIVISION_NAME]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[REQUEST]"
+                          cachedDataType="i4"
+                          cachedName="REQUEST"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[REQUEST]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[REQUEST]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[Copy of Execution_Date]"
+                          cachedDataType="date"
+                          cachedName="Copy of Execution_Date"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[Execution_Date]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Execution_Date]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[DP_PRICE_INVOICED]"
+                          cachedDataType="decimal"
+                          cachedName="DP_PRICE_INVOICED"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DP_PRICE_INVOICED]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_PRICE_INVOICED]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[DP_PRICE_INVOICED_EXT]"
+                          cachedDataType="decimal"
+                          cachedName="DP_PRICE_INVOICED_EXT"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DP_PRICE_INVOICED_EXT]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_PRICE_INVOICED_EXT]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[DP_FIXED_PRICE]"
+                          cachedDataType="decimal"
+                          cachedName="DP_FIXED_PRICE"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DP_FIXED_PRICE]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_FIXED_PRICE]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[DP_FIXED_PRICE_EXT]"
+                          cachedDataType="decimal"
+                          cachedName="DP_FIXED_PRICE_EXT"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DP_FIXED_PRICE_EXT]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_FIXED_PRICE_EXT]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[DP_DIFFERENCE]"
+                          cachedDataType="decimal"
+                          cachedName="DP_DIFFERENCE"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DP_DIFFERENCE]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_DIFFERENCE]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].Columns[REQUEST_DATE]"
+                          cachedDataType="date"
+                          cachedName="REQUEST_DATE"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[REQUEST_DATE]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[REQUEST_DATE]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DP_AFFILIATE_CODE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DP_AFFILIATE_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[COMPANYID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="COMPANYID" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[REQUEST_DATE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="REQUEST_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DATE_CLOSE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DATE_CLOSE" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[INVOICE_NUMBER]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="INVOICE_NUMBER" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DATE_OF_INVOICE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DATE_OF_INVOICE" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[INTCOMEX_SKU]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="INTCOMEX_SKU" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[QYT_INVOICED]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="QYT_INVOICED" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DP_PRICE_INVOICED]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DP_PRICE_INVOICED" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DP_PRICE_INVOICED_EXT]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DP_PRICE_INVOICED_EXT" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DP_FIXED_PRICE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DP_FIXED_PRICE" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DP_FIXED_PRICE_EXT]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DP_FIXED_PRICE_EXT" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DP_DIFFERENCE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DP_DIFFERENCE" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[DIVISION_NAME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DIVISION_NAME" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[REQUEST]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="REQUEST" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input].ExternalColumns[Execution_Date]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Execution_Date" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Inputs[Data Conversion Input].Columns[Execution_Date]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Execution_Date"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Outputs[Derived Column Output].Columns[Execution_Date]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Inputs[Data Conversion Input].Columns[DP_PRICE_INVOICED]"
+                          cachedDataType="r8"
+                          cachedName="DP_PRICE_INVOICED"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_PRICE_INVOICED]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Inputs[Data Conversion Input].Columns[DP_PRICE_INVOICED_EXT]"
+                          cachedDataType="r8"
+                          cachedName="DP_PRICE_INVOICED_EXT"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_PRICE_INVOICED_EXT]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Inputs[Data Conversion Input].Columns[DP_FIXED_PRICE]"
+                          cachedDataType="r8"
+                          cachedName="DP_FIXED_PRICE"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_FIXED_PRICE]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Inputs[Data Conversion Input].Columns[DP_FIXED_PRICE_EXT]"
+                          cachedDataType="r8"
+                          cachedName="DP_FIXED_PRICE_EXT"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_FIXED_PRICE_EXT]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Inputs[Data Conversion Input].Columns[DP_DIFFERENCE]"
+                          cachedDataType="r8"
+                          cachedName="DP_DIFFERENCE"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_DIFFERENCE]" />
+                        <inputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Inputs[Data Conversion Input].Columns[REQUEST_DATE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="REQUEST_DATE"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[REQUEST_DATE]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Execution_Date]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Execution_Date]"
+                          name="Copy of Execution_Date"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Outputs[Derived Column Output].Columns[Execution_Date]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_PRICE_INVOICED]"
+                          dataType="decimal"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_PRICE_INVOICED]"
+                          name="DP_PRICE_INVOICED"
+                          scale="2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_PRICE_INVOICED]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_PRICE_INVOICED_EXT]"
+                          dataType="decimal"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_PRICE_INVOICED_EXT]"
+                          name="DP_PRICE_INVOICED_EXT"
+                          scale="2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_PRICE_INVOICED_EXT]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_FIXED_PRICE]"
+                          dataType="decimal"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_FIXED_PRICE]"
+                          name="DP_FIXED_PRICE"
+                          scale="2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_FIXED_PRICE]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_FIXED_PRICE_EXT]"
+                          dataType="decimal"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_FIXED_PRICE_EXT]"
+                          name="DP_FIXED_PRICE_EXT"
+                          scale="2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_FIXED_PRICE_EXT]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_DIFFERENCE]"
+                          dataType="decimal"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[DP_DIFFERENCE]"
+                          name="DP_DIFFERENCE"
+                          scale="2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_DIFFERENCE]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[REQUEST_DATE]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output].Columns[REQUEST_DATE]"
+                          name="REQUEST_DATE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[REQUEST_DATE]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Outputs[Derived Column Output].Columns[Execution_Date]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Outputs[Derived Column Output].Columns[Execution_Date]"
+                          name="Execution_Date"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="SCRIPT WFGEN"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">-- =============================================
+-- Author:		Diego Guerrero
+-- Create date: 11/08/2015
+-- Description:	Query for report XAM_MKTG_SOLICITUD_CREDITO WorkFlow
+-- Remarks:	Query to each XAM_MKTG_SOLICITUD_CREDITO WorkFlow with all data related, sure not to lock tables usign keyword WITH(NOLOCK) Some Rows 
+-- Changes:
+-- Date			Author					Comments
+-- ----------	-----------------------	-------------------
+                   
+-- Pivot table with each row and 28 data columns
+SELECT 
+
+[1]  AS DP_AFFILIATE_CODE,
+[2]  AS COMPANYID,
+convert(varchar(20),WFPROCESS_INST_ADD.DATE_OPEN, 111) AS REQUEST_DATE, 
+convert(varchar(20),WFPROCESS_INST_ADD.DATE_CLOSE,111) AS DATE_CLOSE, 
+/**Fileds from actions*/
+[9]  AS INVOICE_NUMBER,
+[8]  AS DATE_OF_INVOICE,
+[13] AS INTCOMEX_SKU,
+[12] AS QYT_INVOICED,
+CASE ISNUMERIC([10]) WHEN 1 THEN ROUND(REPLACE([10], ',', ''), 2) ELSE NULL END AS DP_PRICE_INVOICED,
+CASE ISNUMERIC([11]) WHEN 1 THEN ROUND(REPLACE([11], ',', ''), 2) ELSE NULL END AS DP_PRICE_INVOICED_EXT,
+CASE ISNUMERIC([6])  WHEN 1 THEN ROUND(REPLACE([6] , ',', ''), 2) ELSE NULL END AS DP_FIXED_PRICE,
+CASE ISNUMERIC([7])  WHEN 1 THEN ROUND(REPLACE([7] , ',', ''), 2) ELSE NULL END AS DP_FIXED_PRICE_EXT,
+CASE ISNUMERIC([3])  WHEN 1 THEN ROUND(REPLACE([3] , ',', ''), 2) ELSE NULL END AS DP_DIFFERENCE,
+[5]  AS DIVISION_NAME,
+/*[4]  AS DP_DIVISION,*/
+PivotTable.ID_PROCESS_INST AS REQUEST
+FROM
+(
+/*Select a partition by Flow Instance*/
+SELECT     TOTAL_FLOWS.ID_PROCESS_INST/*, TOTAL_FLOWS.DATA_NAME,*/, BASEDATA.VALUE_TEXT, ROW_NUMBER() over (PARTITION BY TOTAL_FLOWS.ID_PROCESS_INST ORDER BY TOTAL_FLOWS.DATA_NAME) AS RowNum  
+FROM         (SELECT     WFPROCESS_INST.ID_PROCESS_INST AS FLOW_ID, WFRELDATA.NAME AS DATA_NAME, WFDATASET_VALUE.VALUE_TEXT, 
+                      WFPROCESS_INST_RELDATA.ID_RELDATA
+						FROM         WFPROCESS_INST WITH(NOLOCK) INNER JOIN
+											  WFPROCESS WITH(NOLOCK) ON WFPROCESS_INST.ID_PROCESS = WFPROCESS.ID_PROCESS INNER JOIN
+											  WFPROCESS_INST_RELDATA WITH(NOLOCK) ON WFPROCESS_INST.ID_PROCESS_INST = WFPROCESS_INST_RELDATA.ID_PROCESS_INST INNER JOIN
+											  WFRELDATA WITH(NOLOCK) ON WFPROCESS.ID_PROCESS = WFRELDATA.ID_PROCESS AND WFPROCESS_INST_RELDATA.ID_RELDATA = WFRELDATA.ID_RELDATA INNER JOIN
+											  WFDATASET_VALUE WITH(NOLOCK) ON WFPROCESS_INST_RELDATA.ID_DATASET = WFDATASET_VALUE.ID_DATASET
+						WHERE     (WFPROCESS.NAME = N'XAM_MKTG_SOLICITUD_CREDITO') ) AS BASEDATA RIGHT OUTER JOIN
+                          ( /*Cross fields with workflows*/
+                            SELECT     FLOWS.ID_PROCESS_INST, FIELDS.DATA_NAME
+                            FROM          ( /* SubQuery to obtain all fields in all versions of XAM_MKTG_SOLICITUD_CREDITO WorkFlow */
+											SELECT DISTINCT  WFRELDATA_DEF.NAME AS DATA_NAME
+                                                    FROM          WFRELDATA AS WFRELDATA_DEF WITH(NOLOCK) INNER JOIN
+                                                                           WFPROCESS AS WFPROCESS_DEF WITH(NOLOCK) ON WFRELDATA_DEF.ID_PROCESS = WFPROCESS_DEF.ID_PROCESS
+                                                    WHERE      (WFPROCESS_DEF.NAME = N'XAM_MKTG_SOLICITUD_CREDITO') AND WFRELDATA_DEF.NAME IN (
+'DP_AFFILIATE',
+'DP_AFFILIATE_CODE',
+'DP_INVOICE_NUMBER',
+'DP_INVOICE_DATE',
+'DP_SKU',
+'DP_QUANTITY',
+'DP_PRICE_INVOICED',
+'DP_PRICE_INVOICED_EXT',
+'DP_FIXED_PRICE',
+'DP_FIXED_PRICE_EXT',
+'DP_DIFFERENCE',
+'DP_DIVISION',
+'DP_DIVISION_NAME'
+
+
+                                                    ) 
+                                                    GROUP BY WFRELDATA_DEF.NAME) AS FIELDS CROSS JOIN
+                                                       (/* SubQuery to each XAM_MKTG_SOLICITUD_CREDITO WorkFlow */
+														 SELECT  WFPROCESS_INST_1.ID_PROCESS_INST
+                                                         FROM          WFPROCESS AS WFPROCESS_1 WITH(NOLOCK)INNER JOIN
+                                                                                WFPROCESS_INST AS WFPROCESS_INST_1 WITH(NOLOCK) ON WFPROCESS_1.ID_PROCESS = WFPROCESS_INST_1.ID_PROCESS
+                                                         WHERE      (WFPROCESS_1.NAME = N'XAM_MKTG_SOLICITUD_CREDITO')
+																	AND (WFPROCESS_INST_1.ID_STATE = N'closed') 
+																	AND (WFPROCESS_INST_1.ID_SUBSTATE = N'completed')
+                                                         ) AS FLOWS) AS TOTAL_FLOWS ON 
+                      BASEDATA.FLOW_ID = TOTAL_FLOWS.ID_PROCESS_INST AND BASEDATA.DATA_NAME = TOTAL_FLOWS.DATA_NAME
+--WHERE  ID_PROCESS_INST IN (40640)    
+--ORDER BY WFPROCESS_INST.ID_PROCESS_INST, WFRELDATA.NAME                      
+                      ) AS SourceTable
+PIVOT
+(/*Pivot each field in 28 named columns, having the RowCounter */
+MAX(VALUE_TEXT) FOR RowNum IN ([1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13]
+)
+) AS PivotTable INNER JOIN WFPROCESS_INST AS WFPROCESS_INST_ADD WITH(NOLOCK) ON PivotTable.ID_PROCESS_INST = WFPROCESS_INST_ADD.ID_PROCESS_INST 
+/*Last seven days - not included current day*/
+WHERE WFPROCESS_INST_ADD.DATE_OPEN BETWEEN DATEADD(month, DATEDIFF(month,0,GETDATE()) -7, 0) AND
+						  DATEADD( day, -1,DATEADD(month, DATEDIFF(month,0,GETDATE()), 0))
+ORDER BY PivotTable.ID_PROCESS_INST;</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SQLAPP2List.WFGEN]"
+                      connectionManagerRefId="Package.ConnectionManagers[SQLAPP2List.WFGEN]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_AFFILIATE_CODE]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DP_AFFILIATE_CODE]"
+                          length="4000"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_AFFILIATE_CODE]"
+                          name="DP_AFFILIATE_CODE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[COMPANYID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[COMPANYID]"
+                          length="4000"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[COMPANYID]"
+                          name="COMPANYID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[REQUEST_DATE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_DATE]"
+                          length="20"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[REQUEST_DATE]"
+                          name="REQUEST_DATE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DATE_CLOSE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DATE_CLOSE]"
+                          length="20"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DATE_CLOSE]"
+                          name="DATE_CLOSE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[INVOICE_NUMBER]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[INVOICE_NUMBER]"
+                          length="4000"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[INVOICE_NUMBER]"
+                          name="INVOICE_NUMBER"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DATE_OF_INVOICE]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DATE_OF_INVOICE]"
+                          length="4000"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DATE_OF_INVOICE]"
+                          name="DATE_OF_INVOICE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[INTCOMEX_SKU]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[INTCOMEX_SKU]"
+                          length="4000"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[INTCOMEX_SKU]"
+                          name="INTCOMEX_SKU"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[QYT_INVOICED]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[QYT_INVOICED]"
+                          length="4000"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[QYT_INVOICED]"
+                          name="QYT_INVOICED"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_PRICE_INVOICED]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DP_PRICE_INVOICED]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_PRICE_INVOICED]"
+                          name="DP_PRICE_INVOICED"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_PRICE_INVOICED_EXT]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DP_PRICE_INVOICED_EXT]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_PRICE_INVOICED_EXT]"
+                          name="DP_PRICE_INVOICED_EXT"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_FIXED_PRICE]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DP_FIXED_PRICE]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_FIXED_PRICE]"
+                          name="DP_FIXED_PRICE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_FIXED_PRICE_EXT]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DP_FIXED_PRICE_EXT]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_FIXED_PRICE_EXT]"
+                          name="DP_FIXED_PRICE_EXT"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_DIFFERENCE]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DP_DIFFERENCE]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DP_DIFFERENCE]"
+                          name="DP_DIFFERENCE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DIVISION_NAME]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DIVISION_NAME]"
+                          length="4000"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[DIVISION_NAME]"
+                          name="DIVISION_NAME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[REQUEST]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[REQUEST]"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].Columns[REQUEST]"
+                          name="REQUEST"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DP_AFFILIATE_CODE]"
+                          dataType="nText"
+                          name="DP_AFFILIATE_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[COMPANYID]"
+                          dataType="nText"
+                          name="COMPANYID" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_DATE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="REQUEST_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DATE_CLOSE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="DATE_CLOSE" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[INVOICE_NUMBER]"
+                          dataType="nText"
+                          name="INVOICE_NUMBER" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DATE_OF_INVOICE]"
+                          dataType="nText"
+                          name="DATE_OF_INVOICE" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[INTCOMEX_SKU]"
+                          dataType="nText"
+                          name="INTCOMEX_SKU" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[QYT_INVOICED]"
+                          dataType="nText"
+                          name="QYT_INVOICED" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DP_PRICE_INVOICED]"
+                          dataType="r8"
+                          name="DP_PRICE_INVOICED" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DP_PRICE_INVOICED_EXT]"
+                          dataType="r8"
+                          name="DP_PRICE_INVOICED_EXT" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DP_FIXED_PRICE]"
+                          dataType="r8"
+                          name="DP_FIXED_PRICE" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DP_FIXED_PRICE_EXT]"
+                          dataType="r8"
+                          name="DP_FIXED_PRICE_EXT" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DP_DIFFERENCE]"
+                          dataType="r8"
+                          name="DP_DIFFERENCE" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[DIVISION_NAME]"
+                          dataType="nText"
+                          name="DIVISION_NAME" />
+                        <externalMetadataColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output].ExternalColumns[REQUEST]"
+                          dataType="i4"
+                          name="REQUEST" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DP_AFFILIATE_CODE]"
+                          dataType="nText"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DP_AFFILIATE_CODE]"
+                          name="DP_AFFILIATE_CODE" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[COMPANYID]"
+                          dataType="nText"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[COMPANYID]"
+                          name="COMPANYID" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[REQUEST_DATE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[REQUEST_DATE]"
+                          name="REQUEST_DATE" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DATE_CLOSE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DATE_CLOSE]"
+                          name="DATE_CLOSE" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[INVOICE_NUMBER]"
+                          dataType="nText"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[INVOICE_NUMBER]"
+                          name="INVOICE_NUMBER" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DATE_OF_INVOICE]"
+                          dataType="nText"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DATE_OF_INVOICE]"
+                          name="DATE_OF_INVOICE" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[INTCOMEX_SKU]"
+                          dataType="nText"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[INTCOMEX_SKU]"
+                          name="INTCOMEX_SKU" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[QYT_INVOICED]"
+                          dataType="nText"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[QYT_INVOICED]"
+                          name="QYT_INVOICED" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DP_PRICE_INVOICED]"
+                          dataType="r8"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DP_PRICE_INVOICED]"
+                          name="DP_PRICE_INVOICED" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DP_PRICE_INVOICED_EXT]"
+                          dataType="r8"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DP_PRICE_INVOICED_EXT]"
+                          name="DP_PRICE_INVOICED_EXT" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DP_FIXED_PRICE]"
+                          dataType="r8"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DP_FIXED_PRICE]"
+                          name="DP_FIXED_PRICE" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DP_FIXED_PRICE_EXT]"
+                          dataType="r8"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DP_FIXED_PRICE_EXT]"
+                          name="DP_FIXED_PRICE_EXT" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DP_DIFFERENCE]"
+                          dataType="r8"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DP_DIFFERENCE]"
+                          name="DP_DIFFERENCE" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DIVISION_NAME]"
+                          dataType="nText"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[DIVISION_NAME]"
+                          name="DIVISION_NAME" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[REQUEST]"
+                          dataType="i4"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[REQUEST]"
+                          name="REQUEST" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO.Paths[Data Conversion Output]"
+                  endId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT.Inputs[Flat File Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO.Paths[Derived Column Output]"
+                  endId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO.Paths[OLE DB Source Output]"
+                  endId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\REPORT_DEBIT_CREDIT\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{D00AAA5F-4C7F-468B-BC15-79514BC8A9A5}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{F674E861-A38A-46A6-9BE7-8FD6BA10C705}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="Yali.Luna@intcomex.com;egaray@intcomex.com"
+              SendMailTask:CC="ETLSupport@intcomex.com;diego.guerrero@intcomex.com"
+              SendMailTask:Subject="Mflow - Eficiencia operativa -- Errores precios"
+              SendMailTask:MessageSource="Archivo Report_DEBIT_CREDIT generado satisfactoriamente !!!!" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask">
+              <SendMailTask:Attachments
+                SendMailTask:FileName="\\Intcomex\Shares\SQLPack\Files_Extraction\WFGEN_Mflow\Mflow.csv" />
+            </SendMailTask:SendMailTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\REPORT_DEBIT_CREDIT.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{3DC90282-0388-4EE3-8109-64663220A2D5}"
+          DTS:From="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\REPORT_DEBIT_CREDIT\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO"
+          TopLeft="20.7169811320755,8.47169811320755" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\REPORT_DEBIT_CREDIT\Send Mail Task"
+          TopLeft="21.5849056603774,102.660377358491" />
+        <EdgeLayout
+          Id="Package\REPORT_DEBIT_CREDIT.PrecedenceConstraints[Constraint]"
+          TopLeft="88.6037735849057,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.867924528301884,50.2641509433962"
+              Start="0,0"
+              End="0.867924528301884,42.7641509433962">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.1320754716981" />
+                  <mssgle:LineSegment
+                    End="0.867924528301884,25.1320754716981" />
+                  <mssgle:LineSegment
+                    End="0.867924528301884,42.7641509433962" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="198,161"
+          Size="198,205"
+          Id="Package\REPORT_DEBIT_CREDIT"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Data Conversion"
+          TopLeft="7.53773584905661,187.198113207547" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\Derived Column"
+          TopLeft="9.5,97.3490566037736" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\CSV DEBIT_CREDIT"
+          TopLeft="6.51886792452831,281.084905660377" />
+        <EdgeLayout
+          Id="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="4.00000000000001,47.9245283018868"
+              Start="0,0"
+              End="4.00000000000001,40.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.9622641509434" />
+                  <mssgle:LineSegment
+                    End="4.00000000000001,23.9622641509434" />
+                  <mssgle:LineSegment
+                    End="4.00000000000001,40.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO.Paths[Derived Column Output]"
+          TopLeft="77.3867924528302,141.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-1.9622641509434,45.9245283018868"
+              Start="0,0"
+              End="-1.9622641509434,38.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-1.9622641509434,22.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-1.9622641509434,38.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO.Paths[Data Conversion Output]"
+          TopLeft="75.4245283018868,231.122641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-1.01886792452831,49.9622641509434"
+              Start="0,0"
+              End="-1.01886792452831,42.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.9811320754717" />
+                  <mssgle:LineSegment
+                    End="-1.01886792452831,24.9811320754717" />
+                  <mssgle:LineSegment
+                    End="-1.01886792452831,42.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\REPORT_DEBIT_CREDIT\GENERA ARCHIVO\SCRIPT WFGEN">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

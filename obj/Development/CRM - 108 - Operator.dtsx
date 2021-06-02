@@ -1,0 +1,2618 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/8/2013 5:09:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{F9C3BB4C-9FF4-4F46-AA97-0D3792F7C802}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CRM - 108 - Operator"
+  DTS:PackageType="5"
+  DTS:VersionBuild="140"
+  DTS:VersionGUID="{A50D09CC-84B5-46F2-B10F-5FB3107AFE21}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{EA9C75AB-2DBE-412D-A9A2-651636C465F5}"
+      DTS:ObjectName="s2crmdb.CRMStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdb;Initial Catalog=CRMStaging;Provider=SQLNCLI11;Integrated Security=SSPI;Application Name=SSIS-CRM - 108 - Operator-{EA9C75AB-2DBE-412D-A9A2-651636C465F5}s2crmdb.CRMStaging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A357614E-9957-4E59-9189-7B8E3FDA25CF}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{A357614E-9957-4E59-9189-7B8E3FDA25CF}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{322F6001-0176-455E-8A65-989C6D90A72A}"
+      DTS:ObjectName="Sentai_Replica.bodts">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=bodts;Dsn=Sentai_Replica;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAsgVqLwTjQGMJBJRZUmHXUAAAAAASAAACgAAAAEAAAAKDj5t1r8BSb5YWWFFrp65UYAAAAJHim3PcjP2KbkG9wkPJ3ighdYMAUhXzlFAAAAFrcLcg/Hae30/GM9ebt7higEJPl</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{FF5B389F-C785-409F-B10B-4340B030D839}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;Sentai_Replica.bodts&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{D3900D86-72B7-47AA-AEB9-741D2E399E84}"
+      DTS:ObjectName="Sentai_Replica" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;S2CRMDB.ETLUser&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{043FB659-96FE-451A-B407-7BCE8C543F80}"
+      DTS:ObjectName="S2CRMDB" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5040D4F0-2A7B-44ED-9DCE-53CB349D5F62}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{686A4D95-8A82-4D16-A4EA-C713AA39B520}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4CDBC538-68CC-4BCA-B8CE-5A79074E715C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B9F0B213-C9A1-461A-B755-7F227DE9F389}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{E519B743-1506-49D3-9796-95ECDE0823C9}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">12,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnExecStatusChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnInformation"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnProgress"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnQueryCancel"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnTaskFailed"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnVariableValueChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnWarning"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{57F0EA2F-21E6-43D9-AC53-CED139A8BEE9}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="1">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">13,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,24,ExecuteSQLExecutingQuery</DTS:Property>
+            <DTS:Property
+              DTS:EventName="ExecuteSQLExecutingQuery"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnExecStatusChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnInformation"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnProgress"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnQueryCancel"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnTaskFailed"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnVariableValueChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnWarning"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A357614E-9957-4E59-9189-7B8E3FDA25CF}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete CRM - 108 - Operator  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{EDAE7B20-B2EF-4C16-B69B-E579EB4EB180}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="1">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">15,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,17,SendMailTaskBegin,15,SendMailTaskEnd,16,SendMailTaskInfo</DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnExecStatusChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnInformation"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPostValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreExecute"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnPreValidate"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnProgress"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnQueryCancel"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnTaskFailed"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnVariableValueChanged"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnWarning"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskBegin"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskEnd"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+            <DTS:Property
+              DTS:EventName="SendMailTaskInfo"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{FF5B389F-C785-409F-B10B-4340B030D839}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :CRM - 108 - Operator" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{B80708FD-A13D-4E2C-945B-4F0ECAAB8681}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load_Operator_from_Trax PRO"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{3FB949E5-409B-4296-AA2A-A4225A223B5D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load_Operator_from_Trax PRO">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load_Operator_from_Trax PRO\Failed Operator ControlTable"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Update Customer ControlTable"
+          DTS:DTSID="{0B0ADF9A-6820-4287-8401-2B39ACCB28C3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Failed Operator ControlTable"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{EA9C75AB-2DBE-412D-A9A2-651636C465F5}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 0,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Operator'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Operator_from_Trax PRO\Load Operator rax"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{1B35F8D0-E51A-4094-8359-34D3CBB03494}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Operator rax"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="CRMStaging Operator"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Operator]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Inputs[OLE DB Destination Input].Columns[Oper-ID]"
+                          cachedDataType="wstr"
+                          cachedLength="24"
+                          cachedName="Oper-ID"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Inputs[OLE DB Destination Input].ExternalColumns[Oper-ID]"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Oper-ID]" />
+                        <inputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Inputs[OLE DB Destination Input].Columns[Active]"
+                          cachedDataType="bool"
+                          cachedName="Active"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Inputs[OLE DB Destination Input].ExternalColumns[Active]"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Active]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Inputs[OLE DB Destination Input].ExternalColumns[Oper-ID]"
+                          dataType="wstr"
+                          length="24"
+                          name="Oper-ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="80"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Inputs[OLE DB Destination Input].ExternalColumns[Active]"
+                          dataType="bool"
+                          name="Active" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Data Conversion.Inputs[Data Conversion Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Extracts data from a relational database by using a .NET provider."
+                  name="Operator TRAX"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select
+"Machine-ID",
+UPPER("Cust-ID") as "CustID",
+"Name",
+"Legal-name",
+"Search-name",
+address[1] + ' ' + address[2]  + ' ' + address[3]  + ' ' + address[4]  + ' ' + address[5]  as "Address",
+PRO_ELEMENT("Address",1,1) as Address1,
+PRO_ELEMENT("Address",2,2) as Address2 ,
+PRO_ELEMENT("Address",3,3)  as Address3,
+PRO_ELEMENT("Address",4,4) as Address4,
+PRO_ELEMENT("Address",5,5)  as Address5,
+"City", 
+"Prov-ID" ,
+"Postal-code",
+"Country-ID", 
+"Telephone", 
+"FAX", 
+"Report-code",
+"Status-code", 
+"Term-ID", 
+"Tax-group-ID",
+"Carrier-ID", 
+"Terr-ID", 
+"Stmt-freq", 
+"Credit-limit",
+"Min-charge",
+"Grace-days" ,
+"Cred-rating", 
+"Interest-ID", 
+"Stmt-type", 
+"Ship-charge", 
+"Charge-cust", 
+"Mail-cust", 
+"Entity-list", 
+"Priority",
+"Comm-ID", 
+"Create-date",
+"Currency-ID",
+"Currency-vals" ,
+"AR-gl",
+"Tax-reg-no", 
+"Non-maintained",
+substring("SIC-code",1,16) as "SIC-Code", 
+"Level-ID", 
+"Phrase-ID", 
+"Cash",
+"On-hold",
+"Oper-ID", 
+"Review-code", 
+upper("Sales-vals") as "Sales-vals", 
+"Lang-ID", 
+"Perform-code", 
+"TZ-ID", 
+"UDF-1", 
+"UDF-2", 
+"EIS-Desc",
+"Ins-comp-name", 
+"Policy-no", 
+"Expiry-date",
+"SSC-UDF-1", 
+"SSC-UDF-2", 
+"E-mail", 
+"FOB-ID", 
+"Phone-2", 
+"Cellular", 
+"Pager", 
+"Web-site",
+"Ch-comm-reg-no", 
+"Ch-comm-city", 
+"Prof-ID", 
+"Require-PO",
+"Accept-BO",
+"In-forecast" ,
+"DUNS_number" ,
+"Warehouse-pick",
+"Auto-fax" ,
+"Loc-ID", 
+"Wave-ID", 
+"SDQ-ship", 
+"SDQ-invoice", 
+"WMS-print",
+"Contact-Name",
+"Contact-Title",
+"Updated-On",
+"Carrier-List",
+"cr-status-id",
+"credit-hold",
+"submit-stmt",
+"crm-entity-ID",
+"crm-group-ID",
+"submit-doc",
+"CRM-reference"
+FROM "PUB"."customer"
+WHERE "Cust-ID" not like 'XAR%'
+and "Cust-ID" not like 'XGB%'
+and "Cust-ID" not like 'XCB%'
+and "Cust-ID" not like 'A%'
+and "Cust-ID" not like 'XHS%'
+and "Cust-ID" not like 'XCT%'</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"PUB"."operator"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      connectionManagerRefId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Oper-ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Oper-ID]"
+                          length="24"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Oper-ID]"
+                          name="Oper-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                          length="80"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Password]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Password]"
+                          length="32"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Password]"
+                          name="Password"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Buying-limit]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Buying-limit]"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Buying-limit]"
+                          name="Buying-limit"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Loc-list]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Loc-list]"
+                          length="510"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Loc-list]"
+                          name="Loc-list"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Price-detail]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Price-detail]"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Price-detail]"
+                          name="Price-detail"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[CR-release-amt]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[CR-release-amt]"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[CR-release-amt]"
+                          name="CR-release-amt"
+                          precision="17"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Money-pct]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Money-pct]"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Money-pct]"
+                          name="Money-pct"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Currency-ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Currency-ID]"
+                          length="8"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Currency-ID]"
+                          name="Currency-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[SSC-UDF-1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[SSC-UDF-1]"
+                          length="40"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[SSC-UDF-1]"
+                          name="SSC-UDF-1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[SSC-UDF-2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[SSC-UDF-2]"
+                          length="40"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[SSC-UDF-2]"
+                          name="SSC-UDF-2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Max-discount-pct]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Max-discount-pct]"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Max-discount-pct]"
+                          name="Max-discount-pct"
+                          precision="17"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Line-list]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Line-list]"
+                          length="510"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Line-list]"
+                          name="Line-list"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Price-list]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Price-list]"
+                          length="510"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Price-list]"
+                          name="Price-list"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Active]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Active]"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Active]"
+                          name="Active"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Max-grace-days]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Max-grace-days]"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Max-grace-days]"
+                          name="Max-grace-days"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Max-release-amt]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Max-release-amt]"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[Max-release-amt]"
+                          name="Max-release-amt"
+                          precision="17"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[UDF-1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-1]"
+                          length="40"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[UDF-1]"
+                          name="UDF-1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[UDF-2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-2]"
+                          length="40"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].Columns[UDF-2]"
+                          name="UDF-2"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Oper-ID]"
+                          dataType="wstr"
+                          length="24"
+                          name="Oper-ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="80"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Password]"
+                          dataType="wstr"
+                          length="32"
+                          name="Password" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Buying-limit]"
+                          dataType="i4"
+                          name="Buying-limit" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Loc-list]"
+                          dataType="wstr"
+                          length="510"
+                          name="Loc-list" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Price-detail]"
+                          dataType="bool"
+                          name="Price-detail" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[CR-release-amt]"
+                          dataType="numeric"
+                          name="CR-release-amt"
+                          precision="17"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Money-pct]"
+                          dataType="bool"
+                          name="Money-pct" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Currency-ID]"
+                          dataType="wstr"
+                          length="8"
+                          name="Currency-ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[SSC-UDF-1]"
+                          dataType="wstr"
+                          length="40"
+                          name="SSC-UDF-1" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[SSC-UDF-2]"
+                          dataType="wstr"
+                          length="40"
+                          name="SSC-UDF-2" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Max-discount-pct]"
+                          dataType="numeric"
+                          name="Max-discount-pct"
+                          precision="17"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Line-list]"
+                          dataType="wstr"
+                          length="510"
+                          name="Line-list" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Price-list]"
+                          dataType="wstr"
+                          length="510"
+                          name="Price-list" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Active]"
+                          dataType="bool"
+                          name="Active" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Max-grace-days]"
+                          dataType="i4"
+                          name="Max-grace-days" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[Max-release-amt]"
+                          dataType="numeric"
+                          name="Max-release-amt"
+                          precision="17"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-1]"
+                          dataType="wstr"
+                          length="40"
+                          name="UDF-1" />
+                        <externalMetadataColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output].ExternalColumns[UDF-2]"
+                          dataType="wstr"
+                          length="40"
+                          name="UDF-2" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Oper-ID]"
+                          dataType="wstr"
+                          length="24"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Oper-ID]"
+                          name="Oper-ID" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="80"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Password]"
+                          dataType="wstr"
+                          length="32"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Password]"
+                          name="Password" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Buying-limit]"
+                          dataType="i4"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Buying-limit]"
+                          name="Buying-limit" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Loc-list]"
+                          dataType="wstr"
+                          length="510"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Loc-list]"
+                          name="Loc-list" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Price-detail]"
+                          dataType="bool"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Price-detail]"
+                          name="Price-detail" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[CR-release-amt]"
+                          dataType="numeric"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[CR-release-amt]"
+                          name="CR-release-amt"
+                          precision="17"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Money-pct]"
+                          dataType="bool"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Money-pct]"
+                          name="Money-pct" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Currency-ID]"
+                          dataType="wstr"
+                          length="8"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Currency-ID]"
+                          name="Currency-ID" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[SSC-UDF-1]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[SSC-UDF-1]"
+                          name="SSC-UDF-1" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[SSC-UDF-2]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[SSC-UDF-2]"
+                          name="SSC-UDF-2" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Max-discount-pct]"
+                          dataType="numeric"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Max-discount-pct]"
+                          name="Max-discount-pct"
+                          precision="17"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Line-list]"
+                          dataType="wstr"
+                          length="510"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Line-list]"
+                          name="Line-list" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Price-list]"
+                          dataType="wstr"
+                          length="510"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Price-list]"
+                          name="Price-list" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Active]"
+                          dataType="bool"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Active]"
+                          name="Active" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Max-grace-days]"
+                          dataType="i4"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Max-grace-days]"
+                          name="Max-grace-days" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Max-release-amt]"
+                          dataType="numeric"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[Max-release-amt]"
+                          name="Max-release-amt"
+                          precision="17"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-1]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-1]"
+                          name="UDF-1" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-2]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[UDF-2]"
+                          name="UDF-2" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load_Operator_from_Trax PRO\Load Operator rax.Paths[ADO NET Source Output]"
+                  endId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Data Conversion.Inputs[Data Conversion Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX.Outputs[ADO NET Source Output]" />
+                <path
+                  refId="Package\Load_Operator_from_Trax PRO\Load Operator rax.Paths[Data Conversion Output]"
+                  endId="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Load_Operator_from_Trax PRO\Load Operator rax\Data Conversion.Outputs[Data Conversion Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Operator_from_Trax PRO\Truncate Table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{97F16B9F-407D-4CFF-B127-62E9731EC447}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{EA9C75AB-2DBE-412D-A9A2-651636C465F5}"
+              SQLTask:SqlStatementSource="use CRMStaging&#xA;go&#xA;&#xA;Truncate Table dbo.Operator;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Operator_from_Trax PRO\Update Operator ControlTable"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Update Customer ControlTable"
+          DTS:DTSID="{88E1FD02-5E56-4221-907D-2509A8CA528E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Operator ControlTable"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{EA9C75AB-2DBE-412D-A9A2-651636C465F5}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 1,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Operator'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Operator_from_Trax PRO.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{E0CF52A6-9FC8-4CD8-8C50-6FAC4A28CD00}"
+          DTS:From="Package\Load_Operator_from_Trax PRO\Truncate Table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load_Operator_from_Trax PRO\Load Operator rax" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Operator_from_Trax PRO.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{FF695AD1-7BA8-4ECC-B355-B364492B5B01}"
+          DTS:From="Package\Load_Operator_from_Trax PRO\Load Operator rax"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load_Operator_from_Trax PRO\Update Operator ControlTable" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Operator_from_Trax PRO.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{364AB2AC-8ECD-4438-BD69-C3E56E07DB3F}"
+          DTS:From="Package\Load_Operator_from_Trax PRO\Load Operator rax"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Load_Operator_from_Trax PRO\Failed Operator ControlTable"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Operator DEV"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{22F689E1-2CBD-47E2-8D71-1C9E066C960B}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Operator DEV">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Operator DEV\Load Table Picking_Wave DEV"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{8C0BE354-B62A-4F60-9327-08F475CEE844}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Table Picking_Wave DEV"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Operator CRMStaging DEV"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Territory]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Connections[OleDbConnection]"
+                      connectionManagerID="{60F14F63-3BC4-4C00-8416-4DAD45F2388B}:invalid"
+                      connectionManagerRefId="{60F14F63-3BC4-4C00-8416-4DAD45F2388B}:invalid"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[Terr_ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Terr_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[EIS_Desc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="EIS_Desc" />
+                        <externalMetadataColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[SSC_UDF_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="SSC_UDF_1" />
+                        <externalMetadataColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Inputs[OLE DB Destination Input].ExternalColumns[SSC_UDF_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="SSC_UDF_2" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Operator CRMStaging PRO"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Operator]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Connections[OleDbConnection]"
+                      connectionManagerID="{772F59B4-7AA6-4966-8A84-739D544455F6}:invalid"
+                      connectionManagerRefId="{772F59B4-7AA6-4966-8A84-739D544455F6}:invalid"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Oper-ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Oper-ID]"
+                          length="24"
+                          lineageId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Oper-ID]"
+                          name="Oper-ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="80"
+                          lineageId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Active]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Active]"
+                          lineageId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output].Columns[Active]"
+                          name="Active"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Oper-ID]"
+                          dataType="wstr"
+                          length="24"
+                          name="Oper-ID" />
+                        <externalMetadataColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="80"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output].ExternalColumns[Active]"
+                          dataType="bool"
+                          name="Active" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Oper-ID]"
+                          dataType="wstr"
+                          length="24"
+                          lineageId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Oper-ID]"
+                          name="Oper-ID" />
+                        <outputColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="80"
+                          lineageId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Active]"
+                          dataType="bool"
+                          lineageId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[Active]"
+                          name="Active" />
+                        <outputColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Operator DEV\Load Table Picking_Wave DEV.Paths[OLE DB Source Output]"
+                  endId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Operator DEV\Truncate Table Picking_Wave"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{577EF9A7-86D5-41E3-A35C-44EDB71297D6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Table Picking_Wave"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{60F14F63-3BC4-4C00-8416-4DAD45F2388B}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE DBO.OPERATOR;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Operator DEV.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{FC7508FC-981C-4BDE-B021-F86F983BE486}"
+          DTS:From="Package\Operator DEV\Truncate Table Picking_Wave"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Operator DEV\Load Table Picking_Wave DEV" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{90633BCE-F715-4AC2-AACD-9D91952CE28E}"
+      DTS:From="Package\Load_Operator_from_Trax PRO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D390C09A-6F87-455C-920B-BDB0A07A0CD0}"
+      DTS:From="Package\Operator DEV"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Evento Correcto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{2D4C4498-E867-4D47-BFBB-62342CE8B8C5}"
+      DTS:From="Package\Load_Operator_from_Trax PRO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Operator DEV" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="27.3584905660377,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="27.3584905660377,121.792452830189" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="95.2452830188679,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,69.3962264150944"
+              Start="0,0"
+              End="0,61.8962264150944">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.8962264150944" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="204,180"
+          Size="204,224"
+          Id="Package\Evento Correcto"
+          TopLeft="160.481132075472,456.669811320755" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Operator_from_Trax PRO\Failed Operator ControlTable"
+          TopLeft="200.830188679245,107.716981132075" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Load_Operator_from_Trax PRO\Load Operator rax"
+          TopLeft="30.3018867924528,108.471698113208" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Operator_from_Trax PRO\Truncate Table"
+          TopLeft="30.3018867924528,26.811320754717" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Operator_from_Trax PRO\Update Operator ControlTable"
+          TopLeft="30.0377358490565,178.358490566038" />
+        <EdgeLayout
+          Id="Package\Load_Operator_from_Trax PRO.PrecedenceConstraints[Constraint]"
+          TopLeft="98.3018867924528,70.811320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.6666666666667,37.660377358491"
+              Start="0,0"
+              End="-11.6666666666667,30.160377358491">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.3792158372786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.3792158372786"
+                    Point2="0,22.3792158372786"
+                    Point3="-4,22.3792158372786" />
+                  <mssgle:LineSegment
+                    End="-7.66666666666667,22.3792158372786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.66666666666667,22.3792158372786"
+                    Point2="-11.6666666666667,22.3792158372786"
+                    Point3="-11.6666666666667,26.3792158372786" />
+                  <mssgle:LineSegment
+                    End="-11.6666666666667,30.160377358491" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Operator_from_Trax PRO.PrecedenceConstraints[Constraint 1]"
+          TopLeft="112.801886792453,150.471698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.7641509433963,27.88679245283"
+              Start="0,0"
+              End="-14.7641509433963,20.38679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.943396226415" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.943396226415"
+                    Point2="0,13.943396226415"
+                    Point3="-4,13.943396226415" />
+                  <mssgle:LineSegment
+                    End="-10.7641509433963,13.943396226415" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.7641509433963,13.943396226415"
+                    Point2="-14.7641509433963,13.943396226415"
+                    Point3="-14.7641509433963,17.943396226415" />
+                  <mssgle:LineSegment
+                    End="-14.7641509433963,20.38679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Operator_from_Trax PRO.PrecedenceConstraints[Constraint 2]"
+          TopLeft="138.968553459119,108.471698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="129.861635220126,-0.754716981132987"
+              Start="0,0"
+              End="129.861635220126,-8.25471698113299">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-19.254716981133" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-19.254716981133"
+                    Point2="0,-23.254716981133"
+                    Point3="4,-23.254716981133" />
+                  <mssgle:LineSegment
+                    End="125.861635220126,-23.254716981133" />
+                  <mssgle:CubicBezierSegment
+                    Point1="125.861635220126,-23.254716981133"
+                    Point2="129.861635220126,-23.254716981133"
+                    Point3="129.861635220126,-19.254716981133" />
+                  <mssgle:LineSegment
+                    End="129.861635220126,-8.25471698113299" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="49.6894699538128,-18.254716981133,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="356,277"
+          Size="356,321"
+          Id="Package\Load_Operator_from_Trax PRO"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="187,44"
+          Id="Package\Operator DEV\Load Table Picking_Wave DEV"
+          TopLeft="39.5094339622642,91.2264150943396" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Operator DEV\Truncate Table Picking_Wave"
+          TopLeft="64.9811320754717,9.56603773584908" />
+        <EdgeLayout
+          Id="Package\Operator DEV.PrecedenceConstraints[Constraint]"
+          TopLeft="132.867924528302,53.4905660377359">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="266,231"
+          Size="266,275"
+          Id="Package\Operator DEV"
+          TopLeft="454.292452830189,9.27358490566036" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="183.5,287.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="46.3144654088053,169.169811320755"
+              Start="0,0"
+              End="46.3144654088053,161.669811320755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,96.7119888407608" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,96.7119888407608"
+                    Point2="0,100.711988840761"
+                    Point3="4,100.711988840761" />
+                  <mssgle:LineSegment
+                    End="42.3144654088053,100.711988840761" />
+                  <mssgle:CubicBezierSegment
+                    Point1="42.3144654088053,100.711988840761"
+                    Point2="46.3144654088053,100.711988840761"
+                    Point3="46.3144654088053,104.711988840761" />
+                  <mssgle:LineSegment
+                    End="46.3144654088053,161.669811320755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="587.424528301887,284.179245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-283.547169811321,172.490566037736"
+              Start="0,0"
+              End="-283.547169811321,164.990566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,126.22641509434" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,126.22641509434"
+                    Point2="0,130.22641509434"
+                    Point3="-4,130.22641509434" />
+                  <mssgle:LineSegment
+                    End="-279.547169811321,130.22641509434" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-279.547169811321,130.22641509434"
+                    Point2="-283.547169811321,130.22641509434"
+                    Point3="-283.547169811321,134.22641509434" />
+                  <mssgle:LineSegment
+                    End="-283.547169811321,164.990566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="361.5,146.63679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="92.792452830189,0"
+              Start="0,0"
+              End="85.292452830189,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="85.292452830189,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load_Operator_from_Trax PRO\Load Operator rax">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Operator_from_Trax PRO\Load Operator rax\Data Conversion"
+          TopLeft="114.292452830189,99.3490566037736" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Operator_from_Trax PRO\Load Operator rax\Operator TRAX"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load_Operator_from_Trax PRO\Load Operator rax\CRMStaging Operator"
+          TopLeft="116.330188679245,208.971698113208" />
+        <EdgeLayout
+          Id="Package\Load_Operator_from_Trax PRO\Load Operator rax.Paths[Data Conversion Output]"
+          TopLeft="182.179245283019,143.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.03773584905661,65.6981132075472"
+              Start="0,0"
+              End="2.03773584905661,58.1981132075472">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.8301886792453" />
+                  <mssgle:LineSegment
+                    End="2.03773584905661,32.8301886792453" />
+                  <mssgle:LineSegment
+                    End="2.03773584905661,58.1981132075472" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Operator_from_Trax PRO\Load Operator rax.Paths[ADO NET Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="108.792452830189,49.9245283018868"
+              Start="0,0"
+              End="108.792452830189,42.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.9433962264151" />
+                  <mssgle:LineSegment
+                    End="108.792452830189,24.9433962264151" />
+                  <mssgle:LineSegment
+                    End="108.792452830189,42.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Operator DEV\Load Table Picking_Wave DEV">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="153.735849056604,43.9245283018868"
+          Id="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging PRO"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="155.735849056604,43.9245283018868"
+          Id="Package\Operator DEV\Load Table Picking_Wave DEV\Operator CRMStaging DEV"
+          TopLeft="5.5,87.1603773584906" />
+        <EdgeLayout
+          Id="Package\Operator DEV\Load Table Picking_Wave DEV.Paths[OLE DB Source Output]"
+          TopLeft="82.3679245283019,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.981132075471692,37.7358490566038"
+              Start="0,0"
+              End="0.981132075471692,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="0.981132075471692,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="0.981132075471692,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

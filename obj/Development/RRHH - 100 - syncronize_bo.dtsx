@@ -1,0 +1,1989 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/13/2014 10:47:14 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SQLDVLP2"
+  DTS:CreatorName="INTCOMEX\xcoycuca"
+  DTS:DTSID="{FAC7A358-61DA-4EC7-BC75-3C7D6ED50AF8}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="RRHH - 100 - Syncronize_BO"
+  DTS:PackageType="5"
+  DTS:VersionBuild="396"
+  DTS:VersionGUID="{0C1DFEF5-708F-4578-916A-207F597408DC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[INTCOMEX_DWH.dwhuser16]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{0BDC1CED-E5E3-436C-B099-17B6D2BEED88}"
+      DTS:ObjectName="INTCOMEX_DWH.dwhuser16">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Etluser;Dsn=IQ16;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADxQOy3jfLoZAIhVryzVD17AAAAAASAAACgAAAAEAAAAIlToYAf12GxlyZR3G1KpkYYAAAAJ2NGOYjY7Rexlf1BkgTqshgBAyGWGNboFAAAAGraqAgvfslhm//gKdIVwNnb+ub2</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-DWH_403_OPEN_PURCHASE_ORDER-{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}SQLDVLP2.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.INTXDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7502C110-7144-4A92-B7D4-A6DF7F0F8983}"
+      DTS:ObjectName="S91SQLUS.INTXDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=INTXDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-DWH_403_OPEN_PURCHASE_ORDER-{7502C110-7144-4A92-B7D4-A6DF7F0F8983}SQLDVLP2.INTXDW;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{CFC4E077-A6AC-416A-A7C8-BEEF23246B56}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;INTCOMEX_DWH.dwhuser16&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{99B7177D-31A9-4572-A6C7-BCDED0F7833C}"
+      DTS:ObjectName="INTCOMEX_DWH dwhuser16" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A4604255-5553-4D19-8E2F-562061F192AD}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Variable_Prueba">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{65C1F720-A63E-46FA-9CAE-9F3FC280668E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VInt_Ejecucion">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BF7401EB-41A7-4094-9702-595216D38EE2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VInt_Tipo_Ejecucion">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A9696439-09C4-4997-AF58-95212C03E56C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3FFC1111-E70B-429A-BDF2-08E3E2C1225A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F49B70BB-B980-4539-A8B7-E0AB82FFE446}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0682EE4D-B9B2-4521-8AA7-AABEEBB50DE0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\NOTIFICACTION SUCCESFULLY"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:Description="Send Mail Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{E2EFFEEA-27CD-4675-9935-4F07AF60B46A}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="NOTIFICACTION SUCCESFULLY"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\NOTIFICACTION SUCCESFULLY.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{C29C90CD-7972-4F21-A1AD-8C27BA2DD14E}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{55B70367-2135-4DEA-9D08-05509C4F27C8}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\NOTIFICACTION SUCCESFULLY.EventHandlers[OnError]\NOTIFICACTION SUCCESFULLY"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{2DE2C486-FD9B-4105-973F-8799C3FB76AE}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="NOTIFICACTION SUCCESFULLY"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+ 
+
+ERROR_DESCRIPTION=?,
+
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                  SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA; &#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='RRHH - 100 - Syncronize_BO'&#xA;&#xA;AND NAME_TASK ='NOTIFICACTION SUCCESFULLY'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\NOTIFICACTION SUCCESFULLY.EventHandlers[OnPostExecute]"
+          DTS:CreationName="OnPostExecute"
+          DTS:DTSID="{B94B2264-F753-46E0-AECC-B7ABFBAF6792}"
+          DTS:EventID="0"
+          DTS:EventName="OnPostExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{A375E8D8-9F94-4A3E-80A4-54AA05687479}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\NOTIFICACTION SUCCESFULLY.EventHandlers[OnPostExecute]\NOTIFICACTION SUCCESFULLY"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{D45848D2-832E-4125-840B-D51768C9B551}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="NOTIFICACTION SUCCESFULLY"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                  SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='RRHH - 100 - Syncronize_BO'&#xA;AND NAME_TASK ='NOTIFICACTION SUCCESFULLY'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\NOTIFICACTION SUCCESFULLY.EventHandlers[OnPreExecute]"
+          DTS:CreationName="OnPreExecute"
+          DTS:DTSID="{9BC5E95F-78FE-4302-A544-60F41C5966EE}"
+          DTS:EventID="0"
+          DTS:EventName="OnPreExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{2E0195C5-001A-4465-86E8-F06C317EBD74}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\NOTIFICACTION SUCCESFULLY.EventHandlers[OnPreExecute]\NOTIFICACTION SUCCESFULLY"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{ED16220A-ED1F-407B-B680-0FD957F21380}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="NOTIFICACTION SUCCESFULLY"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                  SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='RRHH - 100 - Syncronize_BO'&#xA;AND NAME_TASK ='NOTIFICACTION SUCCESFULLY'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{CFC4E077-A6AC-416A-A7C8-BEEF23246B56}"
+          SendMailTask:From="SQLadmin@intcomex.com"
+          SendMailTask:To="smonroy@intcomex.com;JoelSerrano@intcomex.com;RVargas@intcomex.com;Marlon.Claro@intcomex.com"
+          SendMailTask:Subject="ETL RRHH - 100 - Syncronize_BO Notification finished succesfully" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\U - ETL_RRHH_Syncronize_BO IQ16"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{5558D722-56C5-43A2-92F5-F54562FC3AA0}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="U - ETL_RRHH_Syncronize_BO IQ16">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7658D7E8-71AE-4ABE-9F87-63F583020C3A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="IQ16_LOAD_COMPENSATION"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{9DAB6F33-0086-4593-A031-887696361AC7}"
+              DTS:EventID="0"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{92471399-B69A-4303-AA23-0F6ABB4CD979}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION.EventHandlers[OnError]\QI154_LOAD_COMPENSATION"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{05199743-0EC5-4148-B257-1A662E7D6CFA}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="QI154_LOAD_COMPENSATION"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+ 
+
+ERROR_DESCRIPTION=?,
+
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                      SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA; &#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='RRHH - 100 - Syncronize_BO'&#xA;&#xA;AND NAME_TASK ='QI154_LOAD_COMPENSATION'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="System::ErrorDescription"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION.EventHandlers[OnPostExecute]"
+              DTS:CreationName="OnPostExecute"
+              DTS:DTSID="{DCEA4B6D-6BF8-412B-B5B8-6135AF24108B}"
+              DTS:EventID="2097267"
+              DTS:EventName="OnPostExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{DF477D95-80EA-42D7-97FE-2BAF8BBB8C71}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION.EventHandlers[OnPostExecute]\QI154_LOAD_COMPENSATION"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{9DF0BE5C-9B77-413B-B14D-CA14F186D411}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="QI154_LOAD_COMPENSATION"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                      SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='RRHH - 100 - Syncronize_BO'&#xA;AND NAME_TASK ='QI154_LOAD_COMPENSATION'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION.EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{086FC0CF-DE6F-4AE0-B04B-C5E37C320E45}"
+              DTS:EventID="2097267"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{ADA0123C-B264-48A0-B811-57DBF24EDEA9}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION.EventHandlers[OnPreExecute]\QI154_LOAD_COMPENSATION"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{09D5A6B7-53C7-4ABB-8552-2A3EDFE9E98D}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="QI154_LOAD_COMPENSATION"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"',
+
+CASE WHEN "+ (DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=0 THEN 'I'
+          
+
+WHEN "+(DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=1 THEN 'F'
+
+ELSE 'ERROR'
+ END,
+1,
+GETDATE()"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                      SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'RRHH - 100 - Syncronize_BO',&#xA;'QI154_LOAD_COMPENSATION',&#xA;&#xA;CASE WHEN 1=0 THEN 'I'&#xA;          &#xA;&#xA;WHEN 1=1 THEN 'F'&#xA;&#xA;ELSE 'ERROR'&#xA; END,&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{0BDC1CED-E5E3-436C-B099-17B6D2BEED88}"
+              SQLTask:SqlStatementSource="BEGIN&#xA; print '********** Paso 1: RRHH - Syncronize BO ***********'&#xA; exec dwhuser.dw_dataload_vc_syncronize_bo&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\X -RESET_PROCESS_VARIABLE"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{95A93DDF-5B1E-4438-A129-8CC9DEE6B83D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="X -RESET_PROCESS_VARIABLE">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="RESET VARIABLE EXECUTION"
+          DTS:DTSID="{FDDB52B6-C734-4146-AA65-393AB50603DE}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="RESET  PROCESS VARIABLE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{E3B46049-A8F6-4FA2-9663-3486905CA7D5}"
+              DTS:EventID="0"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{BF8FF8D8-7363-48E4-858D-32E2807AFD87}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnError]\RESET  PROCESS VARIABLE"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{D523E763-94C7-4E57-978F-78347FFF0221}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="RESET  PROCESS VARIABLE"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+ 
+
+ERROR_DESCRIPTION=?,
+
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                      SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA; &#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='RRHH - 100 - Syncronize_BO'&#xA;&#xA;AND NAME_TASK ='RESET  PROCESS VARIABLE'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="System::ErrorDescription"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPostExecute]"
+              DTS:CreationName="OnPostExecute"
+              DTS:DTSID="{CDBDDA27-03A8-4C1F-89A2-A110D8F5A8BB}"
+              DTS:EventID="0"
+              DTS:EventName="OnPostExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{E2ACA017-9389-4DFB-8A7B-9E9007E1D6D4}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPostExecute]\RESET  PROCESS VARIABLE"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{54F45CCA-EF54-4B82-B1BF-569A46BE0576}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="RESET  PROCESS VARIABLE"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                      SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='RRHH - 100 - Syncronize_BO'&#xA;AND NAME_TASK ='RESET  PROCESS VARIABLE'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{E82D6A93-2717-4824-9A14-DFC50957BCBE}"
+              DTS:EventID="0"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{08E78E76-46E2-4888-9AA7-EB11255D37F2}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPreExecute]\RESET  PROCESS VARIABLE"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{9D25F516-DAA8-4011-A8CA-EF56AEBEC02C}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="RESET  PROCESS VARIABLE"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"',
+
+CASE WHEN "+ (DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=0 THEN 'I'
+          
+
+WHEN "+(DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=1 THEN 'F'
+
+ELSE 'ERROR'
+ END,
+1,
+GETDATE()"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                      SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'RRHH - 100 - Syncronize_BO',&#xA;'RESET  PROCESS VARIABLE',&#xA;&#xA;CASE WHEN 1=0 THEN 'I'&#xA;          &#xA;&#xA;WHEN 1=1 THEN 'F'&#xA;&#xA;ELSE 'ERROR'&#xA; END,&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+              SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Y - Correct Event Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Correct Event Task"
+      DTS:DTSID="{DF88FED2-BE80-419A-B7D3-BC1B01280C5F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Y - Correct Event Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Y - Correct Event Task"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Correcto','Ejecucion Correcta')"</DTS:PropertyExpression>
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Y - Correct Event Task.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{F84F1267-3FC0-4E75-A021-DBE2B0A5C0CC}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{B9D561CF-747E-414E-A960-84B0E7346AF4}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Y - Correct Event Task.EventHandlers[OnError]\W - Correct Event Task"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{43529790-0C1B-484F-ABD9-D7484FD7BD57}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="W - Correct Event Task"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+ 
+
+ERROR_DESCRIPTION=?,
+
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                  SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA; &#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='RRHH - 100 - Syncronize_BO'&#xA;&#xA;AND NAME_TASK ='W - Correct Event Task'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\Y - Correct Event Task.EventHandlers[OnPostExecute]"
+          DTS:CreationName="OnPostExecute"
+          DTS:DTSID="{7935E28A-7D59-4B27-A680-2EBCD3AFAB4F}"
+          DTS:EventID="0"
+          DTS:EventName="OnPostExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{EB2D5512-9AB8-4FDC-821C-DF0C541B1CF1}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Y - Correct Event Task.EventHandlers[OnPostExecute]\W - Correct Event Task"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{BDF350A9-6524-4005-AFC1-CB0160102918}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="W - Correct Event Task"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                  SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='RRHH - 100 - Syncronize_BO'&#xA;AND NAME_TASK ='W - Correct Event Task'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\Y - Correct Event Task.EventHandlers[OnPreExecute]"
+          DTS:CreationName="OnPreExecute"
+          DTS:DTSID="{957BFB81-344A-41BC-979F-295FF1CE3F1A}"
+          DTS:EventID="0"
+          DTS:EventName="OnPreExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{913B8196-3A3B-4606-BE82-4A89AC3F95CE}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Y - Correct Event Task.EventHandlers[OnPreExecute]\W - Correct Event Task"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{25052A18-F540-4B2F-A482-D76C556F8513}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="W - Correct Event Task"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"',
+
+CASE WHEN "+ (DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=0 THEN 'I'
+          
+
+WHEN "+(DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=1 THEN 'F'
+
+ELSE 'ERROR'
+ END,
+1,
+GETDATE()"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                  SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'RRHH - 100 - Syncronize_BO',&#xA;'W - Correct Event Task',&#xA;&#xA;CASE WHEN 1=0 THEN 'I'&#xA;          &#xA;&#xA;WHEN 1=1 THEN 'F'&#xA;&#xA;ELSE 'ERROR'&#xA; END,&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+          SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;&#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Correcto','Ejecucion Correcta')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Z - Correct Event"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Send Mail  Correct Event"
+      DTS:DTSID="{91DE7CF5-5404-4D94-ACA5-D784B020BEC6}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Z - Correct Event">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Z - Correct Event"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C11AB909-CA13-45C7-B187-6CA712FAD300}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se a ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+              SQLTask:SqlStatementSource="Select  'Se a ejecutado  el Paquete RRHH - 100 - Syncronize_BO  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{974A75BA-4F79-4FFD-B80B-F6EBEB62DD4D}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEND_MAIL_TASK"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject] + @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{64879647-3E8E-49F5-8949-3E6812A2917B}"
+              DTS:EventID="0"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{8DBE2293-61C4-4C5D-B6A7-068CEB87F92F}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnError]\SEND_MAIL_TASK"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{67234478-4B47-4F43-8513-DDAA3A1931C6}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="SEND_MAIL_TASK"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+ 
+ 
+
+ERROR_DESCRIPTION=?,
+
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                      SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA; &#xA; &#xA;&#xA;ERROR_DESCRIPTION=?,&#xA;&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='RRHH - 100 - Syncronize_BO'&#xA;&#xA;AND NAME_TASK ='SEND_MAIL_TASK'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="System::ErrorDescription"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPostExecute]"
+              DTS:CreationName="OnPostExecute"
+              DTS:DTSID="{7EE5D2D2-2762-4B6D-9CA9-BC1C5E0F8E00}"
+              DTS:EventID="2097267"
+              DTS:EventName="OnPostExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{9C8CCC04-BE08-4AEF-90E6-278D31A07A82}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPostExecute]\SEND_MAIL_TASK"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{AE1A45A2-3600-466B-B48D-AB6042DF6D84}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="SEND_MAIL_TASK"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   
+SET IN_EXECUTION=0,
+  
+
+ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',
+END_EXECUTION=GETDATE()
+
+
+WHERE  PACKAGE_NAME ='"+ @[System::PackageName] +"'
+AND NAME_TASK ='"+ @[System::TaskName]   +"'
+
+AND END_EXECUTION IS NULL"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                      SQLTask:SqlStatementSource="UPDATE  [DWStaging].[ETL].[LOG_TASK_NAME]   &#xA;SET IN_EXECUTION=0,&#xA;  &#xA;&#xA;ERROR_DESCRIPTION='ETL EXECUTED CORRECTLY',&#xA;END_EXECUTION=GETDATE()&#xA;&#xA;&#xA;WHERE  PACKAGE_NAME ='RRHH - 100 - Syncronize_BO'&#xA;AND NAME_TASK ='SEND_MAIL_TASK'&#xA;&#xA;AND END_EXECUTION IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{D6B55225-3892-477B-AC21-409BE9E8B16D}"
+              DTS:EventID="2097267"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{B6B908C0-636D-439A-BD67-834807BD7E36}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPreExecute]\SEND_MAIL_TASK"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{1FA64EEA-5149-43DA-BD2B-EAD9469C70A4}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="SEND_MAIL_TASK"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )
+
+
+SELECT  CONVERT(DATE,GETDATE(),110),'"+ @[System::PackageName] +"',
+'"+ @[System::TaskName] +"',
+
+CASE WHEN "+ (DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=0 THEN 'I'
+          
+
+WHEN "+(DT_STR, 10, 1252) @[User::VInt_Tipo_Ejecucion] +"=1 THEN 'F'
+
+ELSE 'ERROR'
+ END,
+1,
+GETDATE()"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                      SQLTask:SqlStatementSource="INSERT INTO [ETL].[LOG_TASK_NAME] (DATE_EXECUTION,PACKAGE_NAME,NAME_TASK,TYPE_EXECUTION,IN_EXECUTION,BEGIN_EXECUTION )&#xA;&#xA;&#xA;SELECT  CONVERT(DATE,GETDATE(),110),'RRHH - 100 - Syncronize_BO',&#xA;'SEND_MAIL_TASK',&#xA;&#xA;CASE WHEN 1=0 THEN 'I'&#xA;          &#xA;&#xA;WHEN 1=1 THEN 'F'&#xA;&#xA;ELSE 'ERROR'&#xA; END,&#xA;1,&#xA;GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{CFC4E077-A6AC-416A-A7C8-BEEF23246B56}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :RRHH - 100 - Syncronize_BO" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{1385D8BB-915E-44C4-81E9-FE52D3161165}"
+          DTS:From="Package\Z - Correct Event\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Z - Correct Event\SEND_MAIL_TASK" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{1D3C3396-19C7-4ABF-A336-3300A9DAEF7E}"
+      DTS:From="Package\U - ETL_RRHH_Syncronize_BO IQ16"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Y - Correct Event Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{8D2BC065-E556-4C44-8840-B3F16CEB9375}"
+      DTS:From="Package\X -RESET_PROCESS_VARIABLE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Z - Correct Event" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{570D1DC6-45BD-484F-855D-468E418052CB}"
+      DTS:From="Package\Y - Correct Event Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\X -RESET_PROCESS_VARIABLE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 27]"
+      DTS:CreationName=""
+      DTS:DTSID="{96439F76-76DE-4746-8EE7-8226A38818F1}"
+      DTS:From="Package\Z - Correct Event"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 27"
+      DTS:To="Package\NOTIFICACTION SUCCESFULLY" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{97892038-456F-47F4-93C4-B977D24FD52D}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{B6878D35-A6E6-4D01-99FD-CA858423AE8F}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Evento Error"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{CEE23596-9CA7-4232-AFF8-DDA08A750F57}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Evento Error">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{90B87DFA-0B38-4448-9E9C-9CC8B3D78262}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Mensaje"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Error varchar (500)
+Declare @Paquete varchar (100)
+Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) 
+set @Paquete=?
+select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' 
++ @Error"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                  SQLTask:SqlStatementSource="Declare @Error varchar (500)&#xA;Declare @Paquete varchar (100)&#xA;Set @Error=(select Descripcion_Event from  ETL.LOG_Evento where Pk_Evento=(select MAX(Pk_Evento) from ETL.LOG_Evento )) &#xA;set @Paquete=?&#xA;select  'Se a Presentado Un Fallo en el Paquete '+@Paquete+'   El mensaje de Error es :' &#xA;+ @Error"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::VStr_Mensaje" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error\Send error email"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{90D53B2C-C6F0-49FA-8B2D-A87E80498BFB}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send error email"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::VStr_SubjectError]+ @[System::PackageName]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{CFC4E077-A6AC-416A-A7C8-BEEF23246B56}"
+                  SendMailTask:From="sqladmin@intcomex.com"
+                  SendMailTask:To="ETLSupport@intcomex.com"
+                  SendMailTask:Subject="ERROR Execution !!!!  Admin ETL :RRHH - 100 - Syncronize_BO" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{EFF917D5-C10A-4254-BE13-31D1E566A8E4}"
+              DTS:From="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Evento Error\Send error email" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\NOTIFICACTION LOAD FAILED"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{18A3FC0B-3256-49A2-B5EB-507D8D1DEDEE}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="NOTIFICACTION LOAD FAILED"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{CFC4E077-A6AC-416A-A7C8-BEEF23246B56}"
+              SendMailTask:From="SQLadmin@intcomex.com"
+              SendMailTask:To="smonroy@intcomex.com;JoelSerrano@intcomex.com;RVargas@intcomex.com;Marlon.Claro@intcomex.com"
+              SendMailTask:Subject="ETL RRHH - 100 - Syncronize_BO load finished failed !!!!!!" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Sequence Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{EE1370CB-EDA5-4350-A6A5-6F9506113907}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sequence Container">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{FA44D64F-3AE0-4B59-849B-EA19BDB63A3C}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tare Evento Fallo"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="Name">"Tare Evento Fallo"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Declare @Fecha Datetime
+Set @Fecha=Getdate(); 
+Insert Into ETL.Log_Evento
+values (@FECHA,?,'Error',?)"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                  SQLTask:SqlStatementSource="Declare @Fecha Datetime&#xA;Set @Fecha=Getdate(); &#xA;Insert Into ETL.Log_Evento&#xA;values (@FECHA,?,'Error',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion ETL_BOM"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{71CBE03F-8941-452E-9895-87E477EFB45A}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tarea de ejecucion ETL_BOM"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Update ETL.Log_Ejecucion
+Set Ejecucion = 0, Fecha_Fin = GETDATE()
+Where Paquete = ?"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{61C5387F-5A01-4B8F-9EE7-AE1FEFCA6A3A}"
+                  SQLTask:SqlStatementSource="Update ETL.Log_Ejecucion&#xA;Set Ejecucion = 0, Fecha_Fin = GETDATE()&#xA;Where Paquete = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{275134E9-6210-4FBF-8221-551D3CA1CA84}"
+              DTS:From="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion ETL_BOM"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{92ADE135-AFC4-4632-9043-B3BB440E58FB}"
+          DTS:From="Package.EventHandlers[OnError]\Sequence Container"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Evento Error" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{F8D86DA6-91A9-4861-A545-88B4068A4D76}"
+          DTS:From="Package.EventHandlers[OnError]\Evento Error"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnError]\NOTIFICACTION LOAD FAILED" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="135,44"
+          Id="Package\NOTIFICACTION SUCCESFULLY"
+          TopLeft="115.481132075472,1059.42452830189" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION"
+          TopLeft="5.5,5.5" />
+        <AnnotationLayout
+          Text="PROCESS EXECUTION FULL"
+          ParentId="Package\U - ETL_RRHH_Syncronize_BO IQ16"
+          Size="167,38"
+          Id="9a444558-14aa-4c32-b030-c592fab4f450"
+          TopLeft="25.5,52.5">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <ContainerLayout
+          HeaderHeight="44"
+          IsExpanded="True"
+          PanelSize="335,146"
+          Size="335,190"
+          Id="Package\U - ETL_RRHH_Syncronize_BO IQ16"
+          TopLeft="27.5,117.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE"
+          TopLeft="10.9811320754716,19.3396226415094" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="164,79"
+          Size="164,123"
+          Id="Package\X -RESET_PROCESS_VARIABLE"
+          TopLeft="101.764150943396,630.896226415094" />
+        <NodeLayout
+          Size="136,49"
+          Id="Package\Y - Correct Event Task"
+          TopLeft="116.028301886793,472.047169811321" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\Mensaje"
+          TopLeft="11.0943396226414,17" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Z - Correct Event\SEND_MAIL_TASK"
+          TopLeft="11.6226415094341,103.037735849057" />
+        <EdgeLayout
+          Id="Package\Z - Correct Event.PrecedenceConstraints[Constraint]"
+          TopLeft="78.9811320754718,60.9245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.528301886792406,42.1132075471698"
+              Start="0,0"
+              End="0.528301886792406,34.6132075471698">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0566037735849" />
+                  <mssgle:LineSegment
+                    End="0.528301886792406,21.0566037735849" />
+                  <mssgle:LineSegment
+                    End="0.528301886792406,34.6132075471698" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="160,157"
+          Size="160,201"
+          Id="Package\Z - Correct Event"
+          TopLeft="104.330188679245,812.330188679245" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="195,307.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-10.971698113207,164.547169811321"
+              Start="0,0"
+              End="-10.971698113207,157.047169811321">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.2735849056605" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,78.2735849056605"
+                    Point2="0,82.2735849056605"
+                    Point3="-4,82.2735849056605" />
+                  <mssgle:LineSegment
+                    End="-6.971698113207,82.2735849056605" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6.971698113207,82.2735849056605"
+                    Point2="-10.971698113207,82.2735849056605"
+                    Point3="-10.971698113207,86.2735849056605" />
+                  <mssgle:LineSegment
+                    End="-10.971698113207,157.047169811321" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="183.83962264151,753.688679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,58.6415094339623"
+              Start="0,0"
+              End="0,51.1415094339623">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.1415094339623" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="183.896226415095,521.047169811321">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,109.849056603773"
+              Start="0,0"
+              End="0,102.349056603773">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,102.349056603773" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 27]"
+          TopLeft="183.655660377359,1013.33018867925">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,46.094339622645"
+              Start="0,0"
+              End="0,38.594339622645">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.594339622645" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Evento Error\Mensaje"
+          TopLeft="8.0377358490566,18.622641509434" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Evento Error\Send error email"
+          TopLeft="7.54716981132074,96.9622641509434" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Evento Error.PrecedenceConstraints[Constraint]"
+          TopLeft="75.9245283018868,62.5471698113207">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.490566037735846,34.4150943396226"
+              Start="0,0"
+              End="-0.490566037735846,26.9150943396226">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.2075471698113" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,17.2075471698113" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,26.9150943396226" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="159.094339622642,155.283018867926"
+          Size="159.094339622642,199.207547169812"
+          Id="Package.EventHandlers[OnError]\Evento Error"
+          TopLeft="7.80188679245283,284.254716981132" />
+        <NodeLayout
+          Size="135.358490566038,43.8867924528302"
+          Id="Package.EventHandlers[OnError]\NOTIFICACTION LOAD FAILED"
+          TopLeft="19.3490566037736,557.839622641509" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Tare Evento Fallo"
+          TopLeft="9.47169811320754,117.641509433962" />
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package.EventHandlers[OnError]\Sequence Container\Tarea de ejecucion ETL_BOM"
+          TopLeft="7.9622641509434,38.7735849056604" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="75.8490566037736,82.6981132075472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="1.50943396226415,34.9433962264151"
+              Start="0,0"
+              End="1.50943396226415,27.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.4716981132076" />
+                  <mssgle:LineSegment
+                    End="1.50943396226415,17.4716981132076" />
+                  <mssgle:LineSegment
+                    End="1.50943396226415,27.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="162.641509433963,175.735849056605"
+          Size="162.641509433963,219.660377358491"
+          Id="Package.EventHandlers[OnError]\Sequence Container"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="86.8207547169811,225.160377358491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0.528301886792462,59.0943396226415"
+              Start="0,0"
+              End="0.528301886792462,51.5943396226415">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5471698113208" />
+                  <mssgle:LineSegment
+                    End="0.528301886792462,29.5471698113208" />
+                  <mssgle:LineSegment
+                    End="0.528301886792462,51.5943396226415" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          TopLeft="87.3490566037736,483.462264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.339622641509436,74.377358490566"
+              Start="0,0"
+              End="-0.339622641509436,66.877358490566">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.1698113207547" />
+                  <mssgle:LineSegment
+                    End="-0.339622641509436,37.1698113207547" />
+                  <mssgle:LineSegment
+                    End="-0.339622641509436,66.877358490566" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\NOTIFICACTION SUCCESFULLY.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\NOTIFICACTION SUCCESFULLY.EventHandlers[OnPreExecute]\NOTIFICACTION SUCCESFULLY"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\NOTIFICACTION SUCCESFULLY.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\NOTIFICACTION SUCCESFULLY.EventHandlers[OnPostExecute]\NOTIFICACTION SUCCESFULLY"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\NOTIFICACTION SUCCESFULLY.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\NOTIFICACTION SUCCESFULLY.EventHandlers[OnError]\NOTIFICACTION SUCCESFULLY"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION.EventHandlers[OnPreExecute]\QI154_LOAD_COMPENSATION"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION.EventHandlers[OnPostExecute]\QI154_LOAD_COMPENSATION"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\U - ETL_RRHH_Syncronize_BO IQ16\IQ16_LOAD_COMPENSATION.EventHandlers[OnError]\QI154_LOAD_COMPENSATION"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPreExecute]\RESET  PROCESS VARIABLE"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnPostExecute]\RESET  PROCESS VARIABLE"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\X -RESET_PROCESS_VARIABLE\RESET  PROCESS VARIABLE.EventHandlers[OnError]\RESET  PROCESS VARIABLE"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Y - Correct Event Task.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Y - Correct Event Task.EventHandlers[OnPreExecute]\W - Correct Event Task"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Y - Correct Event Task.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Y - Correct Event Task.EventHandlers[OnPostExecute]\W - Correct Event Task"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Y - Correct Event Task.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Y - Correct Event Task.EventHandlers[OnError]\W - Correct Event Task"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPreExecute]\SEND_MAIL_TASK"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnPostExecute]\SEND_MAIL_TASK"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="135.773584905661,43.9245283018868"
+          Id="Package\Z - Correct Event\SEND_MAIL_TASK.EventHandlers[OnError]\SEND_MAIL_TASK"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

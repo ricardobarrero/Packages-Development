@@ -1,0 +1,1021 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/25/2015 12:24:39 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{C41FD46A-CB40-4A99-B7A8-BC5C544225D3}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DWH – 404 – GetARTransFullyPaid"
+  DTS:PackageType="5"
+  DTS:VersionBuild="47"
+  DTS:VersionGUID="{C8D81CDE-9000-43D9-8E4A-78122A15C514}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7C4A475E-BAD0-493C-B41A-B304DC91A3B3}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-DWH – 404 – GetARTransFullyPaid-{7C4A475E-BAD0-493C-B41A-B304DC91A3B3}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{8AB80016-8686-4379-9E22-2C640C5136DC}"
+      DTS:ObjectName="Sentai_Replica.bodts">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=bodts;Dsn=Sentai_Replica;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABHqS4IdHIQ26ZQcts6FqezAAAAAASAAACgAAAAEAAAABu9G6NJSG8C8ymNADQ4GwoYAAAAkM9RIUyV2P3a0vQbneHkjYmpyHb0XBlCFAAAAIkOTpqzFo8GHuxvKu5euZdtbzw+</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;Sentai_Replica.bodts&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{D0EBEA45-B5C6-4C1C-91D4-5B53D9D97253}"
+      DTS:ObjectName="Sentai_Replica bodts" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DF64B0AB-DFDF-4BED-B900-CC81BEAB559C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Files_Name">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{49C316C1-33EC-4AB7-B740-43B123BB983A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vstr_ruta">
+      <DTS:VariableValue
+        DTS:DataType="8">E:\Files_Extraction\SO_FULL_XPANCIFU\</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\LOAD STG_FULLY_PAID"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{4DB7AD3F-0AE8-4E74-9F98-22DA64057057}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD STG_FULLY_PAID"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\LOAD STG_FULLY_PAID\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\LOAD STG_FULLY_PAID\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Data Conversion.Inputs[Data Conversion Input].Columns[Control-ent]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="Control-ent"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Control-ent]" />
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Data Conversion.Inputs[Data Conversion Input].Columns[Trans-code]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="Trans-code"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Trans-code]" />
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Data Conversion.Inputs[Data Conversion Input].Columns[Trans-ID]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="Trans-ID"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Trans-ID]" />
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Data Conversion.Inputs[Data Conversion Input].Columns[CompanyID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CompanyID"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Output].Columns[CompanyID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\LOAD STG_FULLY_PAID\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output].Columns[Control-ent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output].Columns[Control-ent]"
+                      name="Control-ent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Control-ent]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output].Columns[Trans-code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="4"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output].Columns[Trans-code]"
+                      name="Trans-code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Trans-code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output].Columns[Trans-ID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="8"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output].Columns[Trans-ID]"
+                      name="Trans-ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Trans-ID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output].Columns[CompanyID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="4"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output].Columns[CompanyID]"
+                      name="CompanyID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Output].Columns[CompanyID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\LOAD STG_FULLY_PAID\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\LOAD STG_FULLY_PAID\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\LOAD STG_FULLY_PAID\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Derived Column.Inputs[Derived Column Input].Columns[Control-ent]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="Control-ent"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Control-ent]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[UPPER](#{Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Control-ent]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">UPPER([Control-ent])</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\LOAD STG_FULLY_PAID\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Output].Columns[CompanyID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Output].Columns[CompanyID]"
+                      name="CompanyID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Control-ent]} == "i" ? "XUS" : [UPPER](#{Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Control-ent]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">[Control-ent] == "i" ? "XUS" : UPPER([Control-ent])</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]"
+                      name="LastExtraction"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\LOAD STG_FULLY_PAID\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Extracts data from a relational database by using a .NET provider."
+              name="PUB AR-TRANS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT "CONTROL-ENT", "TRANS-NO","TRANS-CODE", "TRANS-ID", "FULLY-PAID","FULLY-PAID-DATE", "VOIDED"
+ FROM PUB."AR-TRANS"
+WHERE  "MACHINE-ID" = ''
+AND "TRANS-CODE" = 'IN'
+AND "FULLY-PAID-DATE" &gt;= SYSDATE-5
+--AND "TRANS-DATE" &lt;= SYSDATE – 58
+
+
+
+/*
+SELECT "CONTROL-ENT", "TRANS-NO","TRANS-CODE", "TRANS-ID", "FULLY-PAID","FULLY-PAID-DATE", "VOIDED"
+ FROM PUB."AR-TRANS"
+WHERE "CONTROL-ENT" IN ('XCB','XCL','XCO','XEC','XGB','XIQ','XJM','XMX','XPE','XSV','i','XUY','XCR','XGT','XPA')
+AND "MACHINE-ID" = ''
+AND "TRANS-CODE" = 'IN'
+AND "FULLY-PAID-DATE" &gt;= SYSDATE-5
+--AND "TRANS-DATE" &lt;= SYSDATE – 58
+*/</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                  connectionManagerRefId="Package.ConnectionManagers[Sentai_Replica.bodts]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Control-ent]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Control-ent]"
+                      length="24"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Control-ent]"
+                      name="Control-ent"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Trans-no]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Trans-no]"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Trans-no]"
+                      name="Trans-no"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Trans-code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Trans-code]"
+                      length="4"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Trans-code]"
+                      name="Trans-code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Trans-ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Trans-ID]"
+                      length="8"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Trans-ID]"
+                      name="Trans-ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Fully-paid]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Fully-paid]"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Fully-paid]"
+                      name="Fully-paid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Fully-paid-date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Fully-paid-date]"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Fully-paid-date]"
+                      name="Fully-paid-date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Voided]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Voided]"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Voided]"
+                      name="Voided"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Control-ent]"
+                      dataType="wstr"
+                      length="24"
+                      name="Control-ent" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Trans-no]"
+                      dataType="i4"
+                      name="Trans-no" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Trans-code]"
+                      dataType="wstr"
+                      length="4"
+                      name="Trans-code" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Trans-ID]"
+                      dataType="wstr"
+                      length="8"
+                      name="Trans-ID" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Fully-paid]"
+                      dataType="bool"
+                      name="Fully-paid" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Fully-paid-date]"
+                      dataType="dbTimeStamp"
+                      name="Fully-paid-date" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].ExternalColumns[Voided]"
+                      dataType="bool"
+                      name="Voided" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Control-ent]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Control-ent]"
+                      name="Control-ent" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Trans-no]"
+                      dataType="i4"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Trans-no]"
+                      name="Trans-no" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Trans-code]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Trans-code]"
+                      name="Trans-code" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Trans-ID]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Trans-ID]"
+                      name="Trans-ID" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Fully-paid]"
+                      dataType="bool"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Fully-paid]"
+                      name="Fully-paid" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Fully-paid-date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Fully-paid-date]"
+                      name="Fully-paid-date" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Voided]"
+                      dataType="bool"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[Voided]"
+                      name="Voided" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="STG_FULLY_PAID"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[STG_FULLY_PAID]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].Columns[Trans-no]"
+                      cachedDataType="i4"
+                      cachedName="Trans-no"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Trans_no]"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Trans-no]" />
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].Columns[Fully-paid]"
+                      cachedDataType="bool"
+                      cachedName="Fully-paid"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Fully_paid]"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Fully-paid]" />
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].Columns[Fully-paid-date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fully-paid-date"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Fully_paid_date]"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Fully-paid-date]" />
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].Columns[Control-ent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Control-ent"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Control_ent]"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output].Columns[Control-ent]" />
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].Columns[Trans-code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="Trans-code"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Trans_code]"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output].Columns[Trans-code]" />
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].Columns[Trans-ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="Trans-ID"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Trans_ID]"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output].Columns[Trans-ID]" />
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].Columns[CompanyID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="CompanyID"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output].Columns[CompanyID]" />
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].Columns[Voided]"
+                      cachedDataType="bool"
+                      cachedName="Voided"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Voided]"
+                      lineageId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output].Columns[Voided]" />
+                    <inputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LastExtraction"
+                      externalMetadataColumnId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                      lineageId="Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Output].Columns[LastExtraction]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Control_ent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="24"
+                      name="Control_ent" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Trans_no]"
+                      dataType="i4"
+                      name="Trans_no" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Trans_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="Trans_code" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Trans_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="Trans_ID" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Fully_paid]"
+                      dataType="bool"
+                      name="Fully_paid" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Fully_paid_date]"
+                      dataType="dbTimeStamp"
+                      name="Fully_paid_date" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[CompanyID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="CompanyID" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[Voided]"
+                      dataType="bool"
+                      name="Voided" />
+                    <externalMetadataColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                      dataType="dbTimeStamp"
+                      name="LastExtraction" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\LOAD STG_FULLY_PAID.Paths[ADO NET Source Output]"
+              endId="Package\LOAD STG_FULLY_PAID\Derived Column.Inputs[Derived Column Input]"
+              name="ADO NET Source Output"
+              startId="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\LOAD STG_FULLY_PAID.Paths[Data Conversion Output]"
+              endId="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\LOAD STG_FULLY_PAID\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\LOAD STG_FULLY_PAID.Paths[Derived Column Output]"
+              endId="Package\LOAD STG_FULLY_PAID\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\LOAD STG_FULLY_PAID\Derived Column.Outputs[Derived Column Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE TABLE  STG_FULLY_PAID"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{16C48460-D45B-4017-8A91-3C29D610A0CE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE TABLE  STG_FULLY_PAID"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7C4A475E-BAD0-493C-B41A-B304DC91A3B3}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE STG_FULLY_PAID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{03824A29-8244-4B0E-86B4-F4C55DDFE013}"
+      DTS:From="Package\TRUNCATE TABLE  STG_FULLY_PAID"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\LOAD STG_FULLY_PAID" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD STG_FULLY_PAID"
+          TopLeft="25.0283018867925,112.330188679245" />
+        <NodeLayout
+          Size="174,51"
+          Id="Package\TRUNCATE TABLE  STG_FULLY_PAID"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="92.7641509433963,56.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,55.830188679245"
+              Start="0,0"
+              End="0,48.330188679245">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.330188679245" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\LOAD STG_FULLY_PAID">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID"
+          TopLeft="3.4622641509434,298.066037735849" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS"
+          TopLeft="16.4622641509434,3.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD STG_FULLY_PAID\Derived Column"
+          TopLeft="15.5,102.330188679245" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD STG_FULLY_PAID\Data Conversion"
+          TopLeft="9.5,206.179245283019" />
+        <EdgeLayout
+          Id="Package\LOAD STG_FULLY_PAID.Paths[Derived Column Output]"
+          TopLeft="80.5,146.330188679245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,59.8490566037736"
+              Start="0,0"
+              End="0,52.3490566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.3490566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD STG_FULLY_PAID.Paths[Data Conversion Output]"
+          TopLeft="81.2311320754717,250.179245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,47.88679245283"
+              Start="0,0"
+              End="0,40.38679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.38679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD STG_FULLY_PAID.Paths[ADO NET Source Output]"
+          TopLeft="83.9811320754717,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,54.8301886792453"
+              Start="0,0"
+              End="0,47.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD STG_FULLY_PAID\STG_FULLY_PAID">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\LOAD STG_FULLY_PAID\PUB AR-TRANS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

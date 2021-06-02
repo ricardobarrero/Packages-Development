@@ -1,0 +1,1845 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/4/2017 11:51:59 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="S5SQLUS"
+  DTS:CreatorName="INTCOMEX\dbaadmin2"
+  DTS:DTSID="{9E85E551-37FF-4F8A-810B-280359ACBD66}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ETL_PRODCTS_STORE_TO_CRM"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{144389B7-F13A-49CE-A4C9-EB8FB6D983E4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1D5908C0-7D6E-4659-8DA1-17731A7843E4}"
+      DTS:ObjectName="s2crmdb.CRMStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=s2crmdb;Initial Catalog=CRMStaging;Provider=SQLNCLI11;Integrated Security=SSPI;Application Name=SSIS-Package4-{1D5908C0-7D6E-4659-8DA1-17731A7843E4}s2crmdb.CRMStaging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[S91SQLUS.DWStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BA1F7206-4584-4AA7-AB20-2CC47210D4F1}"
+      DTS:ObjectName="S91SQLUS.DWStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=S91SQLUS;Initial Catalog=DWStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package4-{BA1F7206-4584-4AA7-AB20-2CC47210D4F1}s5sqlus.DWStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{698AE565-5BE2-4FCA-96CA-B97036922D9B}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=casus.intcomex.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLWSTList.IntcomexStore]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B32E2F3F-2109-48AA-B145-AB5DD16E8141}"
+      DTS:ObjectName="SQLWSTList.IntcomexStore">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLWSTList;User ID=ETLUser;Initial Catalog=IntcomexStore;Provider=SQLNCLI11.1;Auto Translate=False;Application Name=SSIS-WST - Products-{69567095-63FD-4D96-BAC7-DF379485E590}SQLWSTList.ETLUser;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYC+OqgH/TE+knDHeHW1PiAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACrV2ZYKF6aGxoGHO23MEj9AAAAAASAAACgAAAAEAAAAKRFVYVb1mW72yrscvtsRhkYAAAAM5fvBe0njHl2kknFRKKXgyhsOLhM/AwzFAAAAB5HryyJm2kNDPg+qLz8VqjZylx7</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;S2CRMDB.ETLUser&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{287DAD16-43B8-47FF-8BF8-EC4315D44285}"
+      DTS:ObjectName="S2CRMDB ETLUser" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;S91SQLUS.DWStaging&quot;;&quot;[ETL].[SSIS_CONFIGURATIONS]&quot;;&quot;SQLWSTList.ETLUser&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{FE64F2F4-8C2B-4D70-91AC-3079BBE09172}"
+      DTS:ObjectName="SQLWSTList ETLUser" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{06977A9A-52D3-495C-B1E0-E918CBD70D3B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">ETLSupport@intcomex.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{88C9F216-8E1E-4529-A12F-D51C0A0042C7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Mensaje">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{19552BD9-42F3-449F-B977-99D8ADF9484B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_Subject">
+      <DTS:VariableValue
+        DTS:DataType="8">Correct Execution Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9D9D629E-DB26-4B39-852A-92F4ACB350D9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VStr_SubjectError">
+      <DTS:VariableValue
+        DTS:DataType="8">ERROR Execution !!!!  Admin ETL :</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Evento Correcto"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{747CB5F5-EC91-4329-B4E5-51630F728AB3}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Evento Correcto">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Name">"Evento Correcto"</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Mensaje"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B6556319-36BE-4991-B4DE-1B7B6943DEF2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mensaje"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Mensaje"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select  'Se ha ejecutado  el Paquete "+ @[System::PackageName]+"  Correctamente' "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BA1F7206-4584-4AA7-AB20-2CC47210D4F1}"
+              SQLTask:SqlStatementSource="Select  'Se ha ejecutado  el Paquete ETL_PRODCTS_STORE_TO_CRM  Correctamente' "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::VStr_Mensaje" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Evento Correcto\Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{240F0778-6865-48FF-969B-3421504F8CA5}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::VStr_Mensaje]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::VStr_Subject]+ @[System::PackageName]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::VStr_EmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{698AE565-5BE2-4FCA-96CA-B97036922D9B}"
+              SendMailTask:From="sqladmin@intcomex.com"
+              SendMailTask:To="ETLSupport@intcomex.com"
+              SendMailTask:Subject="Correct Execution Admin ETL :ETL_PRODCTS_STORE_TO_CRM" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{99A66740-C710-474D-9D26-F8E4470FC5FE}"
+          DTS:From="Package\Evento Correcto\Mensaje"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Evento Correcto\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOAD PRODUCTS"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{D0BEB105-5A00-4439-9F9A-140DCFC824B4}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOAD PRODUCTS">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOAD PRODUCTS\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{FA8DD653-F021-4084-A6D7-EA7B8D5184E2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1D5908C0-7D6E-4659-8DA1-17731A7843E4}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 0,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Products'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD PRODUCTS\Execute SQL Task 1"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D6726933-07C0-40CF-A912-2C18DC4FC09B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task 1"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1D5908C0-7D6E-4659-8DA1-17731A7843E4}"
+              SQLTask:SqlStatementSource="UPDATE CRMStaging.dbo.LoadControl&#xA;SET UPDATED = 1,&#xA;LastExtraction = getdate()&#xA;WHERE TableName = 'Products'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD PRODUCTS\Load"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{347D20F8-1B50-4918-803C-B44637F1C797}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\LOAD PRODUCTS\Load\CRM"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="CRM"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Products]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD PRODUCTS\Load\CRM.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[s2crmdb.CRMStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[LocalRecno]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="LocalRecno"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[LocalRecno]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[LocalRecno]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[LocalSku]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="LocalSku"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[LocalSku]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[LocalSku]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[CentralRecno]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CentralRecno"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[CentralRecno]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CentralRecno]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[CentralSku]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CentralSku"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[CentralSku]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CentralSku]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[Mpn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Mpn"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[Mpn]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[Mpn]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[CnetId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CnetId"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[CnetId]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CnetId]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[CnetCategoryId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CnetCategoryId"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[CnetCategoryId]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CnetCategoryId]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[ProductType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="ProductType"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ProductType]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductType]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[DescriptionEn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="800"
+                          cachedName="DescriptionEn"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[DescriptionEn]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[DescriptionEn]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[DescriptionEs]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="800"
+                          cachedName="DescriptionEs"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[DescriptionEs]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[DescriptionEs]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[DescriptionPt]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="800"
+                          cachedName="DescriptionPt"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[DescriptionPt]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[DescriptionPt]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[ImageFilename]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="ImageFilename"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ImageFilename]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ImageFilename]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[ImageType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ImageType"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ImageType]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ImageType]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[IntcomexBrandId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="IntcomexBrandId"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[IntcomexBrandId]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[IntcomexBrandId]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[IntcomexBrandDescription]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="IntcomexBrandDescription"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[IntcomexBrandDescription]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[IntcomexBrandDescription]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[IntcomexBrandImage]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="IntcomexBrandImage"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[IntcomexBrandImage]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[IntcomexBrandImage]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[ProductLineId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ProductLineId"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ProductLineId]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductLineId]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[ProductLineEn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="ProductLineEn"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ProductLineEn]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductLineEn]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[ProductLineEs]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="ProductLineEs"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ProductLineEs]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductLineEs]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[ProductLinePt]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="ProductLinePt"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ProductLinePt]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductLinePt]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[ModelId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ModelId"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ModelId]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ModelId]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[ModelEn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="ModelEn"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ModelEn]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ModelEn]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[ModelEs]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="ModelEs"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ModelEs]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ModelEs]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[ModelPt]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="ModelPt"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ModelPt]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ModelPt]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[Status]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="Status"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[Status]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[CreationDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="CreationDate"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[CreationDate]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CreationDate]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[LastExtraction]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastExtraction"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[LastExtraction]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[XmxDescription]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="500"
+                          cachedName="XmxDescription"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[XmxDescription]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[XmxDescription]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[TypeId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TypeId"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[TypeId]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[TypeId]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[TagsEn]"
+                          cachedDataType="nText"
+                          cachedName="TagsEn"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[TagsEn]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[TagsEn]" />
+                        <inputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].Columns[TagsEs]"
+                          cachedDataType="nText"
+                          cachedName="TagsEs"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[TagsEs]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[TagsEs]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[LocalRecno]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LocalRecno" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[LocalSku]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LocalSku" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[CentralRecno]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CentralRecno" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[CentralSku]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CentralSku" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[Mpn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Mpn" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[CnetId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CnetId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[CnetCategoryId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CnetCategoryId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ProductType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="ProductType" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[DescriptionEn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="800"
+                          name="DescriptionEn" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[DescriptionEs]"
+                          codePage="1252"
+                          dataType="str"
+                          length="800"
+                          name="DescriptionEs" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[DescriptionPt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="800"
+                          name="DescriptionPt" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ImageFilename]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="ImageFilename" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ImageType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ImageType" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[IntcomexBrandId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="IntcomexBrandId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[IntcomexBrandDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="IntcomexBrandDescription" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[IntcomexBrandImage]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="IntcomexBrandImage" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ProductLineId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ProductLineId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ProductLineEn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ProductLineEn" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ProductLineEs]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ProductLineEs" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ProductLinePt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ProductLinePt" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ModelId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ModelId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ModelEn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ModelEn" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ModelEs]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ModelEs" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[ModelPt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ModelPt" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[CreationDate]"
+                          dataType="dbTimeStamp"
+                          name="CreationDate" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[XmxDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="500"
+                          name="XmxDescription" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[TypeId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="TypeId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[TagsEn]"
+                          dataType="nText"
+                          name="TagsEn" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input].ExternalColumns[TagsEs]"
+                          dataType="nText"
+                          name="TagsEs" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD PRODUCTS\Load\CRM.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD PRODUCTS\Load\CRM.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\CRM.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD PRODUCTS\Load\CRM.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\LOAD PRODUCTS\Load\IntcomexStore"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="IntcomexStore"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Products]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SQLWSTList.IntcomexStore]"
+                      connectionManagerRefId="Package.ConnectionManagers[SQLWSTList.IntcomexStore]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[LocalRecno]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[LocalRecno]"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[LocalRecno]"
+                          name="LocalRecno"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[LocalSku]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[LocalSku]"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[LocalSku]"
+                          name="LocalSku"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CentralRecno]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[CentralRecno]"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CentralRecno]"
+                          name="CentralRecno"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CentralSku]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[CentralSku]"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CentralSku]"
+                          name="CentralSku"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[Mpn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[Mpn]"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[Mpn]"
+                          name="Mpn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CnetId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[CnetId]"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CnetId]"
+                          name="CnetId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CnetCategoryId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[CnetCategoryId]"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CnetCategoryId]"
+                          name="CnetCategoryId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ProductType]"
+                          length="1"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductType]"
+                          name="ProductType"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[DescriptionEn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[DescriptionEn]"
+                          length="800"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[DescriptionEn]"
+                          name="DescriptionEn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[DescriptionEs]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[DescriptionEs]"
+                          length="800"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[DescriptionEs]"
+                          name="DescriptionEs"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[DescriptionPt]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[DescriptionPt]"
+                          length="800"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[DescriptionPt]"
+                          name="DescriptionPt"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ImageFilename]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ImageFilename]"
+                          length="100"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ImageFilename]"
+                          name="ImageFilename"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ImageType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ImageType]"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ImageType]"
+                          name="ImageType"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[IntcomexBrandId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[IntcomexBrandId]"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[IntcomexBrandId]"
+                          name="IntcomexBrandId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[IntcomexBrandDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[IntcomexBrandDescription]"
+                          length="100"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[IntcomexBrandDescription]"
+                          name="IntcomexBrandDescription"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[IntcomexBrandImage]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[IntcomexBrandImage]"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[IntcomexBrandImage]"
+                          name="IntcomexBrandImage"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductLineId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ProductLineId]"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductLineId]"
+                          name="ProductLineId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductLineEn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ProductLineEn]"
+                          length="255"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductLineEn]"
+                          name="ProductLineEn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductLineEs]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ProductLineEs]"
+                          length="255"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductLineEs]"
+                          name="ProductLineEs"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductLinePt]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ProductLinePt]"
+                          length="255"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ProductLinePt]"
+                          name="ProductLinePt"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ModelId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ModelId]"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ModelId]"
+                          name="ModelId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ModelEn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ModelEn]"
+                          length="255"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ModelEn]"
+                          name="ModelEn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ModelEs]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ModelEs]"
+                          length="255"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ModelEs]"
+                          name="ModelEs"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ModelPt]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ModelPt]"
+                          length="255"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[ModelPt]"
+                          name="ModelPt"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[Status]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                          length="1"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[Status]"
+                          name="Status"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CreationDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[CreationDate]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[CreationDate]"
+                          name="CreationDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[LastExtraction]"
+                          name="LastExtraction"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[XmxDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[XmxDescription]"
+                          length="500"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[XmxDescription]"
+                          name="XmxDescription"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[TypeId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[TypeId]"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[TypeId]"
+                          name="TypeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[TagsEn]"
+                          dataType="nText"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[TagsEn]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[TagsEn]"
+                          name="TagsEn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[TagsEs]"
+                          dataType="nText"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[TagsEs]"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].Columns[TagsEs]"
+                          name="TagsEs"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[LocalRecno]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LocalRecno" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[LocalSku]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LocalSku" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[CentralRecno]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CentralRecno" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[CentralSku]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CentralSku" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[Mpn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Mpn" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[CnetId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CnetId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[CnetCategoryId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CnetCategoryId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ProductType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="ProductType" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[DescriptionEn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="800"
+                          name="DescriptionEn" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[DescriptionEs]"
+                          codePage="1252"
+                          dataType="str"
+                          length="800"
+                          name="DescriptionEs" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[DescriptionPt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="800"
+                          name="DescriptionPt" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ImageFilename]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="ImageFilename" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ImageType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ImageType" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[IntcomexBrandId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="IntcomexBrandId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[IntcomexBrandDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="IntcomexBrandDescription" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[IntcomexBrandImage]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="IntcomexBrandImage" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ProductLineId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ProductLineId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ProductLineEn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ProductLineEn" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ProductLineEs]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ProductLineEs" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ProductLinePt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ProductLinePt" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ModelId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ModelId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ModelEn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ModelEn" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ModelEs]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ModelEs" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[ModelPt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ModelPt" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[CreationDate]"
+                          dataType="dbTimeStamp"
+                          name="CreationDate" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          name="LastExtraction" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[XmxDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="500"
+                          name="XmxDescription" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[TypeId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="TypeId" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[TagsEn]"
+                          dataType="nText"
+                          name="TagsEn" />
+                        <externalMetadataColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output].ExternalColumns[TagsEs]"
+                          dataType="nText"
+                          name="TagsEs" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[LocalRecno]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[LocalRecno]"
+                          name="LocalRecno" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[LocalSku]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[LocalSku]"
+                          name="LocalSku" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[CentralRecno]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[CentralRecno]"
+                          name="CentralRecno" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[CentralSku]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[CentralSku]"
+                          name="CentralSku" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[Mpn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[Mpn]"
+                          name="Mpn" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[CnetId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[CnetId]"
+                          name="CnetId" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[CnetCategoryId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[CnetCategoryId]"
+                          name="CnetCategoryId" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ProductType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ProductType]"
+                          name="ProductType" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[DescriptionEn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="800"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[DescriptionEn]"
+                          name="DescriptionEn" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[DescriptionEs]"
+                          codePage="1252"
+                          dataType="str"
+                          length="800"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[DescriptionEs]"
+                          name="DescriptionEs" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[DescriptionPt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="800"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[DescriptionPt]"
+                          name="DescriptionPt" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ImageFilename]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ImageFilename]"
+                          name="ImageFilename" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ImageType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ImageType]"
+                          name="ImageType" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[IntcomexBrandId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[IntcomexBrandId]"
+                          name="IntcomexBrandId" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[IntcomexBrandDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[IntcomexBrandDescription]"
+                          name="IntcomexBrandDescription" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[IntcomexBrandImage]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[IntcomexBrandImage]"
+                          name="IntcomexBrandImage" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ProductLineId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ProductLineId]"
+                          name="ProductLineId" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ProductLineEn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ProductLineEn]"
+                          name="ProductLineEn" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ProductLineEs]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ProductLineEs]"
+                          name="ProductLineEs" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ProductLinePt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ProductLinePt]"
+                          name="ProductLinePt" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ModelId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ModelId]"
+                          name="ModelId" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ModelEn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ModelEn]"
+                          name="ModelEn" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ModelEs]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ModelEs]"
+                          name="ModelEs" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ModelPt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ModelPt]"
+                          name="ModelPt" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[Status]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[Status]"
+                          name="Status" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[CreationDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[CreationDate]"
+                          name="CreationDate" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[LastExtraction]"
+                          name="LastExtraction" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[XmxDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="500"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[XmxDescription]"
+                          name="XmxDescription" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[TypeId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[TypeId]"
+                          name="TypeId" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[TagsEn]"
+                          dataType="nText"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[TagsEn]"
+                          name="TagsEn" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[TagsEs]"
+                          dataType="nText"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[TagsEs]"
+                          name="TagsEs" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\LOAD PRODUCTS\Load.Paths[OLE DB Source Output]"
+                  endId="Package\LOAD PRODUCTS\Load\CRM.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\LOAD PRODUCTS\Load\IntcomexStore.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOAD PRODUCTS\TRUNCATE TABLE"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{07862E1B-3F88-4EA8-B575-230730673E4E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE TABLE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1D5908C0-7D6E-4659-8DA1-17731A7843E4}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE CRMStaging.dbo.Products" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD PRODUCTS.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{63A9C6A7-F519-4063-8CBD-22D52EFABCB6}"
+          DTS:From="Package\LOAD PRODUCTS\TRUNCATE TABLE"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\LOAD PRODUCTS\Load" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD PRODUCTS.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{D9AFD3CF-3331-46A8-94FD-6CEBAEDA7563}"
+          DTS:From="Package\LOAD PRODUCTS\Load"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\LOAD PRODUCTS\Execute SQL Task"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOAD PRODUCTS.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{CE33D6FF-C832-46E7-9387-503B15814B6D}"
+          DTS:From="Package\LOAD PRODUCTS\Load"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\LOAD PRODUCTS\Execute SQL Task 1" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{263A0F62-F992-44BD-A1E4-AD166603065C}"
+      DTS:From="Package\LOAD PRODUCTS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Evento Correcto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Mensaje"
+          TopLeft="7.96226415094338,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Evento Correcto\Send Mail Task"
+          TopLeft="7.54716981132071,100.169811320755" />
+        <EdgeLayout
+          Id="Package\Evento Correcto.PrecedenceConstraints[Constraint]"
+          TopLeft="75.8490566037735,52.3962264150944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.415094339622556,47.7735849056604"
+              Start="0,0"
+              End="-0.415094339622556,40.2735849056604">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-0.415094339622556,23.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-0.415094339622556,40.2735849056604" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="159,151"
+          Size="159,195"
+          Id="Package\Evento Correcto"
+          TopLeft="114.783018867925,388.405660377358" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD PRODUCTS\Execute SQL Task"
+          TopLeft="222.716981132075,126.735849056604" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD PRODUCTS\Execute SQL Task 1"
+          TopLeft="23.0943396226415,207.603773584906" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD PRODUCTS\Load"
+          TopLeft="27.0188679245283,124.735849056604" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOAD PRODUCTS\TRUNCATE TABLE"
+          TopLeft="29.9245283018868,31.8679245283019" />
+        <EdgeLayout
+          Id="Package\LOAD PRODUCTS.PrecedenceConstraints[Constraint]"
+          TopLeft="97.8113207547169,75.7924528301887">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-2.90566037735846,48.9433962264151"
+              Start="0,0"
+              End="-2.90566037735846,41.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.4528301886793" />
+                  <mssgle:LineSegment
+                    End="-2.90566037735846,24.4528301886793" />
+                  <mssgle:LineSegment
+                    End="-2.90566037735846,41.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD PRODUCTS.PrecedenceConstraints[Constraint 1]"
+          TopLeft="162.792452830189,146.698113207547">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="59.9245283018869,2"
+              Start="0,0"
+              End="52.4245283018869,2">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="43.0566037735849,0" />
+                  <mssgle:LineSegment
+                    End="43.0566037735849,2" />
+                  <mssgle:LineSegment
+                    End="52.4245283018869,2" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="27.8152561173349,-19.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOAD PRODUCTS.PrecedenceConstraints[Constraint 2]"
+          TopLeft="94.9056603773585,168.660377358491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-3.92452830188677,38.9433962264151"
+              Start="0,0"
+              End="-3.92452830188677,31.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.4716981132075" />
+                  <mssgle:LineSegment
+                    End="-3.92452830188677,19.4716981132075" />
+                  <mssgle:LineSegment
+                    End="-3.92452830188677,31.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="378,286"
+          Size="378,329"
+          Id="Package\LOAD PRODUCTS"
+          TopLeft="5.5,5.49999999999999" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="194.707547169811,334.971698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-0.566037735849022,53.4339622641509"
+              Start="0,0"
+              End="-0.566037735849022,45.9339622641509">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.7169811320754" />
+                  <mssgle:LineSegment
+                    End="-0.566037735849022,26.7169811320754" />
+                  <mssgle:LineSegment
+                    End="-0.566037735849022,45.9339622641509" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
